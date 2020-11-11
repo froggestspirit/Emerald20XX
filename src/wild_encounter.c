@@ -758,10 +758,15 @@ void FishingWildEncounter(u8 rod)
         species = GenerateFishingWildMon(gWildMonHeaders[GetCurrentMapWildMonHeaderId()].fishingMonsInfo, rod);
     }
     
-    if (species == sLastFishingSpecies && gChainFishingStreak < MAX_CHAIN_FISHING_STREAK)
-        gChainFishingStreak++;
+    if (species == sLastFishingSpecies)
+    {
+        if (gChainFishingStreak < MAX_CHAIN_FISHING_STREAK)
+            gChainFishingStreak++;
+    }
     else
+    {
         gChainFishingStreak = 0;    //reeling in different species resets chain fish counter
+    }
     
     sLastFishingSpecies = species;
     IncrementGameStat(GAME_STAT_FISHING_CAPTURES);
