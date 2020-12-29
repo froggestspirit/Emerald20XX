@@ -4884,4 +4884,20 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .secondaryId = 0,
     },
+    
+    // Custom items
+    
+    [ITEM_POKE_RADAR] =
+    {
+        .name = _("POKé RADAR"),
+        .itemId = ITEM_POKE_RADAR,
+        .price = 0,
+        .description = sPokeRadarDesc,
+        .importance = 1,
+        .unk19 = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = 4,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse, //temporary until functionality is implemented
+        .secondaryId = 0,
+    },
 };

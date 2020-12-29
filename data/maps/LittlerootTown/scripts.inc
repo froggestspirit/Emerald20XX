@@ -260,6 +260,7 @@ LittlerootTown_EventScript_SetRivalBirchPosForDexUpgradeFemale:: @ 81E8013
 
 LittlerootTown_EventScript_FatMan:: @ 81E8022
 	msgbox LittlerootTown_Text_CanUsePCToStoreItems, MSGBOX_NPC
+	giveitem ITEM_POKE_RADAR
 	end
 
 LittlerootTown_EventScript_Boy:: @ 81E802B
