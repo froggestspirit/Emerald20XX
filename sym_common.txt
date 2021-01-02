@@ -80,3 +80,6 @@ gReservedSpritePaletteCount:
 	.include "librfu_stwi.o"
 	.include "librfu_rfu.o"
 	.include "librfu_sio32id.o"
+
+gPokeRadarChain:
+    .include "poke_radar.o"

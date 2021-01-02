@@ -4896,8 +4896,8 @@ const struct Item gItems[] =
         .importance = 1,
         .unk19 = 1,
         .pocket = POCKET_KEY_ITEMS,
-        .type = 4,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse, //temporary until functionality is implemented
+        .type = 2,
+        .fieldUseFunc = ItemUseOutOfBattle_PokeRadar,
         .secondaryId = 0,
     },
 };

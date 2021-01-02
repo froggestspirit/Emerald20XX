@@ -28,6 +28,7 @@
 #include "overworld.h"
 #include "palette.h"
 #include "party_menu.h"
+#include "poke_radar.h"
 #include "pokeblock.h"
 #include "pokemon.h"
 #include "script.h"
@@ -152,7 +153,7 @@ static void DisplayCannotUseItemMessage(u8 taskId, bool8 isUsingRegisteredKeyIte
         DisplayItemMessageOnField(taskId, gStringVar4, Task_CloseCantUseKeyItemMessage);
 }
 
-static void DisplayDadsAdviceCannotUseItemMessage(u8 taskId, bool8 isUsingRegisteredKeyItemOnField)
+void DisplayDadsAdviceCannotUseItemMessage(u8 taskId, bool8 isUsingRegisteredKeyItemOnField)
 {
     DisplayCannotUseItemMessage(taskId, isUsingRegisteredKeyItemOnField, gText_DadsAdvice);
 }
@@ -1116,6 +1117,15 @@ void ItemUseInBattle_EnigmaBerry(u8 taskId)
     default:
         ItemUseOutOfBattle_CannotUse(taskId);
         break;
+    }
+}
+
+void ItemUseOutOfBattle_PokeRadar(u8 taskId)
+{
+    if (CanUsePokeRadar(taskId))
+    {
+        sItemUseOnFieldCB = ItemUseOnFieldCB_PokeRadar;
+        SetUpItemUseOnFieldCallback(taskId);
     }
 }
 
