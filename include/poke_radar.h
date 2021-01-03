@@ -14,7 +14,7 @@ struct PokeRadarGrassPatch {
 };
 
 struct PokeRadarChain {
-    u16 chain;
+    u8 chain;
     u16 species;
     u8 level;
     u8 patchType;
@@ -30,6 +30,10 @@ struct PokeRadarChain {
 
 extern struct PokeRadarChain gPokeRadarChain;
 
+bool8 ChoosePokeRadarShakeCoords(s16 baseX, s16 baseY);
+void BreakPokeRadarChain(void);
+void IncrementPokeRadarChain(void);
+void SetPokeRadarPokemon(u16 species, u8 level);
 bool8 CanUsePokeRadar(u8 taskId);
 void ItemUseOnFieldCB_PokeRadar(u8 taskId);
 

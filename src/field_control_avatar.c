@@ -666,6 +666,11 @@ void RestartWildEncounterImmunitySteps(void)
     sWildEncounterImmunitySteps = 0;
 }
 
+void DisableWildPokemonImmunity(void)
+{
+    sWildEncounterImmunitySteps = 4;
+}
+
 static bool8 CheckStandardWildEncounter(u16 metatileBehavior)
 {
     if (sWildEncounterImmunitySteps < 4)
