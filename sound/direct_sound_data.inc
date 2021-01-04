@@ -2173,3 +2173,31 @@ DirectSoundWaveData_sd90_classical_whistle::
 	.align 2
 DirectSoundWaveData_sd90_enhanced_delay_shaku::
 	.incbin "sound/direct_sound_samples/sd90_enhanced_delay_shaku.bin"
+
+    .align 2
+DirectSoundWaveData_sc88pro_vibraphone_36::
+    .incbin "sound/direct_sound_samples/sc88pro_vibraphone_36.bin"
+
+    .align 2
+DirectSoundWaveData_sc88pro_vibraphone_48::
+    .incbin "sound/direct_sound_samples/sc88pro_vibraphone_48.bin"
+
+    .align 2
+DirectSoundWaveData_sc88pro_vibraphone_60::
+    .incbin "sound/direct_sound_samples/sc88pro_vibraphone_60.bin"
+
+    .align 2
+DirectSoundWaveData_sc88pro_vibraphone_84::
+    .incbin "sound/direct_sound_samples/sc88pro_vibraphone_84.bin"
+
+    .align 2
+DirectSoundWaveData_sc88pro_violin::
+    .incbin "sound/direct_sound_samples/sc88pro_violin.bin"
+
+    .align 2
+DirectSoundWaveData_sc88pro_castanets::
+    .incbin "sound/direct_sound_samples/sc88pro_castanets.bin"
+
+    .align 2
+DirectSoundWaveData_sc88pro_high_wood_block::
+    .incbin "sound/direct_sound_samples/sc88pro_high_wood_block.bin"

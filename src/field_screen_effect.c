@@ -21,6 +21,7 @@
 #include "mirage_tower.h"
 #include "metatile_behavior.h"
 #include "palette.h"
+#include "poke_radar.h"
 #include "overworld.h"
 #include "scanline_effect.h"
 #include "script.h"
@@ -445,7 +446,9 @@ bool8 FieldCB_ReturnToFieldOpenStartMenu(void)
 
 static void task_mpl_807E3C8(u8 taskId)
 {
-    if (WaitForWeatherFadeIn() == 1)
+    if (gPokeRadarChain.active)
+        gTasks[taskId].func = Task_StartPokeRadarGrassShake;
+    else
     {
         ScriptContext2_Disable();
         DestroyTask(taskId);
@@ -463,7 +466,10 @@ void sub_80AF6D4(void)
 void sub_80AF6F0(void)
 {
     ScriptContext2_Enable();
-    Overworld_PlaySpecialMapMusic();
+    if (gPokeRadarChain.active)
+        Overworld_FadeOutMapMusic();
+    else
+        Overworld_PlaySpecialMapMusic();
     FadeInFromBlack();
     CreateTask(task_mpl_807E3C8, 10);
 }

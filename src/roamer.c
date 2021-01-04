@@ -1,5 +1,6 @@
 #include "global.h"
 #include "event_data.h"
+#include "poke_radar.h"
 #include "pokemon.h"
 #include "random.h"
 #include "roamer.h"
@@ -182,6 +183,8 @@ void CreateRoamerMonInstance(void)
     SetMonData(mon, MON_DATA_CUTE, &gSaveBlock1Ptr->roamer.cute);
     SetMonData(mon, MON_DATA_SMART, &gSaveBlock1Ptr->roamer.smart);
     SetMonData(mon, MON_DATA_TOUGH, &gSaveBlock1Ptr->roamer.tough);
+
+    BreakPokeRadarChain();
 }
 
 bool8 TryStartRoamerEncounter(void)

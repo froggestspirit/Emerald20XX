@@ -68,7 +68,6 @@ static void UseTMHMYesNo(u8 taskId);
 static void UseTMHM(u8 taskId);
 static void Task_StartUseRepel(u8 taskId);
 static void Task_UseRepel(u8 taskId);
-static void Task_CloseCantUseKeyItemMessage(u8 taskId);
 static void SetDistanceOfClosestHiddenItem(u8 taskId, s16 x, s16 y);
 static void CB2_OpenPokeblockCaseOnField(void);
 
@@ -163,7 +162,7 @@ static void DisplayCannotDismountBikeMessage(u8 taskId, bool8 isUsingRegisteredK
     DisplayCannotUseItemMessage(taskId, isUsingRegisteredKeyItemOnField, gText_CantDismountBike);
 }
 
-static void Task_CloseCantUseKeyItemMessage(u8 taskId)
+void Task_CloseCantUseKeyItemMessage(u8 taskId)
 {
     ClearDialogWindowAndFrame(0, 1);
     DestroyTask(taskId);
@@ -219,6 +218,7 @@ void ItemUseOutOfBattle_Bike(u8 taskId)
 
 static void ItemUseOnFieldCB_Bike(u8 taskId)
 {
+    BreakPokeRadarChain();
     if (!ItemId_GetSecondaryId(gSpecialVar_ItemId))
         GetOnOffBike(PLAYER_AVATAR_FLAG_MACH_BIKE);
     else
@@ -1127,6 +1127,8 @@ void ItemUseOutOfBattle_PokeRadar(u8 taskId)
         sItemUseOnFieldCB = ItemUseOnFieldCB_PokeRadar;
         SetUpItemUseOnFieldCallback(taskId);
     }
+    else
+        DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
 }
 
 void ItemUseOutOfBattle_CannotUse(u8 taskId)
