@@ -113,7 +113,7 @@ static const RingCoords sPokeRadarRingCoords[] =
 
 bool8 ChoosePokeRadarShakeCoords(s16 baseX, s16 baseY)
 {
-    u8 i;
+    u32 i;
     bool8 valid = FALSE;
     
     for (i = 0; i < NUM_POKE_RADAR_GRASS_PATCHES; i++)
@@ -153,7 +153,7 @@ static u8 CheckShinyPatch(u8 chain)
 
 static void PrepGrassPatchChainData(void)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < NUM_POKE_RADAR_GRASS_PATCHES; i++)
     {
         if (gPokeRadarChain.grassPatches[i].active)
@@ -187,7 +187,7 @@ void TrySetPokeRadarPatchCoords(void)
 
 void StartPokeRadarGrassShake(void)
 {
-    u8 i;
+    u32 i;
     struct ObjectEvent *playerObj = &gObjectEvents[gPlayerAvatar.objectEventId];
 
     PlayBGM(MUS_POKE_RADAR);
@@ -207,10 +207,14 @@ void StartPokeRadarGrassShake(void)
             gFieldEffectArguments[5] = playerObj->mapGroup;
             gFieldEffectArguments[6] = (u8)gSaveBlock1Ptr->location.mapNum << 8 | (u8)gSaveBlock1Ptr->location.mapGroup;
             gFieldEffectArguments[7] = 0;
+            //if (gPokeRadarChain.grassPatches[i].isShiny)
+                
             if (gPokeRadarChain.grassPatches[i].patchType == 0)
                 FieldEffectStart(FLDEFF_TALL_GRASS);
             else
                 FieldEffectStart(FLDEFF_POKE_RADAR_GRASS);
+            if (gPokeRadarChain.grassPatches[i].isShiny)
+                FieldEffectStart(FLDEFF_POKE_RADAR_SPARKLE);
         }
     }
 }
@@ -280,7 +284,7 @@ static void FinishPokeRadar(u8 taskId)
 
 void BreakPokeRadarChain(void)
 {
-    u8 i;
+    u32 i;
 
     Overworld_PlaySpecialMapMusic();
 

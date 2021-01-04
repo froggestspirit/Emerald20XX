@@ -131,6 +131,39 @@ const struct SpriteTemplate gFieldEffectObjectTemplate_PokeRadarGrass = {
     .callback = UpdateTallGrassFieldEffect,
 };
 
+const struct SpritePalette gSpritePalette_PokeRadarSparkle = {gFieldEffectPal_PokeRadarSparkle, FLDEFF_PAL_TAG_POKE_RADAR_SPARKLE};
+
+static const struct SpriteFrameImage sPicTable_PokeRadarSparkle[] = {
+    overworld_frame(gFieldEffectObjectPic_PokeRadarSparkle, 2, 2, 0),
+    overworld_frame(gFieldEffectObjectPic_PokeRadarSparkle, 2, 2, 1),
+    overworld_frame(gFieldEffectObjectPic_PokeRadarSparkle, 2, 2, 2),
+};
+
+static const union AnimCmd sAnim_PokeRadarSparkle[] =
+{
+    ANIMCMD_FRAME(0, 10),
+    ANIMCMD_FRAME(1, 10),
+    ANIMCMD_FRAME(2, 10),
+    ANIMCMD_FRAME(1, 10),
+    ANIMCMD_FRAME(0, 10),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd *const sAnimTable_PokeRadarSparkle[] =
+{
+    sAnim_PokeRadarSparkle,
+};
+
+const struct SpriteTemplate gFieldEffectObjectTemplate_PokeRadarSparkle = {
+    .tileTag = 0xFFFF,
+    .paletteTag = FLDEFF_PAL_TAG_POKE_RADAR_SPARKLE,
+    .oam = &gObjectEventBaseOam_16x16,
+    .anims = sAnimTable_PokeRadarSparkle,
+    .images = sPicTable_PokeRadarSparkle,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = UpdateTallGrassFieldEffect,
+};
+
 static const struct SpriteFrameImage sPicTable_Ripple[] = {
     overworld_frame(gFieldEffectObjectPic_Ripple, 2, 2, 0),
     overworld_frame(gFieldEffectObjectPic_Ripple, 2, 2, 1),

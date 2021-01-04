@@ -73,6 +73,7 @@ gFieldEffectScriptPointers:: @ 82DB9D4
 	.4byte gFieldEffectScript_DestroyDeoxysRock         @ FLDEFF_DESTROY_DEOXYS_ROCK
 	.4byte gFieldEffectScript_MoveDeoxysRock            @ FLDEFF_MOVE_DEOXYS_ROCK
     .4byte gFieldEffectScript_PokeRadarGrass
+    .4byte gFieldEffectScript_PokeRadarSparkle
 
 gFieldEffectScript_ExclamationMarkIcon1:: @ 82DBAE0
 	field_eff_callnative FldEff_ExclamationMarkIcon
@@ -347,4 +348,8 @@ gFieldEffectScript_MoveDeoxysRock:: @ 82DBCFF
 
 gFieldEffectScript_PokeRadarGrass:: @ 82DBAF8
 	field_eff_loadfadedpal_callnative gSpritePalette_GeneralFieldEffect1, FldEff_PokeRadarGrass
+	field_eff_end
+
+gFieldEffectScript_PokeRadarSparkle:: @ 82DBAF8
+	field_eff_loadfadedpal_callnative gSpritePalette_PokeRadarSparkle, FldEff_PokeRadarSparkle
 	field_eff_end
