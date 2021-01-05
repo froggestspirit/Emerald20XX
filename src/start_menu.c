@@ -488,7 +488,7 @@ static bool32 InitStartMenuStep(void)
             ShowSafariBallsWindow();
         if (InBattlePyramid())
             ShowPyramidFloorWindow();
-        if (gPokeRadarChain.chain > 0)
+        if (gPokeRadarChain.chain > 0 && !GetSafariZoneFlag())
             ShowPokeRadarChainWindow();
         sInitStartMenuData[0]++;
         break;
