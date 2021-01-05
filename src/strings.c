@@ -1525,6 +1525,7 @@ const u8 gText_Floor5[] = _("Floor 5");
 const u8 gText_Floor6[] = _("Floor 6");
 const u8 gText_Floor7[] = _("Floor 7");
 const u8 gText_Peak[] = _("Peak");
+const u8 gText_PokeRadarChain[] = _("POKé RADAR\nChain: {STR_VAR_1}");
 const u8 gText_LinkStandby2[] = _("Link standby…\n… … B Button: Cancel");
 const u8 gText_PressAToLoadEvent[] = _("Press the A Button to load event.\n… … B Button: Cancel");
 const u8 gText_LoadingEvent[] = _("Loading event…");
