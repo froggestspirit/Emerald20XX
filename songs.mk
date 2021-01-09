@@ -787,7 +787,7 @@ $(MID_SUBDIR)/ph_trap_solo.s: %.s: %.mid
 	$(MID) $< $@ -E -G130 -P4
 
 $(MID_SUBDIR)/mus_poke_radar.s: %.s: %.mid
-	$(MID) $< $@ -E -R$(STD_REVERB) -G192 -v100
+	$(MID) $< $@ -E -R$(STD_REVERB) -G192 -V100
 
 $(MID_SUBDIR)/se_a.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G128 -V095 -P4
