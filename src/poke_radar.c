@@ -60,11 +60,6 @@ bool8 CanUsePokeRadar(u8 taskId)
         return FALSE;
     }
 
-    if (gPlayerAvatar.flags & (PLAYER_AVATAR_FLAG_MACH_BIKE | PLAYER_AVATAR_FLAG_ACRO_BIKE | PLAYER_AVATAR_FLAG_SURFING))
-    {
-       return FALSE;
-    }
-
     return TRUE;
 }
 
@@ -388,12 +383,6 @@ void ChargePokeRadar(void)
             }
         }
         if (xDiff > 8 || yDiff > 8)
-        {
-            BreakPokeRadarChain();
-            return;
-        }
-
-        if (gPlayerAvatar.flags & (PLAYER_AVATAR_FLAG_MACH_BIKE | PLAYER_AVATAR_FLAG_ACRO_BIKE | PLAYER_AVATAR_FLAG_SURFING))
         {
             BreakPokeRadarChain();
             return;
