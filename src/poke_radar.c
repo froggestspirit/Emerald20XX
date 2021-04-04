@@ -25,7 +25,7 @@
 
 struct PokeRadarChain gPokeRadarChain;
 
-static const u8 sText_GrassyPatchRemainedSilent[] = _("The grassy patch remained\nsilent...{PAUSE_UNTIL_PRESS}");
+static const u8 sText_GrassyPatchRemainedQuiet[] = _("The grassy patch remained\nquiet...{PAUSE_UNTIL_PRESS}");
 static const u8 sText_StepsUntilCharged[] = _("The battery has run dry!\n{STR_VAR_1} steps until fully charged.{PAUSE_UNTIL_PRESS}");
 static const u8 sText_StepUntilCharged[] = _("The battery has run dry!\n1 step until fully charged.{PAUSE_UNTIL_PRESS}");
 
@@ -190,7 +190,8 @@ void StartPokeRadarGrassShake(void)
     u32 i;
     struct ObjectEvent *playerObj = &gObjectEvents[gPlayerAvatar.objectEventId];
 
-    PlayBGM(MUS_POKE_RADAR);
+    Overworld_SetSavedMusic(MUS_POKE_RADAR);
+    Overworld_PlaySpecialMapMusic();
 
     DisableWildPokemonImmunity();
     PrepGrassPatchChainData();
@@ -256,17 +257,17 @@ void ItemUseOnFieldCB_PokeRadar(u8 taskId)
     }
     
     playerObj = &gObjectEvents[gPlayerAvatar.objectEventId];
+    gPokeRadarChain.stepsUntilCharged = POKE_RADAR_STEPS_TO_CHARGE;
     
     if (ChoosePokeRadarShakeCoords(playerObj->currentCoords.x, playerObj->currentCoords.y))
     {
         gPokeRadarChain.active = 1;
-        gPokeRadarChain.stepsUntilCharged = POKE_RADAR_STEPS_TO_CHARGE;
         Task_StartPokeRadarGrassShake(taskId);
     }
     else
     {
         BreakPokeRadarChain();
-        DisplayItemMessageOnField(taskId, sText_GrassyPatchRemainedSilent, Task_CloseCantUseKeyItemMessage);
+        DisplayItemMessageOnField(taskId, sText_GrassyPatchRemainedQuiet, Task_CloseCantUseKeyItemMessage);
     }
 }
 
@@ -288,7 +289,8 @@ void BreakPokeRadarChain(void)
 {
     u32 i;
 
-    Overworld_PlaySpecialMapMusic();
+    Overworld_ClearSavedMusic();
+    Overworld_ChangeMusicTo(GetCurrLocationDefaultMusic());
 
     gPokeRadarChain.chain = 0;
     gPokeRadarChain.species = SPECIES_NONE;
@@ -357,7 +359,8 @@ void InitNewPokeRadarChain(u16 species, u8 level, u8 patchType)
 
 void ChargePokeRadar(void)
 {
-    s16 xDiff, yDiff;
+    u32 i;
+    s16 xDiff, yDiff, diff;
     if (gPokeRadarChain.stepsUntilCharged > 0)
         gPokeRadarChain.stepsUntilCharged--;
 
@@ -369,9 +372,19 @@ void ChargePokeRadar(void)
             return;
         }
         
-        xDiff = abs(gObjectEvents[gPlayerAvatar.objectEventId].currentCoords.x - gPokeRadarChain.originX);
-        yDiff = abs(gObjectEvents[gPlayerAvatar.objectEventId].currentCoords.y - gPokeRadarChain.originY);
-        if (xDiff > 13 || yDiff > 13)
+        xDiff = 0xFF;
+        yDiff = 0xFF;
+        for (i = 0; i < NUM_POKE_RADAR_GRASS_PATCHES; i++) // taking 9 steps away from the closest active patch breaks the chain
+        {
+            if (gPokeRadarChain.grassPatches[i].active)
+            {
+                diff = abs(gObjectEvents[gPlayerAvatar.objectEventId].currentCoords.x - gPokeRadarChain.grassPatches[i].x);
+                if(diff < xDiff) xDiff = diff;
+                diff = abs(gObjectEvents[gPlayerAvatar.objectEventId].currentCoords.y - gPokeRadarChain.grassPatches[i].y);
+                if(diff < yDiff) yDiff = diff;
+            }
+        }
+        if (xDiff > 8 || yDiff > 8)
         {
             BreakPokeRadarChain();
             return;
