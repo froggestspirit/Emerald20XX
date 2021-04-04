@@ -128,7 +128,7 @@ const struct SpriteTemplate gFieldEffectObjectTemplate_PokeRadarGrass = {
     .anims = sAnimTable_PokeRadarGrass,
     .images = sPicTable_TallGrass,
     .affineAnims = gDummySpriteAffineAnimTable,
-    .callback = UpdateTallGrassFieldEffect,
+    .callback = UpdatePokeRadarGrassFieldEffect,
 };
 
 const struct SpritePalette gSpritePalette_PokeRadarSparkle = {gFieldEffectPal_PokeRadarSparkle, FLDEFF_PAL_TAG_POKE_RADAR_SPARKLE};
@@ -161,7 +161,7 @@ const struct SpriteTemplate gFieldEffectObjectTemplate_PokeRadarSparkle = {
     .anims = sAnimTable_PokeRadarSparkle,
     .images = sPicTable_PokeRadarSparkle,
     .affineAnims = gDummySpriteAffineAnimTable,
-    .callback = UpdateTallGrassFieldEffect,
+    .callback = UpdatePokeRadarSparkleFieldEffect,
 };
 
 static const struct SpriteFrameImage sPicTable_Ripple[] = {

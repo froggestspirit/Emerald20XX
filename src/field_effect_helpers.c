@@ -395,6 +395,18 @@ void UpdateTallGrassFieldEffect(struct Sprite *sprite)
     }
 }
 
+void UpdatePokeRadarGrassFieldEffect(struct Sprite *sprite)
+{
+    if (sprite->animEnded)
+        FieldEffectStop(sprite, FLDEFF_POKE_RADAR_GRASS);
+}
+
+void UpdatePokeRadarSparkleFieldEffect(struct Sprite *sprite)
+{
+    if (sprite->animEnded)
+        FieldEffectStop(sprite, FLDEFF_POKE_RADAR_SPARKLE);
+}
+
 u32 FldEff_JumpTallGrass(void)
 {
     u8 spriteId;
