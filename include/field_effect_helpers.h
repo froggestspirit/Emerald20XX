@@ -21,7 +21,7 @@ void UpdateRayquazaSpotlightEffect(struct Sprite*);
 void UpdateShadowFieldEffect(struct Sprite*);
 void UpdateTallGrassFieldEffect(struct Sprite*);
 void UpdatePokeRadarGrassFieldEffect(struct Sprite*);
-void UpdatePokeRadarSparkleFieldEffect(struct Sprite*)
+void UpdatePokeRadarSparkleFieldEffect(struct Sprite*);
 void WaitFieldEffectSpriteAnim(struct Sprite*);
 void UpdateAshFieldEffect(struct Sprite*);
 void UpdateSurfBlobFieldEffect(struct Sprite*);
