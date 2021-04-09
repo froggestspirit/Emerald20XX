@@ -8,107 +8,109 @@
 #include "constants/trainers.h"
 #include "constants/battle_ai.h"
 
-const u16 gUnknown_082FF1D8[] = INCBIN_U16("graphics/link/minigame_digits.gbapal");
-const u32 gUnknown_082FF1F8[] = INCBIN_U32("graphics/link/minigame_digits.4bpp.lz");
-// unused
-const u32 gUnknown_082FF2B8[] = INCBIN_U32("graphics/link/minigame_digits2.4bpp.lz");
+const u16 gMinigameDigits_Pal[] = INCBIN_U16("graphics/link/minigame_digits.gbapal");
+const u32 gMinigameDigits_Gfx[] = INCBIN_U32("graphics/link/minigame_digits.4bpp.lz");
+static const u32 sMinigameDigitsThin_Gfx[] = INCBIN_U32("graphics/link/minigame_digits2.4bpp.lz"); // Unused
 
-const struct SpriteFrameImage gUnknown_082FF3A8[] =
+#define LARGE_MON_PIC_SIZE 0xC80
+#define BATTLER_OFFSET(i) (gHeap + 0x8000 + LARGE_MON_PIC_SIZE * (i))
+
+const struct SpriteFrameImage gBattlerPicTable_PlayerLeft[] =
 {
-    gHeap + 0x8000, 0xC80,
-    gHeap + 0x8800, 0xC80,
-    gHeap + 0x9000, 0xC80,
-    gHeap + 0x9800, 0xC80,
+    BATTLER_OFFSET(0), LARGE_MON_PIC_SIZE,
+    BATTLER_OFFSET(1), LARGE_MON_PIC_SIZE,
+    BATTLER_OFFSET(2), LARGE_MON_PIC_SIZE,
+    BATTLER_OFFSET(3), LARGE_MON_PIC_SIZE,
 };
 
-const struct SpriteFrameImage gUnknown_082FF3C8[] =
+const struct SpriteFrameImage gBattlerPicTable_OpponentLeft[] =
 {
-    gHeap + 0xA000, 0xC80,
-    gHeap + 0xA800, 0xC80,
-    gHeap + 0xB000, 0xC80,
-    gHeap + 0xB800, 0xC80,
+    BATTLER_OFFSET(4), LARGE_MON_PIC_SIZE,
+    BATTLER_OFFSET(5), LARGE_MON_PIC_SIZE,
+    BATTLER_OFFSET(6), LARGE_MON_PIC_SIZE,
+    BATTLER_OFFSET(7), LARGE_MON_PIC_SIZE,
 };
 
-const struct SpriteFrameImage gUnknown_082FF3E8[] =
+const struct SpriteFrameImage gBattlerPicTable_PlayerRight[] =
 {
-    gHeap + 0xC000, 0xC80,
-    gHeap + 0xC800, 0xC80,
-    gHeap + 0xD000, 0xC80,
-    gHeap + 0xD800, 0xC80,
+    BATTLER_OFFSET(8),  LARGE_MON_PIC_SIZE,
+    BATTLER_OFFSET(9),  LARGE_MON_PIC_SIZE,
+    BATTLER_OFFSET(10), LARGE_MON_PIC_SIZE,
+    BATTLER_OFFSET(11), LARGE_MON_PIC_SIZE,
 };
 
-const struct SpriteFrameImage gUnknown_082FF408[] =
+const struct SpriteFrameImage gBattlerPicTable_OpponentRight[] =
 {
-    gHeap + 0xE000, 0xC80,
-    gHeap + 0xE800, 0xC80,
-    gHeap + 0xF000, 0xC80,
-    gHeap + 0xF800, 0xC80,
+    BATTLER_OFFSET(12), LARGE_MON_PIC_SIZE,
+    BATTLER_OFFSET(13), LARGE_MON_PIC_SIZE,
+    BATTLER_OFFSET(14), LARGE_MON_PIC_SIZE,
+    BATTLER_OFFSET(15), LARGE_MON_PIC_SIZE,
 };
 
 const struct SpriteFrameImage gTrainerBackPicTable_Brendan[] =
 {
-    gTrainerBackPic_Brendan, 0x0C80,
-    gTrainerBackPic_Brendan + 0x0C80, 0x0C80,
-    gTrainerBackPic_Brendan + 0x1900, 0x0C80,
-    gTrainerBackPic_Brendan + 0x2580, 0x0C80,
+    gTrainerBackPic_Brendan, 0x0800,
+    gTrainerBackPic_Brendan + 0x0800, 0x0800,
+    gTrainerBackPic_Brendan + 0x1000, 0x0800,
+    gTrainerBackPic_Brendan + 0x1800, 0x0800,
 };
 
 const struct SpriteFrameImage gTrainerBackPicTable_May[] =
 {
-    gTrainerBackPic_May, 0x0C80,
-    gTrainerBackPic_May + 0x0C80, 0x0C80,
-    gTrainerBackPic_May + 0x1900, 0x0C80,
-    gTrainerBackPic_May + 0x2580, 0x0C80,
+    gTrainerBackPic_May, 0x0800,
+    gTrainerBackPic_May + 0x0800, 0x0800,
+    gTrainerBackPic_May + 0x1000, 0x0800,
+    gTrainerBackPic_May + 0x1800, 0x0800,
 };
 
 const struct SpriteFrameImage gTrainerBackPicTable_Red[] =
 {
-    gTrainerBackPic_Red, 0x0C80,
-    gTrainerBackPic_Red + 0x0C80, 0x0C80,
-    gTrainerBackPic_Red + 0x1900, 0x0C80,
-    gTrainerBackPic_Red + 0x2580, 0x0C80,
-    gTrainerBackPic_Red + 0x3200, 0x0C80,
+    gTrainerBackPic_Red, 0x0800,
+    gTrainerBackPic_Red + 0x0800, 0x0800,
+    gTrainerBackPic_Red + 0x1000, 0x0800,
+    gTrainerBackPic_Red + 0x1800, 0x0800,
+    gTrainerBackPic_Red + 0x2000, 0x0800,
 };
 
 const struct SpriteFrameImage gTrainerBackPicTable_Leaf[] =
 {
-    gTrainerBackPic_Leaf, 0x0C80,
-    gTrainerBackPic_Leaf + 0x0C80, 0x0C80,
-    gTrainerBackPic_Leaf + 0x1900, 0x0C80,
-    gTrainerBackPic_Leaf + 0x2580, 0x0C80,
-    gTrainerBackPic_Leaf + 0x3200, 0x0C80,
+    gTrainerBackPic_Leaf, 0x0800,
+    gTrainerBackPic_Leaf + 0x0800, 0x0800,
+    gTrainerBackPic_Leaf + 0x1000, 0x0800,
+    gTrainerBackPic_Leaf + 0x1800, 0x0800,
+    gTrainerBackPic_Leaf + 0x2000, 0x0800,
 };
 
 const struct SpriteFrameImage gTrainerBackPicTable_RubySapphireBrendan[] =
 {
-    gTrainerBackPic_RubySapphireBrendan, 0x0C80,
-    gTrainerBackPic_RubySapphireBrendan + 0x0C80, 0x0C80,
-    gTrainerBackPic_RubySapphireBrendan + 0x1900, 0x0C80,
-    gTrainerBackPic_RubySapphireBrendan + 0x2580, 0x0C80,
+    gTrainerBackPic_RubySapphireBrendan, 0x0800,
+    gTrainerBackPic_RubySapphireBrendan + 0x0800, 0x0800,
+    gTrainerBackPic_RubySapphireBrendan + 0x1000, 0x0800,
+    gTrainerBackPic_RubySapphireBrendan + 0x1800, 0x0800,
 };
 
 const struct SpriteFrameImage gTrainerBackPicTable_RubySapphireMay[] =
 {
-    gTrainerBackPic_RubySapphireMay, 0x0C80,
-    gTrainerBackPic_RubySapphireMay + 0x0C80, 0x0C80,
-    gTrainerBackPic_RubySapphireMay + 0x1900, 0x0C80,
-    gTrainerBackPic_RubySapphireMay + 0x2580, 0x0C80,
+    gTrainerBackPic_RubySapphireMay, 0x0800,
+    gTrainerBackPic_RubySapphireMay + 0x0800, 0x0800,
+    gTrainerBackPic_RubySapphireMay + 0x1000, 0x0800,
+    gTrainerBackPic_RubySapphireMay + 0x1800, 0x0800,
 };
 
 const struct SpriteFrameImage gTrainerBackPicTable_Wally[] =
 {
-    gTrainerBackPic_Wally, 0x0C80,
-    gTrainerBackPic_Wally + 0x0C80, 0x0C80,
-    gTrainerBackPic_Wally + 0x1900, 0x0C80,
-    gTrainerBackPic_Wally + 0x2580, 0x0C80,
+    gTrainerBackPic_Wally, 0x0800,
+    gTrainerBackPic_Wally + 0x0800, 0x0800,
+    gTrainerBackPic_Wally + 0x1000, 0x0800,
+    gTrainerBackPic_Wally + 0x1800, 0x0800,
 };
 
 const struct SpriteFrameImage gTrainerBackPicTable_Steven[] =
 {
-    gTrainerBackPic_Steven, 0x0C80,
-    gTrainerBackPic_Steven + 0x0C80, 0x0C80,
-    gTrainerBackPic_Steven + 0x1900, 0x0C80,
-    gTrainerBackPic_Steven + 0x2580, 0x0C80,
+    gTrainerBackPic_Steven, 0x0800,
+    gTrainerBackPic_Steven + 0x0800, 0x0800,
+    gTrainerBackPic_Steven + 0x1000, 0x0800,
+    gTrainerBackPic_Steven + 0x1800, 0x0800,
 };
 
 static const union AnimCmd sAnim_GeneralFrame0[] =
@@ -189,7 +191,7 @@ static const union AffineAnimCmd gUnknown_082FF600[] =
     AFFINEANIMCMD_END,
 };
 
-const union AffineAnimCmd *const gUnknown_082FF618[] =
+const union AffineAnimCmd *const gAffineAnims_BattleSpritePlayerSide[] =
 {
     gUnknown_082FF548,
     gUnknown_082FF568,
@@ -229,7 +231,7 @@ static const union AffineAnimCmd gUnknown_082FF684[] =
     AFFINEANIMCMD_END,
 };
 
-const union AffineAnimCmd *const gUnknown_082FF694[] =
+const union AffineAnimCmd *const gAffineAnims_BattleSpriteOpponentSide[] =
 {
     gUnknown_082FF548,
     gUnknown_082FF568,
@@ -291,14 +293,9 @@ const union AnimCmd *const gUnknown_082FF70C[] =
     gUnknown_082FF704,
 };
 
-#define SPECIES_SPRITE(species, sprite) [SPECIES_##species] = {sprite, 0xC80, SPECIES_##species}
+#define SPECIES_SPRITE(species, sprite) [SPECIES_##species] = {sprite, LARGE_MON_PIC_SIZE, SPECIES_##species}
 #define SPECIES_PAL(species, pal) [SPECIES_##species] = {pal, SPECIES_##species}
 #define SPECIES_SHINY_PAL(species, pal) [SPECIES_##species] = {pal, SPECIES_##species + SPECIES_SHINY_TAG}
-
-#define TRAINER_SPRITE(trainerPic, sprite, size) [TRAINER_PIC_##trainerPic] = {sprite, size, TRAINER_PIC_##trainerPic}
-#define TRAINER_PAL(trainerPic, pal) [TRAINER_PIC_##trainerPic] = {pal, TRAINER_PIC_##trainerPic}
-
-#define TRAINER_BACK_PAL(trainerPic, pal) [TRAINER_BACK_PIC_##trainerPic] = {pal, TRAINER_BACK_PIC_##trainerPic}
 
 #include "data/pokemon_graphics/unknown_anims.h"
 #include "data/pokemon_graphics/front_pic_coordinates.h"
@@ -318,8 +315,7 @@ const union AnimCmd *const gUnknown_082FF70C[] =
 #include "data/pokemon_graphics/front_pic_anims.h"
 #include "data/pokemon_graphics/front_pic_table.h"
 
-// unused
-const u32 gUnknown830AF4C[] =
+static const u32 sUnused[] =
 {
     0x00000888, 0x00000888, 0x00000888, 0x00000888,
     0x00000088, 0x00000888, 0x00000888, 0x00000886,

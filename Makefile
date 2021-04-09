@@ -63,13 +63,13 @@ ASFLAGS := -mcpu=arm7tdmi --defsym MODERN=$(MODERN)
 
 ifeq ($(MODERN),0)
 CC1             := tools/agbcc/bin/agbcc$(EXE)
-override CFLAGS += -mthumb-interwork -Wimplicit -Wparentheses -Werror -O2 -fhex-asm
+override CFLAGS += -mthumb-interwork -Wimplicit -Wparentheses -Werror -O2 -fhex-asm -g
 ROM := pokeemerald.gba
 OBJ_DIR := build/emerald
 LIBPATH := -L ../../tools/agbcc/lib
 else
 CC1              = $(shell $(CC) --print-prog-name=cc1) -quiet
-override CFLAGS += -mthumb -mthumb-interwork -O2 -mabi=apcs-gnu -mtune=arm7tdmi -march=armv4t -fno-toplevel-reorder -Wno-pointer-to-int-cast
+override CFLAGS += -mthumb -mthumb-interwork -O2 -mabi=apcs-gnu -mtune=arm7tdmi -march=armv4t -fno-toplevel-reorder -Wno-pointer-to-int-cast -g
 ROM := pokeemerald_modern.gba
 OBJ_DIR := build/modern
 LIBPATH := -L "$(dir $(shell $(CC) -mthumb -print-file-name=libgcc.a))" -L "$(dir $(shell $(CC) -mthumb -print-file-name=libc.a))"
@@ -303,6 +303,7 @@ $1: $2 $$(shell $(SCANINC) -I include -I "" $2)
 	$$(PREPROC) $$< charmap.txt | $$(CPP) -I include | $$(AS) $$(ASFLAGS) -o $$@
 endef
 $(foreach src, $(REGULAR_DATA_ASM_SRCS), $(eval $(call DATA_ASM_DEP,$(patsubst $(DATA_ASM_SUBDIR)/%.s,$(DATA_ASM_BUILDDIR)/%.o, $(src)),$(src))))
+$(foreach src, $(C_ASM_SRCS), $(eval $(call DATA_ASM_DEP,$(patsubst $(C_SUBDIR)/%.s,$(C_BUILDDIR)/%.o, $(src)),$(src))))
 endif
 
 $(SONG_BUILDDIR)/%.o: $(SONG_SUBDIR)/%.s

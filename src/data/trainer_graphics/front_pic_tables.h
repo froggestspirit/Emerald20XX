@@ -95,6 +95,8 @@ const struct MonCoords gTrainerFrontPicCoords[] =
     [TRAINER_PIC_RS_MAY] = {.size = 8, .y_offset = 1},
 };
 
+#define TRAINER_SPRITE(trainerPic, sprite, size) [TRAINER_PIC_##trainerPic] = {sprite, size, TRAINER_PIC_##trainerPic}
+
 const struct CompressedSpriteSheet gTrainerFrontPicTable[] =
 {
     TRAINER_SPRITE(HIKER, gTrainerFrontPic_Hiker, 0xC80),
@@ -191,6 +193,8 @@ const struct CompressedSpriteSheet gTrainerFrontPicTable[] =
     TRAINER_SPRITE(RS_BRENDAN, gTrainerFrontPic_RubySapphireBrendan, 0xC80),
     TRAINER_SPRITE(RS_MAY, gTrainerFrontPic_RubySapphireMay, 0xC80),
 };
+
+#define TRAINER_PAL(trainerPic, pal) [TRAINER_PIC_##trainerPic] = {pal, TRAINER_PIC_##trainerPic}
 
 const struct CompressedSpritePalette gTrainerFrontPicPaletteTable[] =
 {
