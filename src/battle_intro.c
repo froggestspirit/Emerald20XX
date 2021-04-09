@@ -210,7 +210,7 @@ static void BattleIntroSlide1(u8 taskId)
             gTasks[taskId].data[2] -= 2;
 
         // Scanline settings have already been set in CB2_InitBattleInternal()
-        for (i = 0; i < 80; i++)
+        for (i = 0; i < 88; i++)
             gScanlineEffectRegBuffers[gScanlineEffect.srcBuffer][i] = gTasks[taskId].data[2];
 
         for (; i < 160; i++)
@@ -319,7 +319,7 @@ static void BattleIntroSlide2(u8 taskId)
             gTasks[taskId].data[2] -= 2;
 
         // Scanline settings have already been set in CB2_InitBattleInternal()
-        for (i = 0; i < 80; i++)
+        for (i = 0; i < 88; i++)
             gScanlineEffectRegBuffers[gScanlineEffect.srcBuffer][i] = gTasks[taskId].data[2];
 
         for (; i < 160; i++)
@@ -407,7 +407,7 @@ static void BattleIntroSlide3(u8 taskId)
             gTasks[taskId].data[2] -= 2;
 
         // Scanline settings have already been set in CB2_InitBattleInternal()
-        for (i = 0; i < 80; i++)
+        for (i = 0; i < 88; i++)
             gScanlineEffectRegBuffers[gScanlineEffect.srcBuffer][i] = gTasks[taskId].data[2];
 
         for (; i < 160; i++)
@@ -489,7 +489,7 @@ static void BattleIntroSlideLink(u8 taskId)
             gTasks[taskId].data[2] -= 2;
 
         // Scanline settings have already been set in CB2_InitBattleInternal()
-        for (i = 0; i < 80; i++)
+        for (i = 0; i < 88; i++)
             gScanlineEffectRegBuffers[gScanlineEffect.srcBuffer][i] = gTasks[taskId].data[2];
 
         for (; i < 160; i++)
@@ -586,13 +586,21 @@ void sub_8118FBC(int bgId, u8 arg1, u8 arg2, u8 battlerPosition, u8 arg4, u8 *ar
     int i, j;
     u8 battler = GetBattlerAtPosition(battlerPosition);
     int offset = tilesOffset;
-    CpuCopy16(gMonSpritesGfxPtr->sprites[battlerPosition] + BG_SCREEN_SIZE * gBattleMonForms[battler], arg5, BG_SCREEN_SIZE);
-    LoadBgTiles(bgId, arg5, 0x1000, tilesOffset);
-    for (i = arg2; i < arg2 + 8; i++)
+    CpuCopy16(gMonSpritesGfxPtr->sprites[battlerPosition] + 0xC80 * gBattleMonForms[battler], arg5, 0xC80);
+    LoadBgTiles(bgId, arg5, 0x1900, tilesOffset);
+    for (i = arg2; i < arg2 + 10; i++)
     {
         for (j = arg1; j < arg1 + 8; j++)
         {
             arg6[i * 32 + j] = offset | (arg4 << 12);
+            offset++;
+        }
+    }
+    for (i = arg2; i < arg2 + 10; i++)
+    {
+        for (j = arg1; j < arg1 + 2; j++)
+        {
+            arg6[i * 32 + j + 8] = offset | (arg4 << 12);
             offset++;
         }
     }

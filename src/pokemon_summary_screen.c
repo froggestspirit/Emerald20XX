@@ -373,7 +373,7 @@ static const struct WindowTemplate sSummaryTemplate[] =
 {
     [PSS_LABEL_WINDOW_POKEMON_INFO_TITLE] = {
         .bg = 0,
-        .tilemapLeft = 0,
+        .tilemapLeft = 6,
         .tilemapTop = 0,
         .width = 11,
         .height = 2,
@@ -382,7 +382,7 @@ static const struct WindowTemplate sSummaryTemplate[] =
     },
     [PSS_LABEL_WINDOW_POKEMON_SKILLS_TITLE] = {
         .bg = 0,
-        .tilemapLeft = 0,
+        .tilemapLeft = 6,
         .tilemapTop = 0,
         .width = 11,
         .height = 2,
@@ -391,7 +391,7 @@ static const struct WindowTemplate sSummaryTemplate[] =
     },
     [PSS_LABEL_WINDOW_BATTLE_MOVES_TITLE] = {
         .bg = 0,
-        .tilemapLeft = 0,
+        .tilemapLeft = 6,
         .tilemapTop = 0,
         .width = 11,
         .height = 2,
@@ -400,7 +400,7 @@ static const struct WindowTemplate sSummaryTemplate[] =
     },
     [PSS_LABEL_WINDOW_CONTEST_MOVES_TITLE] = {
         .bg = 0,
-        .tilemapLeft = 0,
+        .tilemapLeft = 6,
         .tilemapTop = 0,
         .width = 11,
         .height = 2,
@@ -527,7 +527,7 @@ static const struct WindowTemplate sSummaryTemplate[] =
     [PSS_LABEL_WINDOW_PORTRAIT_DEX_NUMBER] = {
         .bg = 0,
         .tilemapLeft = 1,
-        .tilemapTop = 2,
+        .tilemapTop = 0,
         .width = 4,
         .height = 2,
         .paletteNum = 7,
@@ -2360,7 +2360,7 @@ static void DrawPagination(void) // Updates the pagination dots at the top of th
             alloced[j + 9] = 0x59;
         }
     }
-    CopyToBgTilemapBufferRect_ChangePalette(3, alloced, 11, 0, 8, 2, 16);
+    CopyToBgTilemapBufferRect_ChangePalette(3, alloced, 17, 0, 8, 2, 16);
     ScheduleBgCopyTilemapToVram(3);
     Free(alloced);
 }
@@ -2788,12 +2788,12 @@ static void PrintPageNamesAndStats(void)
     PrintTextOnWindow(PSS_LABEL_WINDOW_BATTLE_MOVES_TITLE, gText_BattleMoves, 2, 1, 0, 1);
     PrintTextOnWindow(PSS_LABEL_WINDOW_CONTEST_MOVES_TITLE, gText_ContestMoves, 2, 1, 0, 1);
 
-    stringXPos = GetStringRightAlignXOffset(1, gText_Cancel2, 62);
+    stringXPos = GetStringRightAlignXOffset(1, gText_Exit2, 62);
     iconXPos = stringXPos - 16;
     if (iconXPos < 0)
         iconXPos = 0;
     PrintAOrBButtonIcon(PSS_LABEL_WINDOW_PROMPT_CANCEL, FALSE, iconXPos);
-    PrintTextOnWindow(PSS_LABEL_WINDOW_PROMPT_CANCEL, gText_Cancel2, stringXPos, 1, 0, 0);
+    PrintTextOnWindow(PSS_LABEL_WINDOW_PROMPT_CANCEL, gText_Exit2, stringXPos, 1, 0, 0);
 
     stringXPos = GetStringRightAlignXOffset(1, gText_Info, 62);
     iconXPos = stringXPos - 16;
@@ -3017,6 +3017,7 @@ static void Task_PrintInfoPage(u8 taskId)
         PrintMonTrainerMemo();
         break;
     case 7:
+        sMonSummaryScreen->markingsSprite->invisible = FALSE;
         DestroyTask(taskId);
         return;
     }
@@ -3638,7 +3639,7 @@ static void PrintNewMoveDetailsOrCancelText(void)
 
     if (sMonSummaryScreen->newMove == MOVE_NONE)
     {
-        PrintTextOnWindow(windowId1, gText_Cancel, 0, 65, 0, 1);
+        PrintTextOnWindow(windowId1, gText_Exit, 0, 65, 0, 1);
     }
     else
     {
@@ -3719,6 +3720,7 @@ static void HidePageSpecificSprites(void)
         if (sMonSummaryScreen->spriteIds[i] != 0xFF)
             SetSpriteInvisibility(i, TRUE);
     }
+        sMonSummaryScreen->markingsSprite->invisible = TRUE;
 }
 
 static void SetTypeIcons(void)
@@ -3905,7 +3907,7 @@ static void PlayMonCry(void)
 static u8 CreateMonSprite(struct Pokemon *unused)
 {
     struct PokeSummary *summary = &sMonSummaryScreen->summary;
-    u8 spriteId = CreateSprite(&gMultiuseSpriteTemplate, 40, 64, 5);
+    u8 spriteId = CreateBigSprite(&gMultiuseSpriteTemplate, 40, 56, 5);
 
     FreeSpriteOamMatrix(&gSprites[spriteId]);
     gSprites[spriteId].data[0] = summary->species2;
@@ -3982,9 +3984,10 @@ static void CreateMonMarkingsSprite(struct Pokemon *mon)
     if (sprite != NULL)
     {
         StartSpriteAnim(sprite, GetMonData(mon, MON_DATA_MARKINGS));
-        sMonSummaryScreen->markingsSprite->pos1.x = 60;
-        sMonSummaryScreen->markingsSprite->pos1.y = 26;
+        sMonSummaryScreen->markingsSprite->pos1.x = 222;
+        sMonSummaryScreen->markingsSprite->pos1.y = 28;
         sMonSummaryScreen->markingsSprite->oam.priority = 1;
+        sMonSummaryScreen->markingsSprite->invisible = (sMonSummaryScreen->currPageIndex != PSS_PAGE_INFO);
     }
 }
 

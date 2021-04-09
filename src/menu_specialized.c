@@ -1161,7 +1161,7 @@ static const union AnimCmd *const sAnims_ConditionSelectionIcon[] =
 // Just loads the generic data, up to the caller to load the actual sheet/pal for the specific mon
 void LoadConditionMonPicTemplate(struct SpriteSheet *sheet, struct SpriteTemplate *template, struct SpritePalette *pal)
 {
-    struct SpriteSheet dataSheet = {NULL, 0x800, TAG_CONDITION_MON};
+    struct SpriteSheet dataSheet = {NULL, 0xC80, TAG_CONDITION_MON};
 
     struct SpriteTemplate dataTemplate =
     {

@@ -2990,7 +2990,7 @@ void BattlePutTextOnWindow(const u8 *text, u8 windowId)
     printerTemplate.windowId = windowId;
     printerTemplate.fontId = textInfo[windowId].fontId;
     printerTemplate.x = textInfo[windowId].x;
-    printerTemplate.y = textInfo[windowId].y;
+    printerTemplate.y = textInfo[windowId].y - 1;
     printerTemplate.currentX = printerTemplate.x;
     printerTemplate.currentY = printerTemplate.y;
     printerTemplate.letterSpacing = textInfo[windowId].letterSpacing;

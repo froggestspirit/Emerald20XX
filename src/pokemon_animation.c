@@ -9,6 +9,10 @@
 #include "constants/battle_anim.h"
 #include "constants/rgb.h"
 
+#define OAM_MATRIX_COUNT 32
+
+extern struct ObjAffineSrcData rawMatrix[];
+
 struct UnkAnimStruct
 {
     u16 field_0;
@@ -951,16 +955,15 @@ void SetSpriteCB_MonAnimDummy(struct Sprite *sprite)
 static void SetAffineData(struct Sprite *sprite, s16 xScale, s16 yScale, u16 rotation)
 {
     u8 matrixNum;
-    struct ObjAffineSrcData affineSrcData;
     struct OamMatrix dest;
-
-    affineSrcData.xScale = xScale;
-    affineSrcData.yScale = yScale;
-    affineSrcData.rotation = rotation;
 
     matrixNum = sprite->oam.matrixNum;
 
-    ObjAffineSet(&affineSrcData, &dest, 1, 2);
+    rawMatrix[matrixNum].xScale = xScale;
+    rawMatrix[matrixNum].yScale = yScale;
+    rawMatrix[matrixNum].rotation = rotation;
+
+    ObjAffineSet(&rawMatrix[matrixNum], &dest, 1, 2);
     gOamMatrices[matrixNum].a = dest.a;
     gOamMatrices[matrixNum].b = dest.b;
     gOamMatrices[matrixNum].c = dest.c;

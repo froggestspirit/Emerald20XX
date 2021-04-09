@@ -164,7 +164,7 @@ static const struct WindowTemplate gStandardBattleWindowTemplates[] =
     { // 0 Standard battle message
         .bg = 0,
         .tilemapLeft = 2,
-        .tilemapTop = 15,
+        .tilemapTop = 16,
         .width = 26,
         .height = 4,
         .paletteNum = 0,
@@ -172,9 +172,9 @@ static const struct WindowTemplate gStandardBattleWindowTemplates[] =
     },
     { // 1 "What will (pokemon) do?"
         .bg = 0,
-        .tilemapLeft = 1,
-        .tilemapTop = 35,
-        .width = 14,
+        .tilemapLeft = 2,
+        .tilemapTop = 36,
+        .width = 13,
         .height = 4,
         .paletteNum = 0,
         .baseBlock = 0x01c0,
@@ -182,7 +182,7 @@ static const struct WindowTemplate gStandardBattleWindowTemplates[] =
     { // 2 "Fight/Pokemon/Bag/Run"
         .bg = 0,
         .tilemapLeft = 17,
-        .tilemapTop = 35,
+        .tilemapTop = 36,
         .width = 12,
         .height = 4,
         .paletteNum = 5,
@@ -191,7 +191,7 @@ static const struct WindowTemplate gStandardBattleWindowTemplates[] =
     { // 3 Top left move
         .bg = 0,
         .tilemapLeft = 2,
-        .tilemapTop = 55,
+        .tilemapTop = 56,
         .width = 8,
         .height = 2,
         .paletteNum = 5,
@@ -200,7 +200,7 @@ static const struct WindowTemplate gStandardBattleWindowTemplates[] =
     { // 4 Top right move
         .bg = 0,
         .tilemapLeft = 11,
-        .tilemapTop = 55,
+        .tilemapTop = 56,
         .width = 8,
         .height = 2,
         .paletteNum = 5,
@@ -209,7 +209,7 @@ static const struct WindowTemplate gStandardBattleWindowTemplates[] =
     { // 5 Bottom left move
         .bg = 0,
         .tilemapLeft = 2,
-        .tilemapTop = 57,
+        .tilemapTop = 58,
         .width = 8,
         .height = 2,
         .paletteNum = 5,
@@ -218,7 +218,7 @@ static const struct WindowTemplate gStandardBattleWindowTemplates[] =
     { // 6 Bottom right move
         .bg = 0,
         .tilemapLeft = 11,
-        .tilemapTop = 57,
+        .tilemapTop = 58,
         .width = 8,
         .height = 2,
         .paletteNum = 5,
@@ -227,7 +227,7 @@ static const struct WindowTemplate gStandardBattleWindowTemplates[] =
     {
         .bg = 0,
         .tilemapLeft = 21,
-        .tilemapTop = 55,
+        .tilemapTop = 56,
         .width = 4,
         .height = 2,
         .paletteNum = 5,
@@ -236,7 +236,7 @@ static const struct WindowTemplate gStandardBattleWindowTemplates[] =
     {
         .bg = 0,
         .tilemapLeft = 21,
-        .tilemapTop = 57,
+        .tilemapTop = 58,
         .width = 0,
         .height = 0,
         .paletteNum = 5,
@@ -245,7 +245,7 @@ static const struct WindowTemplate gStandardBattleWindowTemplates[] =
     {
         .bg = 0,
         .tilemapLeft = 25,
-        .tilemapTop = 55,
+        .tilemapTop = 56,
         .width = 4,
         .height = 2,
         .paletteNum = 5,
@@ -254,7 +254,7 @@ static const struct WindowTemplate gStandardBattleWindowTemplates[] =
     {
         .bg = 0,
         .tilemapLeft = 21,
-        .tilemapTop = 57,
+        .tilemapTop = 58,
         .width = 8,
         .height = 2,
         .paletteNum = 5,
@@ -263,13 +263,13 @@ static const struct WindowTemplate gStandardBattleWindowTemplates[] =
     {
         .bg = 0,
         .tilemapLeft = 21,
-        .tilemapTop = 55,
+        .tilemapTop = 56,
         .width = 8,
         .height = 4,
         .paletteNum = 5,
         .baseBlock = 0x02b0,
     },
-    {
+    { // yes/no
         .bg = 0,
         .tilemapLeft = 26,
         .tilemapTop = 9,
@@ -278,7 +278,7 @@ static const struct WindowTemplate gStandardBattleWindowTemplates[] =
         .paletteNum = 5,
         .baseBlock = 0x0100,
     },
-    {
+    { // level up stats
         .bg = 1,
         .tilemapLeft = 19,
         .tilemapTop = 8,
@@ -290,7 +290,7 @@ static const struct WindowTemplate gStandardBattleWindowTemplates[] =
     {
         .bg = 2,
         .tilemapLeft = 18,
-        .tilemapTop = 0,
+        .tilemapTop = 1,
         .width = 12,
         .height = 3,
         .paletteNum = 6,
@@ -299,6 +299,24 @@ static const struct WindowTemplate gStandardBattleWindowTemplates[] =
     {
         .bg = 1,
         .tilemapLeft = 2,
+        .tilemapTop = 4,
+        .width = 6,
+        .height = 2,
+        .paletteNum = 5,
+        .baseBlock = 0x0020,
+    },
+    {
+        .bg = 2,
+        .tilemapLeft = 2,
+        .tilemapTop = 4,
+        .width = 6,
+        .height = 2,
+        .paletteNum = 5,
+        .baseBlock = 0x0040,
+    },
+    {
+        .bg = 1,
+        .tilemapLeft = 2,
         .tilemapTop = 3,
         .width = 6,
         .height = 2,
@@ -317,25 +335,7 @@ static const struct WindowTemplate gStandardBattleWindowTemplates[] =
     {
         .bg = 1,
         .tilemapLeft = 2,
-        .tilemapTop = 2,
-        .width = 6,
-        .height = 2,
-        .paletteNum = 5,
-        .baseBlock = 0x0020,
-    },
-    {
-        .bg = 2,
-        .tilemapLeft = 2,
-        .tilemapTop = 2,
-        .width = 6,
-        .height = 2,
-        .paletteNum = 5,
-        .baseBlock = 0x0040,
-    },
-    {
-        .bg = 1,
-        .tilemapLeft = 2,
-        .tilemapTop = 6,
+        .tilemapTop = 7,
         .width = 6,
         .height = 2,
         .paletteNum = 5,
@@ -344,7 +344,7 @@ static const struct WindowTemplate gStandardBattleWindowTemplates[] =
     {
         .bg = 2,
         .tilemapLeft = 2,
-        .tilemapTop = 6,
+        .tilemapTop = 7,
         .width = 6,
         .height = 2,
         .paletteNum = 5,
@@ -353,7 +353,7 @@ static const struct WindowTemplate gStandardBattleWindowTemplates[] =
     {
         .bg = 0,
         .tilemapLeft = 12,
-        .tilemapTop = 2,
+        .tilemapTop = 3,
         .width = 6,
         .height = 2,
         .paletteNum = 0,
@@ -362,7 +362,7 @@ static const struct WindowTemplate gStandardBattleWindowTemplates[] =
     {
         .bg = 0,
         .tilemapLeft = 4,
-        .tilemapTop = 2,
+        .tilemapTop = 3,
         .width = 7,
         .height = 2,
         .paletteNum = 0,
@@ -371,7 +371,7 @@ static const struct WindowTemplate gStandardBattleWindowTemplates[] =
     {
         .bg = 0,
         .tilemapLeft = 19,
-        .tilemapTop = 2,
+        .tilemapTop = 3,
         .width = 7,
         .height = 2,
         .paletteNum = 0,
@@ -385,7 +385,7 @@ static const struct WindowTemplate gBattleArenaWindowTemplates[] =
     {
         .bg = 0,
         .tilemapLeft = 2,
-        .tilemapTop = 15,
+        .tilemapTop = 16,
         .width = 26,
         .height = 4,
         .paletteNum = 0,
@@ -393,9 +393,9 @@ static const struct WindowTemplate gBattleArenaWindowTemplates[] =
     },
     {
         .bg = 0,
-        .tilemapLeft = 1,
-        .tilemapTop = 35,
-        .width = 14,
+        .tilemapLeft = 2,
+        .tilemapTop = 36,
+        .width = 13,
         .height = 4,
         .paletteNum = 0,
         .baseBlock = 0x01c0,
@@ -403,7 +403,7 @@ static const struct WindowTemplate gBattleArenaWindowTemplates[] =
     {
         .bg = 0,
         .tilemapLeft = 17,
-        .tilemapTop = 35,
+        .tilemapTop = 36,
         .width = 12,
         .height = 4,
         .paletteNum = 5,
@@ -412,7 +412,7 @@ static const struct WindowTemplate gBattleArenaWindowTemplates[] =
     {
         .bg = 0,
         .tilemapLeft = 2,
-        .tilemapTop = 55,
+        .tilemapTop = 56,
         .width = 8,
         .height = 2,
         .paletteNum = 5,
@@ -421,7 +421,7 @@ static const struct WindowTemplate gBattleArenaWindowTemplates[] =
     {
         .bg = 0,
         .tilemapLeft = 11,
-        .tilemapTop = 55,
+        .tilemapTop = 56,
         .width = 8,
         .height = 2,
         .paletteNum = 5,
@@ -430,7 +430,7 @@ static const struct WindowTemplate gBattleArenaWindowTemplates[] =
     {
         .bg = 0,
         .tilemapLeft = 2,
-        .tilemapTop = 57,
+        .tilemapTop = 58,
         .width = 8,
         .height = 2,
         .paletteNum = 5,
@@ -439,7 +439,7 @@ static const struct WindowTemplate gBattleArenaWindowTemplates[] =
     {
         .bg = 0,
         .tilemapLeft = 11,
-        .tilemapTop = 57,
+        .tilemapTop = 58,
         .width = 8,
         .height = 2,
         .paletteNum = 5,
@@ -448,7 +448,7 @@ static const struct WindowTemplate gBattleArenaWindowTemplates[] =
     {
         .bg = 0,
         .tilemapLeft = 21,
-        .tilemapTop = 55,
+        .tilemapTop = 56,
         .width = 4,
         .height = 2,
         .paletteNum = 5,
@@ -457,7 +457,7 @@ static const struct WindowTemplate gBattleArenaWindowTemplates[] =
     {
         .bg = 0,
         .tilemapLeft = 21,
-        .tilemapTop = 57,
+        .tilemapTop = 58,
         .width = 0,
         .height = 0,
         .paletteNum = 5,
@@ -466,7 +466,7 @@ static const struct WindowTemplate gBattleArenaWindowTemplates[] =
     {
         .bg = 0,
         .tilemapLeft = 25,
-        .tilemapTop = 55,
+        .tilemapTop = 56,
         .width = 4,
         .height = 2,
         .paletteNum = 5,
@@ -475,7 +475,7 @@ static const struct WindowTemplate gBattleArenaWindowTemplates[] =
     {
         .bg = 0,
         .tilemapLeft = 21,
-        .tilemapTop = 57,
+        .tilemapTop = 58,
         .width = 8,
         .height = 2,
         .paletteNum = 5,
@@ -484,13 +484,13 @@ static const struct WindowTemplate gBattleArenaWindowTemplates[] =
     {
         .bg = 0,
         .tilemapLeft = 21,
-        .tilemapTop = 55,
+        .tilemapTop = 56,
         .width = 8,
         .height = 4,
         .paletteNum = 5,
         .baseBlock = 0x02b0,
     },
-    {
+    { // yes/no
         .bg = 0,
         .tilemapLeft = 26,
         .tilemapTop = 9,
@@ -499,7 +499,7 @@ static const struct WindowTemplate gBattleArenaWindowTemplates[] =
         .paletteNum = 5,
         .baseBlock = 0x0100,
     },
-    {
+    { // level up stats
         .bg = 1,
         .tilemapLeft = 19,
         .tilemapTop = 8,
@@ -511,7 +511,7 @@ static const struct WindowTemplate gBattleArenaWindowTemplates[] =
     {
         .bg = 2,
         .tilemapLeft = 18,
-        .tilemapTop = 0,
+        .tilemapTop = 1,
         .width = 12,
         .height = 3,
         .paletteNum = 6,
@@ -520,7 +520,7 @@ static const struct WindowTemplate gBattleArenaWindowTemplates[] =
     {
         .bg = 0,
         .tilemapLeft = 6,
-        .tilemapTop = 1,
+        .tilemapTop = 2,
         .width = 8,
         .height = 2,
         .paletteNum = 5,
@@ -529,7 +529,7 @@ static const struct WindowTemplate gBattleArenaWindowTemplates[] =
     {
         .bg = 0,
         .tilemapLeft = 14,
-        .tilemapTop = 1,
+        .tilemapTop = 2,
         .width = 2,
         .height = 2,
         .paletteNum = 5,
@@ -538,7 +538,7 @@ static const struct WindowTemplate gBattleArenaWindowTemplates[] =
     {
         .bg = 0,
         .tilemapLeft = 16,
-        .tilemapTop = 1,
+        .tilemapTop = 2,
         .width = 8,
         .height = 2,
         .paletteNum = 5,
@@ -547,7 +547,7 @@ static const struct WindowTemplate gBattleArenaWindowTemplates[] =
     {
         .bg = 0,
         .tilemapLeft = 12,
-        .tilemapTop = 4,
+        .tilemapTop = 5,
         .width = 6,
         .height = 2,
         .paletteNum = 5,
@@ -556,7 +556,7 @@ static const struct WindowTemplate gBattleArenaWindowTemplates[] =
     {
         .bg = 0,
         .tilemapLeft = 12,
-        .tilemapTop = 6,
+        .tilemapTop = 7,
         .width = 6,
         .height = 2,
         .paletteNum = 5,
@@ -565,7 +565,7 @@ static const struct WindowTemplate gBattleArenaWindowTemplates[] =
     {
         .bg = 0,
         .tilemapLeft = 12,
-        .tilemapTop = 8,
+        .tilemapTop = 9,
         .width = 6,
         .height = 2,
         .paletteNum = 5,
@@ -574,7 +574,7 @@ static const struct WindowTemplate gBattleArenaWindowTemplates[] =
     {
         .bg = 0,
         .tilemapLeft = 8,
-        .tilemapTop = 11,
+        .tilemapTop = 12,
         .width = 14,
         .height = 2,
         .paletteNum = 5,
@@ -583,7 +583,7 @@ static const struct WindowTemplate gBattleArenaWindowTemplates[] =
     {
         .bg = 0,
         .tilemapLeft = 2,
-        .tilemapTop = 15,
+        .tilemapTop = 16,
         .width = 26,
         .height = 4,
         .paletteNum = 7,

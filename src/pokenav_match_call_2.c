@@ -44,7 +44,7 @@ struct Pokenav4Struct
     u8 unk824[0x800];
     u8 unk1024[0x800];
     u8 *unk1824;
-    u8 unk1828[0x800];
+    u8 unk1828[0xC80];
     u8 unk2028[0x20];
 };
 
@@ -1159,7 +1159,7 @@ static void sub_81CC214(void)
     Pokenav_AllocAndLoadPalettes(gUnknown_08622818);
     state->optionsCursorSprite = NULL;
     spriteSheet.data = state->unk1828;
-    spriteSheet.size = 0x800;
+    spriteSheet.size = 0xC80;
     spriteSheet.tag = 8;
     state->unk1824 = (u8 *)OBJ_VRAM0 + LoadSpriteSheet(&spriteSheet) * 0x20;
     paletteNum = AllocSpritePalette(13);
@@ -1214,7 +1214,7 @@ void SpriteCB_OptionsCursor(struct Sprite *sprite)
 
 static struct Sprite *CreateTrainerPicSprite(void)
 {
-    u8 spriteId = CreateSprite(&sTrainerPicSpriteTemplate, 44, 104, 6);
+    u8 spriteId = CreateBigSprite(&sTrainerPicSpriteTemplate, 44, 96, 6);
     return &gSprites[spriteId];
 }
 
@@ -1226,7 +1226,7 @@ static void LoadCheckPageTrainerPic(struct Pokenav4Struct *state)
     {
         DecompressPicFromTable(&gTrainerFrontPicTable[trainerPic], state->unk1828, SPECIES_NONE);
         LZ77UnCompWram(gTrainerFrontPicPaletteTable[trainerPic].data, state->unk2028);
-        cursor = RequestDma3Copy(state->unk1828, state->unk1824, 0x800, 1);
+        cursor = RequestDma3Copy(state->unk1828, state->unk1824, 0xC80, 1);
         LoadPalette(state->unk2028, state->unk1A, 0x20);
         state->trainerPicSprite->data[0] = 0;
         state->trainerPicSprite->data[7] = cursor;

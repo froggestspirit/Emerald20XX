@@ -822,7 +822,7 @@ static void Task_PaletteFadeToReturn(u8 taskId)
 static u8 CreateMonSprite(struct Pokemon* mon)
 {
     u16 species = GetMonData(mon, MON_DATA_SPECIES2);
-    u8 spriteId = CreateSprite(&gMultiuseSpriteTemplate, 48, 80, 2);
+    u8 spriteId = CreateBigSprite(&gMultiuseSpriteTemplate, 48, 80, 2);
 
     sPokeblockFeed->species = species;
     sPokeblockFeed->monSpriteId_ = spriteId;

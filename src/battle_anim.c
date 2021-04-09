@@ -2310,11 +2310,11 @@ void MoveBattlerSpriteToBG(u8 battlerId, bool8 toBG_2, bool8 setSpriteInvisible)
 
         battlerSpriteId = gBattlerSpriteIds[battlerId];
 
-        gBattle_BG1_X =  -(gSprites[battlerSpriteId].pos1.x + gSprites[battlerSpriteId].pos2.x) + 0x20;
+        gBattle_BG1_X =  -(gSprites[battlerSpriteId].pos1.x + gSprites[battlerSpriteId].pos2.x) + 0x28;
         if (IsContest() && IsSpeciesNotUnown(gContestResources->moveAnim->species))
             gBattle_BG1_X--;
 
-        gBattle_BG1_Y =  -(gSprites[battlerSpriteId].pos1.y + gSprites[battlerSpriteId].pos2.y) + 0x20;
+        gBattle_BG1_Y =  -(gSprites[battlerSpriteId].pos1.y + gSprites[battlerSpriteId].pos2.y) + 0x28;
         if (setSpriteInvisible)
             gSprites[gBattlerSpriteIds[battlerId]].invisible = TRUE;
 
@@ -2347,8 +2347,8 @@ void MoveBattlerSpriteToBG(u8 battlerId, bool8 toBG_2, bool8 setSpriteInvisible)
 
         battlerSpriteId = gBattlerSpriteIds[battlerId];
 
-        gBattle_BG2_X =  -(gSprites[battlerSpriteId].pos1.x + gSprites[battlerSpriteId].pos2.x) + 0x20;
-        gBattle_BG2_Y =  -(gSprites[battlerSpriteId].pos1.y + gSprites[battlerSpriteId].pos2.y) + 0x20;
+        gBattle_BG2_X =  -(gSprites[battlerSpriteId].pos1.x + gSprites[battlerSpriteId].pos2.x) + 0x28;
+        gBattle_BG2_Y =  -(gSprites[battlerSpriteId].pos1.y + gSprites[battlerSpriteId].pos2.y) + 0x28;
 
         if (setSpriteInvisible)
             gSprites[gBattlerSpriteIds[battlerId]].invisible = TRUE;
@@ -2373,19 +2373,19 @@ static void sub_80A46A0(void)
     {
         sub_80A6B30(&animBg);
         ptr = animBg.bgTilemap;
-        for (i = 0; i < 8; i++)
+        for (i = 0; i < 10; i++)
         {
-            for (j = 0; j < 4; j++)
+            for (j = 0; j < 5; j++)
             {
                 u16 temp = ptr[j + i * 32];
 
-                ptr[j + i * 32] = ptr[7 - j + i * 32];
-                ptr[7 - j + i * 32] = temp;
+                ptr[j + i * 32] = ptr[9 - j + i * 32];
+                ptr[9 - j + i * 32] = temp;
             }
         }
-        for (i = 0; i < 8; i++)
+        for (i = 0; i < 10; i++)
         {
-            for (j = 0; j < 8; j++)
+            for (j = 0; j < 10; j++)
                 ptr[j + i * 32] ^= 0x400;
         }
     }

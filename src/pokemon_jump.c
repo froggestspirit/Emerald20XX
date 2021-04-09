@@ -2527,8 +2527,8 @@ static void sub_802C9D4(struct PokemonJump2 *arg0, struct PokemonJump1_MonInfo *
     u8 spriteId;
 
     spriteTemplate = gUnknown_082FBE40;
-    buffer = Alloc(0x2000);
-    unusedBuffer = Alloc(0x800);
+    buffer = Alloc(0x3200);
+    unusedBuffer = Alloc(0xC80);
     if (multiplayerId == sub_802C8BC())
         subpriority = 3;
     else
@@ -2537,14 +2537,14 @@ static void sub_802C9D4(struct PokemonJump2 *arg0, struct PokemonJump1_MonInfo *
     if (buffer && unusedBuffer)
     {
         HandleLoadSpecialPokePic(
-            &gMonStillFrontPicTable[jumpMon->species],
+            &gMonFrontPicTable[jumpMon->species],
             buffer,
             jumpMon->species,
             jumpMon->personality);
 
         spriteSheet.data = buffer;
         spriteSheet.tag = multiplayerId;
-        spriteSheet.size = 0x800;
+        spriteSheet.size = 0xC80;
         LoadSpriteSheet(&spriteSheet);
 
         spritePalette.data = GetMonSpritePalFromSpeciesAndPersonality(jumpMon->species, jumpMon->otId, jumpMon->personality);
@@ -2556,7 +2556,7 @@ static void sub_802C9D4(struct PokemonJump2 *arg0, struct PokemonJump1_MonInfo *
 
         spriteTemplate.tileTag += multiplayerId;
         spriteTemplate.paletteTag += multiplayerId;
-        spriteId = CreateSprite(&spriteTemplate, x, y, subpriority);
+        spriteId = CreateBigSprite(&spriteTemplate, x, y - 8, subpriority);
         if (spriteId != MAX_SPRITES)
         {
             arg0->unk81A8[multiplayerId] = &gSprites[spriteId];

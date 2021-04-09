@@ -957,7 +957,7 @@ void HandleSpeciesGfxDataChange(u8 battlerAtk, u8 battlerDef, bool8 notTransform
 
         src = gMonSpritesGfxPtr->sprites[position];
         dst = (void *)(VRAM + 0x10000 + gSprites[gBattlerSpriteIds[battlerAtk]].oam.tileNum * 32);
-        DmaCopy32(3, src, dst, 0x800);
+        DmaCopy32(3, src, dst, 0xC80);
         paletteOffset = 0x100 + battlerAtk * 16;
         lzPaletteData = GetMonSpritePalFromSpeciesAndPersonality(targetSpecies, otId, personalityValue);
         LZDecompressWram(lzPaletteData, gDecompressionBuffer);
@@ -996,18 +996,17 @@ void BattleLoadSubstituteOrMonSpriteGfx(u8 battlerId, bool8 loadMonSprite)
             position = GetBattlerPosition(battlerId);
 
         if (IsContest())
-            LZDecompressVram(gSubstituteDollTilemap, gMonSpritesGfxPtr->sprites[position]);
+            LZDecompressVram(gSubstituteDollBackGfx, gMonSpritesGfxPtr->sprites[position]);
         else if (GetBattlerSide(battlerId) != B_SIDE_PLAYER)
-            LZDecompressVram(gSubstituteDollGfx, gMonSpritesGfxPtr->sprites[position]);
+            LZDecompressVram(gSubstituteDollFrontGfx, gMonSpritesGfxPtr->sprites[position]);
         else
-            LZDecompressVram(gSubstituteDollTilemap, gMonSpritesGfxPtr->sprites[position]);
+            LZDecompressVram(gSubstituteDollBackGfx, gMonSpritesGfxPtr->sprites[position]);
 
         for (i = 1; i < 4; i++)
         {
-            u8 (*ptr)[4][0x800] = gMonSpritesGfxPtr->sprites[position];
-            ptr++;ptr--; // Needed to match.
+            u8 (*ptr)[4][0xC80] = gMonSpritesGfxPtr->sprites[position];
 
-            DmaCopy32Defvars(3, (*ptr)[0], (*ptr)[i], 0x800);
+            DmaCopy32Defvars(3, (*ptr)[0], (*ptr)[i], 0xC80);
         }
 
         palOffset = (battlerId * 16) + 0x100;
@@ -1243,17 +1242,17 @@ void AllocateMonSpritesGfx(void)
 
     gMonSpritesGfxPtr = NULL;
     gMonSpritesGfxPtr = AllocZeroed(sizeof(*gMonSpritesGfxPtr));
-    gMonSpritesGfxPtr->firstDecompressed = AllocZeroed(0x8000);
+    gMonSpritesGfxPtr->firstDecompressed = AllocZeroed(0xC800);
 
     for (i = 0; i < MAX_BATTLERS_COUNT; i++)
     {
-        gMonSpritesGfxPtr->sprites[i] = gMonSpritesGfxPtr->firstDecompressed + (i * 0x2000);
+        gMonSpritesGfxPtr->sprites[i] = gMonSpritesGfxPtr->firstDecompressed + (i * 0x3200);
         *(gMonSpritesGfxPtr->templates + i) = gUnknown_08329D98[i];
 
         for (j = 0; j < 4; j++)
         {
-            gMonSpritesGfxPtr->field_74[i][j].data = gMonSpritesGfxPtr->sprites[i] + (j * 0x800);
-            gMonSpritesGfxPtr->field_74[i][j].size = 0x800;
+            gMonSpritesGfxPtr->field_74[i][j].data = gMonSpritesGfxPtr->sprites[i] + (j * 0xC80);
+            gMonSpritesGfxPtr->field_74[i][j].size = 0xC80;
         }
 
         gMonSpritesGfxPtr->templates[i].images = gMonSpritesGfxPtr->field_74[i];

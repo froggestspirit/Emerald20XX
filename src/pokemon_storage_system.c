@@ -791,8 +791,8 @@ static const u32 gUnknown_085722A0[] = INCBIN_U32("graphics/unknown/unknown_5722
 
 static const u16 gUnknown_0857239C[] =
 {
-    0x0101, 0x0102, 0x0103, 0x0104, 0x0105, 0x0106, 0x0107, 0x0108, 0x0111, 0x0112, 0x0113, 0x0114, 0x0115, 0x0116, 0x0117, 0x0118,
-    0x2101, 0x2102, 0x2103, 0x2104, 0x2105, 0x2106, 0x2107, 0x2108, 0x2111, 0x2112, 0x2113, 0x2114, 0x2115, 0x2116, 0x2117, 0x2118,
+    0x010C, 0x010C, 0x010C, 0x010C, 0x010C, 0x010C, 0x010C, 0x010C, 0x0127, 0x0127, 0x0127, 0x0127, 0x0127, 0x0127, 0x0127, 0x0127,
+    0x010C, 0x010C, 0x010C, 0x010C, 0x010C, 0x010C, 0x010C, 0x010C, 0x0127, 0x0127, 0x0127, 0x0127, 0x0127, 0x0127, 0x0127, 0x0127
 };
 
 static const u16 gUnknown_085723DC[] = INCBIN_U16("graphics/unknown/unknown_5723DC.gbapal"); // Left-most part and Close Box.
@@ -2288,7 +2288,7 @@ static void Cb_InitPSS(u8 taskId)
             sub_80C7F1C();
         break;
     case 4:
-        sub_80CAF04();
+        sub_80CAF04(); //box sprites?
         if (!sPSSData->isReshowingPSS)
             sub_80CD36C();
         else
@@ -3977,7 +3977,7 @@ static void sub_80CA0D8(void)
     SetGpuReg(REG_OFFSET_BG1CNT, BGCNT_PRIORITY(1) | BGCNT_CHARBASE(1) | BGCNT_16COLOR | BGCNT_SCREENBASE(30));
     LoadCursorMonSprite();
     sub_80CA154();
-    sub_80CA1C4();
+    //sub_80CA1C4();
     RefreshCursorMonData();
 }
 
@@ -4049,11 +4049,11 @@ static void LoadCursorMonSprite(void)
     u16 tileStart;
     u8 palSlot;
     u8 spriteId;
-    struct SpriteSheet sheet = {sPSSData->field_22C4, 0x800, TAG_TILE_2};
+    struct SpriteSheet sheet = {sPSSData->field_22C4, 0xC80, TAG_TILE_2};
     struct SpritePalette palette = {sPSSData->field_2244, TAG_PAL_DAC6};
     struct SpriteTemplate template = sSpriteTemplate_CursorMon;
 
-    for (i = 0; i < 0x800; i++)
+    for (i = 0; i < 0xC80; i++)
         sPSSData->field_22C4[i] = 0;
     for (i = 0; i < 0x10; i++)
         sPSSData->field_2244[i] = 0;
@@ -4070,7 +4070,7 @@ static void LoadCursorMonSprite(void)
         if (palSlot == 0xFF)
             break;
 
-        spriteId = CreateSprite(&template, 40, 48, 0);
+        spriteId = CreateBigSprite(&template, 40, 40, 0);
         if (spriteId == MAX_SPRITES)
             break;
 
@@ -4095,7 +4095,7 @@ static void LoadCursorMonGfx(u16 species, u32 pid)
     {
         LoadSpecialPokePic(&gMonFrontPicTable[species], sPSSData->field_22C4, species, pid, TRUE);
         LZ77UnCompWram(sPSSData->cursorMonPalette, sPSSData->field_2244);
-        CpuCopy32(sPSSData->field_22C4, sPSSData->field_223C, 0x800);
+        CpuCopy32(sPSSData->field_22C4, sPSSData->field_223C, 0xC80);
         LoadPalette(sPSSData->field_2244, sPSSData->field_223A, 0x20);
         sPSSData->cursorMonSprite->invisible = FALSE;
     }

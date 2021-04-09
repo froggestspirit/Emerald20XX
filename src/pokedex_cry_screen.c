@@ -9,6 +9,10 @@
 #include "trig.h"
 #include "window.h"
 
+#define OAM_MATRIX_COUNT 32
+
+extern struct ObjAffineSrcData rawMatrix[];
+
 // Cry meter needle positions
 //
 //          0
@@ -489,7 +493,6 @@ static void SpriteCB_CryMeterNeedle(struct Sprite *sprite)
     s8 peakAmplitude;
     s16 x;
     s16 y;
-    struct ObjAffineSrcData affine;
     struct OamMatrix matrix;
     u8 amplitude;
 
@@ -553,10 +556,10 @@ static void SpriteCB_CryMeterNeedle(struct Sprite *sprite)
         }
     }
 
-    affine.xScale = 256;
-    affine.yScale = 256;
-    affine.rotation = sCryMeterNeedle->rotation * 256;
-    ObjAffineSet(&affine, &matrix, 1, 2);
+    rawMatrix[0].xScale = 256;
+    rawMatrix[0].yScale = 256;
+    rawMatrix[0].rotation = sCryMeterNeedle->rotation * 256;
+    ObjAffineSet(&rawMatrix[0], &matrix, 1, 2);
     SetOamMatrix(0, matrix.a, matrix.b, matrix.c, matrix.d);
     x = gSineTable[((sCryMeterNeedle->rotation + 0x7F) & 0xFF)];
     y = gSineTable[((sCryMeterNeedle->rotation + 0x7F) & 0xFF) + 64];

@@ -1084,7 +1084,7 @@ static const struct WindowTemplate sTradeSequenceWindowTemplates[] =
     {
         .bg = 0,
         .tilemapLeft = 2,
-        .tilemapTop = 15,
+        .tilemapTop = 16,
         .width = 26,
         .height = 4,
         .paletteNum = 0,

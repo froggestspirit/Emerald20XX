@@ -123,6 +123,16 @@ u8 CreateInvisibleSpriteWithCallback(void (*callback)(struct Sprite *))
     return sprite;
 }
 
+u8 CreateBigInvisibleSpriteWithCallback(void (*callback)(struct Sprite *))
+{
+    u8 sprite = CreateBigSprite(&sInvisibleSpriteTemplate, 248, 168, 14);
+    u8 ic;
+    gSprites[sprite].invisible = TRUE;
+    for(ic = 0; ic < 4; ic++) gSprites[gSprites[sprite].children[ic]].invisible = TRUE;
+    gSprites[sprite].callback = callback;
+    return sprite;
+}
+
 void StoreWordInTwoHalfwords(u16 *h, u32 w)
 {
     h[0] = (u16)(w);

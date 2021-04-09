@@ -649,7 +649,7 @@ const struct SpriteTemplate sSpriteTemplate_Judge =
 const struct CompressedSpriteSheet sSpriteSheet_Judge =
 {
     .data = gContestJudgeGfx,
-    .size = 0x800,
+    .size = 0xC80,
     .tag = TAG_JUDGE
 };
 
@@ -3094,7 +3094,7 @@ static u8 CreateJudgeSprite(void)
 
     LoadCompressedSpriteSheet(&sSpriteSheet_Judge);
     LoadCompressedPalette(gContest2Pal, 0x110, 32);
-    spriteId = CreateSprite(&sSpriteTemplate_Judge, 112, 36, 30);
+    spriteId = CreateBigSprite(&sSpriteTemplate_Judge, 112, 36, 30);
     gSprites[spriteId].oam.paletteNum = 1;
     gSprites[spriteId].callback = SpriteCallbackDummy;
     return spriteId;
@@ -3125,7 +3125,7 @@ static u8 CreateContestantSprite(u16 species, u32 otId, u32 personality, u32 ind
     LoadCompressedPalette(GetMonSpritePalFromSpeciesAndPersonality(species, otId, personality), 0x120, 0x20);
     SetMultiuseSpriteTemplateToPokemon(species, 0);
 
-    spriteId = CreateSprite(&gMultiuseSpriteTemplate, 0x70, GetBattlerSpriteFinal_Y(2, species, FALSE), 30);
+    spriteId = CreateBigSprite(&gMultiuseSpriteTemplate, 0x70, GetBattlerSpriteFinal_Y(2, species, FALSE), 30);
     gSprites[spriteId].oam.paletteNum = 2;
     gSprites[spriteId].oam.priority = 2;
     gSprites[spriteId].subpriority = GetBattlerSpriteSubpriority(2);

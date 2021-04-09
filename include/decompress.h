@@ -9,8 +9,10 @@ void LZDecompressWram(const u32 *src, void *dest);
 void LZDecompressVram(const u32 *src, void *dest);
 
 u16 LoadCompressedSpriteSheet(const struct CompressedSpriteSheet *src);
+u16 LoadCompressedSpriteSheetRev(const struct CompressedSpriteSheet *src);
 void LoadCompressedSpriteSheetOverrideBuffer(const struct CompressedSpriteSheet *src, void *buffer);
 bool8 LoadCompressedSpriteSheetUsingHeap(const struct CompressedSpriteSheet* src);
+bool8 LoadCompressedSpriteSheetUsingHeapRev(const struct CompressedSpriteSheet* src);
 
 void LoadCompressedSpritePalette(const struct CompressedSpritePalette *src);
 void LoadCompressedSpritePaletteOverrideBuffer(const struct CompressedSpritePalette *a, void *buffer);

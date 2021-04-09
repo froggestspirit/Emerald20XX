@@ -810,7 +810,7 @@ void CreateConditionMonPic(u8 id)
         sprPal.data = GetConditionMonPal(id);
         structPtr->monPalIndex = LoadSpritePalette(&sprPal);
         structPtr->monGfxTileStart = LoadSpriteSheet(&sprSheet);
-        spriteId = CreateSprite(&sprTemplate, 38, 104, 0);
+        spriteId = CreateBigSprite(&sprTemplate, 30, 104, 0);
         structPtr->monPicSpriteId = spriteId;
         if (spriteId == MAX_SPRITES)
         {
@@ -828,7 +828,7 @@ void CreateConditionMonPic(u8 id)
     }
     else
     {
-        DmaCopy16Defvars(3, GetConditionMonPicGfx(id), structPtr->unk181C, 0x800);
+        DmaCopy16Defvars(3, GetConditionMonPicGfx(id), structPtr->unk181C, 0xC80);
         LoadPalette(GetConditionMonPal(id), structPtr->monPalIndex, 0x20);
     }
 }

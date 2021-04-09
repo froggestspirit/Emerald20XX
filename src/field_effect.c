@@ -885,7 +885,7 @@ u8 CreateTrainerSprite(u8 trainerSpriteID, s16 x, s16 y, u8 subpriority, u8 *buf
     spriteTemplate.images = NULL;
     spriteTemplate.affineAnims = gDummySpriteAffineAnimTable;
     spriteTemplate.callback = SpriteCallbackDummy;
-    return CreateSprite(&spriteTemplate, x, y, subpriority);
+    return CreateBigSprite(&spriteTemplate, x, y, subpriority);
 }
 
 void LoadTrainerGfx_TrainerCard(u8 gender, u16 palOffset, u8 *dest)
@@ -897,7 +897,7 @@ void LoadTrainerGfx_TrainerCard(u8 gender, u16 palOffset, u8 *dest)
 u8 AddNewGameBirchObject(s16 x, s16 y, u8 subpriority)
 {
     LoadSpritePalette(&sSpritePalette_NewGameBirch);
-    return CreateSprite(&sSpriteTemplate_NewGameBirch, x, y, subpriority);
+    return CreateBigSprite(&sSpriteTemplate_NewGameBirch, x, y, subpriority);
 }
 
 u8 CreateMonSprite_PicBox(u16 species, s16 x, s16 y, u8 subpriority)

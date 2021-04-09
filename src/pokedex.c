@@ -104,6 +104,10 @@ enum
 #define POKEBALL_ROTATION_TOP    64
 #define POKEBALL_ROTATION_BOTTOM (POKEBALL_ROTATION_TOP - 16)
 
+#define OAM_MATRIX_COUNT 32
+
+extern struct ObjAffineSrcData rawMatrix[OAM_MATRIX_COUNT];
+
 // EWRAM
 static EWRAM_DATA struct PokedexView *sPokedexView = NULL;
 static EWRAM_DATA u16 sLastSelectedPokemon = 0;
@@ -907,7 +911,7 @@ static const struct WindowTemplate sInfoScreen_WindowTemplates[] =
     [WIN_FOOTPRINT] =
     {
         .bg = 2,
-        .tilemapLeft = 25,
+        .tilemapLeft = 26,
         .tilemapTop = 8,
         .width = 2,
         .height = 2,
@@ -974,7 +978,7 @@ static const struct WindowTemplate sNewEntryInfoScreen_WindowTemplates[] =
     [WIN_FOOTPRINT] =
     {
         .bg = 2,
-        .tilemapLeft = 25,
+        .tilemapLeft = 26,
         .tilemapTop = 8,
         .width = 2,
         .height = 2,
@@ -3041,6 +3045,8 @@ static void SpriteCB_PokedexListMonSprite(struct Sprite *sprite)
         if (var > 0xFFFF)
             var = 0xFFFF;
         SetOamMatrix(sprite->data[1] + 1, 0x100, 0, 0, var);
+        rawMatrix[sprite->data[1] + 1].xScale = 0x100;
+        rawMatrix[sprite->data[1] + 1].yScale = var;
         sprite->oam.matrixNum = monId + 1;
 
         if (sprite->data[5] > -64 && sprite->data[5] < 64)
@@ -3761,6 +3767,8 @@ static void Task_LoadSizeScreen(u8 taskId)
         gSprites[spriteId].oam.priority = 0;
         gSprites[spriteId].pos2.y = gPokedexEntries[sPokedexListItem->dexNum].trainerOffset;
         SetOamMatrix(1, gPokedexEntries[sPokedexListItem->dexNum].trainerScale, 0, 0, gPokedexEntries[sPokedexListItem->dexNum].trainerScale);
+        rawMatrix[1].xScale = gPokedexEntries[sPokedexListItem->dexNum].trainerScale;
+        rawMatrix[1].yScale = gPokedexEntries[sPokedexListItem->dexNum].trainerScale;
         LoadPalette(sSizeScreenSilhouette_Pal, (gSprites[spriteId].oam.paletteNum + 16) * 16, 0x20);
         gTasks[taskId].data[5] = spriteId;
         gMain.state++;
@@ -3772,6 +3780,8 @@ static void Task_LoadSizeScreen(u8 taskId)
         gSprites[spriteId].oam.priority = 0;
         gSprites[spriteId].pos2.y = gPokedexEntries[sPokedexListItem->dexNum].pokemonOffset;
         SetOamMatrix(2, gPokedexEntries[sPokedexListItem->dexNum].pokemonScale, 0, 0, gPokedexEntries[sPokedexListItem->dexNum].pokemonScale);
+        rawMatrix[2].xScale = gPokedexEntries[sPokedexListItem->dexNum].pokemonScale;
+        rawMatrix[2].yScale = gPokedexEntries[sPokedexListItem->dexNum].pokemonScale;
         LoadPalette(sSizeScreenSilhouette_Pal, (gSprites[spriteId].oam.paletteNum + 16) * 16, 0x20);
         gTasks[taskId].tMonSpriteId = spriteId;
         CopyWindowToVram(WIN_INFO, 3);
@@ -3980,6 +3990,9 @@ static void Task_DisplayCaughtMonDexPage(u8 taskId)
         gTasks[taskId].tState++;
         break;
     case 4:
+        FreeMonSpritesGfx();
+        FreeBattleResources();
+        FreeBattleSpritesData();
         spriteId = CreateMonSpriteFromNationalDexNumber(dexNum, 48, 56, 0);
         gSprites[spriteId].oam.priority = 0;
         BeginNormalPaletteFade(0xFFFFFFFF, 0, 0x10, 0, RGB_BLACK);
@@ -4095,13 +4108,13 @@ static void PrintMonInfo(u32 num, u32 value, u32 owned, u32 newEntry)
     else
         value = num;
     ConvertIntToDecimalStringN(StringCopy(str, gText_NumberClear01), value, STR_CONV_MODE_LEADING_ZEROS, 3);
-    PrintInfoScreenText(str, 0x60, 0x19);
+    PrintInfoScreenText(str, 0x68, 0x19);
     natNum = NationalPokedexNumToSpecies(num);
     if (natNum)
         name = gSpeciesNames[natNum];
     else
         name = sText_TenDashes2;
-    PrintInfoScreenText(name, 0x84, 0x19);
+    PrintInfoScreenText(name, 0x8C, 0x19);
     if (owned)
     {
         CopyMonCategoryText(num, str2);
@@ -4111,18 +4124,18 @@ static void PrintMonInfo(u32 num, u32 value, u32 owned, u32 newEntry)
     {
         category = gText_5MarksPokemon;
     }
-    PrintInfoScreenText(category, 0x64, 0x29);
-    PrintInfoScreenText(gText_HTHeight, 0x60, 0x39);
-    PrintInfoScreenText(gText_WTWeight, 0x60, 0x49);
+    PrintInfoScreenText(category, 0x6C, 0x29);
+    PrintInfoScreenText(gText_HTHeight, 0x68, 0x39);
+    PrintInfoScreenText(gText_WTWeight, 0x68, 0x49);
     if (owned)
     {
-        PrintMonHeight(gPokedexEntries[num].height, 0x81, 0x39);
-        PrintMonWeight(gPokedexEntries[num].weight, 0x81, 0x49);
+        PrintMonHeight(gPokedexEntries[num].height, 0x89, 0x39);
+        PrintMonWeight(gPokedexEntries[num].weight, 0x89, 0x49);
     }
     else
     {
-        PrintInfoScreenText(gText_UnkHeight, 0x81, 0x39);
-        PrintInfoScreenText(gText_UnkWeight, 0x81, 0x49);
+        PrintInfoScreenText(gText_UnkHeight, 0x89, 0x39);
+        PrintInfoScreenText(gText_UnkWeight, 0x89, 0x49);
     }
     if (owned)
         description = gPokedexEntries[num].description;

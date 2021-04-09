@@ -15,100 +15,100 @@ const u32 gUnknown_082FF2B8[] = INCBIN_U32("graphics/link/minigame_digits2.4bpp.
 
 const struct SpriteFrameImage gUnknown_082FF3A8[] =
 {
-    gHeap + 0x8000, 0x800,
-    gHeap + 0x8800, 0x800,
-    gHeap + 0x9000, 0x800,
-    gHeap + 0x9800, 0x800,
+    gHeap + 0x8000, 0xC80,
+    gHeap + 0x8800, 0xC80,
+    gHeap + 0x9000, 0xC80,
+    gHeap + 0x9800, 0xC80,
 };
 
 const struct SpriteFrameImage gUnknown_082FF3C8[] =
 {
-    gHeap + 0xA000, 0x800,
-    gHeap + 0xA800, 0x800,
-    gHeap + 0xB000, 0x800,
-    gHeap + 0xB800, 0x800,
+    gHeap + 0xA000, 0xC80,
+    gHeap + 0xA800, 0xC80,
+    gHeap + 0xB000, 0xC80,
+    gHeap + 0xB800, 0xC80,
 };
 
 const struct SpriteFrameImage gUnknown_082FF3E8[] =
 {
-    gHeap + 0xC000, 0x800,
-    gHeap + 0xC800, 0x800,
-    gHeap + 0xD000, 0x800,
-    gHeap + 0xD800, 0x800,
+    gHeap + 0xC000, 0xC80,
+    gHeap + 0xC800, 0xC80,
+    gHeap + 0xD000, 0xC80,
+    gHeap + 0xD800, 0xC80,
 };
 
 const struct SpriteFrameImage gUnknown_082FF408[] =
 {
-    gHeap + 0xE000, 0x800,
-    gHeap + 0xE800, 0x800,
-    gHeap + 0xF000, 0x800,
-    gHeap + 0xF800, 0x800,
+    gHeap + 0xE000, 0xC80,
+    gHeap + 0xE800, 0xC80,
+    gHeap + 0xF000, 0xC80,
+    gHeap + 0xF800, 0xC80,
 };
 
 const struct SpriteFrameImage gTrainerBackPicTable_Brendan[] =
 {
-    gTrainerBackPic_Brendan, 0x0800,
-    gTrainerBackPic_Brendan + 0x0800, 0x0800,
-    gTrainerBackPic_Brendan + 0x1000, 0x0800,
-    gTrainerBackPic_Brendan + 0x1800, 0x0800,
+    gTrainerBackPic_Brendan, 0x0C80,
+    gTrainerBackPic_Brendan + 0x0C80, 0x0C80,
+    gTrainerBackPic_Brendan + 0x1900, 0x0C80,
+    gTrainerBackPic_Brendan + 0x2580, 0x0C80,
 };
 
 const struct SpriteFrameImage gTrainerBackPicTable_May[] =
 {
-    gTrainerBackPic_May, 0x0800,
-    gTrainerBackPic_May + 0x0800, 0x0800,
-    gTrainerBackPic_May + 0x1000, 0x0800,
-    gTrainerBackPic_May + 0x1800, 0x0800,
+    gTrainerBackPic_May, 0x0C80,
+    gTrainerBackPic_May + 0x0C80, 0x0C80,
+    gTrainerBackPic_May + 0x1900, 0x0C80,
+    gTrainerBackPic_May + 0x2580, 0x0C80,
 };
 
 const struct SpriteFrameImage gTrainerBackPicTable_Red[] =
 {
-    gTrainerBackPic_Red, 0x0800,
-    gTrainerBackPic_Red + 0x0800, 0x0800,
-    gTrainerBackPic_Red + 0x1000, 0x0800,
-    gTrainerBackPic_Red + 0x1800, 0x0800,
-    gTrainerBackPic_Red + 0x2000, 0x0800,
+    gTrainerBackPic_Red, 0x0C80,
+    gTrainerBackPic_Red + 0x0C80, 0x0C80,
+    gTrainerBackPic_Red + 0x1900, 0x0C80,
+    gTrainerBackPic_Red + 0x2580, 0x0C80,
+    gTrainerBackPic_Red + 0x3200, 0x0C80,
 };
 
 const struct SpriteFrameImage gTrainerBackPicTable_Leaf[] =
 {
-    gTrainerBackPic_Leaf, 0x0800,
-    gTrainerBackPic_Leaf + 0x0800, 0x0800,
-    gTrainerBackPic_Leaf + 0x1000, 0x0800,
-    gTrainerBackPic_Leaf + 0x1800, 0x0800,
-    gTrainerBackPic_Leaf + 0x2000, 0x0800,
+    gTrainerBackPic_Leaf, 0x0C80,
+    gTrainerBackPic_Leaf + 0x0C80, 0x0C80,
+    gTrainerBackPic_Leaf + 0x1900, 0x0C80,
+    gTrainerBackPic_Leaf + 0x2580, 0x0C80,
+    gTrainerBackPic_Leaf + 0x3200, 0x0C80,
 };
 
 const struct SpriteFrameImage gTrainerBackPicTable_RubySapphireBrendan[] =
 {
-    gTrainerBackPic_RubySapphireBrendan, 0x0800,
-    gTrainerBackPic_RubySapphireBrendan + 0x0800, 0x0800,
-    gTrainerBackPic_RubySapphireBrendan + 0x1000, 0x0800,
-    gTrainerBackPic_RubySapphireBrendan + 0x1800, 0x0800,
+    gTrainerBackPic_RubySapphireBrendan, 0x0C80,
+    gTrainerBackPic_RubySapphireBrendan + 0x0C80, 0x0C80,
+    gTrainerBackPic_RubySapphireBrendan + 0x1900, 0x0C80,
+    gTrainerBackPic_RubySapphireBrendan + 0x2580, 0x0C80,
 };
 
 const struct SpriteFrameImage gTrainerBackPicTable_RubySapphireMay[] =
 {
-    gTrainerBackPic_RubySapphireMay, 0x0800,
-    gTrainerBackPic_RubySapphireMay + 0x0800, 0x0800,
-    gTrainerBackPic_RubySapphireMay + 0x1000, 0x0800,
-    gTrainerBackPic_RubySapphireMay + 0x1800, 0x0800,
+    gTrainerBackPic_RubySapphireMay, 0x0C80,
+    gTrainerBackPic_RubySapphireMay + 0x0C80, 0x0C80,
+    gTrainerBackPic_RubySapphireMay + 0x1900, 0x0C80,
+    gTrainerBackPic_RubySapphireMay + 0x2580, 0x0C80,
 };
 
 const struct SpriteFrameImage gTrainerBackPicTable_Wally[] =
 {
-    gTrainerBackPic_Wally, 0x0800,
-    gTrainerBackPic_Wally + 0x0800, 0x0800,
-    gTrainerBackPic_Wally + 0x1000, 0x0800,
-    gTrainerBackPic_Wally + 0x1800, 0x0800,
+    gTrainerBackPic_Wally, 0x0C80,
+    gTrainerBackPic_Wally + 0x0C80, 0x0C80,
+    gTrainerBackPic_Wally + 0x1900, 0x0C80,
+    gTrainerBackPic_Wally + 0x2580, 0x0C80,
 };
 
 const struct SpriteFrameImage gTrainerBackPicTable_Steven[] =
 {
-    gTrainerBackPic_Steven, 0x0800,
-    gTrainerBackPic_Steven + 0x0800, 0x0800,
-    gTrainerBackPic_Steven + 0x1000, 0x0800,
-    gTrainerBackPic_Steven + 0x1800, 0x0800,
+    gTrainerBackPic_Steven, 0x0C80,
+    gTrainerBackPic_Steven + 0x0C80, 0x0C80,
+    gTrainerBackPic_Steven + 0x1900, 0x0C80,
+    gTrainerBackPic_Steven + 0x2580, 0x0C80,
 };
 
 static const union AnimCmd sAnim_GeneralFrame0[] =
@@ -291,7 +291,7 @@ const union AnimCmd *const gUnknown_082FF70C[] =
     gUnknown_082FF704,
 };
 
-#define SPECIES_SPRITE(species, sprite) [SPECIES_##species] = {sprite, 0x800, SPECIES_##species}
+#define SPECIES_SPRITE(species, sprite) [SPECIES_##species] = {sprite, 0xC80, SPECIES_##species}
 #define SPECIES_PAL(species, pal) [SPECIES_##species] = {pal, SPECIES_##species}
 #define SPECIES_SHINY_PAL(species, pal) [SPECIES_##species] = {pal, SPECIES_##species + SPECIES_SHINY_TAG}
 

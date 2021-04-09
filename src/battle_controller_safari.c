@@ -353,7 +353,7 @@ static void SafariHandleDrawTrainerPic(void)
 {
     DecompressTrainerBackPic(gSaveBlock2Ptr->playerGender, gActiveBattler);
     SetMultiuseSpriteTemplateToTrainerBack(gSaveBlock2Ptr->playerGender, GetBattlerPosition(gActiveBattler));
-    gBattlerSpriteIds[gActiveBattler] = CreateSprite(
+    gBattlerSpriteIds[gActiveBattler] = CreateBigSprite(
       &gMultiuseSpriteTemplate,
       80,
       (8 - gTrainerBackPicCoords[gSaveBlock2Ptr->playerGender].size) * 4 + 80,

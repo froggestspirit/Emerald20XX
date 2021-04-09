@@ -1068,25 +1068,25 @@ void InitBattlerHealthboxCoords(u8 battler)
     if (!IsDoubleBattle())
     {
         if (GetBattlerSide(battler) != B_SIDE_PLAYER)
-            x = 44, y = 30;
+            x = 44, y = 18;
         else
-            x = 158, y = 88;
+            x = 158, y = 96;
     }
     else
     {
         switch (GetBattlerPosition(battler))
         {
         case B_POSITION_PLAYER_LEFT:
-            x = 159, y = 76;
+            x = 159, y = 84;
             break;
         case B_POSITION_PLAYER_RIGHT:
-            x = 171, y = 101;
+            x = 171, y = 109;
             break;
         case B_POSITION_OPPONENT_LEFT:
-            x = 44, y = 19;
+            x = 44, y = 14;
             break;
         case B_POSITION_OPPONENT_RIGHT:
-            x = 32, y = 44;
+            x = 32, y = 39;
             break;
         }
     }
@@ -1460,7 +1460,7 @@ u8 CreatePartyStatusSummarySprites(u8 battlerId, struct HpAndStatus *partyInfo, 
         if (GetBattlerSide(battlerId) == B_SIDE_PLAYER)
         {
             isOpponent = FALSE;
-            bar_X = 136, bar_Y = 96;
+            bar_X = 136, bar_Y = 104;
             bar_pos2_X = 100;
             bar_data0 = -5;
         }
@@ -1485,12 +1485,12 @@ u8 CreatePartyStatusSummarySprites(u8 battlerId, struct HpAndStatus *partyInfo, 
         bar_data0 = 5;
     }
 
-    LoadCompressedSpriteSheetUsingHeap(&sStatusSummaryBarSpriteSheet);
+    LoadCompressedSpriteSheetUsingHeapRev(&sStatusSummaryBarSpriteSheet);
     LoadSpriteSheet(&sStatusSummaryBallsSpriteSheet);
     LoadSpritePalette(&sStatusSummaryBarSpritePal);
     LoadSpritePalette(&sStatusSummaryBallsSpritePal);
 
-    summaryBarSpriteId = CreateSprite(&sStatusSummaryBarSpriteTemplates[isOpponent], bar_X, bar_Y, 10);
+    summaryBarSpriteId = CreateSpriteRev(&sStatusSummaryBarSpriteTemplates[isOpponent], bar_X, bar_Y, 10);
     SetSubspriteTables(&gSprites[summaryBarSpriteId], sStatusSummaryBar_SubspriteTable);
     gSprites[summaryBarSpriteId].pos2.x = bar_pos2_X;
     gSprites[summaryBarSpriteId].data[0] = bar_data0;

@@ -2292,16 +2292,16 @@ void AnimTask_TransformMon(u8 taskId)
 
         src = gMonSpritesGfxPtr->sprites[position] + (gBattleMonForms[gBattleAnimAttacker] << 11);
         dest = animBg.bgTiles;
-        CpuCopy32(src, dest, 0x800);
-        LoadBgTiles(1, animBg.bgTiles, 0x800, animBg.tilesOffset);
+        CpuCopy32(src, dest, 0xC80);
+        LoadBgTiles(1, animBg.bgTiles, 0xC80, animBg.tilesOffset);
         if (IsContest())
         {
             if (IsSpeciesNotUnown(gContestResources->moveAnim->species) != IsSpeciesNotUnown(gContestResources->moveAnim->targetSpecies))
             {
                 bgTilemap = (u16 *)animBg.bgTilemap;
-                for (i = 0; i < 8; i++)
+                for (i = 0; i < 10; i++)
                 {
-                    for (j = 0; j < 4; j++)
+                    for (j = 0; j < 5; j++)
                     {
                         u16 temp = bgTilemap[j + i * 0x20];
                         bgTilemap[j + i * 0x20] = bgTilemap[(7 - j) + i * 0x20];
@@ -2309,9 +2309,9 @@ void AnimTask_TransformMon(u8 taskId)
                     }
                 }
 
-                for (i = 0; i < 8; i++)
+                for (i = 0; i < 10; i++)
                 {
-                    for (j = 0; j < 8; j++)
+                    for (j = 0; j < 10; j++)
                     {
                        bgTilemap[j + i * 0x20] ^= 0x400;
                     }

@@ -1034,7 +1034,7 @@ static void WallyHandleDrawTrainerPic(void)
 {
     DecompressTrainerBackPic(TRAINER_BACK_PIC_WALLY, gActiveBattler);
     SetMultiuseSpriteTemplateToTrainerBack(TRAINER_BACK_PIC_WALLY, GetBattlerPosition(gActiveBattler));
-    gBattlerSpriteIds[gActiveBattler] = CreateSprite(&gMultiuseSpriteTemplate,
+    gBattlerSpriteIds[gActiveBattler] = CreateBigSprite(&gMultiuseSpriteTemplate,
                                                80,
                                                80 + 4 * (8 - gTrainerBackPicCoords[TRAINER_BACK_PIC_WALLY].size),
                                                30);
@@ -1049,7 +1049,7 @@ static void WallyHandleTrainerSlide(void)
 {
     DecompressTrainerBackPic(TRAINER_BACK_PIC_WALLY, gActiveBattler);
     SetMultiuseSpriteTemplateToTrainerBack(TRAINER_BACK_PIC_WALLY, GetBattlerPosition(gActiveBattler));
-    gBattlerSpriteIds[gActiveBattler] = CreateSprite(&gMultiuseSpriteTemplate,
+    gBattlerSpriteIds[gActiveBattler] = CreateBigSprite(&gMultiuseSpriteTemplate,
                                                80,
                                                80 + 4 * (8 - gTrainerBackPicCoords[TRAINER_BACK_PIC_WALLY].size),
                                                30);
@@ -1461,7 +1461,7 @@ static void sub_816AA80(u8 battlerId)
     species = GetMonData(&gPlayerParty[gBattlerPartyIndexes[battlerId]], MON_DATA_SPECIES);
     gUnknown_03005D7C[battlerId] = CreateInvisibleSpriteWithCallback(sub_805D714);
     SetMultiuseSpriteTemplateToPokemon(species, GetBattlerPosition(battlerId));
-    gBattlerSpriteIds[battlerId] = CreateSprite(&gMultiuseSpriteTemplate,
+    gBattlerSpriteIds[battlerId] = CreateBigSprite(&gMultiuseSpriteTemplate,
                                         GetBattlerSpriteCoord(battlerId, 2),
                                         GetBattlerSpriteDefault_Y(battlerId),
                                         GetBattlerSpriteSubpriority(battlerId));

@@ -195,12 +195,12 @@ struct Sprite
     /*0x14*/ const struct SpriteTemplate *template;
     /*0x18*/ const struct SubspriteTable *subspriteTables;
     /*0x1C*/ SpriteCallback callback;
-
+             u32 debug;
     /*0x20*/ struct Coords16 pos1;
     /*0x24*/ struct Coords16 pos2;
+    /*0x20*/ struct Coords16 pos3;
     /*0x28*/ s8 centerToCornerVecX;
     /*0x29*/ s8 centerToCornerVecY;
-
     /*0x2A*/ u8 animNum;
     /*0x2B*/ u8 animCmdIndex;
     /*0x2C*/ u8 animDelayCounter:6;
@@ -210,7 +210,8 @@ struct Sprite
 
     // general purpose data fields
     /*0x2E*/ s16 data[8];
-
+             u8 parent;
+             u8 children[4];
     /*0x3E*/ bool16 inUse:1;               //1
              bool16 coordOffsetEnabled:1;  //2
              bool16 invisible:1;           //4
@@ -262,8 +263,11 @@ void ResetSpriteData(void);
 void AnimateSprites(void);
 void BuildOamBuffer(void);
 u8 CreateSprite(const struct SpriteTemplate *template, s16 x, s16 y, u8 subpriority);
+u8 CreateSpriteRev(const struct SpriteTemplate *template, s16 x, s16 y, u8 subpriority);
+u8 CreateBigSprite(const struct SpriteTemplate *template, s16 x, s16 y, u8 subpriority);
 u8 CreateSpriteAtEnd(const struct SpriteTemplate *template, s16 x, s16 y, u8 subpriority);
 u8 CreateInvisibleSprite(void (*callback)(struct Sprite *));
+u8 CreateBigInvisibleSprite(void (*callback)(struct Sprite *));
 u8 CreateSpriteAndAnimate(const struct SpriteTemplate *template, s16 x, s16 y, u8 subpriority);
 void DestroySprite(struct Sprite *sprite);
 void ResetOamRange(u8 a, u8 b);
@@ -293,6 +297,7 @@ void FreeOamMatrix(u8 matrixNum);
 void InitSpriteAffineAnim(struct Sprite *sprite);
 void SetOamMatrixRotationScaling(u8 matrixNum, s16 xScale, s16 yScale, u16 rotation);
 u16 LoadSpriteSheet(const struct SpriteSheet *sheet);
+u16 LoadSpriteSheetRev(const struct SpriteSheet *sheet);
 void LoadSpriteSheets(const struct SpriteSheet *sheets);
 u16 AllocTilesForSpriteSheet(struct SpriteSheet *sheet);
 void AllocTilesForSpriteSheets(struct SpriteSheet *sheets);
@@ -319,5 +324,4 @@ void CopyFromSprites(u8 *dest);
 u8 SpriteTileAllocBitmapOp(u16 bit, u8 op);
 void ClearSpriteCopyRequests(void);
 void ResetAffineAnimData(void);
-
 #endif //GUARD_SPRITE_H

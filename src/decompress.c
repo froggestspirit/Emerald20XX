@@ -30,6 +30,17 @@ u16 LoadCompressedSpriteSheet(const struct CompressedSpriteSheet *src)
     return LoadSpriteSheet(&dest);
 }
 
+u16 LoadCompressedSpriteSheetRev(const struct CompressedSpriteSheet *src)
+{
+    struct SpriteSheet dest;
+
+    LZ77UnCompWram(src->data, gDecompressionBuffer);
+    dest.data = gDecompressionBuffer;
+    dest.size = src->size;
+    dest.tag = src->tag;
+    return LoadSpriteSheetRev(&dest);
+}
+
 void LoadCompressedSpriteSheetOverrideBuffer(const struct CompressedSpriteSheet *src, void *buffer)
 {
     struct SpriteSheet dest;
@@ -280,6 +291,23 @@ bool8 LoadCompressedSpriteSheetUsingHeap(const struct CompressedSpriteSheet* src
     return FALSE;
 }
 
+bool8 LoadCompressedSpriteSheetUsingHeapRev(const struct CompressedSpriteSheet* src)
+{
+    struct SpriteSheet dest;
+    void* buffer;
+
+    buffer = AllocZeroed(*((u32*)(&src->data[0])) >> 8);
+    LZ77UnCompWram(src->data, buffer);
+
+    dest.data = buffer;
+    dest.size = src->size;
+    dest.tag = src->tag;
+
+    LoadSpriteSheetRev(&dest);
+    Free(buffer);
+    return FALSE;
+}
+
 bool8 LoadCompressedSpritePaletteUsingHeap(const struct CompressedSpritePalette *src)
 {
     struct SpritePalette dest;
@@ -390,5 +418,5 @@ void LoadSpecialPokePic_DontHandleDeoxys(const struct CompressedSpriteSheet *src
 static void DuplicateDeoxysTiles(void *pointer, s32 species)
 {
     if (species == SPECIES_DEOXYS)
-        CpuCopy32(pointer + 0x800, pointer, 0x800);
+        CpuCopy32(pointer + 0xC80, pointer, 0xC80);
 }

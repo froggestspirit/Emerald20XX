@@ -1221,7 +1221,7 @@ static void UpdateMonPic(u8 loadId)
         spritePal.data = sMenu->partyPalettes[loadId];
         sMenu->curMonPalette = LoadSpritePalette(&spritePal);
         sMenu->curMonSheet = LoadSpriteSheet(&spriteSheet);
-        spriteId = CreateSprite(&spriteTemplate, 38, 104, 0);
+        spriteId = CreateBigSprite(&spriteTemplate, 30, 104, 0);
         sMenu->curMonSpriteId = spriteId;
         if (spriteId == MAX_SPRITES)
         {
@@ -1240,8 +1240,7 @@ static void UpdateMonPic(u8 loadId)
     }
     else
     {
-        do {} while(0); // Only needed to match, feel free to remove.
-        DmaCopy16Defvars(3, sMenu->partySheets[loadId], sMenu->curMonTileStart, 0x800);
+        DmaCopy16Defvars(3, sMenu->partySheets[loadId], sMenu->curMonTileStart, 0xC80);
         LoadPalette(sMenu->partyPalettes[loadId], sMenu->curMonPalette, 32);
     }
 }

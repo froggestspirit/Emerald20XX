@@ -2745,7 +2745,7 @@ void SpriteCB_FaintOpponentMon(struct Sprite *sprite)
         yOffset = gMonFrontPicCoords[species].y_offset;
     }
 
-    sprite->data[3] = 8 - yOffset / 8;
+    sprite->data[3] = 10 - yOffset / 8;
     sprite->data[4] = 1;
     sprite->callback = SpriteCB_AnimFaintOpponent;
 }
@@ -2768,6 +2768,11 @@ static void SpriteCB_AnimFaintOpponent(struct Sprite *sprite)
             u8 *dst = (u8 *)gMonSpritesGfxPtr->sprites[GetBattlerPosition(sprite->sBattler)] + (gBattleMonForms[sprite->sBattler] << 11) + (sprite->data[3] << 8);
 
             for (i = 0; i < 0x100; i++)
+                *(dst++) = 0;
+
+            dst = (u8 *)gMonSpritesGfxPtr->sprites[GetBattlerPosition(sprite->sBattler)] + (gBattleMonForms[sprite->sBattler] << 11) + 0xA00 + (sprite->data[3] << 6);
+
+            for (i = 0; i < 0x40; i++)
                 *(dst++) = 0;
 
             StartSpriteAnim(sprite, gBattleMonForms[sprite->sBattler]);
@@ -2925,14 +2930,8 @@ void EndBounceEffect(u8 battler, u8 which)
 static void SpriteCB_BounceEffect(struct Sprite *sprite)
 {
     u8 bouncerSpriteId = sprite->sBouncerSpriteId;
-    s32 index;
 
-    if (sprite->sWhich == BOUNCE_HEALTHBOX)
-        index = sprite->sSinIndex;
-    else
-        index = sprite->sSinIndex;
-
-    gSprites[bouncerSpriteId].pos2.y = Sin(index, sprite->sAmplitude) + sprite->sAmplitude;
+    gSprites[bouncerSpriteId].pos2.y = sprite->sSinIndex >> 7; //fix the bouncing bug
     sprite->sSinIndex = (sprite->sSinIndex + sprite->sDelta) & 0xFF;
 }
 

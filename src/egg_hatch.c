@@ -248,7 +248,7 @@ static const struct WindowTemplate sWinTemplates_EggHatch[2] =
     {
         .bg = 0,
         .tilemapLeft = 2,
-        .tilemapTop = 15,
+        .tilemapTop = 16,
         .width = 26,
         .height = 4,
         .paletteNum = 0,
@@ -442,7 +442,7 @@ static u8 EggHatchCreateMonSprite(u8 a0, u8 switchID, u8 pokeID, u16* speciesLoc
         break;
     case 1:
         SetMultiuseSpriteTemplateToPokemon(GetMonSpritePalStruct(mon)->tag, r5);
-        spriteID = CreateSprite(&gMultiuseSpriteTemplate, 120, 75, 6);
+        spriteID = CreateSprite(&gMultiuseSpriteTemplate, 112, 75, 6);
         gSprites[spriteID].invisible = TRUE;
         gSprites[spriteID].callback = SpriteCallbackDummy;
         break;
