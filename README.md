@@ -13,6 +13,20 @@ It builds the following ROM:
 
 To set up the repository, see [INSTALL.md](INSTALL.md).
 
+80x80 sprite mod by FroggestSpirit
+
+Things that need work or bugs:
+
+Low Priority:
+* Pokedex screens cleanup
+* Pokemon Contests artwork
+* Pokemon Jump? (Untested)
+
+Known Bugs:
+* Pokemon contests have a vertical seam in the pokemon sprites
+* Evolution animation may look glitched
+* Castforms transform animation may look glitched
+
 
 ## See also
 
