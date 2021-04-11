@@ -49,68 +49,68 @@ const struct SpriteFrameImage gBattlerPicTable_OpponentRight[] =
 
 const struct SpriteFrameImage gTrainerBackPicTable_Brendan[] =
 {
-    gTrainerBackPic_Brendan, 0x0800,
-    gTrainerBackPic_Brendan + 0x0800, 0x0800,
-    gTrainerBackPic_Brendan + 0x1000, 0x0800,
-    gTrainerBackPic_Brendan + 0x1800, 0x0800,
+    gTrainerBackPic_Brendan, LARGE_MON_PIC_SIZE,
+    gTrainerBackPic_Brendan + LARGE_MON_PIC_SIZE, LARGE_MON_PIC_SIZE,
+    gTrainerBackPic_Brendan + (LARGE_MON_PIC_SIZE * 2), LARGE_MON_PIC_SIZE,
+    gTrainerBackPic_Brendan + (LARGE_MON_PIC_SIZE * 3), LARGE_MON_PIC_SIZE,
 };
 
 const struct SpriteFrameImage gTrainerBackPicTable_May[] =
 {
-    gTrainerBackPic_May, 0x0800,
-    gTrainerBackPic_May + 0x0800, 0x0800,
-    gTrainerBackPic_May + 0x1000, 0x0800,
-    gTrainerBackPic_May + 0x1800, 0x0800,
+    gTrainerBackPic_May, LARGE_MON_PIC_SIZE,
+    gTrainerBackPic_May + LARGE_MON_PIC_SIZE, LARGE_MON_PIC_SIZE,
+    gTrainerBackPic_May + (LARGE_MON_PIC_SIZE * 2), LARGE_MON_PIC_SIZE,
+    gTrainerBackPic_May + (LARGE_MON_PIC_SIZE * 3), LARGE_MON_PIC_SIZE,
 };
 
 const struct SpriteFrameImage gTrainerBackPicTable_Red[] =
 {
-    gTrainerBackPic_Red, 0x0800,
-    gTrainerBackPic_Red + 0x0800, 0x0800,
-    gTrainerBackPic_Red + 0x1000, 0x0800,
-    gTrainerBackPic_Red + 0x1800, 0x0800,
-    gTrainerBackPic_Red + 0x2000, 0x0800,
+    gTrainerBackPic_Red, LARGE_MON_PIC_SIZE,
+    gTrainerBackPic_Red + LARGE_MON_PIC_SIZE, LARGE_MON_PIC_SIZE,
+    gTrainerBackPic_Red + (LARGE_MON_PIC_SIZE * 2), LARGE_MON_PIC_SIZE,
+    gTrainerBackPic_Red + (LARGE_MON_PIC_SIZE * 3), LARGE_MON_PIC_SIZE,
+    gTrainerBackPic_Red + (LARGE_MON_PIC_SIZE * 4), LARGE_MON_PIC_SIZE,
 };
 
 const struct SpriteFrameImage gTrainerBackPicTable_Leaf[] =
 {
-    gTrainerBackPic_Leaf, 0x0800,
-    gTrainerBackPic_Leaf + 0x0800, 0x0800,
-    gTrainerBackPic_Leaf + 0x1000, 0x0800,
-    gTrainerBackPic_Leaf + 0x1800, 0x0800,
-    gTrainerBackPic_Leaf + 0x2000, 0x0800,
+    gTrainerBackPic_Leaf, LARGE_MON_PIC_SIZE,
+    gTrainerBackPic_Leaf + LARGE_MON_PIC_SIZE, LARGE_MON_PIC_SIZE,
+    gTrainerBackPic_Leaf + (LARGE_MON_PIC_SIZE * 2), LARGE_MON_PIC_SIZE,
+    gTrainerBackPic_Leaf + (LARGE_MON_PIC_SIZE * 3), LARGE_MON_PIC_SIZE,
+    gTrainerBackPic_Leaf + (LARGE_MON_PIC_SIZE * 4), LARGE_MON_PIC_SIZE,
 };
 
 const struct SpriteFrameImage gTrainerBackPicTable_RubySapphireBrendan[] =
 {
-    gTrainerBackPic_RubySapphireBrendan, 0x0800,
-    gTrainerBackPic_RubySapphireBrendan + 0x0800, 0x0800,
-    gTrainerBackPic_RubySapphireBrendan + 0x1000, 0x0800,
-    gTrainerBackPic_RubySapphireBrendan + 0x1800, 0x0800,
+    gTrainerBackPic_RubySapphireBrendan, LARGE_MON_PIC_SIZE,
+    gTrainerBackPic_RubySapphireBrendan + LARGE_MON_PIC_SIZE, LARGE_MON_PIC_SIZE,
+    gTrainerBackPic_RubySapphireBrendan + (LARGE_MON_PIC_SIZE * 2), LARGE_MON_PIC_SIZE,
+    gTrainerBackPic_RubySapphireBrendan + (LARGE_MON_PIC_SIZE * 3), LARGE_MON_PIC_SIZE,
 };
 
 const struct SpriteFrameImage gTrainerBackPicTable_RubySapphireMay[] =
 {
-    gTrainerBackPic_RubySapphireMay, 0x0800,
-    gTrainerBackPic_RubySapphireMay + 0x0800, 0x0800,
-    gTrainerBackPic_RubySapphireMay + 0x1000, 0x0800,
-    gTrainerBackPic_RubySapphireMay + 0x1800, 0x0800,
+    gTrainerBackPic_RubySapphireMay, LARGE_MON_PIC_SIZE,
+    gTrainerBackPic_RubySapphireMay + LARGE_MON_PIC_SIZE, LARGE_MON_PIC_SIZE,
+    gTrainerBackPic_RubySapphireMay + (LARGE_MON_PIC_SIZE * 2), LARGE_MON_PIC_SIZE,
+    gTrainerBackPic_RubySapphireMay + (LARGE_MON_PIC_SIZE * 3), LARGE_MON_PIC_SIZE,
 };
 
 const struct SpriteFrameImage gTrainerBackPicTable_Wally[] =
 {
-    gTrainerBackPic_Wally, 0x0800,
-    gTrainerBackPic_Wally + 0x0800, 0x0800,
-    gTrainerBackPic_Wally + 0x1000, 0x0800,
-    gTrainerBackPic_Wally + 0x1800, 0x0800,
+    gTrainerBackPic_Wally, LARGE_MON_PIC_SIZE,
+    gTrainerBackPic_Wally + LARGE_MON_PIC_SIZE, LARGE_MON_PIC_SIZE,
+    gTrainerBackPic_Wally + (LARGE_MON_PIC_SIZE * 2), LARGE_MON_PIC_SIZE,
+    gTrainerBackPic_Wally + (LARGE_MON_PIC_SIZE * 3), LARGE_MON_PIC_SIZE,
 };
 
 const struct SpriteFrameImage gTrainerBackPicTable_Steven[] =
 {
-    gTrainerBackPic_Steven, 0x0800,
-    gTrainerBackPic_Steven + 0x0800, 0x0800,
-    gTrainerBackPic_Steven + 0x1000, 0x0800,
-    gTrainerBackPic_Steven + 0x1800, 0x0800,
+    gTrainerBackPic_Steven, LARGE_MON_PIC_SIZE,
+    gTrainerBackPic_Steven + LARGE_MON_PIC_SIZE, LARGE_MON_PIC_SIZE,
+    gTrainerBackPic_Steven + (LARGE_MON_PIC_SIZE * 2), LARGE_MON_PIC_SIZE,
+    gTrainerBackPic_Steven + (LARGE_MON_PIC_SIZE * 3), LARGE_MON_PIC_SIZE,
 };
 
 static const union AnimCmd sAnim_GeneralFrame0[] =
