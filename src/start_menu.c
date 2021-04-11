@@ -27,6 +27,7 @@
 #include "overworld.h"
 #include "palette.h"
 #include "party_menu.h"
+#include "poke_radar.h"
 #include "pokedex.h"
 #include "pokenav.h"
 #include "safari_zone.h"
@@ -88,6 +89,7 @@ EWRAM_DATA static u8 (*sSaveDialogCallback)(void) = NULL;
 EWRAM_DATA static u8 sSaveDialogTimer = 0;
 EWRAM_DATA static bool8 sSavingComplete = FALSE;
 EWRAM_DATA static u8 sSaveInfoWindowId = 0;
+EWRAM_DATA static u8 sPokeRadarChainWindowId = 0;
 
 // Menu action callbacks
 static bool8 StartMenuPokedexCallback(void);
@@ -207,6 +209,16 @@ static const struct WindowTemplate sSaveInfoWindowTemplate = {
     .baseBlock = 8
 };
 
+static const struct WindowTemplate sPokeRadarChainWindowTemplate = {
+    .bg = 0,
+    .tilemapLeft = 1,
+    .tilemapTop = 1,
+    .width = 8,
+    .height = 4,
+    .paletteNum = 15,
+    .baseBlock = 8,
+};
+
 // Local functions
 static void BuildStartMenuActions(void);
 static void AddStartMenuAction(u8 action);
@@ -219,6 +231,7 @@ static void BuildBattlePyramidStartMenu(void);
 static void BuildMultiPartnerRoomStartMenu(void);
 static void ShowSafariBallsWindow(void);
 static void ShowPyramidFloorWindow(void);
+static void ShowPokeRadarChainWindow(void);
 static void RemoveExtraStartMenuWindows(void);
 static bool32 PrintStartMenuActions(s8 *pIndex, u32 count);
 static bool32 InitStartMenuStep(void);
@@ -390,6 +403,17 @@ static void ShowSafariBallsWindow(void)
     CopyWindowToVram(sSafariBallsWindowId, 2);
 }
 
+static void ShowPokeRadarChainWindow(void)
+{
+    sPokeRadarChainWindowId = AddWindow(&sPokeRadarChainWindowTemplate);
+    PutWindowTilemap(sPokeRadarChainWindowId);
+    DrawStdWindowFrame(sPokeRadarChainWindowId, FALSE);
+    ConvertIntToDecimalStringN(gStringVar1, gPokeRadarChain.chain, STR_CONV_MODE_RIGHT_ALIGN, 2);
+    StringExpandPlaceholders(gStringVar4, gText_PokeRadarChain);
+    AddTextPrinterParameterized(sPokeRadarChainWindowId, 1, gStringVar4, 0, 1, 0xFF, NULL);
+    CopyWindowToVram(sPokeRadarChainWindowId, 2);
+}
+
 static void ShowPyramidFloorWindow(void)
 {
     if (gSaveBlock2Ptr->frontier.curChallengeBattleNum == 7)
@@ -417,6 +441,11 @@ static void RemoveExtraStartMenuWindows(void)
     {
         ClearStdWindowAndFrameToTransparent(sBattlePyramidFloorWindowId, FALSE);
         RemoveWindow(sBattlePyramidFloorWindowId);
+    }
+    if (gPokeRadarChain.chain > 0)
+    {
+        ClearDialogWindowAndFrameToTransparent(sPokeRadarChainWindowId, FALSE);
+        RemoveWindow(sPokeRadarChainWindowId);
     }
 }
 
@@ -475,6 +504,8 @@ static bool32 InitStartMenuStep(void)
             ShowSafariBallsWindow();
         if (InBattlePyramid())
             ShowPyramidFloorWindow();
+        if (gPokeRadarChain.chain > 0 && !GetSafariZoneFlag())
+            ShowPokeRadarChainWindow();
         sInitStartMenuData[0]++;
         break;
     case 4:

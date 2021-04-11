@@ -3,6 +3,7 @@
 #include "battle_setup.h"
 #include "battle_transition.h"
 #include "main.h"
+#include "poke_radar.h"
 #include "task.h"
 #include "safari_zone.h"
 #include "script.h"
@@ -599,6 +600,7 @@ static void CB2_EndWildBattle(void)
 {
     CpuFill16(0, (void*)(BG_PLTT), BG_PLTT_SIZE);
     ResetOamRange(0, 128);
+    UpdatePokeRadarAfterWildBattle(gBattleOutcome);
 
     if (IsPlayerDefeated(gBattleOutcome) == TRUE && !InBattlePyramid() && !InBattlePike())
     {

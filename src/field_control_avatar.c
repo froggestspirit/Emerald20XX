@@ -19,6 +19,7 @@
 #include "match_call.h"
 #include "metatile_behavior.h"
 #include "overworld.h"
+#include "poke_radar.h"
 #include "pokemon.h"
 #include "safari_zone.h"
 #include "script.h"
@@ -544,6 +545,7 @@ static bool8 TryStartStepCountScript(u16 metatileBehavior)
     IncrementRematchStepCounter();
     UpdateFriendshipStepCounter();
     UpdateFarawayIslandStepCounter();
+    ChargePokeRadar();
 
     if (!(gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_FORCED_MOVE) && !MetatileBehavior_IsForcedMovementTile(metatileBehavior))
     {
@@ -665,6 +667,11 @@ void RestartWildEncounterImmunitySteps(void)
 {
     // Starts at 0 and counts up to 4 steps.
     sWildEncounterImmunitySteps = 0;
+}
+
+void DisableWildPokemonImmunity(void)
+{
+    sWildEncounterImmunitySteps = 4;
 }
 
 static bool8 CheckStandardWildEncounter(u16 metatileBehavior)

@@ -315,6 +315,66 @@ u32 FldEff_TallGrass(void)
     return 0;
 }
 
+u32 FldEff_PokeRadarGrass(void)
+{
+    s16 x;
+    s16 y;
+    u8 spriteId;
+    struct Sprite *sprite;
+
+    x = gFieldEffectArguments[0];
+    y = gFieldEffectArguments[1];
+    SetSpritePosToOffsetMapCoords(&x, &y, 8, 8);
+    spriteId = CreateSpriteAtEnd(gFieldEffectObjectTemplatePointers[FLDEFFOBJ_POKE_RADAR_GRASS], x, y, 0);
+    if (spriteId != MAX_SPRITES)
+    {
+        sprite = &gSprites[spriteId];
+        sprite->coordOffsetEnabled = TRUE;
+        sprite->oam.priority = gFieldEffectArguments[3];
+        sprite->data[0] = gFieldEffectArguments[2];
+        sprite->data[1] = gFieldEffectArguments[0];
+        sprite->data[2] = gFieldEffectArguments[1];
+        sprite->data[3] = gFieldEffectArguments[4];
+        sprite->data[4] = gFieldEffectArguments[5];
+        sprite->data[5] = gFieldEffectArguments[6];
+        if (gFieldEffectArguments[7])
+        {
+            SeekSpriteAnim(sprite, 4);
+        }
+    }
+    return 0;
+}
+
+u32 FldEff_PokeRadarSparkle(void)
+{
+    s16 x;
+    s16 y;
+    u8 spriteId;
+    struct Sprite *sprite;
+
+    x = gFieldEffectArguments[0];
+    y = gFieldEffectArguments[1];
+    SetSpritePosToOffsetMapCoords(&x, &y, 8, 8);
+    spriteId = CreateSpriteAtEnd(gFieldEffectObjectTemplatePointers[FLDEFFOBJ_POKE_RADAR_SPARKLE], x, y, 0);
+    if (spriteId != MAX_SPRITES)
+    {
+        sprite = &gSprites[spriteId];
+        sprite->coordOffsetEnabled = TRUE;
+        sprite->oam.priority = gFieldEffectArguments[3];
+        sprite->data[0] = gFieldEffectArguments[2];
+        sprite->data[1] = gFieldEffectArguments[0];
+        sprite->data[2] = gFieldEffectArguments[1];
+        sprite->data[3] = gFieldEffectArguments[4];
+        sprite->data[4] = gFieldEffectArguments[5];
+        sprite->data[5] = gFieldEffectArguments[6];
+        if (gFieldEffectArguments[7])
+        {
+            SeekSpriteAnim(sprite, 4);
+        }
+    }
+    return 0;
+}
+
 void UpdateTallGrassFieldEffect(struct Sprite *sprite)
 {
     u8 mapNum;
@@ -361,6 +421,18 @@ void UpdateTallGrassFieldEffect(struct Sprite *sprite)
         UpdateObjectEventSpriteInvisibility(sprite, FALSE);
         UpdateGrassFieldEffectSubpriority(sprite, sprite->sElevation, metatileBehavior);
     }
+}
+
+void UpdatePokeRadarGrassFieldEffect(struct Sprite *sprite)
+{
+    if (sprite->animEnded)
+        FieldEffectStop(sprite, FLDEFF_POKE_RADAR_GRASS);
+}
+
+void UpdatePokeRadarSparkleFieldEffect(struct Sprite *sprite)
+{
+    if (sprite->animEnded)
+        FieldEffectStop(sprite, FLDEFF_POKE_RADAR_SPARKLE);
 }
 
 u32 FldEff_JumpTallGrass(void)

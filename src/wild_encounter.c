@@ -8,6 +8,7 @@
 #include "event_data.h"
 #include "safari_zone.h"
 #include "overworld.h"
+#include "poke_radar.h"
 #include "pokeblock.h"
 #include "battle_setup.h"
 #include "roamer.h"
@@ -338,6 +339,7 @@ static void CreateWildMon(u16 species, u8 level)
 {
     bool32 checkCuteCharm;
 
+    BreakPokeRadarChain();
     ZeroEnemyPartyMons();
     checkCuteCharm = TRUE;
 
@@ -369,7 +371,45 @@ static void CreateWildMon(u16 species, u8 level)
         return;
     }
 
-    CreateMonWithNature(&gEnemyParty[0], species, level, 32, PickWildMonNature());
+    CreateMonWithNature(&gEnemyParty[0], species, level, 32, PickWildMonNature(), FALSE);
+}
+
+static void CreateWildRadarMon(u16 species, u8 level, bool8 forceShiny)
+{
+    bool32 checkCuteCharm;
+
+    ZeroEnemyPartyMons();
+    checkCuteCharm = TRUE;
+
+    switch (gBaseStats[species].genderRatio)
+    {
+    case MON_MALE:
+    case MON_FEMALE:
+    case MON_GENDERLESS:
+        checkCuteCharm = FALSE;
+        break;
+    }
+
+    if (checkCuteCharm
+        && !GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG)
+        && GetMonAbility(&gPlayerParty[0]) == ABILITY_CUTE_CHARM
+        && Random() % 3 != 0)
+    {
+        u16 leadingMonSpecies = GetMonData(&gPlayerParty[0], MON_DATA_SPECIES);
+        u32 leadingMonPersonality = GetMonData(&gPlayerParty[0], MON_DATA_PERSONALITY);
+        u8 gender = GetGenderFromSpeciesAndPersonality(leadingMonSpecies, leadingMonPersonality);
+
+        // misses mon is genderless check, although no genderless mon can have cute charm as ability
+        if (gender == MON_FEMALE)
+            gender = MON_MALE;
+        else
+            gender = MON_FEMALE;
+
+        CreateMonWithGenderNatureLetter(&gEnemyParty[0], species, level, 32, gender, PickWildMonNature(), 0);
+        return;
+    }
+
+    CreateMonWithNature(&gEnemyParty[0], species, level, 32, PickWildMonNature(), forceShiny);
 }
 
 enum
@@ -417,6 +457,73 @@ static bool8 TryGenerateWildMon(const struct WildPokemonInfo *wildMonInfo, u8 ar
 
     CreateWildMon(wildMonInfo->wildPokemon[wildMonIndex].species, level);
     return TRUE;
+}
+
+static void GenerateWildPokeRadarMon(const struct WildPokemonInfo *wildMonInfo, u8 grassPatch)
+{
+    u16 species;
+    u8 level;
+    bool8 forceShiny = FALSE;
+    
+    if (gPokeRadarChain.chain > 0)
+    {
+        if (gPokeRadarChain.grassPatches[grassPatch].continueChain)
+        {
+            species = gPokeRadarChain.species;
+            level = gPokeRadarChain.level;
+            forceShiny = gPokeRadarChain.grassPatches[grassPatch].isShiny;
+            IncrementPokeRadarChain();
+        }
+        else
+        {
+            u8 wildMonIndex = ChooseWildMonIndex_Land();
+            species = wildMonInfo->wildPokemon[wildMonIndex].species;
+            if (species == gPokeRadarChain.species)
+            {
+                level = gPokeRadarChain.level;
+                gPokeRadarChain.patchType = gPokeRadarChain.grassPatches[grassPatch].patchType;
+                IncrementPokeRadarChain();
+            }
+            else
+            {
+                BreakPokeRadarChain();
+                level = ChooseWildMonLevel(&wildMonInfo->wildPokemon[wildMonIndex]);
+            }
+        }
+    }
+    else
+    {
+        u8 wildMonIndex = ChooseWildMonIndex_Land();
+        species = wildMonInfo->wildPokemon[wildMonIndex].species;
+        level = ChooseWildMonLevel(&wildMonInfo->wildPokemon[wildMonIndex]);
+        SetPokeRadarPokemon(species, level);
+        InitNewPokeRadarChain(species, level, gPokeRadarChain.grassPatches[grassPatch].patchType);
+    }
+    
+    CreateWildRadarMon(species, level, forceShiny);
+}
+
+static bool8 TestPokeRadarPatches(u8 *grassPatch)
+{
+    u8 i;
+    s16 x, y;
+    
+    if (!gPokeRadarChain.active)
+        return FALSE;
+    
+    PlayerGetDestCoords(&x, &y);
+    for (i = 0; i < NUM_POKE_RADAR_GRASS_PATCHES; i++)
+    {
+        if (gPokeRadarChain.grassPatches[i].active
+            && gPokeRadarChain.grassPatches[i].x == x
+            && gPokeRadarChain.grassPatches[i].y == y)
+            {
+                *grassPatch = i;
+                return TRUE;
+            }
+    }
+    
+    return FALSE;
 }
 
 static u16 GenerateFishingWildMon(const struct WildPokemonInfo *wildMonInfo, u8 rod)
@@ -553,7 +660,15 @@ bool8 StandardWildEncounter(u16 currMetaTileBehavior, u16 previousMetaTileBehavi
     }
     else
     {
-        if (MetatileBehavior_IsLandWildEncounter(currMetaTileBehavior) == TRUE)
+        u8 radarGrassPatch;
+        if (TestPokeRadarPatches(&radarGrassPatch))
+        {
+            GenerateWildPokeRadarMon(gWildMonHeaders[headerId].landMonsInfo, radarGrassPatch);
+            TrySetPokeRadarPatchCoords();
+            BattleSetup_StartWildBattle();
+            return TRUE;
+        }
+        else if (MetatileBehavior_IsLandWildEncounter(currMetaTileBehavior) == TRUE)
         {
             if (gWildMonHeaders[headerId].landMonsInfo == NULL)
                 return FALSE;
