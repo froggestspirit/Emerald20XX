@@ -10,6 +10,7 @@ Features:
 -Repeated medicine use - ghoulslash / AsparagusEduardo
 -Sitrus berry gen 4 effect
 -Nature stat colors
+-Physical/Special split
 
 
 Removals:
@@ -27,3 +28,15 @@ Fixes:
 -No dex entry until dex
 -Pokecenter disregard eggs
 -Extra save space
+
+TODO:
+-Day/Night
+-Chain Fishing
+-Learn moves upon evolution
+-Proper Plural "giveitem" Command
+-Fairy Type
+-Move on PC before Withdraw/Deposit
+-Start with running shoes
+-Reusable TMs
+-Max money increase
+-Dynamic trade names
