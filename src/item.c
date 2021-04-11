@@ -50,6 +50,11 @@ static void SetPCItemQuantity(u16 *quantity, u16 newValue)
     *quantity = newValue;
 }
 
+void ItemId_GetHoldEffectParam_Script()
+{
+    VarSet(VAR_RESULT, ItemId_GetHoldEffectParam(VarGet(VAR_0x8004)));
+}
+
 void ApplyNewEncryptionKeyToBagItems(u32 newKey)
 {
     u32 pocket, item;

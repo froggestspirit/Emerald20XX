@@ -3298,6 +3298,17 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
                     effect = 4;
                 }
                 break;
+            case HOLD_EFFECT_RESTORE_PCT_HP:
+                if (gBattleMons[battlerId].hp <= gBattleMons[battlerId].maxHP / 2 && !moveTurn)
+                {
+                    gBattleMoveDamage = (gBattleMons[battlerId].maxHP * battlerHoldEffectParam) / 100;
+                    if (gBattleMons[battlerId].hp + battlerHoldEffectParam > gBattleMons[battlerId].maxHP)
+                        gBattleMoveDamage = gBattleMons[battlerId].maxHP - gBattleMons[battlerId].hp;
+                    gBattleMoveDamage *= -1;
+                    BattleScriptExecute(BattleScript_ItemHealHP_RemoveItem);
+                    effect = 4;
+                }
+                break;
             case HOLD_EFFECT_RESTORE_PP:
                 if (!moveTurn)
                 {
@@ -4020,12 +4031,20 @@ u8 IsMonDisobedient(void)
 
         obedienceLevel = 10;
 
+        if (FlagGet(FLAG_BADGE01_GET))
+            obedienceLevel = 20;
         if (FlagGet(FLAG_BADGE02_GET))
             obedienceLevel = 30;
+        if (FlagGet(FLAG_BADGE03_GET))
+            obedienceLevel = 40;
         if (FlagGet(FLAG_BADGE04_GET))
             obedienceLevel = 50;
+        if (FlagGet(FLAG_BADGE05_GET))
+            obedienceLevel = 60;
         if (FlagGet(FLAG_BADGE06_GET))
             obedienceLevel = 70;
+        if (FlagGet(FLAG_BADGE07_GET))
+            obedienceLevel = 80;
     }
 
     if (gBattleMons[gBattlerAttacker].level <= obedienceLevel)

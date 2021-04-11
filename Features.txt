@@ -3,9 +3,27 @@ Features:
 -PokeRadar - ShantyTown / Kurausukun
 -Run indoors
 -Sound Engine - Ipatix / Kurausukun
+-Updated obedience levels
+-Faster hp drain
+-Ask to reapply repels
+-LGPE Style Bonus Premier Balls
+-Repeated medicine use - ghoulslash / AsparagusEduardo
+-Sitrus berry gen 4 effect
+-Nature stat colors
+
+
+Removals:
+-Badge boosts
+-Union room check
+-Redundant "Used move" grammar
+-FRLG champ trade requirement
+
 
 Fixes:
 -RNG Seeding
 -VBlank fix
 -Surf dismount animation
 -Camera making waves
+-No dex entry until dex
+-Pokecenter disregard eggs
+-Extra save space
