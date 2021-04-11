@@ -1,6 +1,7 @@
 Features:
 -80x80 Sprites - FroggestSpirit
 -PokeRadar - ShantyTown / Kuraukusun
+-Run indoors
 
 
 Fixes:
