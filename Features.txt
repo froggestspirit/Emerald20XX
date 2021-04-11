@@ -1,9 +1,11 @@
 Features:
 -80x80 Sprites - FroggestSpirit
--PokeRadar - ShantyTown / Kuraukusun
+-PokeRadar - ShantyTown / Kurausukun
 -Run indoors
-
+-Sound Engine - Ipatix / Kurausukun
 
 Fixes:
 -RNG Seeding
 -VBlank fix
+-Surf dismount animation
+-Camera making waves
