@@ -1,0 +1,2 @@
+# Emerald
+pokeemerald hack
