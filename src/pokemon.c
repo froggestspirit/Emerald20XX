@@ -35,6 +35,7 @@
 #include "text.h"
 #include "trainer_hill.h"
 #include "util.h"
+#include "wild_encounter.h"
 #include "constants/abilities.h"
 #include "constants/battle_frontier.h"
 #include "constants/battle_move_effects.h"
@@ -2195,6 +2196,7 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     u32 personality;
     u32 value;
     u16 checksum;
+    u32 shinyValue;
 
     ZeroBoxMonData(boxMon);
 
@@ -2203,12 +2205,9 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     else
         personality = Random32();
 
-    SetBoxMonData(boxMon, MON_DATA_PERSONALITY, &personality);
-
     //Determine original trainer ID
     if (otIdType == OT_ID_RANDOM_NO_SHINY) //Pokemon cannot be shiny
     {
-        u32 shinyValue;
         do
         {
             value = Random32();
@@ -2221,12 +2220,33 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     }
     else //Player is the OT
     {
+        u32 rolls = 0;
+        u32 shinyRolls = 0;
+        
         value = gSaveBlock2Ptr->playerTrainerId[0]
               | (gSaveBlock2Ptr->playerTrainerId[1] << 8)
               | (gSaveBlock2Ptr->playerTrainerId[2] << 16)
               | (gSaveBlock2Ptr->playerTrainerId[3] << 24);
+        
+        #ifdef ITEM_SHINY_CHARM
+        if (CheckBagHasItem(ITEM_SHINY_CHARM, 1))
+            shinyRolls += SHINY_CHARM_REROLLS;
+        #endif
+        
+        if (gIsFishingEncounter)
+            shinyRolls += 1 + 2 * gChainFishingStreak; //1 + 2 rolls per streak count. max 41
+        
+        if (shinyRolls)
+        {
+            do {
+                personality = Random32();
+                shinyValue = HIHALF(value) ^ LOHALF(value) ^ HIHALF(personality) ^ LOHALF(personality);
+                rolls++;
+            } while (shinyValue >= SHINY_ODDS && rolls < shinyRolls);
+        }
     }
 
+    SetBoxMonData(boxMon, MON_DATA_PERSONALITY, &personality);
     SetBoxMonData(boxMon, MON_DATA_OT_ID, &value);
 
     checksum = CalculateBoxMonChecksum(boxMon);
