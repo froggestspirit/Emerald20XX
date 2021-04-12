@@ -12,7 +12,7 @@ Features:
 -Nature stat colors
 -Physical/Special split
 -Overworld Expansion - ghoulslash
-
+-Chain Fishing - ghoulslash
 
 Removals:
 -Badge boosts
@@ -32,7 +32,6 @@ Fixes:
 
 TODO:
 -Day/Night
--Chain Fishing
 -Learn moves upon evolution
 -Proper Plural "giveitem" Command
 -Fairy Type
