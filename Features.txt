@@ -11,6 +11,7 @@ Features:
 -Sitrus berry gen 4 effect
 -Nature stat colors
 -Physical/Special split
+-Overworld Expansion - ghoulslash
 
 
 Removals:
