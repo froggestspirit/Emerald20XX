@@ -13,6 +13,8 @@ Features:
 -Physical/Special split
 -Overworld Expansion - ghoulslash
 -Chain Fishing - ghoulslash
+-Follow me - ghoulslash
+
 
 Removals:
 -Badge boosts
