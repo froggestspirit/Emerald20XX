@@ -14,6 +14,7 @@ Features:
 -Overworld Expansion - ghoulslash
 -Chain Fishing - ghoulslash
 -Follow me - ghoulslash
+-Bag sort - ghoulslash
 
 
 Removals:
