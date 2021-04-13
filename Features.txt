@@ -15,6 +15,7 @@ Features:
 -Chain Fishing - ghoulslash
 -Follow me - ghoulslash
 -Bag sort - ghoulslash
+-Day/Night - Sierraffinity
 
 
 Removals:
@@ -34,7 +35,6 @@ Fixes:
 -Extra save space
 
 TODO:
--Day/Night
 -Learn moves upon evolution
 -Proper Plural "giveitem" Command
 -Fairy Type
