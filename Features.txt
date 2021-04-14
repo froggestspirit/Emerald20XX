@@ -43,3 +43,11 @@ TODO:
 -Reusable TMs
 -Max money increase
 -Dynamic trade names
+-Decapitalize
+
+
+Day/Night Palette Fixes:
+-Choosing starter
+-Battle
+-Pokecenter/Mart door
+-Water
