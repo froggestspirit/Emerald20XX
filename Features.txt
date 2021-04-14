@@ -49,5 +49,4 @@ TODO:
 Day/Night Palette Fixes:
 -Choosing starter
 -Battle
--Pokecenter/Mart door
--Water
+-doors/windows
