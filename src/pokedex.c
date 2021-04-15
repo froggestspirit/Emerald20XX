@@ -3987,7 +3987,6 @@ static void Task_DisplayCaughtMonDexPage(u8 taskId)
         break;
     case 4:
         FreeMonSpritesGfx();
-        FreeBattleResources();
         FreeBattleSpritesData();
         spriteId = CreateMonSpriteFromNationalDexNumber(dexNum, 48, 56, 0);
         gSprites[spriteId].oam.priority = 0;
