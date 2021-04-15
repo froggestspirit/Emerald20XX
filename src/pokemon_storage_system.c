@@ -4051,11 +4051,11 @@ static void LoadCursorMonSprite(void)
     u16 tileStart;
     u8 palSlot;
     u8 spriteId;
-    struct SpriteSheet sheet = {sPSSData->field_22C4, 0xC80, TAG_TILE_2};
+    struct SpriteSheet sheet = {sPSSData->field_22C4, MON_PIC_SIZE, TAG_TILE_2};
     struct SpritePalette palette = {sPSSData->field_2244, TAG_PAL_DAC6};
     struct SpriteTemplate template = sSpriteTemplate_CursorMon;
 
-    for (i = 0; i < 0xC80; i++)
+    for (i = 0; i < MON_PIC_SIZE; i++)
         sPSSData->field_22C4[i] = 0;
     for (i = 0; i < 0x10; i++)
         sPSSData->field_2244[i] = 0;
@@ -4098,7 +4098,7 @@ static void LoadCursorMonGfx(u16 species, u32 pid)
         LoadSpecialPokePic(&gMonFrontPicTable[species], sPSSData->field_22C4, species, pid, TRUE);
         LZ77UnCompWram(sPSSData->cursorMonPalette, sPSSData->field_2244);
         if(IsShinyOtIdPersonality(otIdShine, sPSSData->cursorMonPersonality)) SwapPlttRGB(sPSSData->field_2244, (sPSSData->cursorMonPersonality % 12));
-        CpuCopy32(sPSSData->field_22C4, sPSSData->field_223C, 0xC80);
+        CpuCopy32(sPSSData->field_22C4, sPSSData->field_223C, MON_PIC_SIZE);
         LoadPalette(sPSSData->field_2244, sPSSData->field_223A, 0x20);
         sPSSData->cursorMonSprite->invisible = FALSE;
     }
