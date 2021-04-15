@@ -649,7 +649,7 @@ const struct SpriteTemplate sSpriteTemplate_Judge =
 const struct CompressedSpriteSheet sSpriteSheet_Judge =
 {
     .data = gContestJudgeGfx,
-    .size = 0xC80,
+    .size = MON_PIC_SIZE,
     .tag = TAG_JUDGE
 };
 

@@ -161,7 +161,7 @@ static u16 CreatePicSprite(u16 species, u32 otId, u32 personality, bool8 isFront
     {
         return 0xFFFF;
     }
-    framePics = Alloc(4 * 0xC80);
+    framePics = Alloc(4 * MON_PIC_SIZE);
     if (!framePics)
     {
         return 0xFFFF;
@@ -179,8 +179,8 @@ static u16 CreatePicSprite(u16 species, u32 otId, u32 personality, bool8 isFront
     }
     for (j = 0; j < 4; j ++)
     {
-        images[j].data = framePics + 0xC80 * j;
-        images[j].size = 0xC80;
+        images[j].data = framePics + MON_PIC_SIZE * j;
+        images[j].size = MON_PIC_SIZE;
     }
     sCreatingSpriteTemplate.tileTag = 0xFFFF;
     sCreatingSpriteTemplate.oam = &gUnknown_0860B064;
@@ -227,7 +227,7 @@ u16 CreatePicSprite2(u16 species, u32 otId, u32 personality, u8 flags, s16 x, s1
     {
         return 0xFFFF;
     }
-    framePics = Alloc(4 * 0xC80);
+    framePics = Alloc(4 * MON_PIC_SIZE);
     if (!framePics)
     {
         return 0xFFFF;
@@ -254,8 +254,8 @@ u16 CreatePicSprite2(u16 species, u32 otId, u32 personality, u8 flags, s16 x, s1
     }
     for (j = 0; j < 4; j ++)
     {
-        images[j].data = framePics + 0xC80 * j;
-        images[j].size = 0xC80;
+        images[j].data = framePics + MON_PIC_SIZE * j;
+        images[j].size = MON_PIC_SIZE;
     }
     sCreatingSpriteTemplate.tileTag = 0xFFFF;
     sCreatingSpriteTemplate.anims = gMonFrontAnimsPtrTable[species];
@@ -334,7 +334,7 @@ static u16 CreateTrainerCardSprite(u16 species, u32 otId, u32 personality, bool8
 {
     u8 *framePics;
 
-    framePics = Alloc(4 * 0xC80);
+    framePics = Alloc(4 * MON_PIC_SIZE);
     if (framePics && !DecompressPic_HandleDeoxys(species, personality, isFrontPic, framePics, isTrainer))
     {
         BlitBitmapRectToWindow(windowId, framePics, 0, 0, 0x40, 0x50, destX, destY, 0x50, 0x50);

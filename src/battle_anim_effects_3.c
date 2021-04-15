@@ -2292,8 +2292,8 @@ void AnimTask_TransformMon(u8 taskId)
 
         src = gMonSpritesGfxPtr->sprites.ptr[position] + (gBattleMonForms[gBattleAnimAttacker] << 11);
         dest = animBg.bgTiles;
-        CpuCopy32(src, dest, 0xC80);
-        LoadBgTiles(1, animBg.bgTiles, 0xC80, animBg.tilesOffset);
+        CpuCopy32(src, dest, MON_PIC_SIZE);
+        LoadBgTiles(1, animBg.bgTiles, MON_PIC_SIZE, animBg.tilesOffset);
         if (IsContest())
         {
             if (IsSpeciesNotUnown(gContestResources->moveAnim->species) != IsSpeciesNotUnown(gContestResources->moveAnim->targetSpecies))

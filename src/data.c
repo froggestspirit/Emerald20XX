@@ -12,105 +12,104 @@ const u16 gMinigameDigits_Pal[] = INCBIN_U16("graphics/link/minigame_digits.gbap
 const u32 gMinigameDigits_Gfx[] = INCBIN_U32("graphics/link/minigame_digits.4bpp.lz");
 static const u32 sMinigameDigitsThin_Gfx[] = INCBIN_U32("graphics/link/minigame_digits2.4bpp.lz"); // Unused
 
-#define LARGE_MON_PIC_SIZE 0xC80
-#define BATTLER_OFFSET(i) (gHeap + 0x8000 + LARGE_MON_PIC_SIZE * (i))
+#define BATTLER_OFFSET(i) (gHeap + 0x8000 + MON_PIC_SIZE * (i))
 
 const struct SpriteFrameImage gBattlerPicTable_PlayerLeft[] =
 {
-    BATTLER_OFFSET(0), LARGE_MON_PIC_SIZE,
-    BATTLER_OFFSET(1), LARGE_MON_PIC_SIZE,
-    BATTLER_OFFSET(2), LARGE_MON_PIC_SIZE,
-    BATTLER_OFFSET(3), LARGE_MON_PIC_SIZE,
+    BATTLER_OFFSET(0), MON_PIC_SIZE,
+    BATTLER_OFFSET(1), MON_PIC_SIZE,
+    BATTLER_OFFSET(2), MON_PIC_SIZE,
+    BATTLER_OFFSET(3), MON_PIC_SIZE,
 };
 
 const struct SpriteFrameImage gBattlerPicTable_OpponentLeft[] =
 {
-    BATTLER_OFFSET(4), LARGE_MON_PIC_SIZE,
-    BATTLER_OFFSET(5), LARGE_MON_PIC_SIZE,
-    BATTLER_OFFSET(6), LARGE_MON_PIC_SIZE,
-    BATTLER_OFFSET(7), LARGE_MON_PIC_SIZE,
+    BATTLER_OFFSET(4), MON_PIC_SIZE,
+    BATTLER_OFFSET(5), MON_PIC_SIZE,
+    BATTLER_OFFSET(6), MON_PIC_SIZE,
+    BATTLER_OFFSET(7), MON_PIC_SIZE,
 };
 
 const struct SpriteFrameImage gBattlerPicTable_PlayerRight[] =
 {
-    BATTLER_OFFSET(8),  LARGE_MON_PIC_SIZE,
-    BATTLER_OFFSET(9),  LARGE_MON_PIC_SIZE,
-    BATTLER_OFFSET(10), LARGE_MON_PIC_SIZE,
-    BATTLER_OFFSET(11), LARGE_MON_PIC_SIZE,
+    BATTLER_OFFSET(8),  MON_PIC_SIZE,
+    BATTLER_OFFSET(9),  MON_PIC_SIZE,
+    BATTLER_OFFSET(10), MON_PIC_SIZE,
+    BATTLER_OFFSET(11), MON_PIC_SIZE,
 };
 
 const struct SpriteFrameImage gBattlerPicTable_OpponentRight[] =
 {
-    BATTLER_OFFSET(12), LARGE_MON_PIC_SIZE,
-    BATTLER_OFFSET(13), LARGE_MON_PIC_SIZE,
-    BATTLER_OFFSET(14), LARGE_MON_PIC_SIZE,
-    BATTLER_OFFSET(15), LARGE_MON_PIC_SIZE,
+    BATTLER_OFFSET(12), MON_PIC_SIZE,
+    BATTLER_OFFSET(13), MON_PIC_SIZE,
+    BATTLER_OFFSET(14), MON_PIC_SIZE,
+    BATTLER_OFFSET(15), MON_PIC_SIZE,
 };
 
 const struct SpriteFrameImage gTrainerBackPicTable_Brendan[] =
 {
-    gTrainerBackPic_Brendan, LARGE_MON_PIC_SIZE,
-    gTrainerBackPic_Brendan + LARGE_MON_PIC_SIZE, LARGE_MON_PIC_SIZE,
-    gTrainerBackPic_Brendan + (LARGE_MON_PIC_SIZE * 2), LARGE_MON_PIC_SIZE,
-    gTrainerBackPic_Brendan + (LARGE_MON_PIC_SIZE * 3), LARGE_MON_PIC_SIZE,
+    gTrainerBackPic_Brendan, MON_PIC_SIZE,
+    gTrainerBackPic_Brendan + MON_PIC_SIZE, MON_PIC_SIZE,
+    gTrainerBackPic_Brendan + (MON_PIC_SIZE * 2), MON_PIC_SIZE,
+    gTrainerBackPic_Brendan + (MON_PIC_SIZE * 3), MON_PIC_SIZE,
 };
 
 const struct SpriteFrameImage gTrainerBackPicTable_May[] =
 {
-    gTrainerBackPic_May, LARGE_MON_PIC_SIZE,
-    gTrainerBackPic_May + LARGE_MON_PIC_SIZE, LARGE_MON_PIC_SIZE,
-    gTrainerBackPic_May + (LARGE_MON_PIC_SIZE * 2), LARGE_MON_PIC_SIZE,
-    gTrainerBackPic_May + (LARGE_MON_PIC_SIZE * 3), LARGE_MON_PIC_SIZE,
+    gTrainerBackPic_May, MON_PIC_SIZE,
+    gTrainerBackPic_May + MON_PIC_SIZE, MON_PIC_SIZE,
+    gTrainerBackPic_May + (MON_PIC_SIZE * 2), MON_PIC_SIZE,
+    gTrainerBackPic_May + (MON_PIC_SIZE * 3), MON_PIC_SIZE,
 };
 
 const struct SpriteFrameImage gTrainerBackPicTable_Red[] =
 {
-    gTrainerBackPic_Red, LARGE_MON_PIC_SIZE,
-    gTrainerBackPic_Red + LARGE_MON_PIC_SIZE, LARGE_MON_PIC_SIZE,
-    gTrainerBackPic_Red + (LARGE_MON_PIC_SIZE * 2), LARGE_MON_PIC_SIZE,
-    gTrainerBackPic_Red + (LARGE_MON_PIC_SIZE * 3), LARGE_MON_PIC_SIZE,
-    gTrainerBackPic_Red + (LARGE_MON_PIC_SIZE * 4), LARGE_MON_PIC_SIZE,
+    gTrainerBackPic_Red, MON_PIC_SIZE,
+    gTrainerBackPic_Red + MON_PIC_SIZE, MON_PIC_SIZE,
+    gTrainerBackPic_Red + (MON_PIC_SIZE * 2), MON_PIC_SIZE,
+    gTrainerBackPic_Red + (MON_PIC_SIZE * 3), MON_PIC_SIZE,
+    gTrainerBackPic_Red + (MON_PIC_SIZE * 4), MON_PIC_SIZE,
 };
 
 const struct SpriteFrameImage gTrainerBackPicTable_Leaf[] =
 {
-    gTrainerBackPic_Leaf, LARGE_MON_PIC_SIZE,
-    gTrainerBackPic_Leaf + LARGE_MON_PIC_SIZE, LARGE_MON_PIC_SIZE,
-    gTrainerBackPic_Leaf + (LARGE_MON_PIC_SIZE * 2), LARGE_MON_PIC_SIZE,
-    gTrainerBackPic_Leaf + (LARGE_MON_PIC_SIZE * 3), LARGE_MON_PIC_SIZE,
-    gTrainerBackPic_Leaf + (LARGE_MON_PIC_SIZE * 4), LARGE_MON_PIC_SIZE,
+    gTrainerBackPic_Leaf, MON_PIC_SIZE,
+    gTrainerBackPic_Leaf + MON_PIC_SIZE, MON_PIC_SIZE,
+    gTrainerBackPic_Leaf + (MON_PIC_SIZE * 2), MON_PIC_SIZE,
+    gTrainerBackPic_Leaf + (MON_PIC_SIZE * 3), MON_PIC_SIZE,
+    gTrainerBackPic_Leaf + (MON_PIC_SIZE * 4), MON_PIC_SIZE,
 };
 
 const struct SpriteFrameImage gTrainerBackPicTable_RubySapphireBrendan[] =
 {
-    gTrainerBackPic_RubySapphireBrendan, LARGE_MON_PIC_SIZE,
-    gTrainerBackPic_RubySapphireBrendan + LARGE_MON_PIC_SIZE, LARGE_MON_PIC_SIZE,
-    gTrainerBackPic_RubySapphireBrendan + (LARGE_MON_PIC_SIZE * 2), LARGE_MON_PIC_SIZE,
-    gTrainerBackPic_RubySapphireBrendan + (LARGE_MON_PIC_SIZE * 3), LARGE_MON_PIC_SIZE,
+    gTrainerBackPic_RubySapphireBrendan, MON_PIC_SIZE,
+    gTrainerBackPic_RubySapphireBrendan + MON_PIC_SIZE, MON_PIC_SIZE,
+    gTrainerBackPic_RubySapphireBrendan + (MON_PIC_SIZE * 2), MON_PIC_SIZE,
+    gTrainerBackPic_RubySapphireBrendan + (MON_PIC_SIZE * 3), MON_PIC_SIZE,
 };
 
 const struct SpriteFrameImage gTrainerBackPicTable_RubySapphireMay[] =
 {
-    gTrainerBackPic_RubySapphireMay, LARGE_MON_PIC_SIZE,
-    gTrainerBackPic_RubySapphireMay + LARGE_MON_PIC_SIZE, LARGE_MON_PIC_SIZE,
-    gTrainerBackPic_RubySapphireMay + (LARGE_MON_PIC_SIZE * 2), LARGE_MON_PIC_SIZE,
-    gTrainerBackPic_RubySapphireMay + (LARGE_MON_PIC_SIZE * 3), LARGE_MON_PIC_SIZE,
+    gTrainerBackPic_RubySapphireMay, MON_PIC_SIZE,
+    gTrainerBackPic_RubySapphireMay + MON_PIC_SIZE, MON_PIC_SIZE,
+    gTrainerBackPic_RubySapphireMay + (MON_PIC_SIZE * 2), MON_PIC_SIZE,
+    gTrainerBackPic_RubySapphireMay + (MON_PIC_SIZE * 3), MON_PIC_SIZE,
 };
 
 const struct SpriteFrameImage gTrainerBackPicTable_Wally[] =
 {
-    gTrainerBackPic_Wally, LARGE_MON_PIC_SIZE,
-    gTrainerBackPic_Wally + LARGE_MON_PIC_SIZE, LARGE_MON_PIC_SIZE,
-    gTrainerBackPic_Wally + (LARGE_MON_PIC_SIZE * 2), LARGE_MON_PIC_SIZE,
-    gTrainerBackPic_Wally + (LARGE_MON_PIC_SIZE * 3), LARGE_MON_PIC_SIZE,
+    gTrainerBackPic_Wally, MON_PIC_SIZE,
+    gTrainerBackPic_Wally + MON_PIC_SIZE, MON_PIC_SIZE,
+    gTrainerBackPic_Wally + (MON_PIC_SIZE * 2), MON_PIC_SIZE,
+    gTrainerBackPic_Wally + (MON_PIC_SIZE * 3), MON_PIC_SIZE,
 };
 
 const struct SpriteFrameImage gTrainerBackPicTable_Steven[] =
 {
-    gTrainerBackPic_Steven, LARGE_MON_PIC_SIZE,
-    gTrainerBackPic_Steven + LARGE_MON_PIC_SIZE, LARGE_MON_PIC_SIZE,
-    gTrainerBackPic_Steven + (LARGE_MON_PIC_SIZE * 2), LARGE_MON_PIC_SIZE,
-    gTrainerBackPic_Steven + (LARGE_MON_PIC_SIZE * 3), LARGE_MON_PIC_SIZE,
+    gTrainerBackPic_Steven, MON_PIC_SIZE,
+    gTrainerBackPic_Steven + MON_PIC_SIZE, MON_PIC_SIZE,
+    gTrainerBackPic_Steven + (MON_PIC_SIZE * 2), MON_PIC_SIZE,
+    gTrainerBackPic_Steven + (MON_PIC_SIZE * 3), MON_PIC_SIZE,
 };
 
 static const union AnimCmd sAnim_GeneralFrame0[] =
@@ -293,7 +292,7 @@ const union AnimCmd *const gUnknown_082FF70C[] =
     gUnknown_082FF704,
 };
 
-#define SPECIES_SPRITE(species, sprite) [SPECIES_##species] = {sprite, LARGE_MON_PIC_SIZE, SPECIES_##species}
+#define SPECIES_SPRITE(species, sprite) [SPECIES_##species] = {sprite, MON_PIC_SIZE, SPECIES_##species}
 #define SPECIES_PAL(species, pal) [SPECIES_##species] = {pal, SPECIES_##species}
 #define SPECIES_SHINY_PAL(species, pal) [SPECIES_##species] = {pal, SPECIES_##species + SPECIES_SHINY_TAG}
 

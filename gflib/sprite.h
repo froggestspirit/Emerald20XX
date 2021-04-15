@@ -196,7 +196,6 @@ struct Sprite
     /*0x14*/ const struct SpriteTemplate *template;
     /*0x18*/ const struct SubspriteTable *subspriteTables;
     /*0x1C*/ SpriteCallback callback;
-             u32 debug;
     /*0x20*/ struct Coords16 pos1;
     /*0x24*/ struct Coords16 pos2;
     /*0x20*/ struct Coords16 pos3;

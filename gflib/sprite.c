@@ -898,7 +898,7 @@ u8 CreateBigSpriteAt(u8 index, const struct SpriteTemplate *template, s16 x, s16
     {
         s16 tileNum;
         spriteA->images = template->images;
-        tileNum = AllocSpriteTiles((u8)(0xC80 / TILE_SIZE_4BPP)); //allocate for a 80x80 sprite
+        tileNum = AllocSpriteTiles((u8)(MON_PIC_SIZE / TILE_SIZE_4BPP)); //allocate for a 80x80 sprite
         if (tileNum == -1)
         {
             ResetSprite(spriteA);
@@ -983,7 +983,7 @@ void DestroySprite(struct Sprite *sprite)
         {
             u16 i;
             u16 tileEnd = (sprite->images->size / TILE_SIZE_4BPP) + sprite->oam.tileNum;
-            if(sprite->children[0] != 0xFF) tileEnd = (0xC80 / TILE_SIZE_4BPP) + sprite->oam.tileNum;
+            if(sprite->children[0] != 0xFF) tileEnd = (MON_PIC_SIZE / TILE_SIZE_4BPP) + sprite->oam.tileNum;
             for (i = sprite->oam.tileNum; i < tileEnd; i++)
                 FREE_SPRITE_TILE(i);
         }

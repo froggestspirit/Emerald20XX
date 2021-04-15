@@ -6835,7 +6835,7 @@ static void sub_806F160(struct Unknown_806F160_Struct* structPtr)
         structPtr->templates[i] = gBattlerSpriteTemplates[i];
         for (j = 0; j < structPtr->field_1; j++)
         {
-            structPtr->frameImages[i * structPtr->field_1 + j].data = &structPtr->byteArrays[i][j * 0xC80];
+            structPtr->frameImages[i * structPtr->field_1 + j].data = &structPtr->byteArrays[i][j * MON_PIC_SIZE];
         }
         structPtr->templates[i].images = &structPtr->frameImages[i * structPtr->field_1];
     }
@@ -6849,7 +6849,7 @@ static void sub_806F1FC(struct Unknown_806F160_Struct* structPtr)
         structPtr->templates[i] = gUnknown_08329F28;
         for (j = 0; j < structPtr->field_1; j++)
         {
-            structPtr->frameImages[i * structPtr->field_0_0 + j].data = &structPtr->byteArrays[i][j * 0xC80];
+            structPtr->frameImages[i * structPtr->field_0_0 + j].data = &structPtr->byteArrays[i][j * MON_PIC_SIZE];
         }
         structPtr->templates[i].images = &structPtr->frameImages[i * structPtr->field_0_0];
         structPtr->templates[i].anims = gUnknown_082FF70C;
@@ -6888,7 +6888,7 @@ struct Unknown_806F160_Struct *sub_806F2AC(u8 id, u8 arg1)
         break;
     }
 
-    structPtr->bytes = AllocZeroed(structPtr->field_3_0 * 0xC80 * 4 * structPtr->field_0_0);
+    structPtr->bytes = AllocZeroed(structPtr->field_3_0 * MON_PIC_SIZE * 4 * structPtr->field_0_0);
     structPtr->byteArrays = AllocZeroed(structPtr->field_0_0 * 32);
     if (structPtr->bytes == NULL || structPtr->byteArrays == NULL)
     {
@@ -6909,7 +6909,7 @@ struct Unknown_806F160_Struct *sub_806F2AC(u8 id, u8 arg1)
     else
     {
         for (i = 0; i < structPtr->field_1 * structPtr->field_0_0; i++)
-            structPtr->frameImages[i].size = 0xC80;
+            structPtr->frameImages[i].size = MON_PIC_SIZE;
 
         switch (structPtr->field_3_1)
         {
