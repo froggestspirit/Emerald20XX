@@ -16,6 +16,7 @@ Features:
 -Follow me - ghoulslash
 -Bag sort - ghoulslash
 -Shiny Variantss - FroggestSpirit
+-Learn moves upon evolution
 
 
 Removals:
@@ -34,9 +35,9 @@ Fixes:
 -Pokecenter disregard eggs
 -Extra save space
 
+
 TODO:
 -Day/Night
--Learn moves upon evolution
 -Proper Plural "giveitem" Command
 -Fairy Type
 -Move on PC before Withdraw/Deposit
