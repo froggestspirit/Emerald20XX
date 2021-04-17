@@ -16,6 +16,7 @@ Features:
 -Follow me - ghoulslash
 -Bag sort - ghoulslash
 -Day/Night - Sierraffinity
+-Learn moves upon evolution
 
 
 Removals:
@@ -34,8 +35,9 @@ Fixes:
 -Pokecenter disregard eggs
 -Extra save space
 
+
 TODO:
--Learn moves upon evolution
+-Update PokeRadar
 -Proper Plural "giveitem" Command
 -Fairy Type
 -Move on PC before Withdraw/Deposit
