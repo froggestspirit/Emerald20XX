@@ -17,6 +17,7 @@ Features:
 -Bag sort - ghoulslash
 -Day/Night - Sierraffinity
 -Learn moves upon evolution
+-Start with running shoes
 
 
 Removals:
@@ -41,12 +42,11 @@ TODO:
 -Proper Plural "giveitem" Command
 -Fairy Type
 -Move on PC before Withdraw/Deposit
--Start with running shoes
 -Reusable TMs
 -Max money increase
 -Dynamic trade names
 -Decapitalize
-
+-Unique pokemon centers/marts
 
 Day/Night Palette Fixes:
 -Choosing starter

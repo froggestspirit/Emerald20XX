@@ -45,8 +45,6 @@ LittlerootTown_OnTransition: @ 81E7DDB
 	compare VAR_LITTLEROOT_INTRO_STATE, 2
 	call_if_eq LittlerootTown_EventScript_MoveMomToMaysDoor
 	call_if_unset FLAG_RESCUED_BIRCH, LittlerootTown_EventScript_SetTwinPos
-	compare VAR_LITTLEROOT_TOWN_STATE, 3
-	call_if_eq LittlerootTown_EventScript_SetMomStandingInFrontOfDoorPos
 	compare VAR_LITTLEROOT_HOUSES_STATE_MAY, 4
 	call_if_eq LittlerootTown_EventScript_SetExitedHouseAfterLatiSSTicketEvent
 	compare VAR_LITTLEROOT_HOUSES_STATE_BRENDAN, 4
@@ -921,24 +919,6 @@ LittlerootTown_Movement_MomExitThroughDoor: @ 81E863B
 	step_end
 
 LittlerootTown_EventScript_Mom:: @ 81E863D
-	lock
-	faceplayer
-	checkplayergender
-	compare VAR_RESULT, MALE
-	call_if_eq LittlerootTown_EventScript_SetHomeDoorCoordsMale
-	compare VAR_RESULT, FEMALE
-	call_if_eq LittlerootTown_EventScript_SetHomeDoorCoordsFemale
-	call LittlerootTown_EventScript_GiveRunningShoes
-	applymovement LOCALID_MOM, Common_Movement_WalkInPlaceFastestUp
-	waitmovement 0
-	opendoor VAR_0x8009, VAR_0x800A
-	waitdooranim
-	applymovement LOCALID_MOM, LittlerootTown_Movement_MomExitThroughDoor
-	waitmovement 0
-	hideobjectat LOCALID_MOM, MAP_LITTLEROOT_TOWN
-	closedoor VAR_0x8009, VAR_0x800A
-	waitdooranim
-	goto LittlerootTown_EventScript_SetReceivedRunningShoes
 	end
 
 LittlerootTown_EventScript_SetReceivedRunningShoes:: @ 81E8686
