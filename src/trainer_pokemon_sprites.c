@@ -104,11 +104,13 @@ static void LoadPicPaletteByTagOrSlot(u16 species, u32 otId, u32 personality, u8
         {
             sCreatingSpriteTemplate.paletteTag = 0xFFFF;
             LoadCompressedPalette(GetMonSpritePalFromSpeciesAndPersonality(species, otId, personality), 0x100 + paletteSlot * 0x10, 0x20);
+            if(IsShinyOtIdPersonality(otId, personality)) SwapPlttRGB(paletteSlot + 16, (personality % 12));
         }
         else
         {
             sCreatingSpriteTemplate.paletteTag = paletteTag;
             LoadCompressedSpritePalette(GetMonSpritePalStructFromOtIdPersonality(species, otId, personality));
+            if(IsShinyOtIdPersonality(otId, personality)) SwapPlttRGB(paletteSlot + 16, (personality % 12));
         }
     }
     else
@@ -130,6 +132,7 @@ static void LoadPicPaletteBySlot(u16 species, u32 otId, u32 personality, u8 pale
 {
     if (!isTrainer)
         LoadCompressedPalette(GetMonSpritePalFromSpeciesAndPersonality(species, otId, personality), paletteSlot * 0x10, 0x20);
+        if(IsShinyOtIdPersonality(otId, personality)) SwapPlttRGB(paletteSlot + 16, (personality % 12));
     else
         LoadCompressedPalette(gTrainerFrontPicPaletteTable[species].data, paletteSlot * 0x10, 0x20);
 }

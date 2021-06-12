@@ -6383,10 +6383,11 @@ const u32 *GetMonSpritePalFromSpeciesAndPersonality(u16 species, u32 otId, u32 p
         return gMonPaletteTable[0].data;
 
     shinyValue = HIHALF(otId) ^ LOHALF(otId) ^ HIHALF(personality) ^ LOHALF(personality);
+    if ((personality % 24) < 11)
+        return gMonPaletteTable[species].data;
     if (shinyValue < SHINY_ODDS)
         return gMonShinyPaletteTable[species].data;
-    else
-        return gMonPaletteTable[species].data;
+    return gMonPaletteTable[species].data;
 }
 
 const struct CompressedSpritePalette *GetMonSpritePalStruct(struct Pokemon *mon)
@@ -6402,10 +6403,11 @@ const struct CompressedSpritePalette *GetMonSpritePalStructFromOtIdPersonality(u
     u32 shinyValue;
 
     shinyValue = HIHALF(otId) ^ LOHALF(otId) ^ HIHALF(personality) ^ LOHALF(personality);
+    if ((personality % 24) < 11)
+        return &gMonPaletteTable[species];
     if (shinyValue < SHINY_ODDS)
         return &gMonShinyPaletteTable[species];
-    else
-        return &gMonPaletteTable[species];
+    return &gMonPaletteTable[species];
 }
 
 bool32 IsHMMove2(u16 move)
