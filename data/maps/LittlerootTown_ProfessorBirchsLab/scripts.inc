@@ -106,13 +106,17 @@ LittlerootTown_ProfessorBirchsLab_EventScript_SetObjectPosForJohtoStarters:: @ 8
 	setobjectxy LOCALID_RIVAL, 5, 5
 	end
 
+Nuzlocke_Set_Game::
+	setflag FLAG_NUZLOCKE_GAME
+	return
+
 Nuzlocke_Set_Active::
 	setflag FLAG_NUZLOCKE_ACTIVE
-	end
+	return
 
 Nuzlocke_Set_Catch::
 	setflag FLAG_NUZLOCKE_CATCH
-	end
+	return
 
 LittlerootTown_ProfessorBirchsLab_OnFrame: @ 81F9DB9
 	map_script_2 VAR_BIRCH_LAB_STATE, 2, LittlerootTown_ProfessorBirchsLab_EventScript_GiveStarterEvent
@@ -130,6 +134,9 @@ LittlerootTown_ProfessorBirchsLab_EventScript_GiveStarterEvent:: @ 81F9DDB
 	waitmessage
 	playfanfare MUS_OBTAIN_ITEM
 	waitfanfare
+	msgbox LittlerootTown_ProfessorBirchsLab_TextNuzlocke, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	call_if_eq Nuzlocke_Set_Game
 	call_if_set FLAG_NUZLOCKE_GAME, Nuzlocke_Set_Active
 	goto_if_set FLAG_NUZLOCKE_ACTIVE, LittlerootTown_ProfessorBirchsLab_EventScript_NicknameStarter
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_WhyNotGiveNicknameToMon, MSGBOX_YESNO
@@ -779,6 +786,10 @@ LittlerootTown_ProfessorBirchsLab_Text_LikeYouToHavePokemon: @ 81FA74D
 	.string "I'd like you to have the POKéMON you\l"
 	.string "used earlier.\p"
 	.string "{PLAYER} received the {STR_VAR_1}!$"
+
+LittlerootTown_ProfessorBirchsLab_TextNuzlocke: @ 81FA8B1
+	.string "PROF. BIRCH: Is this a Nuzlocke game?$"
+
 
 LittlerootTown_ProfessorBirchsLab_Text_WhyNotGiveNicknameToMon: @ 81FA8B1
 	.string "PROF. BIRCH: While you're at it, why not\n"

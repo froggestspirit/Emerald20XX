@@ -6364,6 +6364,8 @@ u16 GetBattleBGM(void)
             return MUS_VS_TRAINER;
         }
     }
+    else if (FlagGet(FLAG_NUZLOCKE_CATCH) && !FlagGet(FLAGS_NUZLOCKE_ENCOUNTERS + GetCurrentRegionMapSectionId()))
+        return MUS_RG_VS_LEGEND;
     else
         return MUS_VS_WILD;
 }

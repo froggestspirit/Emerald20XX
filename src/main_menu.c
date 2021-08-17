@@ -1639,7 +1639,10 @@ static void Task_NewGameBirchSpeech_ProcessNameYesNoMenu(u8 taskId)
             NewGameBirchSpeech_ClearWindow(0);
             StringExpandPlaceholders(gStringVar4, gText_Birch_Nuzlocke);
             AddTextPrinterForMessage(1);
-            gTasks[taskId].func = Task_NewGameBirchSpeech_NuzlockeYesNo;
+            gSprites[gTasks[taskId].tPlayerSpriteId].oam.objMode = ST_OAM_OBJ_BLEND;
+            NewGameBirchSpeech_StartFadeOutTarget1InTarget2(taskId, 2);
+            NewGameBirchSpeech_StartFadePlatformIn(taskId, 1);
+            gTasks[taskId].func = Task_NewGameBirchSpeech_SlidePlatformAway2;
             break;
         case -1:
         case 1:
@@ -1663,13 +1666,7 @@ static void Task_NewGameBirchSpeech_ProcessNuzlockeYesNoMenu(u8 taskId)
     switch (Menu_ProcessInputNoWrapClearOnChoose())
     {
         case 0:
-            PlaySE(SE_SELECT);
             FlagSet(FLAG_NUZLOCKE_GAME);
-            gSprites[gTasks[taskId].tPlayerSpriteId].oam.objMode = ST_OAM_OBJ_BLEND;
-            NewGameBirchSpeech_StartFadeOutTarget1InTarget2(taskId, 2);
-            NewGameBirchSpeech_StartFadePlatformIn(taskId, 1);
-            gTasks[taskId].func = Task_NewGameBirchSpeech_SlidePlatformAway2;
-            break;
         case -1:
         case 1:
             PlaySE(SE_SELECT);
