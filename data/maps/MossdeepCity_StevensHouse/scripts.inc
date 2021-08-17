@@ -99,6 +99,8 @@ MossdeepCity_StevensHouse_EventScript_GiveBeldum:: @ 8222865
 MossdeepCity_StevensHouse_EventScript_SendBeldumParty:: @ 8222895
 	call MossdeepCity_StevensHouse_EventScript_ReceivedBeldumFanfare
 	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq MossdeepCity_StevensHouse_EventScript_ReceivedBeldum
 	call Common_EventScript_GetGiftMonPartySlot
 	call Common_EventScript_NameReceivedPartyMon
 	goto MossdeepCity_StevensHouse_EventScript_ReceivedBeldum
@@ -107,6 +109,8 @@ MossdeepCity_StevensHouse_EventScript_SendBeldumParty:: @ 8222895
 MossdeepCity_StevensHouse_EventScript_SendBeldumPC:: @ 82228BD
 	call MossdeepCity_StevensHouse_EventScript_ReceivedBeldumFanfare
 	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq MossdeepCity_StevensHouse_EventScript_BeldumTransferredToPC
 	call Common_EventScript_NameReceivedBoxMon
 	goto MossdeepCity_StevensHouse_EventScript_BeldumTransferredToPC
 	end

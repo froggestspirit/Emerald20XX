@@ -171,6 +171,8 @@ RustboroCity_DevonCorp_2F_EventScript_ReceiveLileep:: @ 8211A3E
 RustboroCity_DevonCorp_2F_EventScript_ReceiveLileepParty:: @ 8211A6E
 	call RustboroCity_DevonCorp_2F_EventScript_ReceivedLileepFanfare
 	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq RustboroCity_DevonCorp_2F_EventScript_FinishReceivingLileep
 	call Common_EventScript_GetGiftMonPartySlot
 	call Common_EventScript_NameReceivedPartyMon
 	goto RustboroCity_DevonCorp_2F_EventScript_FinishReceivingLileep
@@ -179,6 +181,8 @@ RustboroCity_DevonCorp_2F_EventScript_ReceiveLileepParty:: @ 8211A6E
 RustboroCity_DevonCorp_2F_EventScript_ReceiveLileepPC:: @ 8211A96
 	call RustboroCity_DevonCorp_2F_EventScript_ReceivedLileepFanfare
 	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq RustboroCity_DevonCorp_2F_EventScript_TransferLileepToPC
 	call Common_EventScript_NameReceivedBoxMon
 	goto RustboroCity_DevonCorp_2F_EventScript_TransferLileepToPC
 	end
@@ -216,6 +220,8 @@ RustboroCity_DevonCorp_2F_EventScript_ReceiveAnorith:: @ 8211AE1
 RustboroCity_DevonCorp_2F_EventScript_ReceiveAnorithParty:: @ 8211B11
 	call RustboroCity_DevonCorp_2F_EventScript_ReceivedAnorithFanfare
 	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq RustboroCity_DevonCorp_2F_EventScript_FinishReceivingAnorith
 	call Common_EventScript_GetGiftMonPartySlot
 	call Common_EventScript_NameReceivedPartyMon
 	goto RustboroCity_DevonCorp_2F_EventScript_FinishReceivingAnorith
@@ -224,6 +230,8 @@ RustboroCity_DevonCorp_2F_EventScript_ReceiveAnorithParty:: @ 8211B11
 RustboroCity_DevonCorp_2F_EventScript_ReceiveAnorithPC:: @ 8211B39
 	call RustboroCity_DevonCorp_2F_EventScript_ReceivedAnorithFanfare
 	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq RustboroCity_DevonCorp_2F_EventScript_TransferAnorithToPC
 	call Common_EventScript_NameReceivedBoxMon
 	goto RustboroCity_DevonCorp_2F_EventScript_TransferAnorithToPC
 	end

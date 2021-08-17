@@ -10068,8 +10068,15 @@ static void Cmd_trygivecaughtmonnick(void)
     {
     case 0:
         HandleBattleWindow(0x18, 8, 0x1D, 0xD, 0);
-        gBattleCommunication[MULTIUSE_STATE] = 2;
-        BeginFastPaletteFade(3);
+        if (FlagGet(FLAG_NUZLOCKE_ACTIVE)){
+            gBattleCommunication[MULTIUSE_STATE] = 2;
+            BeginFastPaletteFade(3);
+        }else{
+            BattlePutTextOnWindow(gText_BattleYesNoChoice, 0xC);
+            gBattleCommunication[MULTIUSE_STATE]++;
+            gBattleCommunication[CURSOR_POSITION] = 0;
+            BattleCreateYesNoCursorAt(0);
+        }
         break;
     case 1:
         if (JOY_NEW(DPAD_UP) && gBattleCommunication[CURSOR_POSITION] != 0)

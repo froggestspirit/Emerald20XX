@@ -659,16 +659,36 @@ static void CB2_EggHatch_1(void)
     case 9:
         if (!IsTextPrinterActive(sEggHatchData->windowId))
         {
+            if (!FlagGet(FLAG_NUZLOCKE_ACTIVE){
+                LoadUserWindowBorderGfx(sEggHatchData->windowId, 0x140, 0xE0);
+                CreateYesNoMenu(&sYesNoWinTemplate, 0x140, 0xE, 0);
+            }
             sEggHatchData->CB2_state++;
         }
         break;
     case 10:
-        GetMonNickname2(&gPlayerParty[sEggHatchData->eggPartyID], gStringVar3);
-        species = GetMonData(&gPlayerParty[sEggHatchData->eggPartyID], MON_DATA_SPECIES);
-        gender = GetMonGender(&gPlayerParty[sEggHatchData->eggPartyID]);
-        personality = GetMonData(&gPlayerParty[sEggHatchData->eggPartyID], MON_DATA_PERSONALITY, 0);
-        DoNamingScreen(NAMING_SCREEN_NICKNAME, gStringVar3, species, gender, personality, EggHatchSetMonNickname);
-        sEggHatchData->CB2_state++;
+        if (!FlagGet(FLAG_NUZLOCKE_ACTIVE){
+            switch (Menu_ProcessInputNoWrapClearOnChoose())
+            {
+            case 0:
+                GetMonNickname2(&gPlayerParty[sEggHatchData->eggPartyID], gStringVar3);
+                species = GetMonData(&gPlayerParty[sEggHatchData->eggPartyID], MON_DATA_SPECIES);
+                gender = GetMonGender(&gPlayerParty[sEggHatchData->eggPartyID]);
+                personality = GetMonData(&gPlayerParty[sEggHatchData->eggPartyID], MON_DATA_PERSONALITY, 0);
+                DoNamingScreen(NAMING_SCREEN_NICKNAME, gStringVar3, species, gender, personality, EggHatchSetMonNickname);
+                break;
+            case 1:
+            case -1:
+                sEggHatchData->CB2_state++;
+            }
+        }else{
+            GetMonNickname2(&gPlayerParty[sEggHatchData->eggPartyID], gStringVar3);
+            species = GetMonData(&gPlayerParty[sEggHatchData->eggPartyID], MON_DATA_SPECIES);
+            gender = GetMonGender(&gPlayerParty[sEggHatchData->eggPartyID]);
+            personality = GetMonData(&gPlayerParty[sEggHatchData->eggPartyID], MON_DATA_PERSONALITY, 0);
+            DoNamingScreen(NAMING_SCREEN_NICKNAME, gStringVar3, species, gender, personality, EggHatchSetMonNickname);
+            sEggHatchData->CB2_state++;
+        }
         break;
     case 11:
         BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 0x10, RGB_BLACK);
