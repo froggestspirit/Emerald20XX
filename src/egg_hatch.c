@@ -659,7 +659,7 @@ static void CB2_EggHatch_1(void)
     case 9:
         if (!IsTextPrinterActive(sEggHatchData->windowId))
         {
-            if (!FlagGet(FLAG_NUZLOCKE_ACTIVE){
+            if (!FlagGet(FLAG_NUZLOCKE_ACTIVE)){
                 LoadUserWindowBorderGfx(sEggHatchData->windowId, 0x140, 0xE0);
                 CreateYesNoMenu(&sYesNoWinTemplate, 0x140, 0xE, 0);
             }
@@ -667,7 +667,7 @@ static void CB2_EggHatch_1(void)
         }
         break;
     case 10:
-        if (!FlagGet(FLAG_NUZLOCKE_ACTIVE){
+        if (!FlagGet(FLAG_NUZLOCKE_ACTIVE)){
             switch (Menu_ProcessInputNoWrapClearOnChoose())
             {
             case 0:
