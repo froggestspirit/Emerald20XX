@@ -170,9 +170,11 @@ RustboroCity_DevonCorp_2F_EventScript_ReceiveLileep:: @ 8211A3E
 
 RustboroCity_DevonCorp_2F_EventScript_ReceiveLileepParty:: @ 8211A6E
 	call RustboroCity_DevonCorp_2F_EventScript_ReceivedLileepFanfare
+	goto_if_set FLAG_NUZLOCKE_ACTIVE, Nuzlocke_Name_RecievedLileep
 	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq RustboroCity_DevonCorp_2F_EventScript_FinishReceivingLileep
+Nuzlocke_Name_RecievedLileep::
 	call Common_EventScript_GetGiftMonPartySlot
 	call Common_EventScript_NameReceivedPartyMon
 	goto RustboroCity_DevonCorp_2F_EventScript_FinishReceivingLileep
@@ -180,9 +182,11 @@ RustboroCity_DevonCorp_2F_EventScript_ReceiveLileepParty:: @ 8211A6E
 
 RustboroCity_DevonCorp_2F_EventScript_ReceiveLileepPC:: @ 8211A96
 	call RustboroCity_DevonCorp_2F_EventScript_ReceivedLileepFanfare
+	goto_if_set FLAG_NUZLOCKE_ACTIVE, Nuzlocke_Name_RecievedLileepPC
 	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq RustboroCity_DevonCorp_2F_EventScript_TransferLileepToPC
+Nuzlocke_Name_RecievedLileepPC::
 	call Common_EventScript_NameReceivedBoxMon
 	goto RustboroCity_DevonCorp_2F_EventScript_TransferLileepToPC
 	end
@@ -219,9 +223,11 @@ RustboroCity_DevonCorp_2F_EventScript_ReceiveAnorith:: @ 8211AE1
 
 RustboroCity_DevonCorp_2F_EventScript_ReceiveAnorithParty:: @ 8211B11
 	call RustboroCity_DevonCorp_2F_EventScript_ReceivedAnorithFanfare
+	goto_if_set FLAG_NUZLOCKE_ACTIVE, Nuzlocke_Name_RecievedAnorith
 	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq RustboroCity_DevonCorp_2F_EventScript_FinishReceivingAnorith
+Nuzlocke_Name_RecievedAnorith::
 	call Common_EventScript_GetGiftMonPartySlot
 	call Common_EventScript_NameReceivedPartyMon
 	goto RustboroCity_DevonCorp_2F_EventScript_FinishReceivingAnorith
@@ -229,9 +235,11 @@ RustboroCity_DevonCorp_2F_EventScript_ReceiveAnorithParty:: @ 8211B11
 
 RustboroCity_DevonCorp_2F_EventScript_ReceiveAnorithPC:: @ 8211B39
 	call RustboroCity_DevonCorp_2F_EventScript_ReceivedAnorithFanfare
+	goto_if_set FLAG_NUZLOCKE_ACTIVE, Nuzlocke_Name_RecievedAnorithPC
 	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq RustboroCity_DevonCorp_2F_EventScript_TransferAnorithToPC
+Nuzlocke_Name_RecievedAnorithPC::
 	call Common_EventScript_NameReceivedBoxMon
 	goto RustboroCity_DevonCorp_2F_EventScript_TransferAnorithToPC
 	end

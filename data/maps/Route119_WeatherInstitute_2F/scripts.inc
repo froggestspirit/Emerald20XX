@@ -101,9 +101,11 @@ Route119_WeatherInstitute_2F_EventScript_ReceiveCastform:: @ 827004D
 
 Route119_WeatherInstitute_2F_EventScript_ReceiveCastformParty:: @ 8270085
 	call Route119_WeatherInstitute_2F_EventScript_ReceivedCastformFanfare
+	goto_if_set FLAG_NUZLOCKE_ACTIVE, Nuzlocke_Name_RecievedCastform
 	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq Route119_WeatherInstitute_2F_EventScript_ExplainCastform
+Nuzlocke_Name_RecievedCastform::
 	call Common_EventScript_GetGiftMonPartySlot
 	call Common_EventScript_NameReceivedPartyMon
 	goto Route119_WeatherInstitute_2F_EventScript_ExplainCastform
@@ -111,9 +113,11 @@ Route119_WeatherInstitute_2F_EventScript_ReceiveCastformParty:: @ 8270085
 
 Route119_WeatherInstitute_2F_EventScript_ReceiveCastformPC:: @ 82700AD
 	call Route119_WeatherInstitute_2F_EventScript_ReceivedCastformFanfare
+	goto_if_set FLAG_NUZLOCKE_ACTIVE, Nuzlocke_Name_RecievedCastformPC
 	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq Route119_WeatherInstitute_2F_EventScript_SendCastformToPC
+Nuzlocke_Name_RecievedCastformPC::
 	call Common_EventScript_NameReceivedBoxMon
 	goto Route119_WeatherInstitute_2F_EventScript_SendCastformToPC
 	end

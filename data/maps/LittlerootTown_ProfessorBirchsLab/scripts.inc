@@ -106,6 +106,14 @@ LittlerootTown_ProfessorBirchsLab_EventScript_SetObjectPosForJohtoStarters:: @ 8
 	setobjectxy LOCALID_RIVAL, 5, 5
 	end
 
+Nuzlocke_Set_Active::
+	setflag FLAG_NUZLOCKE_ACTIVE
+	end
+
+Nuzlocke_Set_Catch::
+	setflag FLAG_NUZLOCKE_CATCH
+	end
+
 LittlerootTown_ProfessorBirchsLab_OnFrame: @ 81F9DB9
 	map_script_2 VAR_BIRCH_LAB_STATE, 2, LittlerootTown_ProfessorBirchsLab_EventScript_GiveStarterEvent
 	map_script_2 VAR_BIRCH_LAB_STATE, 4, LittlerootTown_ProfessorBirchsLab_EventScript_GivePokedexEvent
@@ -122,6 +130,8 @@ LittlerootTown_ProfessorBirchsLab_EventScript_GiveStarterEvent:: @ 81F9DDB
 	waitmessage
 	playfanfare MUS_OBTAIN_ITEM
 	waitfanfare
+	call_if_set FLAG_NUZLOCKE_GAME, Nuzlocke_Set_Active
+	goto_if_set FLAG_NUZLOCKE_ACTIVE, LittlerootTown_ProfessorBirchsLab_EventScript_NicknameStarter
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_WhyNotGiveNicknameToMon, MSGBOX_YESNO
 	compare VAR_RESULT, YES
 	goto_if_eq LittlerootTown_ProfessorBirchsLab_EventScript_NicknameStarter
@@ -191,6 +201,8 @@ LittlerootTown_ProfessorBirchsLab_EventScript_UpgradeToNationalDex:: @ 81F9E80
 	delay 10
 	playse SE_CLICK
 	delay 20
+	clearflag FLAG_NUZLOCKE_ACTIVE
+	clearflag FLAG_NUZLOCKE_CATCH
 	applymovement LOCALID_RIVAL, Common_Movement_WalkInPlaceFastestRight
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
 	waitmovement 0
@@ -221,6 +233,7 @@ LittlerootTown_ProfessorBirchsLab_EventScript_UpgradeToNationalDex:: @ 81F9E80
 	setvar VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 2
 	setvar VAR_SCOTT_BF_CALL_STEP_COUNTER, 0
 	setflag FLAG_SCOTT_CALL_BATTLE_FRONTIER
+	giveitem ITEM_POKE_RADAR
 	releaseall
 	end
 
@@ -371,9 +384,11 @@ LittlerootTown_ProfessorBirchsLab_EventScript_GiveCyndaquil:: @ 81FA06C
 LittlerootTown_ProfessorBirchsLab_EventScript_SendCyndaquilToParty:: @ 81FA0A1
 	call LittlerootTown_ProfessorBirchsLab_EventScript_ReceivedJohtoStarter
 	removeobject LOCALID_BALL_CYNDAQUIL
+	goto_if_set FLAG_NUZLOCKE_ACTIVE, Nuzlocke_Name_RecievedCyndaquil
 	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq LittlerootTown_ProfessorBirchsLab_EventScript_ReceivedCyndaquil
+Nuzlocke_Name_RecievedCyndaquil::
 	call Common_EventScript_GetGiftMonPartySlot
 	call Common_EventScript_NameReceivedPartyMon
 	goto LittlerootTown_ProfessorBirchsLab_EventScript_ReceivedCyndaquil
@@ -382,9 +397,11 @@ LittlerootTown_ProfessorBirchsLab_EventScript_SendCyndaquilToParty:: @ 81FA0A1
 LittlerootTown_ProfessorBirchsLab_EventScript_SendCyndaquilToPC:: @ 81FA0CC
 	call LittlerootTown_ProfessorBirchsLab_EventScript_ReceivedJohtoStarter
 	removeobject LOCALID_BALL_CYNDAQUIL
+	goto_if_set FLAG_NUZLOCKE_ACTIVE, Nuzlocke_Name_RecievedCyndaquilPC
 	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq LittlerootTown_ProfessorBirchsLab_EventScript_CyndaquilTransferredToPC
+Nuzlocke_Name_RecievedCyndaquilPC::
 	call Common_EventScript_NameReceivedBoxMon
 	goto LittlerootTown_ProfessorBirchsLab_EventScript_CyndaquilTransferredToPC
 	end
@@ -416,9 +433,11 @@ LittlerootTown_ProfessorBirchsLab_EventScript_GiveTotodile:: @ 81FA10D
 LittlerootTown_ProfessorBirchsLab_EventScript_SendTotodileToParty:: @ 81FA142
 	call LittlerootTown_ProfessorBirchsLab_EventScript_ReceivedJohtoStarter
 	removeobject LOCALID_BALL_TOTODILE
+	goto_if_set FLAG_NUZLOCKE_ACTIVE, Nuzlocke_Name_RecievedTotodile
 	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq LittlerootTown_ProfessorBirchsLab_EventScript_ReceivedTotodile
+Nuzlocke_Name_RecievedTotodile::
 	call Common_EventScript_GetGiftMonPartySlot
 	call Common_EventScript_NameReceivedPartyMon
 	goto LittlerootTown_ProfessorBirchsLab_EventScript_ReceivedTotodile
@@ -427,9 +446,11 @@ LittlerootTown_ProfessorBirchsLab_EventScript_SendTotodileToParty:: @ 81FA142
 LittlerootTown_ProfessorBirchsLab_EventScript_SendTotodileToPC:: @ 81FA16D
 	call LittlerootTown_ProfessorBirchsLab_EventScript_ReceivedJohtoStarter
 	removeobject LOCALID_BALL_TOTODILE
+	goto_if_set FLAG_NUZLOCKE_ACTIVE, Nuzlocke_Name_RecievedTotodilePC
 	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq LittlerootTown_ProfessorBirchsLab_EventScript_TotodileTransferredToPC
+Nuzlocke_Name_RecievedTotodilePC::
 	call Common_EventScript_NameReceivedBoxMon
 	goto LittlerootTown_ProfessorBirchsLab_EventScript_TotodileTransferredToPC
 	end
@@ -461,9 +482,11 @@ LittlerootTown_ProfessorBirchsLab_EventScript_GiveChikorita:: @ 81FA1AE
 LittlerootTown_ProfessorBirchsLab_EventScript_SendChikoritaToParty:: @ 81FA1E3
 	call LittlerootTown_ProfessorBirchsLab_EventScript_ReceivedJohtoStarter
 	removeobject LOCALID_BALL_CHIKORITA
+	goto_if_set FLAG_NUZLOCKE_ACTIVE, Nuzlocke_Name_RecievedChikorita
 	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq LittlerootTown_ProfessorBirchsLab_EventScript_ReceivedChikorita
+Nuzlocke_Name_RecievedChikorita::
 	call Common_EventScript_GetGiftMonPartySlot
 	call Common_EventScript_NameReceivedPartyMon
 	goto LittlerootTown_ProfessorBirchsLab_EventScript_ReceivedChikorita
@@ -472,9 +495,11 @@ LittlerootTown_ProfessorBirchsLab_EventScript_SendChikoritaToParty:: @ 81FA1E3
 LittlerootTown_ProfessorBirchsLab_EventScript_SendChikoritaToPC:: @ 81FA20E
 	call LittlerootTown_ProfessorBirchsLab_EventScript_ReceivedJohtoStarter
 	removeobject LOCALID_BALL_CHIKORITA
+	goto_if_set FLAG_NUZLOCKE_ACTIVE, Nuzlocke_Name_RecievedChikoritaPC
 	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq LittlerootTown_ProfessorBirchsLab_EventScript_ChikoritaTransferredToPC
+Nuzlocke_Name_RecievedChikoritaPC::
 	call Common_EventScript_NameReceivedBoxMon
 	goto LittlerootTown_ProfessorBirchsLab_EventScript_ChikoritaTransferredToPC
 	end
@@ -562,6 +587,7 @@ LittlerootTown_ProfessorBirchsLab_EventScript_GivePokedex:: @ 81FA2F8
 	call_if_eq LittlerootTown_ProfessorBirchsLab_EventScript_BrendanGivePokeBalls
 	setvar VAR_BIRCH_LAB_STATE, 5
 	setflag FLAG_ADVENTURE_STARTED
+	call_if_set FLAG_NUZLOCKE_GAME, Nuzlocke_Set_Catch
 	setvar VAR_OLDALE_TOWN_STATE, 1
 	setvar VAR_LITTLEROOT_RIVAL_STATE, 4
 	setvar VAR_LITTLEROOT_TOWN_STATE, 3
