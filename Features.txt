@@ -15,9 +15,10 @@ Features:
 -Chain Fishing - ghoulslash
 -Follow me - ghoulslash
 -Bag sort - ghoulslash
--Shiny Variantss - FroggestSpirit
+-Shiny Variants - FroggestSpirit
 -Learn moves upon evolution
 -Start with running shoes
+-Nuzlocke mode
 -Various Nuzlocke code - Kurausukun
 -HQ instrument samples - Kurausukun
 
