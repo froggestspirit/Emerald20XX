@@ -3318,7 +3318,10 @@ static void Cmd_getexp(void)
                 if (!(gBattleTypeFlags & BATTLE_TYPE_TRAINER) && gBattleMons[0].hp && !gBattleStruct->wildVictorySong)
                 {
                     BattleStopLowHpSound();
-                    PlayBGM(MUS_VICTORY_WILD);
+                    if (!FlagGet(FLAG_NUZLOCKE_CATCH) || FlagGet(FLAGS_NUZLOCKE_ENCOUNTERS + GetCurrentRegionMapSectionId()))
+                        PlayBGM(MUS_VICTORY_WILD);
+                    else
+                        PlayBGM(MUS_NONE);
                     gBattleStruct->wildVictorySong++;
                 }
 

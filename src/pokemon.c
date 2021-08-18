@@ -6369,7 +6369,7 @@ u16 GetBattleBGM(void)
         }
     }
     else if (FlagGet(FLAG_NUZLOCKE_CATCH) && !FlagGet(FLAGS_NUZLOCKE_ENCOUNTERS + GetCurrentRegionMapSectionId()))
-        return MUS_RG_VS_WILD;
+        return MUS_VS_WILD2;
     else
         return MUS_VS_WILD;
 }
