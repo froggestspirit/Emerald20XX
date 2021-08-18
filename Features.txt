@@ -19,6 +19,7 @@ Features:
 -Learn moves upon evolution
 -Start with running shoes
 -Various Nuzlocke code - Kurausukun
+-HQ instrument samples - Kurausukun
 
 
 Removals:
