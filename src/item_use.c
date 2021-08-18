@@ -945,7 +945,10 @@ void ItemUseOutOfBattle_EvolutionStone(u8 taskId)
 
 void ItemUseInBattle_PokeBall(u8 taskId)
 {
-    if (IsPlayerPartyAndPokemonStorageFull() == FALSE) // have room for mon?
+    if (FlagGet(FLAG_NUZLOCKE_CATCH) && FlagGet(FLAGS_NUZLOCKE_ENCOUNTERS + GetCurrentRegionMapSectionId())){
+        DisplayItemMessage(taskId, 1, gText_NuzlockeCatch, BagMenu_InitListsMenu);
+    }
+    else if (IsPlayerPartyAndPokemonStorageFull() == FALSE) // have room for mon?
     {
         RemoveBagItem(gSpecialVar_ItemId, 1);
         if (!InBattlePyramid())

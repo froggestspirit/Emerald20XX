@@ -69,6 +69,7 @@
 #include "constants/trainer_hill.h"
 #include "constants/weather.h"
 #include "constants/event_object_movement.h"
+#include "pokemon_storage_system.h"
 
 struct CableClubPlayer
 {
@@ -367,12 +368,31 @@ static void (*const gMovementStatusHandler[])(struct LinkPlayerObjectEvent *, st
 // code
 void DoWhiteOut(void)
 {
-    ScriptContext2_RunNewScript(EventScript_WhiteOut);
-    SetMoney(&gSaveBlock1Ptr->money, GetMoney(&gSaveBlock1Ptr->money) / 2);
-    HealPlayerParty();
-    Overworld_ResetStateAfterWhiteOut();
-    SetWarpDestinationToLastHealLocation();
-    WarpIntoMap();
+    if (FlagGet(FLAG_NUZLOCKE_ACTIVE))
+    {
+        if (GetFirstBoxPokemon() == IN_BOX_COUNT * TOTAL_BOXES_COUNT)
+        {
+            DoSoftReset();
+        }
+        else
+        {
+            ScriptContext2_RunNewScript(EventScript_WhiteOut);
+            SetMoney(&gSaveBlock1Ptr->money, GetMoney(&gSaveBlock1Ptr->money) / 2);
+            MoveFirstBoxPokemon();
+            Overworld_ResetStateAfterWhiteOut();
+            SetWarpDestinationToLastHealLocation();
+            WarpIntoMap();
+        }
+    }
+    else
+    {
+        ScriptContext2_RunNewScript(EventScript_WhiteOut);
+        SetMoney(&gSaveBlock1Ptr->money, GetMoney(&gSaveBlock1Ptr->money) / 2);
+        HealPlayerParty();
+        Overworld_ResetStateAfterWhiteOut();
+        SetWarpDestinationToLastHealLocation();
+        WarpIntoMap();
+    }
 }
 
 void Overworld_ResetStateAfterFly(void)

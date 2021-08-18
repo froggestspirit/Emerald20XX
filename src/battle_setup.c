@@ -787,6 +787,10 @@ static u8 GetWildBattleTransition(void)
     u8 transitionType = GetBattleTransitionTypeByMap();
     u8 enemyLevel = GetMonData(&gEnemyParty[0], MON_DATA_LEVEL);
     u8 playerLevel = GetSumOfPlayerPartyLevel(1);
+    if (IsMonShiny(&gEnemyParty[0]) && FLAG_NUZLOCKE_CATCH){
+        FlagClear(FLAGS_NUZLOCKE_ENCOUNTERS + GetCurrentRegionMapSectionId());
+        return sBattleTransitionTable_Wild[transitionType][1];
+    }
 
     if (enemyLevel < playerLevel)
     {

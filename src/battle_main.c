@@ -5116,10 +5116,18 @@ static void WaitForEvoSceneToFinish(void)
 
 static void ReturnFromBattleToOverworld(void)
 {
+    if (!(gBattleTypeFlags & BATTLE_TYPE_TRAINER))
+    {
+        if (FlagGet(FLAG_NUZLOCKE_CATCH))
+            FlagSet(FLAGS_NUZLOCKE_ENCOUNTERS + GetCurrentRegionMapSectionId());
+    }
+
     if (!(gBattleTypeFlags & BATTLE_TYPE_LINK))
     {
         RandomlyGivePartyPokerus(gPlayerParty);
         PartySpreadPokerus(gPlayerParty);
+        if (FlagGet(FLAG_NUZLOCKE_ACTIVE))
+            DeleteFaintedPartyMons();
     }
 
     if (gBattleTypeFlags & BATTLE_TYPE_LINK && gReceivedRemoteLinkPlayers != 0)
