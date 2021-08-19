@@ -7,23 +7,13 @@
 
 This is a decompilation of Pokémon Emerald.
 
-Shiny Variants, increase odds to gen 6+, and allow for 23 shiny variants per pokemon
-
 To set up the repository, see [INSTALL.md](INSTALL.md).
 
-80x80 sprite mod by FroggestSpirit
+Emerald 20XX Featuring Nuzlocke and more! (Check Features.txt)
 
-Things that need work or bugs:
+-Nuzlocke option is given after rescuing Birch
 
-Low Priority:
-* Pokedex screens cleanup
-* Pokemon Contests artwork
-* Pokemon Jump? (Untested)
-
-Known Bugs:
-* Pokemon contests have a vertical seam in the pokemon sprites
-* Evolution animation may look glitched
-* Castforms transform animation may look glitched
+-Nuzlocke restrictions are lifted after obtaining the National Dex
 
 
 ## See also
