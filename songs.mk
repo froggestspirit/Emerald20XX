@@ -789,6 +789,9 @@ $(MID_SUBDIR)/ph_trap_solo.s: %.s: %.mid
 $(MID_SUBDIR)/mus_poke_radar.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G192 -V100
 
+$(MID_SUBDIR)/mus_vs_wild2.s: %.s: %.mid
+	$(MID) $< $@ -E -R$(STD_REVERB) -G117 -V080 -P1
+
 $(MID_SUBDIR)/se_a.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G128 -V095 -P4
 

@@ -15,9 +15,12 @@ Features:
 -Chain Fishing - ghoulslash
 -Follow me - ghoulslash
 -Bag sort - ghoulslash
--Day/Night - Sierraffinity
+-Shiny Variants - FroggestSpirit
 -Learn moves upon evolution
 -Start with running shoes
+-Nuzlocke mode
+-Various Nuzlocke code - Kurausukun
+-HQ instrument samples - Kurausukun
 
 
 Removals:
@@ -38,7 +41,7 @@ Fixes:
 
 
 TODO:
--Update PokeRadar
+-Day/Night
 -Proper Plural "giveitem" Command
 -Fairy Type
 -Move on PC before Withdraw/Deposit

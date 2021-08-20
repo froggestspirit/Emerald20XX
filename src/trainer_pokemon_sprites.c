@@ -104,11 +104,13 @@ static void LoadPicPaletteByTagOrSlot(u16 species, u32 otId, u32 personality, u8
         {
             sCreatingSpriteTemplate.paletteTag = 0xFFFF;
             LoadCompressedPalette(GetMonSpritePalFromSpeciesAndPersonality(species, otId, personality), 0x100 + paletteSlot * 0x10, 0x20);
+            if(IsShinyOtIdPersonality(otId, personality)) SwapPlttRGB(paletteSlot + 16, (personality % 12));
         }
         else
         {
             sCreatingSpriteTemplate.paletteTag = paletteTag;
             LoadCompressedSpritePalette(GetMonSpritePalStructFromOtIdPersonality(species, otId, personality));
+            if(IsShinyOtIdPersonality(otId, personality)) SwapPlttRGB(paletteSlot + 16, (personality % 12));
         }
     }
     else
@@ -130,6 +132,7 @@ static void LoadPicPaletteBySlot(u16 species, u32 otId, u32 personality, u8 pale
 {
     if (!isTrainer)
         LoadCompressedPalette(GetMonSpritePalFromSpeciesAndPersonality(species, otId, personality), paletteSlot * 0x10, 0x20);
+        if(IsShinyOtIdPersonality(otId, personality)) SwapPlttRGB(paletteSlot + 16, (personality % 12));
     else
         LoadCompressedPalette(gTrainerFrontPicPaletteTable[species].data, paletteSlot * 0x10, 0x20);
 }
@@ -388,7 +391,7 @@ u16 sub_818D904(u16 species, bool8 isFrontPic, u8 paletteSlot, u8 windowId)
 
 u16 CreateTrainerCardTrainerPicSprite(u16 species, bool8 isFrontPic, u16 destX, u16 destY, u8 paletteSlot, u8 windowId)
 {
-    return CreateTrainerCardSprite(species, 0, 0, isFrontPic, destX, destY, paletteSlot, windowId, TRUE);
+    return CreateTrainerCardSprite(species, 0, 0xFFFF, isFrontPic, destX, destY, paletteSlot, windowId, TRUE);
 }
 
 u16 PlayerGenderToFrontTrainerPicId_Debug(u8 gender, bool8 getClass)

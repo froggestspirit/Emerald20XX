@@ -48,6 +48,7 @@
 #include "constants/moves.h"
 #include "constants/songs.h"
 #include "constants/trainers.h"
+#include "constants/party_menu.h"
 
 struct SpeciesItem
 {
@@ -2924,15 +2925,14 @@ void CalculateMonStats(struct Pokemon *mon)
         else if (currentHP != 0) {
             // BUG: currentHP is unintentionally able to become <= 0 after the instruction below. This causes the pomeg berry glitch.
             currentHP += newMaxHP - oldMaxHP;
-            #ifdef BUGFIX
-            if (currentHP <= 0)
-                currentHP = 1;
-            #endif
+            if (FlagGet(FLAG_NUZLOCKE_ACTIVE)){
+                if (currentHP <= 0)
+                    currentHP = 1;
+            }
         }
         else
             return;
     }
-
     SetMonData(mon, MON_DATA_HP, &currentHP);
 }
 
@@ -4728,6 +4728,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
     u8 effectFlags;
     s8 evChange;
     u16 evCount;
+    s32 thisHP;
 
     // Get item hold effect
     heldItem = GetMonData(mon, MON_DATA_HELD_ITEM, NULL);
@@ -4940,6 +4941,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
                     {
                     case 0: // ITEM4_EV_HP
                     case 1: // ITEM4_EV_ATK
+                        thisHP = GetMonData(mon, MON_DATA_HP, NULL);
                         evCount = GetMonEVCount(mon);
                         temp2 = itemEffect[itemEffectParam];
                         dataSigned = GetMonData(mon, sGetMonDataEVConstants[temp1], NULL);
@@ -4981,6 +4983,8 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
                         // Update EVs and stats
                         SetMonData(mon, sGetMonDataEVConstants[temp1], &dataSigned);
                         CalculateMonStats(mon);
+                        if (FlagGet(FLAG_NUZLOCKE_ACTIVE) && thisHP == 0)
+                            SetMonData(mon, MON_DATA_HP, &thisHP);
                         itemEffectParam++;
                         retVal = FALSE;
                         break;
@@ -4989,7 +4993,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
                         // If Revive, update number of times revive has been used
                         if (effectFlags & (ITEM4_REVIVE >> 2))
                         {
-                            if (GetMonData(mon, MON_DATA_HP, NULL) != 0)
+                            if (GetMonData(mon, MON_DATA_HP, NULL) != 0 || FlagGet(FLAG_NUZLOCKE_ACTIVE))
                             {
                                 itemEffectParam++;
                                 break;
@@ -6366,6 +6370,8 @@ u16 GetBattleBGM(void)
             return MUS_VS_TRAINER;
         }
     }
+    else if (FlagGet(FLAG_NUZLOCKE_CATCH) && !FlagGet(FLAGS_NUZLOCKE_ENCOUNTERS + GetCurrentRegionMapSectionId()))
+        return MUS_VS_WILD2;
     else
         return MUS_VS_WILD;
 }
@@ -6428,10 +6434,11 @@ const u32 *GetMonSpritePalFromSpeciesAndPersonality(u16 species, u32 otId, u32 p
         return gMonPaletteTable[0].data;
 
     shinyValue = HIHALF(otId) ^ LOHALF(otId) ^ HIHALF(personality) ^ LOHALF(personality);
+    if ((personality % 24) < 11)
+        return gMonPaletteTable[species].data;
     if (shinyValue < SHINY_ODDS)
         return gMonShinyPaletteTable[species].data;
-    else
-        return gMonPaletteTable[species].data;
+    return gMonPaletteTable[species].data;
 }
 
 const struct CompressedSpritePalette *GetMonSpritePalStruct(struct Pokemon *mon)
@@ -6447,10 +6454,11 @@ const struct CompressedSpritePalette *GetMonSpritePalStructFromOtIdPersonality(u
     u32 shinyValue;
 
     shinyValue = HIHALF(otId) ^ LOHALF(otId) ^ HIHALF(personality) ^ LOHALF(personality);
+    if ((personality % 24) < 11)
+        return &gMonPaletteTable[species];
     if (shinyValue < SHINY_ODDS)
         return &gMonShinyPaletteTable[species];
-    else
-        return &gMonPaletteTable[species];
+    return &gMonPaletteTable[species];
 }
 
 bool32 IsHMMove2(u16 move)
@@ -7081,4 +7089,32 @@ static u32 GenerateShinyPersonality(u32 otId)
         personality = (personality2) | (personality1 << 16);
     
     return personality;
+}
+
+void DeletePartyMon(u8 position)
+{
+    PurgeMonOrBoxMon(TOTAL_BOXES_COUNT, position);
+}
+
+void DeleteFaintedPartyMons(void)
+{
+    int i;
+    struct Pokemon *pokemon;
+    u32 monItem;
+    
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        pokemon = &gPlayerParty[i];
+        monItem = GetMonData(pokemon, MON_DATA_HELD_ITEM, NULL);
+        if (GetMonData(pokemon, MON_DATA_SANITY_HAS_SPECIES, NULL) && !GetMonData(pokemon, MON_DATA_IS_EGG, NULL))
+        {
+            if (GetMonAilment(pokemon) == AILMENT_FNT)
+            {
+                if (monItem)
+                    AddBagItem(monItem, 1);
+                DeletePartyMon(i);
+            }
+        }
+    }
+    CompactPartySlots();
 }

@@ -68,6 +68,7 @@ void ResetPaletteFadeControl(void);
 void unref_sub_8074168(u16);
 void unref_sub_8074194(u16);
 void InvertPlttBuffer(u32);
+void SwapPlttRGB(u32, s8);
 void TintPlttBuffer(u32, s8, s8, s8);
 void UnfadePlttBuffer(u32);
 void BeginFastPaletteFade(u8);

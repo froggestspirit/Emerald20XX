@@ -62,6 +62,17 @@ void LoadCompressedSpritePalette(const struct CompressedSpritePalette *src)
     LoadSpritePalette(&dest);
 }
 
+void LoadCompressedSpritePaletteSwap(const struct CompressedSpritePalette *src, u8 swap)
+{
+    struct SpritePalette dest;
+
+    LZ77UnCompWram(src->data, gDecompressionBuffer);
+    SwapPlttRGB(gDecompressionBuffer, swap);
+    dest.data = (void*) gDecompressionBuffer;
+    dest.tag = src->tag;
+    LoadSpritePalette(&dest);
+}
+
 void LoadCompressedSpritePaletteOverrideBuffer(const struct CompressedSpritePalette *a, void *buffer)
 {
     struct SpritePalette dest;

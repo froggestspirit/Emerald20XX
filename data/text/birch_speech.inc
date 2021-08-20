@@ -42,6 +42,9 @@ gText_Birch_WhatsYourName:: @ 82C8BFF
 gText_Birch_SoItsPlayer:: @ 82C8C1C
 	.string "So it's {PLAYER}{KUN}?$"
 
+gText_Birch_Nuzlocke:: @ 82C8C1C
+	.string "Is this a Nuzlocke game?$"
+
 gText_Birch_YourePlayer:: @ 82C8C2A
 	.string "Ah, okay!\p"
 	.string "You're {PLAYER}{KUN} who's moving to my\n"

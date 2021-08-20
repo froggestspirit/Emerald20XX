@@ -514,6 +514,82 @@ void InvertPlttBuffer(u32 selectedPalettes)
     }
 }
 
+void SwapPlttRGB(u32 selectedPalette, s8 mode)  // gPlttBufferUnfaded should be updated
+{
+    u32 paletteOffset, paletteOffset2;
+    s16 tmpColR, tmpColG, tmpColB, tmpColR2, tmpColG2, tmpColB2;
+    if(selectedPalette < 32){
+        paletteOffset = gPlttBufferFaded + (selectedPalette * 16);
+        paletteOffset2 = gPlttBufferUnfaded + (selectedPalette * 16);        
+    }else{
+        paletteOffset = selectedPalette;
+    }
+    u8 i;
+    for (i = 0; i < 32; i += 2)
+    {
+        struct PlttData *data = (struct PlttData *)(paletteOffset + i);
+        tmpColR = data->r;
+        tmpColG = data->g;
+        tmpColB = data->b;
+        if(mode < 6){  // Shift hue 1/6
+            tmpColR2 = (tmpColR * 171 + tmpColG * -85 + tmpColB * 171) >> 8;
+            tmpColG2 = (tmpColR * 171 + tmpColG * 171 + tmpColB * -85) >> 8;
+            tmpColB2 = (tmpColR * -85 + tmpColG * 171 + tmpColB * 171) >> 8;
+            if(tmpColR2 < 0) tmpColR2 = 0;
+            if(tmpColR2 > 31) tmpColR2 = 31;
+            if(tmpColG2 < 0) tmpColG2 = 0;
+            if(tmpColG2 > 31) tmpColG2 = 31;
+            if(tmpColB2 < 0) tmpColB2 = 0;
+            if(tmpColB2 > 31) tmpColB2 = 31;
+            tmpColR = tmpColR2;
+            tmpColG = tmpColG2;
+            tmpColB = tmpColB2;
+        }
+        switch(mode){
+            case 5:
+                data->r = tmpColR;
+                data->g = tmpColG;
+                data->b = tmpColB;
+            break;
+            case 11:
+            break;
+            case 0:  // RGB->BRG
+            case 6:
+                data->r = tmpColB;
+                data->g = tmpColR;
+                data->b = tmpColG;
+            break;
+            case 1:  // RGB->GBR
+            case 7:
+                data->r = tmpColG;
+                data->g = tmpColB;
+                data->b = tmpColR;
+            break;
+            case 2:  // RGB->RBG
+            case 8:
+                data->g = tmpColB;
+                data->b = tmpColG;
+            break;
+            case 3:  // RGB->BGR
+            case 9:
+                data->r = tmpColB;
+                data->b = tmpColR;
+            break;
+            case 4:  // RGB->GRB
+            case 10:
+                data->r = tmpColG;
+                data->g = tmpColR;
+            break;
+        }
+        if(selectedPalette < 32){
+            struct PlttData *data2 = (struct PlttData *)(paletteOffset2 + i);
+            data2->r = data->r;
+            data2->g = data->g;
+            data2->b = data->b;
+        }
+    }
+}
+
 void TintPlttBuffer(u32 selectedPalettes, s8 r, s8 g, s8 b)
 {
     u16 paletteOffset = 0;

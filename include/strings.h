@@ -345,6 +345,7 @@ extern const u8 gText_Birch_AndYouAre[];
 extern const u8 gText_Birch_BoyOrGirl[];
 extern const u8 gText_Birch_WhatsYourName[];
 extern const u8 gText_Birch_SoItsPlayer[];
+extern const u8 gText_Birch_Nuzlocke[];
 extern const u8 gText_Birch_YourePlayer[];
 extern const u8 gText_Birch_AreYouReady[];
 extern const u8 gText_ContinueMenuPlayer[];
@@ -933,6 +934,7 @@ extern const u8 gText_RepelEffectsLingered[];
 extern const u8 gText_UsedVar2WildLured[];
 extern const u8 gText_UsedVar2WildRepelled[];
 extern const u8 gText_BoxFull[];
+extern const u8 gText_NuzlockeCatch[];
 extern const u8 gText_WontHaveEffect[];
 
 extern const u8 gText_LevelSymbol[];

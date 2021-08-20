@@ -3318,7 +3318,10 @@ static void Cmd_getexp(void)
                 if (!(gBattleTypeFlags & BATTLE_TYPE_TRAINER) && gBattleMons[0].hp && !gBattleStruct->wildVictorySong)
                 {
                     BattleStopLowHpSound();
-                    PlayBGM(MUS_VICTORY_WILD);
+                    if (!FlagGet(FLAG_NUZLOCKE_CATCH) || FlagGet(FLAGS_NUZLOCKE_ENCOUNTERS + GetCurrentRegionMapSectionId()))
+                        PlayBGM(MUS_VICTORY_WILD);
+                    else
+                        PlayBGM(MUS_NONE);
                     gBattleStruct->wildVictorySong++;
                 }
 
@@ -10068,10 +10071,15 @@ static void Cmd_trygivecaughtmonnick(void)
     {
     case 0:
         HandleBattleWindow(0x18, 8, 0x1D, 0xD, 0);
-        BattlePutTextOnWindow(gText_BattleYesNoChoice, 0xC);
-        gBattleCommunication[MULTIUSE_STATE]++;
-        gBattleCommunication[CURSOR_POSITION] = 0;
-        BattleCreateYesNoCursorAt(0);
+        if (FlagGet(FLAG_NUZLOCKE_ACTIVE)){
+            gBattleCommunication[MULTIUSE_STATE] = 2;
+            BeginFastPaletteFade(3);
+        }else{
+            BattlePutTextOnWindow(gText_BattleYesNoChoice, 0xC);
+            gBattleCommunication[MULTIUSE_STATE]++;
+            gBattleCommunication[CURSOR_POSITION] = 0;
+            BattleCreateYesNoCursorAt(0);
+        }
         break;
     case 1:
         if (JOY_NEW(DPAD_UP) && gBattleCommunication[CURSOR_POSITION] != 0)

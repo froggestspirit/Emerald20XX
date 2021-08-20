@@ -2081,6 +2081,7 @@ u8 CreateAdditionalMonSpriteForMoveAnim(u16 species, bool8 isBackpic, u8 id, s16
                                  personality,
                                  FALSE);
     }
+    if(IsShinyOtIdPersonality(trainerId, personality)) SwapPlttRGB(palette + 16, (personality % 12));
 
     RequestDma3Copy(gMonSpritesGfxPtr->buffer, (void *)(OBJ_VRAM0 + (sheet * 0x20)), MON_PIC_SIZE, 1);
     FREE_AND_SET_NULL(gMonSpritesGfxPtr->buffer);

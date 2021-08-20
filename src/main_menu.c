@@ -238,6 +238,8 @@ static void Task_NewGameBirchSpeech_ShrinkPlayer(u8);
 static void SpriteCB_MovePlayerDownWhileShrinking(struct Sprite*);
 static void Task_NewGameBirchSpeech_WaitForPlayerShrink(u8);
 static void Task_NewGameBirchSpeech_FadePlayerToWhite(u8);
+static void Task_NewGameBirchSpeech_NuzlockeYesNo(u8);
+static void Task_NewGameBirchSpeech_ProcessNuzlockeYesNoMenu(u8);
 static void Task_NewGameBirchSpeech_Cleanup(u8);
 static void SpriteCB_Null();
 static void Task_NewGameBirchSpeech_ReturnFromNamingScreenShowTextbox(u8);
@@ -1634,6 +1636,9 @@ static void Task_NewGameBirchSpeech_ProcessNameYesNoMenu(u8 taskId)
     {
         case 0:
             PlaySE(SE_SELECT);
+            NewGameBirchSpeech_ClearWindow(0);
+            StringExpandPlaceholders(gStringVar4, gText_Birch_Nuzlocke);
+            AddTextPrinterForMessage(1);
             gSprites[gTasks[taskId].tPlayerSpriteId].oam.objMode = ST_OAM_OBJ_BLEND;
             NewGameBirchSpeech_StartFadeOutTarget1InTarget2(taskId, 2);
             NewGameBirchSpeech_StartFadePlatformIn(taskId, 1);
@@ -1643,6 +1648,32 @@ static void Task_NewGameBirchSpeech_ProcessNameYesNoMenu(u8 taskId)
         case 1:
             PlaySE(SE_SELECT);
             gTasks[taskId].func = Task_NewGameBirchSpeech_BoyOrGirl;
+    }
+}
+
+static void Task_NewGameBirchSpeech_NuzlockeYesNo(u8 taskId)
+{
+    if (!RunTextPrintersAndIsPrinter0Active())
+    {
+        CreateYesNoMenuParameterized(2, 1, 0xF3, 0xDF, 2, 15);
+        gTasks[taskId].func = Task_NewGameBirchSpeech_ProcessNuzlockeYesNoMenu;
+    }
+    
+}
+
+static void Task_NewGameBirchSpeech_ProcessNuzlockeYesNoMenu(u8 taskId)
+{
+    switch (Menu_ProcessInputNoWrapClearOnChoose())
+    {
+        case 0:
+            FlagSet(FLAG_NUZLOCKE_GAME);
+        case -1:
+        case 1:
+            PlaySE(SE_SELECT);
+            gSprites[gTasks[taskId].tPlayerSpriteId].oam.objMode = ST_OAM_OBJ_BLEND;
+            NewGameBirchSpeech_StartFadeOutTarget1InTarget2(taskId, 2);
+            NewGameBirchSpeech_StartFadePlatformIn(taskId, 1);
+            gTasks[taskId].func = Task_NewGameBirchSpeech_SlidePlatformAway2;
     }
 }
 
