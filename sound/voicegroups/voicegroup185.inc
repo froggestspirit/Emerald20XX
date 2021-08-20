@@ -56,7 +56,7 @@ voicegroup185:: @ 86B264C
 	voice_directsound 60, 0, DirectSoundWaveData_classical_choir_voice_ahhs, 85, 0, 154, 165  @ 86B28C8
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0  @ 86B28D4
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0  @ 86B28E0
-	voice_keysplit voicegroup007, KeySplitTable3  @ 86B28EC
+	voice_keysplit voicegroup193, KeySplitTable7  @ 86B28EC
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0  @ 86B28F8
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0  @ 86B2904
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0  @ 86B2910

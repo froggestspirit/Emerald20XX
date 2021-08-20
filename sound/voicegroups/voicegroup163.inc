@@ -56,7 +56,7 @@ voicegroup163:: @ 86AB938
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0  @ 86ABBB4
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0  @ 86ABBC0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0  @ 86ABBCC
-	voice_keysplit voicegroup007, KeySplitTable3  @ 86ABBD8
+	voice_keysplit voicegroup193, KeySplitTable7  @ 86ABBD8
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0  @ 86ABBE4
 	voice_directsound 60, 0, DirectSoundWaveData_88D6978, 255, 0, 206, 204  @ 86ABBF0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0  @ 86ABBFC
