@@ -199,6 +199,10 @@ DirectSoundWaveData_sc88pro_tuba_51::
 	.incbin "sound/direct_sound_samples/sc88pro_tuba_51.bin"
 
 	.align 2
+DirectSoundWaveData_sc88pro_tuba_51_short::
+	.incbin "sound/direct_sound_samples/sc88pro_tuba_51_short.bin"
+
+	.align 2
 DirectSoundWaveData_sc88pro_french_horn_60::
 	.incbin "sound/direct_sound_samples/sc88pro_french_horn_60.bin"
 
