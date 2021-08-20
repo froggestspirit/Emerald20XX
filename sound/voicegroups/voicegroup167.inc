@@ -56,7 +56,7 @@ voicegroup167:: @ 86AD138
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0  @ 86AD3B4
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0  @ 86AD3C0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0  @ 86AD3CC
-	voice_keysplit voicegroup007, KeySplitTable3  @ 86AD3D8
+	voice_keysplit voicegroup193, KeySplitTable7  @ 86AD3D8
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0  @ 86AD3E4
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0  @ 86AD3F0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0  @ 86AD3FC

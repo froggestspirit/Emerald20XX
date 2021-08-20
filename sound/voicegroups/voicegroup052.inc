@@ -56,7 +56,7 @@ voicegroup052:: @ 8683048
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0  @ 86832C4
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0  @ 86832D0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0  @ 86832DC
-	voice_keysplit voicegroup007, KeySplitTable3  @ 86832E8
+	voice_keysplit voicegroup193, KeySplitTable7  @ 86832E8
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0  @ 86832F4
 	voice_keysplit voicegroup008, KeySplitTable4  @ 8683300
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0  @ 868330C
