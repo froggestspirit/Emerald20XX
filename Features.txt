@@ -21,6 +21,7 @@ Features:
 -Nuzlocke mode
 -Various Nuzlocke code - Kurausukun
 -HQ instrument samples - Kurausukun
+-Day/Night - Sierraffinity
 
 
 Removals:
@@ -41,7 +42,6 @@ Fixes:
 
 
 TODO:
--Day/Night
 -Proper Plural "giveitem" Command
 -Fairy Type
 -Move on PC before Withdraw/Deposit
@@ -54,4 +54,8 @@ TODO:
 Day/Night Palette Fixes:
 -Choosing starter
 -Battle
--doors/windows
+
+
+Misc Credits:
+Brendan back sprites - hyo-oppa
+May back sprite (edited) - PKMNTrainerSpriterC
