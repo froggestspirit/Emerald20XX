@@ -487,13 +487,3 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_LUGIA] =                    &gObjectEventGraphicsInfo_Lugia,
     [OBJ_EVENT_GFX_HOOH] =                     &gObjectEventGraphicsInfo_HoOh,
 };
-
-const struct ObjectEventGraphicsInfo *const gMauvilleOldManGraphicsInfoPointers[] = {
-    [MAUVILLE_MAN_BARD]        = &gObjectEventGraphicsInfo_Bard,
-    [MAUVILLE_MAN_HIPSTER]     = &gObjectEventGraphicsInfo_Hipster,
-    [MAUVILLE_MAN_TRADER]      = &gObjectEventGraphicsInfo_Trader,
-    [MAUVILLE_MAN_STORYTELLER] = &gObjectEventGraphicsInfo_Storyteller,
-    [MAUVILLE_MAN_GIDDY]       = &gObjectEventGraphicsInfo_Giddy,
-    [MAUVILLE_MAN_UNUSED1]     = &gObjectEventGraphicsInfo_UnusedMauvilleOldMan1,
-    [MAUVILLE_MAN_UNUSED2]     = &gObjectEventGraphicsInfo_UnusedMauvilleOldMan2,
-};
