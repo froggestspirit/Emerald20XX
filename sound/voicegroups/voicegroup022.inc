@@ -9,7 +9,7 @@ voicegroup022:: @ 867A438
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0  @ 867A480
 	voice_keysplit voicegroup008, KeySplitTable4  @ 867A48C
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0  @ 867A498
-	voice_keysplit voicegroup009, KeySplitTable5  @ 867A4A4
+	voice_keysplit voicegroup194, KeySplitTable8  @ 867A4A4
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0  @ 867A4B0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0  @ 867A4BC
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0  @ 867A4C8

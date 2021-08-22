@@ -60,7 +60,7 @@ voicegroup113:: @ 8698C54
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0  @ 8698F00
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0  @ 8698F0C
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0  @ 8698F18
-	voice_keysplit voicegroup009, KeySplitTable5  @ 8698F24
+	voice_keysplit voicegroup194, KeySplitTable8  @ 8698F24
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0  @ 8698F30
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0  @ 8698F3C
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0  @ 8698F48
