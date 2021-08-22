@@ -60,7 +60,7 @@ voicegroup133:: @ 86A1BB8
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0  @ 86A1E64
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0  @ 86A1E70
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0  @ 86A1E7C
-	voice_keysplit voicegroup009, KeySplitTable5  @ 86A1E88
+	voice_keysplit voicegroup194, KeySplitTable8  @ 86A1E88
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0  @ 86A1E94
 	voice_directsound 60, 0, DirectSoundWaveData_sd90_classical_distortion_guitar_low, 255, 0, 255, 127  @ 86A1EA0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0  @ 86A1EAC

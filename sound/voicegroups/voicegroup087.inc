@@ -60,7 +60,7 @@ voicegroup087:: @ 868F87C
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0  @ 868FB28
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0  @ 868FB34
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0  @ 868FB40
-	voice_keysplit voicegroup009, KeySplitTable5  @ 868FB4C
+	voice_keysplit voicegroup194, KeySplitTable8  @ 868FB4C
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0  @ 868FB58
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0  @ 868FB64
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0  @ 868FB70

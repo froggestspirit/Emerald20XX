@@ -2217,3 +2217,15 @@ DirectSoundWaveData_ps19_3tp_73::
 	.align 2
 DirectSoundWaveData_ps19_3tp_83::
 	.incbin "sound/direct_sound_samples/ps19_3tp_83.bin"
+
+	.align 2
+DirectSoundWaveData_sd90_contemporary_french_horn2_48::
+	.incbin "sound/direct_sound_samples/sd90_contemporary_french_horn2_48.bin"
+
+	.align 2
+DirectSoundWaveData_sd90_contemporary_french_horn2_60::
+	.incbin "sound/direct_sound_samples/sd90_contemporary_french_horn2_60.bin"
+
+	.align 2
+DirectSoundWaveData_sd90_contemporary_french_horn2_72::
+	.incbin "sound/direct_sound_samples/sd90_contemporary_french_horn2_72.bin"
