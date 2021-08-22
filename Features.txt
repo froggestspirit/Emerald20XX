@@ -51,10 +51,6 @@ TODO:
 -Decapitalize
 -Unique pokemon centers/marts
 
-Day/Night Palette Fixes:
--Choosing starter
--Battle
-
 
 Misc Credits:
 Brendan back sprites - hyo-oppa
