@@ -3318,10 +3318,10 @@ static void Cmd_getexp(void)
                 if (!(gBattleTypeFlags & BATTLE_TYPE_TRAINER) && gBattleMons[0].hp && !gBattleStruct->wildVictorySong)
                 {
                     BattleStopLowHpSound();
-                    if (!FlagGet(FLAG_NUZLOCKE_CATCH) || FlagGet(FLAGS_NUZLOCKE_ENCOUNTERS + GetCurrentRegionMapSectionId()))
+                    if (!FlagGet(FLAG_NUZLOCKE_CAN_CATCH))
                         PlayBGM(MUS_VICTORY_WILD);
                     else
-                        PlayBGM(MUS_NONE);
+                        PlayBGM(MUS_NONE);  // Should also be mute for shiny battles (fainting one sucks)
                     gBattleStruct->wildVictorySong++;
                 }
 

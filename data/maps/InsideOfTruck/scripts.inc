@@ -16,6 +16,9 @@ InsideOfTruck_OnResume: @ 823BF01
 InsideOfTruck_EventScript_SetIntroFlags:: @ 823BF04
 	lockall
 	setflag FLAG_HIDE_MAP_NAME_POPUP
+	msgbox Nuzlocke_TextNuzlockeGame, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	call_if_eq Nuzlocke_Set_Game
 	checkplayergender
 	compare VAR_RESULT, MALE
 	goto_if_eq InsideOfTruck_EventScript_SetIntroFlagsMale
@@ -58,3 +61,20 @@ InsideOfTruck_Text_BoxPrintedWithMonLogo: @ 823BF75
 	.string "It's a POKéMON brand moving and\n"
 	.string "delivery service.$"
 
+Nuzlocke_Set_Game::
+	setflag FLAG_NUZLOCKE_GAME
+	msgbox Nuzlocke_TextNuzlockeSpecies, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq Nuzlocke_Set_Species
+	return
+
+Nuzlocke_Set_Species::
+	setflag FLAG_NUZLOCKE_SPECIES_CLAUSE
+	return
+
+Nuzlocke_TextNuzlockeGame: @ 81FA8B1
+	.string "Play a Nuzlocke challenge?\n"
+	.string "This cannot be changed later.$"
+
+Nuzlocke_TextNuzlockeSpecies: @ 81FA8B1
+	.string "Play with the species clause?$"

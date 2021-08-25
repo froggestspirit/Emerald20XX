@@ -5118,7 +5118,7 @@ static void ReturnFromBattleToOverworld(void)
 {
     if (!(gBattleTypeFlags & BATTLE_TYPE_TRAINER))
     {
-        if (FlagGet(FLAG_NUZLOCKE_CATCH))
+        if (FlagGet(FLAG_NUZLOCKE_CATCH) && FlagGet(FLAG_NUZLOCKE_CAN_CATCH))
             FlagSet(FLAGS_NUZLOCKE_ENCOUNTERS + GetCurrentRegionMapSectionId());
     }
 
