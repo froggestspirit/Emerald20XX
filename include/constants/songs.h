@@ -278,15 +278,10 @@
 #define SE_SUDOWOODO_SHAKE          269 // SE_USSOKI
 
 // Music
-#define MUS_LITTLEROOT_TEST         350 // MUS_TETSUJI
-#define MUS_GSC_ROUTE38             351 // MUS_FIELD13
 #define MUS_CAUGHT                  352 // MUS_KACHI22
 #define MUS_VICTORY_WILD            353 // MUS_KACHI2
 #define MUS_VICTORY_GYM_LEADER      354 // MUS_KACHI3
 #define MUS_VICTORY_LEAGUE          355 // MUS_KACHI5
-#define MUS_C_COMM_CENTER           356 // MUS_PCC
-#define MUS_GSC_PEWTER              357 // MUS_NIBI
-#define MUS_C_VS_LEGEND_BEAST       358 // MUS_SUIKUN
 #define MUS_ROUTE101                359 // MUS_DOORO1
 #define MUS_ROUTE110                360 // MUS_DOORO_X1
 #define MUS_ROUTE120                361 // MUS_DOORO_X3
@@ -413,81 +408,21 @@
 #define MUS_VS_ELITE_FOUR           482 // MUS_BATTLE38
 #define MUS_VS_AQUA_MAGMA_LEADER    483 // MUS_BATTLE30
 // FRLG Music
-#define MUS_RG_FOLLOW_ME            484 // MUS_RG_ANNAI
 #define MUS_RG_GAME_CORNER          485 // MUS_RG_SLOT
-#define MUS_RG_ROCKET_HIDEOUT       486 // MUS_RG_AJITO
-#define MUS_RG_GYM                  487 // MUS_RG_GYM
-#define MUS_RG_JIGGLYPUFF           488 // MUS_RG_PURIN
-#define MUS_RG_INTRO_FIGHT          489 // MUS_RG_DEMO
-#define MUS_RG_TITLE                490 // MUS_RG_TITLE
-#define MUS_RG_CINNABAR             491 // MUS_RG_GUREN
-#define MUS_RG_LAVENDER             492 // MUS_RG_SHION
-#define MUS_RG_HEAL                 493 // MUS_RG_KAIHUKU
-#define MUS_RG_CYCLING              494 // MUS_RG_CYCLING
-#define MUS_RG_ENCOUNTER_ROCKET     495 // MUS_RG_ROCKET
-#define MUS_RG_ENCOUNTER_GIRL       496 // MUS_RG_SHOUJO
-#define MUS_RG_ENCOUNTER_BOY        497 // MUS_RG_SHOUNEN
-#define MUS_RG_HALL_OF_FAME         498 // MUS_RG_DENDOU
-#define MUS_RG_VIRIDIAN_FOREST      499 // MUS_RG_T_MORI
-#define MUS_RG_MT_MOON              500 // MUS_RG_OTSUKIMI
-#define MUS_RG_POKE_MANSION         501 // MUS_RG_POKEYASHI
-#define MUS_RG_CREDITS              502 // MUS_RG_ENDING
-#define MUS_RG_ROUTE1               503 // MUS_RG_LOAD01
-#define MUS_RG_ROUTE24              504 // MUS_RG_OPENING
-#define MUS_RG_ROUTE3               505 // MUS_RG_LOAD02
-#define MUS_RG_ROUTE11              506 // MUS_RG_LOAD03
-#define MUS_RG_VICTORY_ROAD         507 // MUS_RG_CHAMP_R
-#define MUS_RG_VS_GYM_LEADER        508 // MUS_RG_VS_GYM
-#define MUS_RG_VS_TRAINER           509 // MUS_RG_VS_TORE
-#define MUS_RG_VS_WILD              510 // MUS_RG_VS_YASEI
-#define MUS_RG_VS_CHAMPION          511 // MUS_RG_VS_LAST
-#define MUS_RG_PALLET               512 // MUS_RG_MASARA
-#define MUS_RG_OAK_LAB              513 // MUS_RG_KENKYU
-#define MUS_RG_OAK                  514 // MUS_RG_OHKIDO
-#define MUS_RG_POKE_CENTER          515 // MUS_RG_POKECEN
-#define MUS_RG_SS_ANNE              516 // MUS_RG_SANTOAN
-#define MUS_RG_SURF                 517 // MUS_RG_NAMINORI
-#define MUS_RG_POKE_TOWER           518 // MUS_RG_P_TOWER
-#define MUS_RG_SILPH                519 // MUS_RG_SHIRUHU
-#define MUS_RG_FUCHSIA              520 // MUS_RG_HANADA
-#define MUS_RG_CELADON              521 // MUS_RG_TAMAMUSI
-#define MUS_RG_VICTORY_TRAINER      522 // MUS_RG_WIN_TRE (Identical to MUS_VICTORY_TRAINER)
-#define MUS_RG_VICTORY_WILD         523 // MUS_RG_WIN_YASEI (Identical to MUS_VICTORY_WILD)
-#define MUS_RG_VICTORY_GYM_LEADER   524 // MUS_RG_WIN_GYM (Identical to MUS_VICTORY_GYM_LEADER)
-#define MUS_RG_VERMILLION           525 // MUS_RG_KUCHIBA
-#define MUS_RG_PEWTER               526 // MUS_RG_NIBI
-#define MUS_RG_ENCOUNTER_RIVAL      527 // MUS_RG_RIVAL1
-#define MUS_RG_RIVAL_EXIT           528 // MUS_RG_RIVAL2
 #define MUS_RG_DEX_RATING           529 // MUS_RG_FAN2
 #define MUS_RG_OBTAIN_KEY_ITEM      530 // MUS_RG_FAN5
 #define MUS_RG_CAUGHT_INTRO         531 // MUS_RG_FAN6
-#define MUS_RG_PHOTO                532 // MUS_ME_RG_PHOTO
-#define MUS_RG_GAME_FREAK           533 // MUS_RG_TITLEROG
 #define MUS_RG_CAUGHT               534 // MUS_RG_GET_YASEI
-#define MUS_RG_NEW_GAME_INSTRUCT    535 // MUS_RG_SOUSA
-#define MUS_RG_NEW_GAME_INTRO       536 // MUS_RG_SEKAIKAN
-#define MUS_RG_NEW_GAME_EXIT        537 // MUS_RG_SEIBETU
 #define MUS_RG_POKE_JUMP            538 // MUS_RG_JUMP
 #define MUS_RG_UNION_ROOM           539 // MUS_RG_UNION
-#define MUS_RG_NET_CENTER           540 // MUS_RG_NETWORK
 #define MUS_RG_MYSTERY_GIFT         541 // MUS_RG_OKURIMONO
 #define MUS_RG_BERRY_PICK           542 // MUS_RG_KINOMIKUI
 #define MUS_RG_SEVII_CAVE           543 // MUS_RG_NANADUNGEON (Identical to MUS_RG_MT_MOON)
-#define MUS_RG_TEACHY_TV_SHOW       544 // MUS_RG_OSHIE_TV (Identical to MUS_RG_FOLLOW_ME)
 #define MUS_RG_SEVII_ROUTE          545 // MUS_RG_NANASHIMA
-#define MUS_RG_SEVII_DUNGEON        546 // MUS_RG_NANAISEKI (Identical to MUS_RG_VIRIDIAN_FOREST)
-#define MUS_RG_SEVII_123            547 // MUS_RG_NANA123 (Identical to MUS_RG_PEWTER)
-#define MUS_RG_SEVII_45             548 // MUS_RG_NANA45
-#define MUS_RG_SEVII_67             549 // MUS_RG_NANA67
 #define MUS_RG_POKE_FLUTE           550 // MUS_RG_POKEFUE
 #define MUS_RG_VS_DEOXYS            551 // MUS_RG_VS_DEO
-#define MUS_RG_VS_MEWTWO            552 // MUS_RG_VS_MYU2
 #define MUS_RG_VS_LEGEND            553 // MUS_RG_VS_DEN
-#define MUS_RG_ENCOUNTER_GYM_LEADER 554 // MUS_RG_EXEYE
 #define MUS_RG_ENCOUNTER_DEOXYS     555 // MUS_RG_DEOEYE
-#define MUS_RG_TRAINER_TOWER        556 // MUS_RG_T_TOWER
-#define MUS_RG_SLOW_PALLET          557 // MUS_RG_SLOWMASARA
-#define MUS_RG_TEACHY_TV_MENU       558 // MUS_RG_TVNOIZE
 
 #define MUS_POKE_RADAR              559
 #define MUS_VS_WILD2                560
