@@ -38,6 +38,7 @@
 #include "mirage_tower.h"
 #include "field_screen_effect.h"
 #include "data.h"
+#include "pokedex.h"
 #include "constants/battle_frontier.h"
 #include "constants/battle_setup.h"
 #include "constants/game_stat.h"
@@ -787,8 +788,19 @@ static u8 GetWildBattleTransition(void)
     u8 transitionType = GetBattleTransitionTypeByMap();
     u8 enemyLevel = GetMonData(&gEnemyParty[0], MON_DATA_LEVEL);
     u8 playerLevel = GetSumOfPlayerPartyLevel(1);
+    if (FlagGet(FLAG_NUZLOCKE_ACTIVE) && FlagGet(FLAG_NUZLOCKE_CATCH)){
+        if (FlagGet(FLAG_NUZLOCKE_SPECIES_CLAUSE) && GetSetPokedexFlag(SpeciesToNationalPokedexNum(GetMonData(&gEnemyParty[0], MON_DATA_SPECIES)), FLAG_GET_CAUGHT)){
+            FlagClear(FLAG_NUZLOCKE_CAN_CATCH);
+        }else if (FlagGet(FLAGS_NUZLOCKE_ENCOUNTERS + GetCurrentRegionMapSectionId())){
+            FlagClear(FLAG_NUZLOCKE_CAN_CATCH);
+        }else{
+            FlagSet(FLAG_NUZLOCKE_CAN_CATCH);
+        }
+    }else{
+        FlagClear(FLAG_NUZLOCKE_CAN_CATCH);
+    }
     if (IsMonShiny(&gEnemyParty[0]) && FLAG_NUZLOCKE_CATCH){
-        FlagClear(FLAGS_NUZLOCKE_ENCOUNTERS + GetCurrentRegionMapSectionId());
+        FlagSet(FLAG_NUZLOCKE_CAN_CATCH);
         return sBattleTransitionTable_Wild[transitionType][1];
     }
 

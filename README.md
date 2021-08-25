@@ -11,7 +11,7 @@ To set up the repository, see [INSTALL.md](INSTALL.md).
 
 Emerald 20XX Featuring Nuzlocke and more! (Check Features.txt)
 
--Nuzlocke option is given after rescuing Birch
+-Nuzlocke option is given inside the truck, but won't start until after rescuing Birch
 
 -Nuzlocke restrictions are lifted after obtaining the National Dex
 

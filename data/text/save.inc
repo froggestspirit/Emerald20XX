@@ -13,6 +13,10 @@ gText_SavingDontTurnOff:: @ 82C8810
 gText_PlayerSavedGame:: @ 82C8832
 	.string "{PLAYER} saved the game.$"
 
+gText_PlayerSavedChain:: @ 82C8832
+	.string "Radar chain is active, returning\n"
+	.string "to the title screen.$"
+
 gText_DifferentSaveFile:: @ 82C8845
 	.string "WARNING!\p"
 	.string "There is a different game file that\n"
