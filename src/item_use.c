@@ -31,6 +31,7 @@
 #include "poke_radar.h"
 #include "pokeblock.h"
 #include "pokemon.h"
+#include "pokedex.h"
 #include "script.h"
 #include "sound.h"
 #include "strings.h"
@@ -945,8 +946,11 @@ void ItemUseOutOfBattle_EvolutionStone(u8 taskId)
 
 void ItemUseInBattle_PokeBall(u8 taskId)
 {
-    if (FlagGet(FLAG_NUZLOCKE_CATCH) && FlagGet(FLAGS_NUZLOCKE_ENCOUNTERS + GetCurrentRegionMapSectionId())){
-        DisplayItemMessage(taskId, 1, gText_NuzlockeCatch, BagMenu_InitListsMenu);
+    if (FlagGet(FLAG_NUZLOCKE_ACTIVE) && FlagGet(FLAG_NUZLOCKE_CATCH) && !FlagGet(FLAG_NUZLOCKE_CAN_CATCH)){
+        if (FlagGet(FLAG_NUZLOCKE_SPECIES_CLAUSE) && GetSetPokedexFlag(SpeciesToNationalPokedexNum(GetMonData(&gEnemyParty[0], MON_DATA_SPECIES)), FLAG_GET_CAUGHT))
+            DisplayItemMessage(taskId, 1, gText_NuzlockeCatchSpecies, BagMenu_InitListsMenu);
+        else
+            DisplayItemMessage(taskId, 1, gText_NuzlockeCatch, BagMenu_InitListsMenu);
     }
     else if (IsPlayerPartyAndPokemonStorageFull() == FALSE) // have room for mon?
     {
