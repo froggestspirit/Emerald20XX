@@ -351,15 +351,10 @@ gSongTable:: @ 86B49F0
 	song dummy_song_header, 0, 0
 	song dummy_song_header, 0, 0
 	song dummy_song_header, 0, 0
-	song mus_littleroot_test, 0, 0
-	song mus_gsc_route38, 0, 0
 	song mus_caught, 0, 0
 	song mus_victory_wild, 0, 0
 	song mus_victory_gym_leader, 0, 0
 	song mus_victory_league, 0, 0
-	song mus_c_comm_center, 0, 0
-	song mus_gsc_pewter, 0, 0
-	song mus_c_vs_legend_beast, 0, 0
 	song mus_route101, 0, 0
 	song mus_route110, 0, 0
 	song mus_route120, 0, 0
@@ -485,81 +480,21 @@ gSongTable:: @ 86B49F0
 	song mus_vs_rival, 0, 0
 	song mus_vs_elite_four, 0, 0
 	song mus_vs_aqua_magma_leader, 0, 0
-	song mus_rg_follow_me, 0, 0
 	song mus_rg_game_corner, 0, 0
-	song mus_rg_rocket_hideout, 0, 0
-	song mus_rg_gym, 0, 0
-	song mus_rg_jigglypuff, 2, 2
-	song mus_rg_intro_fight, 0, 0
-	song mus_rg_title, 0, 0
-	song mus_rg_cinnabar, 0, 0
-	song mus_rg_lavender, 0, 0
-	song mus_rg_heal, 0, 0
-	song mus_rg_cycling, 0, 0
-	song mus_rg_encounter_rocket, 0, 0
-	song mus_rg_encounter_girl, 0, 0
-	song mus_rg_encounter_boy, 0, 0
-	song mus_rg_hall_of_fame, 0, 0
-	song mus_rg_viridian_forest, 0, 0
-	song mus_rg_mt_moon, 0, 0
-	song mus_rg_poke_mansion, 0, 0
-	song mus_rg_credits, 0, 0
-	song mus_rg_route1, 0, 0
-	song mus_rg_route24, 0, 0
-	song mus_rg_route3, 0, 0
-	song mus_rg_route11, 0, 0
-	song mus_rg_victory_road, 0, 0
-	song mus_rg_vs_gym_leader, 0, 0
-	song mus_rg_vs_trainer, 0, 0
-	song mus_rg_vs_wild, 0, 0
-	song mus_rg_vs_champion, 0, 0
-	song mus_rg_pallet, 0, 0
-	song mus_rg_oak_lab, 0, 0
-	song mus_rg_oak, 0, 0
-	song mus_rg_poke_center, 0, 0
-	song mus_rg_ss_anne, 0, 0
-	song mus_rg_surf, 0, 0
-	song mus_rg_poke_tower, 0, 0
-	song mus_rg_silph, 0, 0
-	song mus_rg_fuchsia, 0, 0
-	song mus_rg_celadon, 0, 0
-	song mus_rg_victory_trainer, 0, 0
-	song mus_rg_victory_wild, 0, 0
-	song mus_rg_victory_gym_leader, 0, 0
-	song mus_rg_vermillion, 0, 0
-	song mus_rg_pewter, 0, 0
-	song mus_rg_encounter_rival, 0, 0
-	song mus_rg_rival_exit, 0, 0
 	song mus_rg_dex_rating, 2, 2
 	song mus_rg_obtain_key_item, 2, 2
 	song mus_rg_caught_intro, 2, 2
-	song mus_rg_photo, 2, 2
-	song mus_rg_game_freak, 0, 0
 	song mus_rg_caught, 0, 0
-	song mus_rg_new_game_instruct, 0, 0
-	song mus_rg_new_game_intro, 0, 0
-	song mus_rg_new_game_exit, 0, 0
 	song mus_rg_poke_jump, 0, 0
 	song mus_rg_union_room, 0, 0
-	song mus_rg_net_center, 0, 0
 	song mus_rg_mystery_gift, 0, 0
 	song mus_rg_berry_pick, 0, 0
 	song mus_rg_sevii_cave, 0, 0
-	song mus_rg_teachy_tv_show, 0, 0
 	song mus_rg_sevii_route, 0, 0
-	song mus_rg_sevii_dungeon, 0, 0
-	song mus_rg_sevii_123, 0, 0
-	song mus_rg_sevii_45, 0, 0
-	song mus_rg_sevii_67, 0, 0
 	song mus_rg_poke_flute, 2, 2
 	song mus_rg_vs_deoxys, 0, 0
-	song mus_rg_vs_mewtwo, 0, 0
 	song mus_rg_vs_legend, 0, 0
-	song mus_rg_encounter_gym_leader, 0, 0
 	song mus_rg_encounter_deoxys, 0, 0
-	song mus_rg_trainer_tower, 0, 0
-	song mus_rg_slow_pallet, 0, 0
-	song mus_rg_teachy_tv_menu, 0, 0
 
     song mus_poke_radar, 0, 0
 	song mus_vs_wild2, 0, 0
