@@ -179,18 +179,6 @@ DirectSoundWaveData_sc88pro_string_ensemble_84::
 	.incbin "sound/direct_sound_samples/sc88pro_string_ensemble_84.bin"
 
 	.align 2
-DirectSoundWaveData_sc88pro_trumpet_60::
-	.incbin "sound/direct_sound_samples/sc88pro_trumpet_60.bin"
-
-	.align 2
-DirectSoundWaveData_sc88pro_trumpet_72::
-	.incbin "sound/direct_sound_samples/sc88pro_trumpet_72.bin"
-
-	.align 2
-DirectSoundWaveData_sc88pro_trumpet_84::
-	.incbin "sound/direct_sound_samples/sc88pro_trumpet_84.bin"
-
-	.align 2
 DirectSoundWaveData_sc88pro_tuba_39:: @N.B.: These tuba samples are actually sampled at 36 and 48, then pitched up
 	.incbin "sound/direct_sound_samples/sc88pro_tuba_39.bin"
 
@@ -201,10 +189,6 @@ DirectSoundWaveData_sc88pro_tuba_51::
 	.align 2
 DirectSoundWaveData_sc88pro_tuba_51_short::
 	.incbin "sound/direct_sound_samples/sc88pro_tuba_51_short.bin"
-
-	.align 2
-DirectSoundWaveData_sc88pro_french_horn_60::
-	.incbin "sound/direct_sound_samples/sc88pro_french_horn_60.bin"
 
 	.align 2
 DirectSoundWaveData_sc88pro_french_horn_72::
@@ -1957,14 +1941,6 @@ DirectSoundWaveData_sc88pro_nylon_str_guitar::
 	.align 2
 DirectSoundWaveData_sd90_special_scream_drive::
 	.incbin "sound/direct_sound_samples/sd90_special_scream_drive.bin"
-
-	.align 2
-DirectSoundWaveData_sc88pro_accordion_duplicate::
-	.incbin "sound/direct_sound_samples/sc88pro_accordion_duplicate.bin"
-
-	.align 2
-DirectSoundWaveData_steinway_b_piano::
-	.incbin "sound/direct_sound_samples/steinway_b_piano.bin"
 
 	.align 2
 DirectSoundWaveData_sd90_classical_whistle::
