@@ -76,8 +76,6 @@ SECTIONS {
         src/union_room_chat.o(.text);
         src/berry_crush.o(.text);
         src/berry_powder.o(.text);
-        src/dodrio_berry_picking.o(.text);
-        src/pokemon_jump.o(.text);
         src/minigame_countdown.o(.text);
         src/rtc.o(.text);
         src/day_night.o(.text);
@@ -322,9 +320,7 @@ SECTIONS {
         src/pokenav_ribbons_2.o(.text);
         src/pokenav_match_call_data.o(.text);
         src/menu_specialized.o(.text);
-        src/ereader_helpers.o(.text);
         src/faraway_island.o(.text);
-        src/ereader_screen.o(.text);
         src/trainer_hill.o(.text);
         src/rayquaza_scene.o(.text);
         src/walda_phrase.o(.text);
@@ -462,8 +458,6 @@ SECTIONS {
         src/union_room_chat.o(.rodata);
         src/berry_crush.o(.rodata);
         src/berry_powder.o(.rodata);
-        src/dodrio_berry_picking.o(.rodata);
-        src/pokemon_jump.o(.rodata);
         src/minigame_countdown.o(.rodata);
         src/rtc.o(.rodata);
         src/day_night.o(.rodata);
@@ -677,9 +671,7 @@ SECTIONS {
         src/pokenav_ribbons_2.o(.rodata);
         src/pokenav_match_call_data.o(.rodata);
         src/menu_specialized.o(.rodata);
-        src/ereader_helpers.o(.rodata);
         src/faraway_island.o(.rodata);
-        src/ereader_screen.o(.rodata);
         src/trainer_hill.o(.rodata);
         src/rayquaza_scene.o(.rodata);
         src/walda_phrase.o(.rodata);
