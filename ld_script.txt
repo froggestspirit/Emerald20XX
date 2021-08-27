@@ -1246,8 +1246,6 @@ SECTIONS {
     ALIGN(4)
     {
         data/unknown_serial_data.o(.rodata);
-        data/multiboot_berry_glitch_fix.o(.rodata);
-        data/multiboot_pokemon_colosseum.o(.rodata);
     } =0
 
     anim_mon_front_pic_data __anim_mon_load_address :
