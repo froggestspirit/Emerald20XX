@@ -3,7 +3,6 @@
 #include "battle.h"
 #include "battle_tower.h"
 #include "battle_setup.h"
-#include "ereader_helpers.h"
 #include "event_data.h"
 #include "event_scripts.h"
 #include "fieldmap.h"
@@ -398,10 +397,7 @@ void CopyTrainerHillTrainerText(u8 which, u16 trainerId)
 static void TrainerHillStartChallenge(void)
 {
     TrainerHillDummy();
-    if (!ReadTrainerHillAndValidate())
-        gSaveBlock1Ptr->trainerHill.field_3D6E_0f = 1;
-    else
-        gSaveBlock1Ptr->trainerHill.field_3D6E_0f = 0;
+    gSaveBlock1Ptr->trainerHill.field_3D6E_0f = 1;
 
     gSaveBlock1Ptr->trainerHill.unk_3D6C = 0;
     SetTrainerHillVBlankCounter(&gSaveBlock1Ptr->trainerHill.timer);

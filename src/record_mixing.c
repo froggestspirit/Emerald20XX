@@ -47,7 +47,6 @@ struct PlayerRecordsRS
     struct SecretBase secretBases[SECRET_BASES_COUNT];
     TVShow tvShows[TV_SHOWS_COUNT];
     PokeNews pokeNews[POKE_NEWS_COUNT];
-    OldMan oldMan;
     struct DewfordTrend dewfordTrends[SAVED_TRENDS_COUNT];
     struct RecordMixingDayCareMail dayCareMail;
     struct RSBattleTowerRecord battleTowerRecord;
@@ -60,7 +59,6 @@ struct PlayerRecordsEmerald
     /* 0x0000 */ struct SecretBase secretBases[SECRET_BASES_COUNT];
     /* 0x0c80 */ TVShow tvShows[TV_SHOWS_COUNT];
     /* 0x1004 */ PokeNews pokeNews[POKE_NEWS_COUNT];
-    /* 0x1044 */ OldMan oldMan;
     /* 0x1084 */ struct DewfordTrend dewfordTrends[SAVED_TRENDS_COUNT];
     /* 0x10ac */ struct RecordMixingDayCareMail dayCareMail;
     /* 0x1124 */ struct EmeraldBattleTowerRecord battleTowerRecord;
@@ -83,7 +81,6 @@ static bool8 gUnknown_03001130;
 static struct SecretBase *sSecretBasesSave;
 static TVShow *sTvShowsSave;
 static PokeNews *sPokeNewsSave;
-static OldMan *sOldManSave;
 static struct DewfordTrend *sDewfordTrendsSave;
 static struct RecordMixingDayCareMail *gUnknown_03001148;
 static void *sBattleTowerSave;

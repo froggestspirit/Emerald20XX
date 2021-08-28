@@ -331,7 +331,6 @@ struct BattleFrontier
     /*0xCE0*/ u16 towerWinStreaks[4][2];
     /*0xCF0*/ u16 towerRecordWinStreaks[4][2];
     /*0xD00*/ u16 battledBrainFlags;
-    /*0xD02*/ u16 towerSinglesStreak; // Never read
     /*0xD04*/ u16 towerNumWins; // Increments to MAX_STREAK but never read otherwise
     /*0xD06*/ u8 towerBattleOutcome;
     /*0xD07*/ u8 towerLvlMode;
@@ -343,7 +342,6 @@ struct BattleFrontier
     /*0xD08*/ u8 domeAttemptedDoublesOpen:1;
     /*0xD08*/ u8 domeHasWonDoubles50:1;
     /*0xD08*/ u8 domeHasWonDoublesOpen:1;
-    /*0xD09*/ //u8 domeUnused;
     /*0xD0A*/ u8 domeLvlMode;
     /*0xD0B*/ u8 domeBattleMode;
     /*0xD0C*/ u16 domeWinStreaks[2][2];
@@ -390,8 +388,6 @@ struct BattleFrontier
     /*0xEF1*/ u8 opponentTrainerIds[2][TRAINER_ID_LENGTH];
     /*0xEF9*/ u8 unk_EF9:7; // Never read
     /*0xEF9*/ u8 savedGame:1;
-    /*0xEFA*/ //u8 unused_EFA;
-    /*0xEFB*/ //u8 unused_EFB;
     /*0xEFC*/ struct DomeMonData domePlayerPartyData[FRONTIER_PARTY_SIZE];
 };
 
@@ -486,8 +482,6 @@ struct SaveBlock2
     /*0xB0*/ struct PlayersApprentice playerApprentice;
     /*0xDC*/ struct Apprentice apprentices[APPRENTICE_COUNT];
     /*0x1EC*/ struct BerryCrush berryCrush;
-    /*0x1FC*/ //struct PokemonJumpRecords pokeJump;
-    /*0x20C*/ //struct BerryPickingResults berryPick;
     /*0x21C*/ struct RankingHall1P hallRecords1P[HALL_FACILITIES_COUNT][2][3]; // From record mixing.
     /*0x57C*/ struct RankingHall2P hallRecords2P[2][3]; // From record mixing.
     /*0x624*/ u16 contestLinkResults[CONTEST_CATEGORIES_COUNT][CONTESTANT_COUNT];
@@ -606,71 +600,6 @@ struct MailStruct
     /*0x1E*/ u16 species;
     /*0x20*/ u16 itemId;
 };
-
-struct MauvilleManCommon
-{
-    u8 id;
-};
-
-struct MauvilleManBard
-{
-    /*0x00*/ u8 id;
-    /*0x02*/ u16 songLyrics[BARD_SONG_LENGTH];
-    /*0x0E*/ u16 temporaryLyrics[BARD_SONG_LENGTH];
-    /*0x1A*/ u8 playerName[PLAYER_NAME_LENGTH + 1];
-    /*0x22*/ u8 filler_2DB6[0x3];
-    /*0x25*/ u8 playerTrainerId[TRAINER_ID_LENGTH];
-    /*0x29*/ bool8 hasChangedSong;
-    /*0x2A*/ u8 language;
-}; /*size = 0x2C*/
-
-struct MauvilleManStoryteller
-{
-    u8 id;
-    bool8 alreadyRecorded;
-    u8 filler2[2];
-    u8 gameStatIDs[NUM_STORYTELLER_TALES];
-    u8 trainerNames[NUM_STORYTELLER_TALES][PLAYER_NAME_LENGTH];
-    u8 statValues[NUM_STORYTELLER_TALES][4];
-    u8 language[NUM_STORYTELLER_TALES];
-};
-
-struct MauvilleManGiddy
-{
-    /*0x00*/ u8 id;
-    /*0x01*/ u8 taleCounter;
-    /*0x02*/ u8 questionNum;
-    /*0x04*/ u16 randomWords[10];
-    /*0x18*/ u8 questionList[8];
-    /*0x20*/ u8 language;
-}; /*size = 0x2C*/
-
-struct MauvilleManHipster
-{
-    u8 id;
-    bool8 alreadySpoken;
-    u8 language;
-};
-
-struct MauvilleOldManTrader
-{
-    u8 id;
-    u8 decorations[NUM_TRADER_ITEMS];
-    u8 playerNames[NUM_TRADER_ITEMS][11];
-    u8 alreadyTraded;
-    u8 language[NUM_TRADER_ITEMS];
-};
-
-typedef union OldMan
-{
-    struct MauvilleManCommon common;
-    struct MauvilleManBard bard;
-    struct MauvilleManGiddy giddy;
-    struct MauvilleManHipster hipster;
-    struct MauvilleOldManTrader trader;
-    struct MauvilleManStoryteller storyteller;
-    u8 filler[0x40];
-} OldMan;
 
 struct RecordMixing_UnknownStructSub
 {
@@ -838,14 +767,6 @@ struct SaveTrainerHill
     /*0x3D6E*/ u16 tag:2;
 };
 
-struct MysteryEventStruct
-{
-    u8 unk_0_0:2;
-    u8 unk_0_2:3;
-    u8 unk_0_5:3;
-    u8 unk_1;
-};
-
  struct WonderNews
 {
     u16 unk_00;
@@ -882,31 +803,6 @@ struct MysteryEventStruct
     u32 crc;
     struct WonderCard data;
 };
-
- struct MEventBuffer_3430_Sub
-{
-    u16 unk_00;
-    u16 unk_02;
-    u16 unk_04;
-    u16 unk_06;
-    u16 unk_08[2][7];
-};
-
- struct MEventBuffer_3430
-{
-    u32 crc;
-    struct MEventBuffer_3430_Sub data;
-};
-
- struct MEventBuffers
-{
-    /*0x000 0x322C*/ struct WonderNewsSaveStruct wonderNews;
-    /*0x1c0 0x33EC*/ struct WonderCardSaveStruct wonderCard;
-    /*0x310 0x353C*/ struct MEventBuffer_3430 buffer_310;
-    /*0x338 0x3564*/ u16 questionnaireWords[NUM_QUESTIONNAIRE_WORDS];
-    /*0x340 0x356C*/ struct MysteryEventStruct unk_340;
-    /*0x344 0x3570*/ u32 unk_344[2][5];
-}; // 0x36C 0x3598
 
 // For external event data storage. The majority of these may have never been used.
 // In Emerald, the only known used fields are the PokeCoupon and BoxRS ones, but hacking the distribution discs allows Emerald to receive events and set the others
@@ -1022,7 +918,6 @@ struct SaveBlock1
     /*0x2BD4*/ u16 easyChatBattleLost[EASY_CHAT_BATTLE_WORDS_COUNT];
     /*0x2BE0*/ struct MailStruct mail[MAIL_COUNT];
     /*0x2E20*/ u8 additionalPhrases[8]; // bitfield for 33 additional phrases in easy chat system
-    /*0x2E28*/ OldMan oldMan;
     /*0x2e64*/ struct DewfordTrend dewfordTrends[SAVED_TRENDS_COUNT];
     /*0x2e90*/ struct ContestWinner contestWinners[NUM_CONTEST_WINNERS]; // see CONTEST_WINNER_*
     /*0x3030*/ struct DayCare daycare;
@@ -1032,7 +927,6 @@ struct SaveBlock1
     /*0x31C7*/ struct ExternalEventFlags externalEventFlags;
     /*0x31DC*/ struct Roamer roamer;
     /*0x31F8*/ struct EnigmaBerry enigmaBerry;
-    /*0x322C*/ struct MEventBuffers unk_322C;
     /*0x3598*/ u8 field_3598[0x180];
     /*0x3718*/ u32 trainerHillTimes[4];
     /*0x3728*/ struct RamScript ramScript;
