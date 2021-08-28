@@ -130,7 +130,6 @@ struct PokemonStorageSystemData
     u16 field_B0[528 / 2];
     u16 field_2C0;
     u16 field_2C2;
-    u8 field_2C4; // Unused
     u8 field_2C5;
     u8 showPartyMenuState;
     u8 unk_02C7;
@@ -162,7 +161,6 @@ struct PokemonStorageSystemData
     struct Sprite *field_728[2];
     struct Sprite *field_730[2];
     u32 field_738;
-    u8 field_73C[80]; // Unused
     u16 field_78C; // Written to, but never read.
     s16 wallpaperSetId;
     s16 wallpaperId;
@@ -264,13 +262,11 @@ struct PokemonStorageSystemData
     struct UnkStorageStruct field_2204[3];
     u16 movingItem;
     u16 field_2236;
-    u8 field_2238; // Unused
     u16 field_223A;
     u16 *field_223C;
     struct Sprite *cursorMonSprite;
     u16 field_2244[0x40];
     u8 field_22C4[0x800];
-    u8 field_2AC4[0x1800]; // Unused
     u8 field_42C4[0x800];
     u8 field_4AC4[0x1000];
     u8 field_5AC4[0x800];
@@ -819,7 +815,6 @@ static const u16 gUnknown_085724BC[] =
 
 static const u16 gWaveformPalette[] = INCBIN_U16("graphics/pokemon_storage/waveform.gbapal");
 static const u32 gWaveformTiles[] = INCBIN_U32("graphics/pokemon_storage/waveform.4bpp");
-static const u32 gUnknown_085726B4[] = INCBIN_U32("graphics/unused/unknown_5726B4.gbapal");
 static const u32 gUnknown_085726F4[] = INCBIN_U32("graphics/unknown/unknown_5726F4.gbapal");
 
 static const struct WindowTemplate gUnknown_08572714[] =
@@ -1218,9 +1213,6 @@ static const u16 gWallpaperPalettes_Plain[][16] =
 static const u32 gWallpaperTiles_Plain[] = INCBIN_U32("graphics/pokemon_storage/plain.4bpp.lz");
 static const u32 gWallpaperTilemap_Plain[] = INCBIN_U32("graphics/pokemon_storage/plain.bin.lz");
 
-// 12x18 tilemap
-static const u32 gUnknown_085773C4[] = INCBIN_U32("graphics/unused/tilemap_5773C4.bin");
-
 static const u16 gUnknown_08577574[][2] =
 {
     {0x1CE7, 0x7FFF},
@@ -1460,9 +1452,6 @@ static const u32 *const gFriendsIcons[] =
     gWallpaperIcon_Magma,
 };
 
-// Unknown Unused data.
-static const u16 gUnknown_0857B07C = 0x23BA;
-
 static const struct SpriteSheet gUnknown_0857B080 = {gPCGfx_Arrow, 0x80, 6};
 
 static const struct OamData gOamData_83BB298 =
@@ -1585,31 +1574,6 @@ void DrawTextWindowAndBufferTiles(const u8 *string, void *dst, u8 zero1, u8 zero
     if (remainingBytes > 0)
         CpuFill16((zero2 << 4) | zero2, dst, (u32)(remainingBytes) * 0x100);
 
-    RemoveWindow(windowId);
-}
-
-// Unused
-void sub_80C6EAC(const u8 *string, void *dst, u16 arg2, u8 arg3, u8 clr2, u8 clr3)
-{
-    u32 var;
-    u8 windowId;
-    u8 txtColor[3];
-    u8 *tileData1, *tileData2;
-    struct WindowTemplate winTemplate = {0};
-
-    winTemplate.width = StringLength_Multibyte(string);
-    winTemplate.height = 2;
-    var = winTemplate.width * 32;
-    windowId = AddWindow(&winTemplate);
-    FillWindowPixelBuffer(windowId, PIXEL_FILL(arg3));
-    tileData1 = (u8*) GetWindowAttribute(windowId, WINDOW_TILE_DATA);
-    tileData2 = (winTemplate.width * 32) + tileData1;
-    txtColor[0] = arg3;
-    txtColor[1] = clr2;
-    txtColor[2] = clr3;
-    AddTextPrinterParameterized4(windowId, 1, 0, 2, 0, 0, txtColor, -1, string);
-    CpuCopy16(tileData1, dst, var);
-    CpuCopy16(tileData2, dst + arg2, var);
     RemoveWindow(windowId);
 }
 

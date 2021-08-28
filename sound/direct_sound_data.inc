@@ -31,18 +31,6 @@ DirectSoundWaveData_sd90_classical_oboe::
 	.incbin "sound/direct_sound_samples/sd90_classical_oboe.bin"
 
 	.align 2
-DirectSoundWaveData_unused_sd90_oboe::
-	.incbin "sound/direct_sound_samples/unused_sd90_oboe.bin"
-
-	.align 2
-DirectSoundWaveData_unused_guitar_separates_power_chord::
-	.incbin "sound/direct_sound_samples/unused_guitar_separates_power_chord.bin"
-
-	.align 2
-DirectSoundWaveData_unused_sc88pro_unison_slap::
-	.incbin "sound/direct_sound_samples/unused_sc88pro_unison_slap.bin"
-
-	.align 2
 DirectSoundWaveData_unknown_snare::
 	.incbin "sound/direct_sound_samples/unknown_snare.bin"
 
@@ -69,10 +57,6 @@ DirectSoundWaveData_sc88pro_tr909_hand_clap::
 	.align 2
 DirectSoundWaveData_sc88pro_orchestra_snare::
 	.incbin "sound/direct_sound_samples/sc88pro_orchestra_snare.bin"
-
-	.align 2
-DirectSoundWaveData_unused_sc55_tom::
-	.incbin "sound/direct_sound_samples/unused_sc55_tom.bin"
 
 	.align 2
 DirectSoundWaveData_unknown_close_hihat::
@@ -125,10 +109,6 @@ DirectSoundWaveData_dance_drums_ride_bell::
 	.align 2
 DirectSoundWaveData_sd90_cowbell::
 	.incbin "sound/direct_sound_samples/sd90_cowbell.bin"
-
-	.align 2
-DirectSoundWaveData_unused_heart_of_asia_indian_drum::
-	.incbin "sound/direct_sound_samples/unused_heart_of_asia_indian_drum.bin"
 
 	.align 2
 DirectSoundWaveData_sd90_open_triangle::
@@ -241,10 +221,6 @@ DirectSoundWaveData_sc88pro_church_organ3_high::
 	.align 2
 DirectSoundWaveData_unknown_female_voice::
 	.incbin "sound/direct_sound_samples/unknown_female_voice.bin"
-
-	.align 2
-DirectSoundWaveData_unused_unknown_male_voice::
-	.incbin "sound/direct_sound_samples/unused_unknown_male_voice.bin"
 
 	.align 2
 DirectSoundWaveData_sd90_classical_detuned_ep1_low::
@@ -1436,9 +1412,6 @@ Cry_Altaria::
 
 	.align 2
 Cry_Unused265::
-	.incbin "sound/direct_sound_samples/cries/unused_265.bin"
-
-	.align 2
 Cry_Taillow::
 	.incbin "sound/direct_sound_samples/cries/taillow.bin"
 
@@ -1448,9 +1421,6 @@ Cry_Swellow::
 
 	.align 2
 Cry_Unused268::
-	.incbin "sound/direct_sound_samples/cries/unused_268.bin"
-
-	.align 2
 Cry_Spinda::
 	.incbin "sound/direct_sound_samples/cries/spinda.bin"
 

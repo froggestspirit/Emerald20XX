@@ -183,31 +183,6 @@ struct Pokedex
     /*0x44*/ u8 seen[DEX_FLAGS_NO];
 };
 
-struct PokemonJumpRecords
-{
-    u16 jumpsInRow;
-    u16 unused1; // Set to 0, never read
-    u16 excellentsInRow;
-    u16 gamesWithMaxPlayers;
-    u32 unused2; // Set to 0, never read
-    u32 bestJumpScore;
-};
-
-struct BerryPickingResults
-{
-    u32 bestScore;
-    u16 berriesPicked;
-    u16 berriesPickedInRow;
-    u8 field_8;
-    u8 field_9;
-    u8 field_A;
-    u8 field_B;
-    u8 field_C;
-    u8 field_D;
-    u8 field_E;
-    u8 field_F;
-};
-
 // two arrays for lvl50 and open level
 struct PyramidBag
 {
@@ -368,7 +343,7 @@ struct BattleFrontier
     /*0xD08*/ u8 domeAttemptedDoublesOpen:1;
     /*0xD08*/ u8 domeHasWonDoubles50:1;
     /*0xD08*/ u8 domeHasWonDoublesOpen:1;
-    /*0xD09*/ u8 domeUnused;
+    /*0xD09*/ //u8 domeUnused;
     /*0xD0A*/ u8 domeLvlMode;
     /*0xD0B*/ u8 domeBattleMode;
     /*0xD0C*/ u16 domeWinStreaks[2][2];
@@ -415,8 +390,8 @@ struct BattleFrontier
     /*0xEF1*/ u8 opponentTrainerIds[2][TRAINER_ID_LENGTH];
     /*0xEF9*/ u8 unk_EF9:7; // Never read
     /*0xEF9*/ u8 savedGame:1;
-    /*0xEFA*/ u8 unused_EFA;
-    /*0xEFB*/ u8 unused_EFB;
+    /*0xEFA*/ //u8 unused_EFA;
+    /*0xEFB*/ //u8 unused_EFB;
     /*0xEFC*/ struct DomeMonData domePlayerPartyData[FRONTIER_PARTY_SIZE];
 };
 
@@ -437,7 +412,7 @@ struct PlayersApprentice
     /*0xB1*/ u8 leadMonId:2;
     /*0xB2*/ u8 party:3;
     /*0xB2*/ u8 saveId:2; 
-    /*0xB3*/ u8 unused;
+    /*0xB3*/ //u8 unused;
     /*0xB4*/ u8 speciesIds[MULTI_PARTY_SIZE];
     /*0xB8*/ struct ApprenticeQuestion questions[APPRENTICE_MAX_QUESTIONS];
 };
@@ -511,8 +486,8 @@ struct SaveBlock2
     /*0xB0*/ struct PlayersApprentice playerApprentice;
     /*0xDC*/ struct Apprentice apprentices[APPRENTICE_COUNT];
     /*0x1EC*/ struct BerryCrush berryCrush;
-    /*0x1FC*/ struct PokemonJumpRecords pokeJump;
-    /*0x20C*/ struct BerryPickingResults berryPick;
+    /*0x1FC*/ //struct PokemonJumpRecords pokeJump;
+    /*0x20C*/ //struct BerryPickingResults berryPick;
     /*0x21C*/ struct RankingHall1P hallRecords1P[HALL_FACILITIES_COUNT][2][3]; // From record mixing.
     /*0x57C*/ struct RankingHall2P hallRecords2P[2][3]; // From record mixing.
     /*0x624*/ u16 contestLinkResults[CONTEST_CATEGORIES_COUNT][CONTESTANT_COUNT];
@@ -544,7 +519,7 @@ struct SecretBase
     /*0x1AA9*/ u8 language;
     /*0x1AAA*/ u16 numSecretBasesReceived;
     /*0x1AAC*/ u8 numTimesEntered;
-    /*0x1AAD*/ u8 unused;
+    /*0x1AAD*/ //u8 unused;
     /*0x1AAE*/ u8 decorations[DECOR_MAX_SECRET_BASE];
     /*0x1ABE*/ u8 decorationPositions[DECOR_MAX_SECRET_BASE];
     /*0x1AD0*/ struct SecretBaseParty party;

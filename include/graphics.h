@@ -4178,8 +4178,6 @@ extern const u32 gBattleAnimSpriteGfx_HumanoidFoot[];
 extern const u32 gBattleAnimSpriteGfx_MonsterFoot[];
 extern const u32 gBattleAnimSpriteGfx_HumanoidHand[];
 extern const u32 gBattleAnimSpriteGfx_NoiseLine[];
-extern const u32 UnusedLevelupAnimationGfx[];
-extern const u32 UnusedLevelupAnimationTilemap[];
 extern const u32 gBattleAnimSpriteGfx_YellowUnk[];
 extern const u32 gBattleAnimSpriteGfx_RedFist[];
 extern const u32 gBattleAnimSpriteGfx_SlamHit[];
