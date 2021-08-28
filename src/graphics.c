@@ -416,6 +416,8 @@ const u32 gBattleAnimSpriteGfx_BlueFlames2[] = INCBIN_U32("graphics/battle_anims
 
 const u32 gUnknownTilemap_C15BC0[] = INCBIN_U32("graphics/unknown/unknown_C15BC0.bin.lz");
 
+const u32 gOldContestPalette[] = INCBIN_U32("graphics/contest/old_contest_2.gbapal.lz");
+const u32 gOldContestGfx[] = INCBIN_U32("graphics/contest/old_contest_2.bin.lz");
 
 const u32 gUnknown_08C17170[] = INCBIN_U32("graphics/unknown/unknown_C17170.bin.lz");
 

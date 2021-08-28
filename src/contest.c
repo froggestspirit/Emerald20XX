@@ -1026,6 +1026,9 @@ void LoadContestBgAfterMoveAnim(void)
 
     LZDecompressVram(gContestMiscGfx, (void *)VRAM);
     LZDecompressVram(gContestAudienceGfx, (void *)(BG_SCREEN_ADDR(4)));
+    CopyToBgTilemapBuffer(3, gOldContestGfx, 0, 0);
+    CopyBgTilemapBufferToVram(3);
+    LoadCompressedPalette(gOldContestPalette, 0, 0x200);
     LoadContestPalettes();
     for (i = 0; i < CONTESTANT_COUNT; i++)
     {
@@ -1309,6 +1312,10 @@ static bool8 SetupContestGraphics(u8 *stateVar)
         LZDecompressVram(gContestAudienceGfx, (void *)(BG_SCREEN_ADDR(4)));
         DmaCopyLarge32(3, (void *)(BG_SCREEN_ADDR(4)), eUnzippedContestAudience_Gfx, 0x2000, 0x1000);
         break;
+    case 3:
+        CopyToBgTilemapBuffer(3, gOldContestGfx, 0, 0);
+        CopyBgTilemapBufferToVram(3);
+        break;
     case 4:
         CopyToBgTilemapBuffer(2, gUnknown_08C17170, 0, 0);
         CopyBgTilemapBufferToVram(2);
@@ -1316,6 +1323,7 @@ static bool8 SetupContestGraphics(u8 *stateVar)
         DmaCopy32Defvars(3, gContestResources->contestBgTilemaps[2], eUnknownHeap1A004.savedJunk, sizeof(eUnknownHeap1A004.savedJunk));
         break;
     case 5:
+        LoadCompressedPalette(gOldContestPalette, 0, 0x200);
         CpuCopy32(gPlttBufferUnfaded + 128, tempPalette1, 16 * sizeof(u16));
         CpuCopy32(gPlttBufferUnfaded + (5 + gContestPlayerMonIndex) * 16, tempPalette2, 16 * sizeof(u16));
         CpuCopy32(tempPalette2, gPlttBufferUnfaded + 128, 16 * sizeof(u16));
