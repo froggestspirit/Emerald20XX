@@ -31,8 +31,6 @@ void HandleLinkBattleSetup(void)
 {
     if (gBattleTypeFlags & BATTLE_TYPE_LINK)
     {
-        if (gWirelessCommType)
-            SetWirelessCommType1();
         if (!gReceivedRemoteLinkPlayers)
             OpenLink();
         CreateTask(Task_WaitForLinkPlayerConnection, 0);
@@ -752,28 +750,21 @@ static void Task_HandleSendLinkBuffersData(u8 taskId)
             gTasks[taskId].data[11]++;
         break;
     case 2:
-        if (gWirelessCommType)
-        {
-            gTasks[taskId].data[11]++;
-        }
+        if (gBattleTypeFlags & BATTLE_TYPE_BATTLE_TOWER)
+            var = 2;
         else
-        {
-            if (gBattleTypeFlags & BATTLE_TYPE_BATTLE_TOWER)
-                var = 2;
-            else
-                var = (gBattleTypeFlags & BATTLE_TYPE_MULTI) ? 4 : 2;
+            var = (gBattleTypeFlags & BATTLE_TYPE_MULTI) ? 4 : 2;
 
-            if (GetLinkPlayerCount_2() >= var)
+        if (GetLinkPlayerCount_2() >= var)
+        {
+            if (IsLinkMaster())
             {
-                if (IsLinkMaster())
-                {
-                    CheckShouldAdvanceLinkState();
-                    gTasks[taskId].data[11]++;
-                }
-                else
-                {
-                    gTasks[taskId].data[11]++;
-                }
+                CheckShouldAdvanceLinkState();
+                gTasks[taskId].data[11]++;
+            }
+            else
+            {
+                gTasks[taskId].data[11]++;
             }
         }
         break;

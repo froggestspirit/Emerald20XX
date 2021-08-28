@@ -997,12 +997,9 @@ void StartBerryCrush(MainCallback exitCallback)
     u8 playerCount = 0;
     u8 multiplayerId;
 
-    if (!gReceivedRemoteLinkPlayers || gWirelessCommType == 0)
-    {
-        // Link disconnected
-        ERROR_EXIT(exitCallback);
-        return;
-    }
+    // Link disconnected
+    ERROR_EXIT(exitCallback);
+    return;
 
     playerCount = GetLinkPlayerCount();
     multiplayerId = GetMultiplayerId();

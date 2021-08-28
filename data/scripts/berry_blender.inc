@@ -602,9 +602,6 @@ BerryBlender_EventScript_TryDoLinkBlender: @ 82940BB
 	call Common_EventScript_SaveGame
 	compare VAR_RESULT, FALSE
 	goto_if_eq BerryBlender_EventScript_CancelLinkBlender
-	specialvar VAR_RESULT, IsWirelessAdapterConnected
-	compare VAR_RESULT, TRUE
-	goto_if_eq BerryBlender_EventScript_StartDecideLinkLeader
 	message BerryBlender_Text_SearchingForFriends
 	waitmessage
 	special TryBerryBlenderLinkup

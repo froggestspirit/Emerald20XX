@@ -655,7 +655,6 @@ LilycoveCity_ContestLobby_EventScript_TryEnterLinkContest:: @ 821A856
 	goto_if_eq LilycoveCity_ContestLobby_EventScript_CancelLinkContest
 	message LilycoveCity_ContestLobby_Text_WhichContestMode
 	waitmessage
-	specialvar VAR_TEMP_D, IsWirelessAdapterConnected
 	multichoice 0, 0, MULTI_LINK_CONTEST_MODE, FALSE
 	switch VAR_RESULT
 	case 0, LilycoveCity_ContestLobby_EventScript_EmeraldMode  @ Shortened to E-Mode
@@ -671,8 +670,6 @@ LilycoveCity_ContestLobby_EventScript_EmeraldMode:: @ 821A8BB
 
 LilycoveCity_ContestLobby_EventScript_GlobalMode:: @ 821A8C6
 	setvar VAR_TEMP_C, 1
-	compare VAR_TEMP_D, 1
-	goto_if_eq LilycoveCity_ContestLobby_EventScript_CancelLinkNoWirelessGMode
 	goto LilycoveCity_ContestLobby_EventScript_ChooseLinkContestType
 	end
 
@@ -760,10 +757,6 @@ LilycoveCity_ContestLobby_EventScript_EnterMonForLinkContest:: @ 821AA0A
 	end
 
 LilycoveCity_ContestLobby_EventScript_TrySetUpLinkContest:: @ 821AA15
-	compare VAR_TEMP_D, 1
-	goto_if_eq LilycoveCity_ContestLobby_EventScript_SetLinkGroupType
-	compare VAR_TEMP_D, 2
-	goto_if_ge LilycoveCity_ContestLobby_EventScript_CancelLinkContest
 	message LilycoveCity_ContestLobby_Text_PleaseWaitBButtonCancel
 	waitmessage
 	copyvar VAR_0x8004, VAR_RESULT

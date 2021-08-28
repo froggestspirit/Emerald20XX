@@ -333,9 +333,7 @@ void SetSerialCallback(IntrCallback callback)
 
 static void VBlankIntr(void)
 {
-    if (gWirelessCommType != 0)
-        RfuVSync();
-    else if (gLinkVSyncDisabled == FALSE)
+    if (gLinkVSyncDisabled == FALSE)
         LinkVSync();
 
     gMain.vblankCounter1++;

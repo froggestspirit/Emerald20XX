@@ -378,7 +378,6 @@ gSpecials:: @ 81DBA64
 	def_special ClearQuizLadyQuestionAndAnswer
 	def_special QuizLadySetCustomQuestion
 	def_special QuizLadyTakePrizeForCustomQuiz
-	def_special GetMysteryEventCardVal
 	def_special QuizLadyRecordCustomQuizData
 	def_special QuizLadySetWaitingForChallenger
 	def_special BufferQuizCorrectAnswer
@@ -401,24 +400,20 @@ gSpecials:: @ 81DBA64
 	def_special SetMirageTowerVisibility
 	def_special StartPlayerDescendMirageTower
 	def_special BufferTMHMMoveName
-	def_special IsWirelessAdapterConnected
 	def_special TryBecomeLinkLeader
 	def_special TryJoinLinkGroup
 	def_special RunUnionRoom
 	def_special ShowWirelessCommunicationScreen
 	def_special InitUnionRoom
 	def_special BufferUnionRoomPlayerName
-	def_special sub_801DC20
 	def_special ChooseMonForWirelessMinigame
 	def_special Script_ResetUnionRoomTrade
 	def_special IsBadEggInParty
-	def_special ValidateReceivedWonderCard
 	def_special HasAtLeastOneBerry
 	def_special OffsetCameraForBattle
 	def_special GetDeptStoreDefaultFloorChoice
 	def_special BufferVarsForIVRater
 	def_special LinkContestWaitForConnection
-	def_special GetWirelessCommType
 	def_special LinkContestTryShowWirelessIndicator
 	def_special LinkContestTryHideWirelessIndicator
 	def_special IsWirelessContest

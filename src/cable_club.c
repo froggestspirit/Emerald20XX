@@ -18,7 +18,6 @@
 #include "overworld.h"
 #include "palette.h"
 #include "union_room.h"
-#include "mevent2.h"
 #include "script.h"
 #include "script_pokemon_util.h"
 #include "sound.h"
@@ -999,18 +998,6 @@ void CB2_ReturnFromCableClubBattle(void)
     if (gSpecialVar_0x8004 == USING_SINGLE_BATTLE || gSpecialVar_0x8004 == USING_DOUBLE_BATTLE)
     {
         UpdatePlayerLinkBattleRecords(gLocalLinkPlayerId ^ 1);
-        if (gWirelessCommType)
-        {
-            switch (gBattleOutcome)
-            {
-            case B_OUTCOME_WON:
-                RecordIdOfWonderCardSenderByEventType(0, gLinkPlayers[GetMultiplayerId() ^ 1].trainerId);
-                break;
-            case B_OUTCOME_LOST:
-                RecordIdOfWonderCardSenderByEventType(1, gLinkPlayers[GetMultiplayerId() ^ 1].trainerId);
-                break;
-            }
-        }
     }
 
     if (InUnionRoom() == TRUE)
@@ -1160,16 +1147,7 @@ static void Task_StartWirelessTrade(u8 taskId)
 
 void PlayerEnteredTradeSeat(void)
 {
-    if (gWirelessCommType != 0)
-        CreateTask_EnterCableClubSeat(Task_StartWirelessTrade);
-    else
-        CreateTask_EnterCableClubSeat(Task_StartWiredTrade);
-}
-
-// Unused
-static void CreateTask_StartWiredTrade(void)
-{
-    CreateTask(Task_StartWiredTrade, 80);
+    CreateTask_EnterCableClubSeat(Task_StartWiredTrade);
 }
 
 void nullsub_37(void)
@@ -1181,10 +1159,7 @@ void ColosseumPlayerSpotTriggered(void)
 {
     gLinkType = LINKTYPE_BATTLE;
 
-    if (gWirelessCommType)
-        CreateTask_EnterCableClubSeat(Task_StartWirelessCableClubBattle);
-    else
-        CreateTask_EnterCableClubSeat(Task_StartWiredCableClubBattle);
+    CreateTask_EnterCableClubSeat(Task_StartWiredCableClubBattle);
 }
 
 // Unused
@@ -1233,19 +1208,12 @@ void Task_WaitForLinkPlayerConnection(u8 taskId)
     if (gReceivedRemoteLinkPlayers)
     {
         // Players connected, destroy task
-        if (gWirelessCommType == 0)
+        if (!DoesLinkPlayerCountMatchSaved())
         {
-            if (!DoesLinkPlayerCountMatchSaved())
-            {
-                CloseLink();
-                SetMainCallback2(CB2_LinkError);
-            }
-            DestroyTask(taskId);
+            CloseLink();
+            SetMainCallback2(CB2_LinkError);
         }
-        else
-        {
-            DestroyTask(taskId);
-        }
+        DestroyTask(taskId);
     }
 }
 
@@ -1277,16 +1245,9 @@ void Task_ReconnectWithLinkPlayers(u8 taskId)
     switch (tState)
     {
     case 0:
-        if (gWirelessCommType != 0)
-        {
-            DestroyTask(taskId);
-        }
-        else
-        {
-            OpenLink();
-            CreateTask(Task_WaitForLinkPlayerConnection, 1);
-            tState++;
-        }
+        OpenLink();
+        CreateTask(Task_WaitForLinkPlayerConnection, 1);
+        tState++;
         break;
     case 1:
         if (++tTimer > 11)
@@ -1325,8 +1286,7 @@ void Task_ReconnectWithLinkPlayers(u8 taskId)
 
 void TrySetBattleTowerLinkType(void)
 {
-    if (gWirelessCommType == 0)
-        gLinkType = LINKTYPE_BATTLE_TOWER;
+    gLinkType = LINKTYPE_BATTLE_TOWER;
 }
 
 #undef tState

@@ -1281,22 +1281,8 @@ static void Task_SaveAfterLinkBattle(u8 taskId)
             CopyWindowToVram(0, 3);
             BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
 
-            if (gWirelessCommType != 0 && InUnionRoom())
-            {
-                if (Link_AnyPartnersPlayingFRLG_JP())
-                {
-                    *state = 1;
-                }
-                else
-                {
-                    *state = 5;
-                }
-            }
-            else
-            {
-                gSoftResetDisabled = 1;
-                *state = 1;
-            }
+            gSoftResetDisabled = 1;
+            *state = 1;
             break;
         case 1:
             SetContinueGameWarpStatusToDynamicWarp();

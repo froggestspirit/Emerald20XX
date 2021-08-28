@@ -16,7 +16,7 @@
 #include "task.h"
 #include "text.h"
 #include "save.h"
-#include "mystery_gift.h"
+
 
 struct SioInfo
 {
@@ -1912,8 +1912,6 @@ static void RfuCheckErrorStatus(void)
 {
     if (Rfu.errorState == 1 && lman.childClockSlave_flag == 0)
     {
-        if (gMain.callback2 == c2_mystery_gift_e_reader_run || lman.init_param->mboot_flag)
-            gWirelessCommType = 2;
         SetMainCallback2(CB2_LinkError);
         gMain.savedCallback = CB2_LinkError;
         BufferLinkErrorInfo((Rfu.linkmanMsg << 16) | (Rfu.unk_10 << 8) | Rfu.unk_12, Rfu.recvQueue.count, Rfu.sendQueue.count, RfuGetStatus() == RFU_STATUS_CONNECTION_ERROR);
@@ -2493,23 +2491,6 @@ static void sub_8011AFC(void)
     ResetTasks();
     ResetPaletteFade();
     SetVBlankCallback(sub_8011AE8);
-    if (IsWirelessAdapterConnected())
-    {
-        gLinkType = LINKTYPE_TRADE;
-        SetWirelessCommType1();
-        OpenLink();
-        SeedRng(gMain.vblankCounter2);
-        for (i = 0; i < 4; i++)
-            gSaveBlock2Ptr->playerTrainerId[i] = Random() % 256;
-
-        SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_OBJ_ON | DISPCNT_BG0_ON | DISPCNT_BG2_ON | DISPCNT_OBJ_1D_MAP);
-        RunTasks();
-        AnimateSprites();
-        BuildOamBuffer();
-        UpdatePaletteFade();
-        CreateTask_RfuIdle();
-        SetMainCallback2(sub_8011BF8);
-    }
 }
 
 bool32 IsUnionRoomListenTaskActive(void)

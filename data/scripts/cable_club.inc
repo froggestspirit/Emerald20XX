@@ -1,57 +1,4 @@
 CableClub_OnTransition: @ 8276ACF
-	call CableClub_EventScript_HideOrShowMysteryGiftMan
-	end
-
-CableClub_EventScript_HideOrShowMysteryGiftMan:: @ 8276AD5
-	specialvar VAR_RESULT, ShouldDistributeEonTicket
-	compare VAR_RESULT, TRUE
-	goto_if_eq CableClub_EventScript_ShowMysteryGiftMan
-	specialvar VAR_RESULT, ValidateReceivedWonderCard
-	compare VAR_RESULT, FALSE
-	goto_if_eq CableClub_EventScript_HideMysteryGiftMan
-	goto CableClub_EventScript_ShowMysteryGiftMan
-	end
-
-CableClub_EventScript_ShowMysteryGiftMan:: @ 8276AFB
-	clearflag FLAG_HIDE_POKEMON_CENTER_2F_MYSTERY_GIFT_MAN
-	return
-
-CableClub_EventScript_HideMysteryGiftMan:: @ 8276AFF
-	setflag FLAG_HIDE_POKEMON_CENTER_2F_MYSTERY_GIFT_MAN
-	return
-
-CableClub_EventScript_MysteryGiftMan:: @ 8276B03
-	specialvar VAR_RESULT, ShouldDistributeEonTicket
-	compare VAR_RESULT, TRUE
-	goto_if_eq CableClub_EventScript_DistributeEonTicket
-	goto CableClub_EventScript_AlreadyGotEonTicket
-	end
-
-CableClub_EventScript_AlreadyGotEonTicket:: @ 8276B19
-	gotoram
-
-@ Unused?
-CableClub_EventScript_MysteryGiftThankYou:: @ 8276B1A
-	msgbox gText_ThankYouForAccessingMysteryGift, MSGBOX_NPC
-	end
-
-CableClub_EventScript_DistributeEonTicket:: @ 8276B23
-	checkitem ITEM_EON_TICKET, 1
-	compare VAR_RESULT, TRUE
-	goto_if_eq CableClub_EventScript_AlreadyGotEonTicket
-	goto_if_set FLAG_ENABLE_SHIP_SOUTHERN_ISLAND, CableClub_EventScript_AlreadyGotEonTicket
-	msgbox Mevent_Text_TheresATicketForYou, MSGBOX_DEFAULT
-	giveitem ITEM_EON_TICKET
-	setflag FLAG_ENABLE_SHIP_SOUTHERN_ISLAND
-	setvar VAR_DISTRIBUTE_EON_TICKET, 0
-	msgbox Mevent_Text_TryUsingItAtLilycovePort, MSGBOX_DEFAULT
-	release
-	end
-
-@ Unused?
-CableClub_EventScript_MysteryGiftThankYou2:: @ 8276B62
-	msgbox gText_ThankYouForAccessingMysteryGift, MSGBOX_DEFAULT
-	release
 	end
 
 CableClub_OnWarp: @ 8276B6C
@@ -918,12 +865,7 @@ CableClub_EventScript_UnionRoomAttendant:: @ 827751B
 	compare VAR_RESULT, TRUE
 	goto_if_eq CableClub_EventScript_AbortLinkPlayerHasBadEgg
 	copyvar VAR_0x8007, VAR_LAST_TALKED
-	specialvar VAR_RESULT, IsWirelessAdapterConnected
-	compare VAR_RESULT, FALSE
-	goto_if_eq CableClub_EventScript_UnionRoomAdapterNotConnected
-	message CableClub_Text_WelcomeUnionRoomEnter
-	waitmessage
-	goto CableClub_EventScript_UnionRoomSelect
+	goto CableClub_EventScript_UnionRoomAdapterNotConnected
 	end
 
 CableClub_EventScript_UnionRoomSelect:: @ 827755C
@@ -1025,13 +967,7 @@ CableClub_EventScript_DirectCornerAttendant:: @ 82776A4
 	specialvar VAR_RESULT, IsBadEggInParty
 	compare VAR_RESULT, TRUE
 	goto_if_eq CableClub_EventScript_AbortLinkPlayerHasBadEgg
-	specialvar VAR_RESULT, IsWirelessAdapterConnected
-	compare VAR_RESULT, FALSE
-	goto_if_eq CableClub_EventScript_WelcomeToCableClub
-	message CableClub_Text_WelcomeWhichDirectCornerRoom
-	waitmessage
-	delay 28
-	goto CableClub_EventScript_DirectCornerSelectService
+	goto CableClub_EventScript_WelcomeToCableClub
 	end
 
 CableClub_EventScript_DirectCornerSelectService:: @ 82776E3
@@ -1306,14 +1242,7 @@ CableClub_EventScript_EnterWirelessLinkRoom:: @ 8277B3A
 EventScript_WirelessBoxResults:: @ 8277B8A
 	lockall
 	goto_if_unset FLAG_SYS_POKEDEX_GET, CableClub_EventScript_NotReadyYet
-	specialvar VAR_RESULT, IsWirelessAdapterConnected
-	compare VAR_RESULT, FALSE
-	goto_if_eq CableClub_EventScript_AdapterNotConnected
-	fadescreen FADE_TO_BLACK
-	special ShowWirelessCommunicationScreen
-	waitstate
-	msgbox CableClub_Text_ParticipantsStepUpToCounter, MSGBOX_DEFAULT
-	releaseall
+	goto CableClub_EventScript_AdapterNotConnected
 	end
 
 CableClub_EventScript_AdapterNotConnected:: @ 8277BB4
@@ -1378,18 +1307,7 @@ MossdeepCity_GameCorner_1F_EventScript_OldMan2:: @ 8277C91
 	faceplayer
 	message MossdeepCity_GameCorner_1F_Text_WelcomeCanYouWait
 	waitmessage
-	specialvar VAR_RESULT, IsWirelessAdapterConnected
-	compare VAR_RESULT, FALSE
-	goto_if_eq MossdeepCity_GameCorner_1F_EventScript_AdapterNotConnected
-	delay 60
-	message MossdeepCity_GameCorner_1F_Text_PlayWhichGame
-	waitmessage
-	multichoice 0, 0, MULTI_WIRELESS_MINIGAME, FALSE
-	switch VAR_RESULT
-	case 0, MossdeepCity_GameCorner_1F_EventScript_AbortMinigame
-	case 1, MossdeepCity_GameCorner_1F_EventScript_AbortMinigame
-	case 2, MossdeepCity_GameCorner_1F_EventScript_AbortMinigame
-	case MULTI_B_PRESSED, MossdeepCity_GameCorner_1F_EventScript_AbortMinigame
+	goto MossdeepCity_GameCorner_1F_EventScript_AdapterNotConnected
 	end
 
 MossdeepCity_GameCorner_1F_EventScript_ChooseLinkLeader:: @ 8277D81

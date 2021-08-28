@@ -244,7 +244,6 @@ extern bool8 gLinkVSyncDisabled;
 extern u32 gLinkStatus;
 
 
-bool8 IsWirelessAdapterConnected(void);
 void Task_DestroySelf(u8 taskId);
 void OpenLink(void);
 void CloseLink(void);
@@ -318,7 +317,6 @@ extern bool8 gReadyToExitStandby[MAX_LINK_PLAYERS];
 extern bool8 gReadyToCloseLink[MAX_LINK_PLAYERS];
 extern u16 gReadyCloseLinkType;
 extern u8 gSuppressLinkErrorMessage;
-extern u8 gWirelessCommType;
 extern bool8 gSavedLinkPlayerCount;
 extern u8 gSavedMultiplayerId;
 extern struct LinkTestBGInfo gLinkTestBGInfo;

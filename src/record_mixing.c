@@ -14,7 +14,6 @@
 #include "tv.h"
 #include "battle_tower.h"
 #include "window.h"
-#include "mystery_event_script.h"
 #include "secret_base.h"
 #include "sound.h"
 #include "constants/songs.h"
@@ -193,9 +192,6 @@ static void PrepareUnknownExchangePacket(struct PlayerRecordsRS *dest)
     memcpy(dest->dewfordTrends, sDewfordTrendsSave, sizeof(dest->dewfordTrends));
     sub_80E89F8(&dest->dayCareMail);
     EmeraldBattleTowerRecordToRuby(sBattleTowerSave, &dest->battleTowerRecord);
-
-    if (GetMultiplayerId() == 0)
-        dest->giftItem = GetRecordMixingGift();
 }
 
 static void PrepareExchangePacketForRubySapphire(struct PlayerRecordsRS *dest)
@@ -210,9 +206,6 @@ static void PrepareExchangePacketForRubySapphire(struct PlayerRecordsRS *dest)
     SanitizeDayCareMailForRuby(&dest->dayCareMail);
     EmeraldBattleTowerRecordToRuby(sBattleTowerSave, &dest->battleTowerRecord);
     SanitizeRubyBattleTowerRecord(&dest->battleTowerRecord);
-
-    if (GetMultiplayerId() == 0)
-        dest->giftItem = GetRecordMixingGift();
 }
 
 static void PrepareExchangePacket(void)
@@ -238,9 +231,6 @@ static void PrepareExchangePacket(void)
         sub_80E89F8(&sSentRecord->emerald.dayCareMail);
         memcpy(&sSentRecord->emerald.battleTowerRecord, sBattleTowerSave, sizeof(sSentRecord->emerald.battleTowerRecord));
         SanitizeEmeraldBattleTowerRecord(&sSentRecord->emerald.battleTowerRecord);
-
-        if (GetMultiplayerId() == 0)
-            sSentRecord->emerald.giftItem = GetRecordMixingGift();
 
         GetSavedApprentices(sSentRecord->emerald.apprentices, sApprenticesSave);
         GetPlayerHallRecords(&sSentRecord->emerald.hallRecords);
@@ -338,8 +328,7 @@ static void Task_RecordMixing_Main(u8 taskId)
         if (!gTasks[data[10]].isActive)
         {
             tState = 4;
-            if (gWirelessCommType == 0)
-                data[10] = CreateTask_ReestablishCableClubLink();
+            data[10] = CreateTask_ReestablishCableClubLink();
 
             PrintTextOnRecordMixing(gText_RecordMixingComplete);
             data[8] = 0;
@@ -355,10 +344,6 @@ static void Task_RecordMixing_Main(u8 taskId)
             free(sReceivedRecords);
             free(sSentRecord);
             SetLinkWaitingForScript();
-            if (gWirelessCommType != 0)
-            {
-                CreateTask(Task_ReturnToFieldRecordMixing, 10);
-            }
             ClearDialogWindowAndFrame(0, 1);
             DestroyTask(taskId);
             EnableBothScriptContexts();
@@ -960,15 +945,7 @@ static void Task_DoRecordMixing(u8 taskId)
     case 7: // wait for Task_LinkSave to finish.
         if (!FuncIsActiveTask(Task_LinkSave))
         {
-            if (gWirelessCommType)
-            {
-                sub_801048C(TRUE);
-                task->data[0] = 8;
-            }
-            else
-            {
-                task->data[0] = 4;
-            }
+            task->data[0] = 4;
         }
         break;
     case 8:

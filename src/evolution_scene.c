@@ -444,11 +444,6 @@ static void CB2_TradeEvolutionSceneLoadGraphics(void)
         }
         break;
     case 6:
-        if (gWirelessCommType)
-        {
-            LoadWirelessStatusIndicatorSpriteGfx();
-            CreateWirelessStatusIndicatorSprite(0, 0);
-        }
         BlendPalettes(PALETTES_ALL, 0x10, 0);
         gMain.state++;
         break;
@@ -1337,9 +1332,6 @@ static void Task_TradeEvolutionScene(u8 taskId)
         case T_MVSTATE_SHOW_MOVE_SELECT:
             if (!gPaletteFade.active)
             {
-                if (gWirelessCommType)
-                    DestroyWirelessStatusIndicatorSprite();
-
                 Free(GetBgTilemapBuffer(3));
                 Free(GetBgTilemapBuffer(1));
                 Free(GetBgTilemapBuffer(0));
