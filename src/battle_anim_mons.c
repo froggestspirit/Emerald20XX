@@ -205,7 +205,7 @@ u8 GetBattlerYDelta(u8 battlerId, u16 species)
                 coordSpecies = species;
             else
                 coordSpecies = letter + SPECIES_UNOWN_B - 1;
-            ret = gMonBackPicCoords[coordSpecies].y_offset;
+            ret = gMonBackPicCoords[coordSpecies].y_offset + 4;
         }
         else if (species == SPECIES_CASTFORM)
         {
@@ -213,11 +213,11 @@ u8 GetBattlerYDelta(u8 battlerId, u16 species)
         }
         else if (species > NUM_SPECIES)
         {
-            ret = gMonBackPicCoords[0].y_offset;
+            ret = gMonBackPicCoords[0].y_offset + 4;
         }
         else
         {
-            ret = gMonBackPicCoords[species].y_offset;
+            ret = gMonBackPicCoords[species].y_offset + 4;
         }
     }
     else
@@ -1863,7 +1863,7 @@ static u16 GetBattlerYDeltaFromSpriteId(u8 spriteId)
             if (IsContest())
             {
                 species = gContestResources->moveAnim->species;
-                return gMonBackPicCoords[species].y_offset;
+                return gMonBackPicCoords[species].y_offset + 4;
             }
             else
             {
@@ -1876,9 +1876,9 @@ static u16 GetBattlerYDeltaFromSpriteId(u8 spriteId)
                         species = spriteInfo[battlerId].transformSpecies;
 
                     if (species == SPECIES_CASTFORM)
-                        return sCastformBackSpriteYCoords[gBattleMonForms[battlerId]];
+                        return sCastformBackSpriteYCoords[gBattleMonForms[battlerId]] + 4;
                     else
-                        return gMonBackPicCoords[species].y_offset;
+                        return gMonBackPicCoords[species].y_offset + 4;
                 }
                 else
                 {
@@ -2089,7 +2089,7 @@ u8 CreateAdditionalMonSpriteForMoveAnim(u16 species, bool8 isBackpic, u8 id, s16
     if (!isBackpic)
         spriteId = CreateSprite(&sSpriteTemplate_MoveEffectMons[id], x, y + gMonFrontPicCoords[species].y_offset, subpriority);
     else
-        spriteId = CreateSprite(&sSpriteTemplate_MoveEffectMons[id], x, y + gMonBackPicCoords[species].y_offset, subpriority);
+        spriteId = CreateSprite(&sSpriteTemplate_MoveEffectMons[id], x, y + gMonBackPicCoords[species].y_offset + 4, subpriority);
 
     if (IsContest())
     {
