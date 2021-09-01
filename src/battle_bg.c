@@ -684,7 +684,7 @@ static const struct BattleBackground gBattleTerrainTable[] =
     [BATTLE_TERRAIN_PLAIN] =
     {
         .tileset = gBattleTerrainTiles_Building,
-        .tilemap = gBattleTerrainTilemap_Building
+        .tilemap = gBattleTerrainTilemap_Building,
         .entryTileset = gBattleTerrainAnimTiles_Building,
         .entryTilemap = gBattleTerrainAnimTilemap_Building,
         .palette = gBattleTerrainPalette_Plain,
@@ -814,7 +814,6 @@ void DrawMainBattleBackground(void)
                 case 3:
                 case 7:
                 case 8:
-                case 9:
                     LoadCompressedPalette(gBattleTerrainTable[gBattleTerrain].palette, 0x20, 0x60);
                 break;
                 default:
