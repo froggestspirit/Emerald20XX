@@ -62,7 +62,8 @@ const struct GlyphWidthFunc gGlyphWidthFuncs[] =
     { 0x5, GetGlyphWidthFont2 },
     { 0x6, GetGlyphWidthFont6 },
     { 0x7, GetGlyphWidthFont7 },
-    { 0x8, GetGlyphWidthFont8 }
+    { 0x8, GetGlyphWidthFont8 },
+    { 0x9, GetGlyphWidthFont9 }
 };
 
 const struct KeypadIcon gKeypadIcons[] =
@@ -95,6 +96,7 @@ const struct FontInfo gFontInfos[] =
     { Font6Func, 0x8, 0x10, 0x0, 0x8, 0x0, 0x2, 0x1, 0x3 },
     { Font7Func, 0x5, 0x10, 0x0, 0x0, 0x0, 0x2, 0x1, 0x3 },
     { Font8Func, 0x5,  0x8, 0x0, 0x0, 0x0, 0x2, 0x1, 0x3 },
+    { Font9Func, 0x5,  0x8, 0x0, 0x0, 0x0, 0x2, 0x1, 0x3 },
     { NULL,      0x8,  0x8, 0x0, 0x0, 0x0, 0x1, 0x2, 0xF }
 };
 
@@ -109,11 +111,14 @@ const u8 gMenuCursorDimensions[][2] =
     { 0x8, 0x10 },
     { 0x8,  0xF },
     { 0x8,  0x8 },
+    { 0x8,  0x8 },
     { 0x0,  0x0 }
 };
 
 const u16 gFont9JapaneseGlyphs[] = INCBIN_U16("graphics/fonts/font9.hwjpnfont");
 
+extern const u16 gFont9LatinGlyphs[];
+extern const u8 gFont9LatinGlyphWidths[];
 extern const u16 gFont8LatinGlyphs[];
 extern const u8 gFont8LatinGlyphWidths[];
 extern const u16 gFont0LatinGlyphs[];
@@ -661,6 +666,18 @@ u16 Font8Func(struct TextPrinter *textPrinter)
     return RenderText(textPrinter);
 }
 
+u16 Font9Func(struct TextPrinter *textPrinter)
+{
+    struct TextPrinterSubStruct *subStruct = (struct TextPrinterSubStruct *)(&textPrinter->subStructFields);
+
+    if (subStruct->hasGlyphIdBeenSet == FALSE)
+    {
+        subStruct->glyphId = 9;
+        subStruct->hasGlyphIdBeenSet = TRUE;
+    }
+    return RenderText(textPrinter);
+}
+
 void TextPrinterInitDownArrowCounters(struct TextPrinter *textPrinter)
 {
     struct TextPrinterSubStruct *subStruct = (struct TextPrinterSubStruct *)(&textPrinter->subStructFields);
@@ -1041,6 +1058,9 @@ u16 RenderText(struct TextPrinter *textPrinter)
             break;
         case 8:
             DecompressGlyphFont8(currChar, textPrinter->japanese);
+            break;
+        case 9:
+            DecompressGlyphFont9(currChar, textPrinter->japanese);
             break;
         case 6:
             break;
@@ -1491,7 +1511,7 @@ u8 RenderTextFont9(u8 *pixels, u8 fontId, u8 *str)
             switch (fontId)
             {
             case 9:
-                DecompressGlyphFont9(temp);
+                DecompressGlyphFont9old(temp);
                 break;
             case 1:
             default:
@@ -1711,6 +1731,48 @@ u32 GetGlyphWidthFont8(u16 glyphId, bool32 isJapanese)
         return gFont8LatinGlyphWidths[glyphId];
 }
 
+void DecompressGlyphFont9(u16 glyphId, bool32 isJapanese)
+{
+    const u16* glyphs;
+
+    if (isJapanese == TRUE)
+    {
+        glyphs = gFont0JapaneseGlyphs + (0x100 * (glyphId >> 0x4)) + (0x8 * (glyphId & 0xF));
+        DecompressGlyphTile(glyphs, gCurGlyph.gfxBufferTop);
+        DecompressGlyphTile(glyphs + 0x80, gCurGlyph.gfxBufferBottom);
+        gCurGlyph.width = 8;
+        gCurGlyph.height = 12;
+    }
+    else
+    {
+        glyphs = gFont9LatinGlyphs + (0x20 * glyphId);
+        gCurGlyph.width = gFont9LatinGlyphWidths[glyphId];
+
+        if (gCurGlyph.width <= 8)
+        {
+            DecompressGlyphTile(glyphs, gCurGlyph.gfxBufferTop);
+            DecompressGlyphTile(glyphs + 0x10, gCurGlyph.gfxBufferBottom);
+        }
+        else
+        {
+            DecompressGlyphTile(glyphs, gCurGlyph.gfxBufferTop);
+            DecompressGlyphTile(glyphs + 0x8, gCurGlyph.gfxBufferTop + 8);
+            DecompressGlyphTile(glyphs + 0x10, gCurGlyph.gfxBufferBottom);
+            DecompressGlyphTile(glyphs + 0x18, gCurGlyph.gfxBufferBottom + 8);
+        }
+
+        gCurGlyph.height = 12;
+    }
+}
+
+u32 GetGlyphWidthFont9(u16 glyphId, bool32 isJapanese)
+{
+    if (isJapanese == TRUE)
+        return 8;
+    else
+        return gFont9LatinGlyphWidths[glyphId];
+}
+
 void DecompressGlyphFont2(u16 glyphId, bool32 isJapanese)
 {
     const u16* glyphs;
@@ -1798,7 +1860,7 @@ u32 GetGlyphWidthFont1(u16 glyphId, bool32 isJapanese)
         return gFont1LatinGlyphWidths[glyphId];
 }
 
-void DecompressGlyphFont9(u16 glyphId)
+void DecompressGlyphFont9old(u16 glyphId)
 {
     const u16* glyphs;
 
