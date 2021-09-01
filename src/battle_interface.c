@@ -1070,17 +1070,17 @@ void InitBattlerHealthboxCoords(u8 battler)
         if (GetBattlerSide(battler) != B_SIDE_PLAYER)
             x = 44, y = 18;
         else
-            x = 158, y = 96;
+            x = 158, y = 100;
     }
     else
     {
         switch (GetBattlerPosition(battler))
         {
         case B_POSITION_PLAYER_LEFT:
-            x = 159, y = 84;
+            x = 159, y = 88;
             break;
         case B_POSITION_PLAYER_RIGHT:
-            x = 171, y = 109;
+            x = 171, y = 113;
             break;
         case B_POSITION_OPPONENT_LEFT:
             x = 44, y = 14;
@@ -1460,7 +1460,7 @@ u8 CreatePartyStatusSummarySprites(u8 battlerId, struct HpAndStatus *partyInfo, 
         if (GetBattlerSide(battlerId) == B_SIDE_PLAYER)
         {
             isOpponent = FALSE;
-            bar_X = 136, bar_Y = 104;
+            bar_X = 136, bar_Y = 108;
             bar_pos2_X = 100;
             bar_data0 = -5;
         }

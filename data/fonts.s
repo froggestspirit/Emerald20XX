@@ -12,6 +12,14 @@ gFont8LatinGlyphWidths:: @ 8633AE4
 	.include "graphics/fonts/font8_latin_widths.inc"
 
 	.align 2
+gFont9LatinGlyphs:: @ 862BAE4
+	.incbin "graphics/fonts/font8.latfont"
+
+	.align 2
+gFont9LatinGlyphWidths:: @ 8633AE4
+	.include "graphics/fonts/font8_latin_widths.inc"
+
+	.align 2
 gFont0LatinGlyphs:: @ 8633CE4
 	.incbin "graphics/fonts/font0.latfont"
 
