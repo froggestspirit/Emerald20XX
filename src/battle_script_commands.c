@@ -5351,7 +5351,7 @@ static void Cmd_yesnoboxlearnmove(void)
     switch (gBattleScripting.learnMoveState)
     {
     case 0:
-        HandleBattleWindowNew(0x18, 8, 0x1D, 0xD, 0);
+        HandleBattleWindowNew(0x18, 8, 0x1D, 0xC, 0);
         BattlePutTextOnWindow(gText_BattleYesNoChoice, 0xC);
         gBattleScripting.learnMoveState++;
         gBattleCommunication[CURSOR_POSITION] = 0;
@@ -5451,7 +5451,7 @@ static void Cmd_yesnoboxlearnmove(void)
         }
         break;
     case 5:
-        HandleBattleWindowNew(0x18, 8, 0x1D, 0xD, WINDOW_CLEAR);
+        HandleBattleWindowNew(0x18, 8, 0x1D, 0xC, WINDOW_CLEAR);
         gBattlescriptCurrInstr += 5;
         break;
     case 6:
@@ -5468,7 +5468,7 @@ static void Cmd_yesnoboxstoplearningmove(void)
     switch (gBattleScripting.learnMoveState)
     {
     case 0:
-        HandleBattleWindowNew(0x18, 8, 0x1D, 0xD, 0);
+        HandleBattleWindowNew(0x18, 8, 0x1D, 0xC, 0);
         BattlePutTextOnWindow(gText_BattleYesNoChoice, 0xC);
         gBattleScripting.learnMoveState++;
         gBattleCommunication[CURSOR_POSITION] = 0;
@@ -5763,7 +5763,7 @@ static void Cmd_yesnobox(void)
     switch (gBattleCommunication[0])
     {
     case 0:
-        HandleBattleWindowNew(0x18, 8, 0x1D, 0xD, 0);
+        HandleBattleWindowNew(0x18, 8, 0x1D, 0xC, 0);
         BattlePutTextOnWindow(gText_BattleYesNoChoice, 0xC);
         gBattleCommunication[0]++;
         gBattleCommunication[CURSOR_POSITION] = 0;
@@ -5788,13 +5788,13 @@ static void Cmd_yesnobox(void)
         {
             gBattleCommunication[CURSOR_POSITION] = 1;
             PlaySE(SE_SELECT);
-            HandleBattleWindowNew(0x18, 8, 0x1D, 0xD, WINDOW_CLEAR);
+            HandleBattleWindowNew(0x18, 8, 0x1D, 0xC, WINDOW_CLEAR);
             gBattlescriptCurrInstr++;
         }
         else if (JOY_NEW(A_BUTTON))
         {
             PlaySE(SE_SELECT);
-            HandleBattleWindowNew(0x18, 8, 0x1D, 0xD, WINDOW_CLEAR);
+            HandleBattleWindowNew(0x18, 8, 0x1D, 0xC, WINDOW_CLEAR);
             gBattlescriptCurrInstr++;
         }
         break;
@@ -10096,20 +10096,20 @@ void HandleBattleWindowNew(u8 xStart, u8 yStart, u8 xEnd, u8 yEnd, u8 flags)
 void BattleCreateYesNoCursorAt(u8 cursorPosition)
 {
     u16 src[2];
-    src[0] = 1;
-    src[1] = 2;
+    src[0] = 0x10 + (cursorPosition << 1);
+    src[1] = src[0] + 1;
 
-    CopyToBgTilemapBufferRect_ChangePalette(0, src, 0x19, 9 + (2 * cursorPosition), 1, 2, 0x11);
+    CopyToBgTilemapBufferRect_ChangePalette(0, src, 0x19, 9 + cursorPosition, 1, 2, 0x11);
     CopyBgTilemapBufferToVram(0);
 }
 
 void BattleDestroyYesNoCursorAt(u8 cursorPosition)
 {
     u16 src[2];
-    src[0] = 0x1016;
-    src[1] = 0x1016;
+    src[0] = 0x0020;
+    src[1] = 0x0020;
 
-    CopyToBgTilemapBufferRect_ChangePalette(0, src, 0x19, 9 + (2 * cursorPosition), 1, 2, 0x11);
+    CopyToBgTilemapBufferRect_ChangePalette(0, src, 0x19, 9 + cursorPosition, 1, 2, 0x11);
     CopyBgTilemapBufferToVram(0);
 }
 
@@ -10118,7 +10118,7 @@ static void Cmd_trygivecaughtmonnick(void)
     switch (gBattleCommunication[MULTIUSE_STATE])
     {
     case 0:
-        HandleBattleWindowNew(0x18, 8, 0x1D, 0xD, 0);
+        HandleBattleWindowNew(0x18, 8, 0x1D, 0xC, 0);
         if (FlagGet(FLAG_NUZLOCKE_ACTIVE)){
             gBattleCommunication[MULTIUSE_STATE] = 2;
             BeginFastPaletteFade(3);
