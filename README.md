@@ -24,7 +24,6 @@ Low Priority:
 
 Known Bugs:
 * Pokemon contests have a vertical seam in the pokemon sprites
-* Evolution animation may look glitched
 * Castforms transform animation may look glitched
 
 
