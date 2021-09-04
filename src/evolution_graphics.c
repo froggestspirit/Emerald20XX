@@ -515,8 +515,8 @@ u8 CycleEvolutionMonSprite(u8 preEvoSpriteId, u8 postEvoSpriteId)
     gTasks[taskId].tPostEvoScale = MON_MIN_SCALE;
 
     toDiv = 65536;
-    SetOamMatrix(MATRIX_PRE_EVO, MON_MAX_SCALE, 0, 0, MON_MAX_SCALE);
-    SetOamMatrix(MATRIX_POST_EVO, toDiv / gTasks[taskId].tPostEvoScale, 0, 0, toDiv / gTasks[taskId].tPostEvoScale);
+    SetOamMatrixRotationScaling(MATRIX_PRE_EVO, MON_MAX_SCALE, MON_MAX_SCALE, 0);
+    SetOamMatrixRotationScaling(MATRIX_POST_EVO, MON_MIN_SCALE, MON_MIN_SCALE, 0);
 
     gSprites[preEvoSpriteId].callback = SpriteCB_EvolutionMonSprite;
     gSprites[preEvoSpriteId].oam.affineMode = ST_OAM_AFFINE_NORMAL;
@@ -607,12 +607,12 @@ static void Task_CycleEvolutionMonSprite_UpdateSize(u8 taskId)
         }
 
         // Grow/shrink pre-evo sprite
-        oamMatrixArg = 65536 / gTasks[taskId].tPreEvoScale;
-        SetOamMatrix(MATRIX_PRE_EVO, oamMatrixArg, 0, 0, oamMatrixArg);
+        oamMatrixArg = gTasks[taskId].tPreEvoScale;
+        SetOamMatrixRotationScaling(MATRIX_PRE_EVO, oamMatrixArg, oamMatrixArg, 0);
 
         // Grow/shrink post-evo sprite
-        oamMatrixArg = 65536 / gTasks[taskId].tPostEvoScale;
-        SetOamMatrix(MATRIX_POST_EVO, oamMatrixArg, 0, 0, oamMatrixArg);
+        oamMatrixArg = gTasks[taskId].tPostEvoScale;
+        SetOamMatrixRotationScaling(MATRIX_POST_EVO, oamMatrixArg, oamMatrixArg, 0);
 
         // Both sprites have reached their size extreme
         if (numSpritesFinished == 2)
