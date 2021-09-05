@@ -303,6 +303,9 @@ $(FONTGFXDIR)/font7.latfont: $(FONTGFXDIR)/font7_latin.png
 $(FONTGFXDIR)/font8.latfont: $(FONTGFXDIR)/font8_latin.png
 	$(GFX) $< $@
 
+$(FONTGFXDIR)/font9.latfont: $(FONTGFXDIR)/font9_latin.png
+	$(GFX) $< $@
+
 $(FONTGFXDIR)/font0.hwjpnfont: $(FONTGFXDIR)/font0_japanese.png
 	$(GFX) $< $@
 
