@@ -1229,7 +1229,7 @@ static void UpdateHpTextInHealthboxInDoubles(u8 healthboxSpriteId, s16 value, u8
             if (maxOrCurrent != HP_CURRENT) // doubles, max hp
             {
                 ConvertIntToDecimalStringN(text, value, STR_CONV_MODE_RIGHT_ALIGN, 3);
-                windowTileData = AddTextPrinterAndCreateWindowOnHealthbox(text, 0, 4, 0, &windowId);
+                windowTileData = AddTextPrinterAndCreateWindowOnHealthbox(text, 0, 5, 0, &windowId);
                 HpTextIntoHealthboxObject((void*)(OBJ_VRAM0) + spriteTileNum + 0xC0, windowTileData, 2);
                 RemoveWindowOnHealthbox(windowId);
                 CpuCopy32(GetHealthboxElementGfxPtr(HEALTHBOX_GFX_116),
@@ -1241,7 +1241,7 @@ static void UpdateHpTextInHealthboxInDoubles(u8 healthboxSpriteId, s16 value, u8
                 ConvertIntToDecimalStringN(text, value, STR_CONV_MODE_RIGHT_ALIGN, 3);
                 text[3] = CHAR_SLASH;
                 text[4] = EOS;
-                windowTileData = AddTextPrinterAndCreateWindowOnHealthbox(text, 4, 4, 0, &windowId);
+                windowTileData = AddTextPrinterAndCreateWindowOnHealthbox(text, 0, 5, 0, &windowId);
                 FillHealthboxObject(objVram, 0, 3); // Erases HP bar leftover.
                 HpTextIntoHealthboxObject((void*)(OBJ_VRAM0 + 0x60) + spriteTileNum, windowTileData, 3);
                 RemoveWindowOnHealthbox(windowId);
