@@ -426,6 +426,7 @@
 
 #define MUS_POKE_RADAR              494
 #define MUS_VS_WILD2                495
+#define MUS_RG_VS_TRAINER           496
 
 #define MUS_ROUTE118                0x7FFF  // Map is split into 2 music sections. controlled by GetCurrLocationDefaultMusic().
 

@@ -378,6 +378,9 @@ $(MID_SUBDIR)/mus_rg_vs_legend.s: %.s: %.mid
 $(MID_SUBDIR)/mus_rg_vs_deoxys.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G185 -V080
 
+$(MID_SUBDIR)/mus_rg_vs_trainer.s: %.s: %.mid
+	$(MID) $< $@ -E -R$(STD_REVERB) -G156 -V090
+
 $(MID_SUBDIR)/mus_cable_car.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G071 -V078
 

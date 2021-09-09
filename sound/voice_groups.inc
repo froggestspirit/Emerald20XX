@@ -129,6 +129,7 @@
 .include "sound/voicegroups/voicegroup129.inc"
 .include "sound/voicegroups/voicegroup132.inc"
 .include "sound/voicegroups/voicegroup147.inc"
+.include "sound/voicegroups/voicegroup156.inc"
 .include "sound/voicegroups/voicegroup157.inc"
 .include "sound/voicegroups/voicegroup165.inc"
 .include "sound/voicegroups/voicegroup170.inc"

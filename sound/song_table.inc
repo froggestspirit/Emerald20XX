@@ -498,6 +498,7 @@ gSongTable:: @ 86B49F0
 
     song mus_poke_radar, 0, 0
 	song mus_vs_wild2, 0, 0
+	song mus_rg_vs_trainer, 0, 0
 
 	.align 2
 dummy_song_header: @ 86B5D00
