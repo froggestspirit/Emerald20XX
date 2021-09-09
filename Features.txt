@@ -22,6 +22,7 @@ Features:
 -Various Nuzlocke code - Kurausukun
 -HQ instrument samples - Kurausukun
 -Day/Night - Sierraffinity
+-Various graphical updates
 
 
 Removals:
