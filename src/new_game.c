@@ -125,7 +125,7 @@ static void ClearFrontierRecord(void)
 
 static void WarpToTruck(void)
 {
-    SetWarpDestination(MAP_GROUP(INSIDE_OF_TRUCK), MAP_NUM(INSIDE_OF_TRUCK), -1, -1, -1);
+    SetWarpDestination(MAP_GROUP(BATTLE_FRONTIER_BATTLE_FACTORY_LOBBY), MAP_NUM(BATTLE_FRONTIER_BATTLE_FACTORY_LOBBY), -1, -1, -1);
     WarpIntoMap();
 }
 
@@ -157,50 +157,50 @@ void NewGameInitData(void)
     ResetPokedex();
     ClearFrontierRecord();
     ClearSav1();
-    ClearMailData();
-    gSaveBlock2Ptr->specialSaveWarpFlags = 0;
-    gSaveBlock2Ptr->gcnLinkFlags = 0;
+    //ClearMailData();
+    //gSaveBlock2Ptr->specialSaveWarpFlags = 0;
+    //gSaveBlock2Ptr->gcnLinkFlags = 0;
     InitPlayerTrainerId();
     PlayTimeCounter_Reset();
     ClearPokedexFlags();
-    InitEventData();
-    ClearTVShowData();
-    ResetGabbyAndTy();
-    ClearSecretBases();
-    ClearBerryTrees();
-    SetMoney(&gSaveBlock1Ptr->money, 3000);
-    SetCoins(0);
-    ResetLinkContestBoolean();
+    //InitEventData();
+    //ClearTVShowData();
+    //ResetGabbyAndTy();
+    //ClearSecretBases();
+    //ClearBerryTrees();
+    //SetMoney(&gSaveBlock1Ptr->money, 3000);
+    //SetCoins(0);
+    //ResetLinkContestBoolean();
     ResetGameStats();
-    ClearAllContestWinnerPics();
-    ClearPlayerLinkBattleRecords();
-    InitSeedotSizeRecord();
-    InitLotadSizeRecord();
+    //ClearAllContestWinnerPics();
+    //ClearPlayerLinkBattleRecords();
+    //InitSeedotSizeRecord();
+    //InitLotadSizeRecord();
     gPlayerPartyCount = 0;
     ZeroPlayerPartyMons();
-    ResetPokemonStorageSystem();
-    ClearRoamerData();
-    ClearRoamerLocationData();
-    gSaveBlock1Ptr->registeredItem = 0;
-    ClearBag();
-    NewGameInitPCItems();
-    ClearPokeblocks();
-    ClearDecorationInventories();
-    InitEasyChatPhrases();
-    InitDewfordTrend();
-    ResetFanClub();
-    ResetLotteryCorner();
+    //ResetPokemonStorageSystem();
+    //ClearRoamerData();
+    //ClearRoamerLocationData();
+    //gSaveBlock1Ptr->registeredItem = 0;
+    //ClearBag();
+    //NewGameInitPCItems();
+    //ClearPokeblocks();
+    //ClearDecorationInventories();
+    //InitEasyChatPhrases();
+    //InitDewfordTrend();
+    //ResetFanClub();
+    //ResetLotteryCorner();
     WarpToTruck();
-    ScriptContext2_RunNewScript(EventScript_ResetAllMapFlags);
-    ResetMiniGamesRecords();
-    InitUnionRoomChatRegisteredTexts();
-    InitLilycoveLady();
-    ResetAllApprenticeData();
-    ClearRankingHallRecords();
-    InitMatchCallCounters();
-    WipeTrainerNameRecords();
-    ResetTrainerHillResults();
-    ResetContestLinkResults();
+    //ScriptContext2_RunNewScript(EventScript_ResetAllMapFlags);
+    //ResetMiniGamesRecords();
+    //InitUnionRoomChatRegisteredTexts();
+    //InitLilycoveLady();
+    //ResetAllApprenticeData();
+    //ClearRankingHallRecords();
+    //InitMatchCallCounters();
+    //WipeTrainerNameRecords();
+    //ResetTrainerHillResults();
+    //ResetContestLinkResults();
     
     memset(&gSaveBlock2Ptr->follower, 0, sizeof(gSaveBlock2Ptr->follower));
 }

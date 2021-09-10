@@ -11,6 +11,7 @@
 #include "load_save.h"
 #include "save.h"
 #include "new_game.h"
+#include "main_menu.h"
 #include "m4a.h"
 #include "random.h"
 #include "decompress.h"
@@ -1110,7 +1111,7 @@ static u8 SetUpCopyrightScreen(void)
         if (UpdatePaletteFade())
             break;
         CreateTask(Task_Scene1_Load, 0);
-        SetMainCallback2(MainCB2_Intro);
+        SetMainCallback2(CB2_InitMainMenu);
         GameCubeMultiBoot_Quit();
         SetSerialCallback(SerialCB);
         return 0;
