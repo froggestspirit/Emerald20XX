@@ -2,46 +2,24 @@
 #include "new_game.h"
 #include "random.h"
 #include "pokemon.h"
-#include "roamer.h"
-#include "pokemon_size_record.h"
 #include "script.h"
-#include "lottery_corner.h"
 #include "play_time.h"
-#include "match_call.h"
-#include "lilycove_lady.h"
 #include "load_save.h"
-#include "pokeblock.h"
-#include "dewford_trend.h"
-#include "berry.h"
 #include "rtc.h"
-#include "easy_chat.h"
-#include "event_data.h"
-#include "money.h"
-#include "trainer_hill.h"
-#include "tv.h"
-#include "coins.h"
 #include "text.h"
 #include "overworld.h"
-#include "mail.h"
 #include "battle_records.h"
 #include "item.h"
 #include "pokedex.h"
-#include "apprentice.h"
 #include "frontier_util.h"
 #include "constants/maps.h"
 #include "pokedex.h"
 #include "save.h"
 #include "link_rfu.h"
 #include "main.h"
-#include "contest.h"
 #include "item_menu.h"
 #include "pokemon_storage_system.h"
-#include "decoration_inventory.h"
-#include "secret_base.h"
 #include "player_pc.h"
-#include "field_specials.h"
-#include "berry_powder.h"
-#include "union_room_chat.h"
 
 extern const u8 EventScript_ResetAllMapFlags[];
 
@@ -108,11 +86,6 @@ static void ClearPokedexFlags(void)
 
 void ClearAllContestWinnerPics(void)
 {
-    s32 i;
-
-    ClearContestWinnerPicsInContestHall();
-    for (i = 8; i < 13; i++)
-        gSaveBlock1Ptr->contestWinners[i] = sContestWinnerPicDummy;
 }
 
 static void ClearFrontierRecord(void)
@@ -157,56 +130,17 @@ void NewGameInitData(void)
     ResetPokedex();
     ClearFrontierRecord();
     ClearSav1();
-    //ClearMailData();
-    //gSaveBlock2Ptr->specialSaveWarpFlags = 0;
-    //gSaveBlock2Ptr->gcnLinkFlags = 0;
     InitPlayerTrainerId();
     PlayTimeCounter_Reset();
     ClearPokedexFlags();
-    //InitEventData();
-    //ClearTVShowData();
-    //ResetGabbyAndTy();
-    //ClearSecretBases();
-    //ClearBerryTrees();
-    //SetMoney(&gSaveBlock1Ptr->money, 3000);
-    //SetCoins(0);
-    //ResetLinkContestBoolean();
     ResetGameStats();
-    //ClearAllContestWinnerPics();
-    //ClearPlayerLinkBattleRecords();
-    //InitSeedotSizeRecord();
-    //InitLotadSizeRecord();
     gPlayerPartyCount = 0;
     ZeroPlayerPartyMons();
-    //ResetPokemonStorageSystem();
-    //ClearRoamerData();
-    //ClearRoamerLocationData();
-    //gSaveBlock1Ptr->registeredItem = 0;
-    //ClearBag();
-    //NewGameInitPCItems();
-    //ClearPokeblocks();
-    //ClearDecorationInventories();
-    //InitEasyChatPhrases();
-    //InitDewfordTrend();
-    //ResetFanClub();
-    //ResetLotteryCorner();
     WarpToTruck();
-    //ScriptContext2_RunNewScript(EventScript_ResetAllMapFlags);
-    //ResetMiniGamesRecords();
-    //InitUnionRoomChatRegisteredTexts();
-    //InitLilycoveLady();
-    //ResetAllApprenticeData();
-    //ClearRankingHallRecords();
-    //InitMatchCallCounters();
-    //WipeTrainerNameRecords();
-    //ResetTrainerHillResults();
-    //ResetContestLinkResults();
     
     memset(&gSaveBlock2Ptr->follower, 0, sizeof(gSaveBlock2Ptr->follower));
 }
 
 static void ResetMiniGamesRecords(void)
 {
-    CpuFill16(0, &gSaveBlock2Ptr->berryCrush, sizeof(struct BerryCrush));
-    SetBerryPowder(&gSaveBlock2Ptr->berryCrush.berryPowderAmount, 0);
 }
