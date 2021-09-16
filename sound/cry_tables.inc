@@ -388,6 +388,35 @@ gCryTable:: @ 869DCF4
 	cry Cry_Jirachi  @ 869EF00
 	cry Cry_Deoxys  @ 869EF0C
 	cry Cry_Chimecho  @ 869EF18
+	cry Cry_Ambipom
+    cry Cry_Bonsly
+    cry Cry_Budew
+    cry Cry_Chingling
+    cry Cry_Dusknoir
+    cry Cry_Electivire
+    cry Cry_Froslass
+    cry Cry_Gallade
+    cry Cry_Glaceon
+    cry Cry_Gliscor
+    cry Cry_Happiny
+    cry Cry_Honchkrow
+    cry Cry_Leafeon
+    cry Cry_Lickilicky
+    cry Cry_Magmortar
+    cry Cry_Magnezone
+    cry Cry_Mamoswine
+    cry Cry_Mantyke
+    cry Cry_MimeJr
+    cry Cry_Mismagius
+    cry Cry_Munchlax
+    cry Cry_PorygonZ
+    cry Cry_Probopass
+    cry Cry_Rhyperior
+    cry Cry_Roserade
+    cry Cry_Tangrowth
+    cry Cry_Togekiss
+    cry Cry_Weavile
+    cry Cry_Yanmega
 
 	.align 2
 gCryTable2:: @ 869EF24
@@ -779,3 +808,32 @@ gCryTable2:: @ 869EF24
 	cry2 Cry_Jirachi  @ 86A0130
 	cry2 Cry_Deoxys  @ 86A013C
 	cry2 Cry_Chimecho  @ 86A0148
+	cry2 Cry_Ambipom
+    cry2 Cry_Bonsly
+    cry2 Cry_Budew
+    cry2 Cry_Chingling
+    cry2 Cry_Dusknoir
+    cry2 Cry_Electivire
+    cry2 Cry_Froslass
+    cry2 Cry_Gallade
+    cry2 Cry_Glaceon
+    cry2 Cry_Gliscor
+    cry2 Cry_Happiny
+    cry2 Cry_Honchkrow
+    cry2 Cry_Leafeon
+    cry2 Cry_Lickilicky
+    cry2 Cry_Magmortar
+    cry2 Cry_Magnezone
+    cry2 Cry_Mamoswine
+    cry2 Cry_Mantyke
+    cry2 Cry_MimeJr
+    cry2 Cry_Mismagius
+    cry2 Cry_Munchlax
+    cry2 Cry_PorygonZ
+    cry2 Cry_Probopass
+    cry2 Cry_Rhyperior
+    cry2 Cry_Roserade
+    cry2 Cry_Tangrowth
+    cry2 Cry_Togekiss
+    cry2 Cry_Weavile
+    cry2 Cry_Yanmega

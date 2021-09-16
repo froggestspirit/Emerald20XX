@@ -296,6 +296,18 @@ const u8 gItemEffect_LeafStone[6] = {
     [4] = ITEM4_EVO_STONE,
 };
 
+const u8 gItemEffect_ShinyStone[6] = {
+    [4] = ITEM4_EVO_STONE,
+};
+
+const u8 gItemEffect_DuskStone[6] = {
+    [4] = ITEM4_EVO_STONE,
+};
+
+const u8 gItemEffect_DawnStone[6] = {
+    [4] = ITEM4_EVO_STONE,
+};
+
 const u8 gItemEffect_CheriBerry[6] = {
     [3] = ITEM3_PARALYSIS,
 };
@@ -453,5 +465,8 @@ const u8 *const gItemEffectTable[] =
     [ITEM_HONDEW_BERRY - ITEM_POTION]  = gItemEffect_HondewBerry,
     [ITEM_GREPA_BERRY - ITEM_POTION]   = gItemEffect_GrepaBerry,
     [ITEM_TAMATO_BERRY - ITEM_POTION]  = gItemEffect_TamatoBerry,
-    [LAST_BERRY_INDEX - ITEM_POTION]   = NULL
+    [LAST_BERRY_INDEX - ITEM_POTION]   = NULL,
+    [ITEM_SHINY_STONE - ITEM_POTION]   = gItemEffect_ShinyStone,
+    [ITEM_DUSK_STONE - ITEM_POTION] = gItemEffect_DuskStone,
+    [ITEM_DAWN_STONE - ITEM_POTION] = gItemEffect_DawnStone
 };
