@@ -438,8 +438,8 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route123_EventScript_ItemUltraBall",
-      "flag": "FLAG_ITEM_ROUTE_123_ULTRA_BALL"
+      "script": "Route123_EventScript_ItemDawnStone",
+      "flag": "FLAG_ITEM_ROUTE_123_DAWN_STONE"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",

@@ -105,8 +105,8 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "MossdeepCity_EventScript_ItemNetBall",
-      "flag": "FLAG_ITEM_MOSSDEEP_CITY_NET_BALL"
+      "script": "MossdeepCity_EventScript_ItemDubiousDisc",
+      "flag": "FLAG_ITEM_MOSSDEEP_CITY_DUBIOUS_DISC"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_MAN_1",

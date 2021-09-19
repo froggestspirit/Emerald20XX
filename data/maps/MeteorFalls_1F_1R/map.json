@@ -50,8 +50,8 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "MeteorFalls_1F_1R_EventScript_ItemFullHeal",
-      "flag": "FLAG_ITEM_METEOR_FALLS_1F_1R_FULL_HEAL"
+      "script": "MeteorFalls_1F_1R_EventScript_ItemDuskStone",
+      "flag": "FLAG_ITEM_METEOR_FALLS_1F_1R_DUSK_STONE"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",

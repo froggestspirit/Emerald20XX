@@ -146,16 +146,16 @@ Route116_EventScript_ItemPotion:: @ 8290EAC
 	finditem ITEM_POTION
 	end
 
-Route117_EventScript_ItemGreatBall:: @ 8290EB9
-	finditem ITEM_GREAT_BALL
+Route117_EventScript_ItemShinyStone:: @ 8290EB9
+	finditem ITEM_SHINY_STONE
 	end
 
 Route117_EventScript_ItemRevive:: @ 8290EC6
 	finditem ITEM_REVIVE
 	end
 
-Route118_EventScript_ItemHyperPotion:: @ 8290ED3
-	finditem ITEM_HYPER_POTION
+Route118_EventScript_ItemDawnStone:: @ 8290ED3
+	finditem ITEM_DAWN_STONE
 	end
 
 Route119_EventScript_ItemSuperRepel:: @ 8290EE0
@@ -194,8 +194,8 @@ Route120_EventScript_ItemNugget:: @ 8290F48
 	finditem ITEM_NUGGET
 	end
 
-Route120_EventScript_ItemFullHeal:: @ 8290F55
-	finditem ITEM_FULL_HEAL
+Route120_EventScript_ItemShinyStone:: @ 8290F55
+	finditem ITEM_SHINY_STONE
 	end
 
 Route120_EventScript_ItemHyperPotion:: @ 8290F62
@@ -226,8 +226,8 @@ Route123_EventScript_ItemCalcium:: @ 8290FB0
 	finditem ITEM_CALCIUM
 	end
 
-Route123_EventScript_ItemUltraBall:: @ 8290FBD
-	finditem ITEM_ULTRA_BALL
+Route123_EventScript_ItemDawnStone:: @ 8290FBD
+	finditem ITEM_DAWN_STONE
 	end
 
 Route123_EventScript_ItemElixir:: @ 8290FCA
@@ -322,8 +322,8 @@ LilycoveCity_EventScript_ItemMaxRepel:: @ 82910E8
 	finditem ITEM_MAX_REPEL
 	end
 
-MossdeepCity_EventScript_ItemNetBall:: @ 82910F5
-	finditem ITEM_NET_BALL
+MossdeepCity_EventScript_ItemDubiousDisc:: @ 82910F5
+	finditem ITEM_DUBIOUS_DISC
 	end
 
 PetalburgWoods_EventScript_ItemXAttack:: @ 8291102
@@ -366,8 +366,8 @@ GraniteCave_B2F_EventScript_ItemRareCandy:: @ 8291177
 	finditem ITEM_RARE_CANDY
 	end
 
-JaggedPass_EventScript_ItemBurnHeal:: @ 8291184
-	finditem ITEM_BURN_HEAL
+JaggedPass_EventScript_ItemProtector:: @ 8291184
+	finditem ITEM_PROTECTOR
 	end
 
 FieryPath_EventScript_ItemFireStone:: @ 8291191
@@ -382,8 +382,8 @@ MeteorFalls_1F_1R_EventScript_ItemTM23:: @ 82911AB
 	finditem ITEM_TM23
 	end
 
-MeteorFalls_1F_1R_EventScript_ItemFullHeal:: @ 82911B8
-	finditem ITEM_FULL_HEAL
+MeteorFalls_1F_1R_EventScript_ItemDuskStone:: @ 82911B8
+	finditem ITEM_DUSK_STONE
 	end
 
 MeteorFalls_1F_1R_EventScript_ItemMoonStone:: @ 82911C5
@@ -410,12 +410,12 @@ NewMauville_Inside_EventScript_ItemThunderStone:: @ 8291206
 	finditem ITEM_THUNDER_STONE
 	end
 
-NewMauville_Inside_EventScript_ItemFullHeal:: @ 8291213
-	finditem ITEM_FULL_HEAL
+NewMauville_Inside_EventScript_ItemUpGrade:: @ 8291213
+	finditem ITEM_UP_GRADE
 	end
 
-NewMauville_Inside_EventScript_ItemParalyzeHeal:: @ 8291220
-	finditem ITEM_PARALYZE_HEAL
+NewMauville_Inside_EventScript_ItemElectirizer:: @ 8291220
+	finditem ITEM_ELECTIRIZER
 	end
 
 AbandonedShip_Rooms_1F_EventScript_ItemHarborMail:: @ 829122D
@@ -474,20 +474,20 @@ SafariZone_Southwest_EventScript_ItemMaxRevive:: @ 82912D6
 	finditem ITEM_MAX_REVIVE
 	end
 
-SafariZone_Northeast_EventScript_ItemNugget:: @ 82912E3
-	finditem ITEM_NUGGET
+SafariZone_Northeast_EventScript_ItemOvalStone:: @ 82912E3
+	finditem ITEM_OVAL_STONE
 	end
 
-SafariZone_Southeast_EventScript_ItemBigPearl:: @ 82912F0
-	finditem ITEM_BIG_PEARL
+SafariZone_Southeast_EventScript_ItemRazorFang:: @ 82912F0
+	finditem ITEM_RAZOR_FANG
 	end
 
 MtPyre_2F_EventScript_ItemUltraBall:: @ 82912FD
 	finditem ITEM_ULTRA_BALL
 	end
 
-MtPyre_3F_EventScript_ItemSuperRepel:: @ 829130A
-	finditem ITEM_SUPER_REPEL
+MtPyre_3F_EventScript_ItemReaperCloth:: @ 829130A
+	finditem ITEM_REAPER_CLOTH
 	end
 
 MtPyre_4F_EventScript_ItemSeaIncense:: @ 8291317
@@ -502,8 +502,8 @@ MtPyre_6F_EventScript_ItemTM30:: @ 8291331
 	finditem ITEM_TM30
 	end
 
-MtPyre_Exterior_EventScript_ItemMaxPotion:: @ 829133E
-	finditem ITEM_MAX_POTION
+MtPyre_Exterior_EventScript_ItemDuskStone:: @ 829133E
+	finditem ITEM_DUSK_STONE
 	end
 
 MtPyre_Exterior_EventScript_ItemTM48:: @ 829134B
@@ -550,8 +550,8 @@ ShoalCave_LowTideInnerRoom_EventScript_ItemRareCandy:: @ 82913CD
 	finditem ITEM_RARE_CANDY
 	end
 
-ShoalCave_LowTideStairsRoom_EventScript_ItemIceHeal:: @ 82913DA
-	finditem ITEM_ICE_HEAL
+ShoalCave_LowTideStairsRoom_EventScript_ItemRazorClaw:: @ 82913DA
+	finditem ITEM_RAZOR_CLAW
 	end
 
 ShoalCave_LowTideIceRoom_EventScript_ItemTM07:: @ 82913E7
@@ -654,6 +654,6 @@ MagmaHideout_4F_EventScript_MaxRevive:: @ 829151F
 	finditem ITEM_MAX_REVIVE
 	end
 
-MagmaHideout_3F_3R_EventScript_ItemEscapeRope:: @ 829152C
-	finditem ITEM_ESCAPE_ROPE
+MagmaHideout_3F_3R_EventScript_ItemMagmarizer:: @ 829152C
+	finditem ITEM_MAGMARIZER
 	end
