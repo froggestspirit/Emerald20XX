@@ -3318,10 +3318,10 @@ static void Cmd_getexp(void)
                 if (!(gBattleTypeFlags & BATTLE_TYPE_TRAINER) && gBattleMons[0].hp && !gBattleStruct->wildVictorySong)
                 {
                     BattleStopLowHpSound();
-                    if (!FlagGet(FLAG_NUZLOCKE_CATCH) || FlagGet(FLAGS_NUZLOCKE_ENCOUNTERS + GetCurrentRegionMapSectionId()))
+                    if (!FlagGet(FLAG_NUZLOCKE_CAN_CATCH))
                         PlayBGM(MUS_VICTORY_WILD);
                     else
-                        PlayBGM(MUS_NONE);
+                        PlayBGM(MUS_NONE);  // Should also be mute for shiny battles (fainting one sucks)
                     gBattleStruct->wildVictorySong++;
                 }
 
@@ -5351,7 +5351,7 @@ static void Cmd_yesnoboxlearnmove(void)
     switch (gBattleScripting.learnMoveState)
     {
     case 0:
-        HandleBattleWindow(0x18, 8, 0x1D, 0xD, 0);
+        HandleBattleWindowNew(0x18, 8, 0x1D, 0xC, 0);
         BattlePutTextOnWindow(gText_BattleYesNoChoice, 0xC);
         gBattleScripting.learnMoveState++;
         gBattleCommunication[CURSOR_POSITION] = 0;
@@ -5377,7 +5377,7 @@ static void Cmd_yesnoboxlearnmove(void)
             PlaySE(SE_SELECT);
             if (gBattleCommunication[1] == 0)
             {
-                HandleBattleWindow(0x18, 0x8, 0x1D, 0xD, WINDOW_CLEAR);
+                HandleBattleWindowNew(0x18, 0x8, 0x1D, 0xD, WINDOW_CLEAR);
                 BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 0x10, RGB_BLACK);
                 gBattleScripting.learnMoveState++;
             }
@@ -5451,7 +5451,7 @@ static void Cmd_yesnoboxlearnmove(void)
         }
         break;
     case 5:
-        HandleBattleWindow(0x18, 8, 0x1D, 0xD, WINDOW_CLEAR);
+        HandleBattleWindowNew(0x18, 8, 0x1D, 0xC, WINDOW_CLEAR);
         gBattlescriptCurrInstr += 5;
         break;
     case 6:
@@ -5468,7 +5468,7 @@ static void Cmd_yesnoboxstoplearningmove(void)
     switch (gBattleScripting.learnMoveState)
     {
     case 0:
-        HandleBattleWindow(0x18, 8, 0x1D, 0xD, 0);
+        HandleBattleWindowNew(0x18, 8, 0x1D, 0xC, 0);
         BattlePutTextOnWindow(gText_BattleYesNoChoice, 0xC);
         gBattleScripting.learnMoveState++;
         gBattleCommunication[CURSOR_POSITION] = 0;
@@ -5498,13 +5498,13 @@ static void Cmd_yesnoboxstoplearningmove(void)
             else
                 gBattlescriptCurrInstr += 5;
 
-            HandleBattleWindow(0x18, 0x8, 0x1D, 0xD, WINDOW_CLEAR);
+            HandleBattleWindowNew(0x18, 0x8, 0x1D, 0xD, WINDOW_CLEAR);
         }
         else if (JOY_NEW(B_BUTTON))
         {
             PlaySE(SE_SELECT);
             gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
-            HandleBattleWindow(0x18, 0x8, 0x1D, 0xD, WINDOW_CLEAR);
+            HandleBattleWindowNew(0x18, 0x8, 0x1D, 0xD, WINDOW_CLEAR);
         }
         break;
     }
@@ -5763,7 +5763,7 @@ static void Cmd_yesnobox(void)
     switch (gBattleCommunication[0])
     {
     case 0:
-        HandleBattleWindow(0x18, 8, 0x1D, 0xD, 0);
+        HandleBattleWindowNew(0x18, 8, 0x1D, 0xC, 0);
         BattlePutTextOnWindow(gText_BattleYesNoChoice, 0xC);
         gBattleCommunication[0]++;
         gBattleCommunication[CURSOR_POSITION] = 0;
@@ -5788,13 +5788,13 @@ static void Cmd_yesnobox(void)
         {
             gBattleCommunication[CURSOR_POSITION] = 1;
             PlaySE(SE_SELECT);
-            HandleBattleWindow(0x18, 8, 0x1D, 0xD, WINDOW_CLEAR);
+            HandleBattleWindowNew(0x18, 8, 0x1D, 0xC, WINDOW_CLEAR);
             gBattlescriptCurrInstr++;
         }
         else if (JOY_NEW(A_BUTTON))
         {
             PlaySE(SE_SELECT);
-            HandleBattleWindow(0x18, 8, 0x1D, 0xD, WINDOW_CLEAR);
+            HandleBattleWindowNew(0x18, 8, 0x1D, 0xC, WINDOW_CLEAR);
             gBattlescriptCurrInstr++;
         }
         break;
@@ -5904,7 +5904,7 @@ static void Cmd_drawlvlupbox(void)
         SetBgAttribute(1, BG_ATTR_PRIORITY, 0);
         ShowBg(0);
         ShowBg(1);
-        HandleBattleWindow(0x12, 7, 0x1D, 0x13, WINDOW_x80);
+        HandleBattleWindowNew(0x12, 7, 0x1D, 0x13, WINDOW_x80);
         gBattleScripting.drawlvlupboxState = 4;
         break;
     case 4:
@@ -5934,7 +5934,7 @@ static void Cmd_drawlvlupbox(void)
         if (gMain.newKeys != 0)
         {
             PlaySE(SE_SELECT);
-            HandleBattleWindow(0x12, 7, 0x1D, 0x13, WINDOW_x80 | WINDOW_CLEAR);
+            HandleBattleWindowNew(0x12, 7, 0x1D, 0x13, WINDOW_x80 | WINDOW_CLEAR);
             gBattleScripting.drawlvlupboxState++;
         }
         break;
@@ -5971,7 +5971,7 @@ static void DrawLevelUpWindow1(void)
     u16 currStats[NUM_STATS];
 
     GetMonLevelUpWindowStats(&gPlayerParty[gBattleStruct->expGetterMonId], currStats);
-    DrawLevelUpWindowPg1(0xD, gBattleResources->beforeLvlUp->stats, currStats, TEXT_DYNAMIC_COLOR_5, TEXT_DYNAMIC_COLOR_4, TEXT_DYNAMIC_COLOR_6);
+    DrawLevelUpWindowPg1(0xD, gBattleResources->beforeLvlUp->stats, currStats, 1, 2, 3);
 }
 
 static void DrawLevelUpWindow2(void)
@@ -5979,7 +5979,7 @@ static void DrawLevelUpWindow2(void)
     u16 currStats[NUM_STATS];
 
     GetMonLevelUpWindowStats(&gPlayerParty[gBattleStruct->expGetterMonId], currStats);
-    DrawLevelUpWindowPg2(0xD, currStats, TEXT_DYNAMIC_COLOR_5, TEXT_DYNAMIC_COLOR_4, TEXT_DYNAMIC_COLOR_6);
+    DrawLevelUpWindowPg2(0xD, currStats, 1, 2, 3);
 }
 
 static void sub_804F17C(void)
@@ -10045,23 +10045,71 @@ void HandleBattleWindow(u8 xStart, u8 yStart, u8 xEnd, u8 yEnd, u8 flags)
     }
 }
 
+void HandleBattleWindowNew(u8 xStart, u8 yStart, u8 xEnd, u8 yEnd, u8 flags)
+{
+    s32 destY, destX;
+    u16 var = 0;
+
+    for (destY = yStart; destY <= yEnd; destY++)
+    {
+        for (destX = xStart; destX <= xEnd; destX++)
+        {
+            if (destY == yStart)
+            {
+                if (destX == xStart)
+                    var = 0x000A;  // upper left
+                else if (destX == xEnd)
+                    var = 0x040A;  // upper right
+                else
+                    var = 0x000B;  // upper edge
+            }
+            else if (destY == yEnd)
+            {
+                if (destX == xStart)
+                    var = 0x000E;  // bottom left
+                else if (destX == xEnd)
+                    var = 0x040E;  // bottom right
+                else
+                    var = 0x000F;  // bottom edge
+            }
+            else
+            {
+                if (destX == xStart)
+                    var = 0x000C;  // left edge
+                else if (destX == xEnd)
+                    var = 0x040C;  // right edge
+                else
+                    var = 0x000D;  // center
+            }
+
+            if (flags & WINDOW_CLEAR)
+                var = 0;
+
+            if (flags & WINDOW_x80)
+                CopyToBgTilemapBufferRect_ChangePalette(1, &var, destX, destY, 1, 1, 0x11);
+            else
+                CopyToBgTilemapBufferRect_ChangePalette(0, &var, destX, destY, 1, 1, 0x11);
+        }
+    }
+}
+
 void BattleCreateYesNoCursorAt(u8 cursorPosition)
 {
     u16 src[2];
-    src[0] = 1;
-    src[1] = 2;
+    src[0] = 0x10 + (cursorPosition << 1);
+    src[1] = src[0] + 1;
 
-    CopyToBgTilemapBufferRect_ChangePalette(0, src, 0x19, 9 + (2 * cursorPosition), 1, 2, 0x11);
+    CopyToBgTilemapBufferRect_ChangePalette(0, src, 0x19, 9 + cursorPosition, 1, 2, 0x11);
     CopyBgTilemapBufferToVram(0);
 }
 
 void BattleDestroyYesNoCursorAt(u8 cursorPosition)
 {
     u16 src[2];
-    src[0] = 0x1016;
-    src[1] = 0x1016;
+    src[0] = 0x0020;
+    src[1] = 0x0020;
 
-    CopyToBgTilemapBufferRect_ChangePalette(0, src, 0x19, 9 + (2 * cursorPosition), 1, 2, 0x11);
+    CopyToBgTilemapBufferRect_ChangePalette(0, src, 0x19, 9 + cursorPosition, 1, 2, 0x11);
     CopyBgTilemapBufferToVram(0);
 }
 
@@ -10070,7 +10118,7 @@ static void Cmd_trygivecaughtmonnick(void)
     switch (gBattleCommunication[MULTIUSE_STATE])
     {
     case 0:
-        HandleBattleWindow(0x18, 8, 0x1D, 0xD, 0);
+        HandleBattleWindowNew(0x18, 8, 0x1D, 0xC, 0);
         if (FlagGet(FLAG_NUZLOCKE_ACTIVE)){
             gBattleCommunication[MULTIUSE_STATE] = 2;
             BeginFastPaletteFade(3);

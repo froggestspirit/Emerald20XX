@@ -23,6 +23,7 @@ Features:
 -HQ instrument samples - Kurausukun
 -Day/Night - Sierraffinity
 -Gen 4 evolutions and pre-evolutions (including evo methods and items)
+-Various graphical updates
 
 
 Removals:
@@ -51,10 +52,6 @@ TODO:
 -Dynamic trade names
 -Decapitalize
 -Unique pokemon centers/marts
-
-Day/Night Palette Fixes:
--Choosing starter
--Battle
 
 
 Misc Credits:

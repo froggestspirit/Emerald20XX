@@ -304,6 +304,9 @@ $(FONTGFXDIR)/font7.latfont: $(FONTGFXDIR)/font7_latin.png
 $(FONTGFXDIR)/font8.latfont: $(FONTGFXDIR)/font8_latin.png
 	$(GFX) $< $@
 
+$(FONTGFXDIR)/font9.latfont: $(FONTGFXDIR)/font9_latin.png
+	$(GFX) $< $@
+
 $(FONTGFXDIR)/font0.hwjpnfont: $(FONTGFXDIR)/font0_japanese.png
 	$(GFX) $< $@
 
@@ -354,10 +357,6 @@ graphics/pokenav/region_map.8bpp: %.8bpp: %.png
 
 $(MISCGFXDIR)/japanese_hof.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -num_tiles 29
-
-$(BATINTGFXDIR)/textbox.gbapal: $(BATINTGFXDIR)/textbox_0.gbapal \
-								$(BATINTGFXDIR)/textbox_1.gbapal
-	@cat $^ >$@
 
 $(BTLANMSPRGFXDIR)/ice_cube.4bpp: $(BTLANMSPRGFXDIR)/ice_cube_0.4bpp \
 						 	 $(BTLANMSPRGFXDIR)/ice_cube_1.4bpp \

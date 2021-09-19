@@ -6431,10 +6431,12 @@ u16 GetBattleBGM(void)
         case TRAINER_CLASS_PYRAMID_KING:
             return MUS_VS_FRONTIER_BRAIN;
         default:
+            if (JOY_HELD(SELECT_BUTTON))
+                return MUS_RG_VS_TRAINER;
             return MUS_VS_TRAINER;
         }
     }
-    else if (FlagGet(FLAG_NUZLOCKE_CATCH) && !FlagGet(FLAGS_NUZLOCKE_ENCOUNTERS + GetCurrentRegionMapSectionId()))
+    else if (FlagGet(FLAG_NUZLOCKE_CAN_CATCH)) //let this play for shiny encounters as well, why not?
         return MUS_VS_WILD2;
     else
         return MUS_VS_WILD;
