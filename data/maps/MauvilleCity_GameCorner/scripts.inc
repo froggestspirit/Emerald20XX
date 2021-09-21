@@ -845,22 +845,21 @@ MauvilleCity_GameCorner_Text_UpTo3CoinsCanBeUsed: @ 8210A51
 	.string "the SLOTS.$"
 
 MauvilleCity_GameCorner_Text_GameCornerPrizesLame: @ 82108EF
-	.string "The GAME CORNER's prizes\n"
+	.string "This GAME CORNER's prizes\n"
 	.string "are so lame!\p"
 	.string "Back from where I'm from,\n"
-	.string "you could get POKéMON as\n"
-	.string "prizes for your coins.\p"
+	.string "you could get POKéMON as prizes\l"
+	.string "for your coins.\p"
 	.string "What, you don't believe me?\n"
 	.string "Then here!$"
 
 MauvilleCity_GameCorner_Text_ThatsAPorygon:
 	.string "That's a PORYGON.\p"
-	.string "It's a super-rare POKéMON\n"
-	.string "That's available exclusively as\n"
-	.string "a prize from the GAME CORNER\n"
-	.string "in my region.\p"
+	.string "It's a super-rare POKéMON that's\n"
+	.string "available exclusively as a prize\l"
+	.string "from the GAME CORNER in my region.\p"
 	.string "I'm such a master at the slots\n"
-	.string "that I have plenty of them, so\n"
+	.string "that I have plenty of them, so\l"
 	.string "I don't mind giving you that one.$"
 
 MauvilleCity_GameCorner_Text_HeresSomeSlotsInfo: @ 8210B04
