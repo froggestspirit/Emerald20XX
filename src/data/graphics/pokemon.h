@@ -2761,12 +2761,12 @@ const u32 gMonShinyPalette_Bonsly[] = INCBIN_U32("graphics/pokemon/bonsly/shiny.
 const u8 gMonIcon_Bonsly[] = INCBIN_U8("graphics/pokemon/bonsly/icon.4bpp");
 const u8 gMonFootprint_Bonsly[] = INCBIN_U8("graphics/pokemon/bonsly/footprint.1bpp");
 
-//const u32 gMonStillFrontPic_Mimejr[] = INCBIN_U32("graphics/pokemon/mime_jr/front.4bpp.lz");
-const u32 gMonPalette_Mimejr[] = INCBIN_U32("graphics/pokemon/mime_jr/normal.gbapal.lz");
-const u32 gMonBackPic_Mimejr[] = INCBIN_U32("graphics/pokemon/mime_jr/back.4bpp.lz");
-const u32 gMonShinyPalette_Mimejr[] = INCBIN_U32("graphics/pokemon/mime_jr/shiny.gbapal.lz");
-const u8 gMonIcon_Mimejr[] = INCBIN_U8("graphics/pokemon/mime_jr/icon.4bpp");
-const u8 gMonFootprint_Mimejr[] = INCBIN_U8("graphics/pokemon/mime_jr/footprint.1bpp");
+//const u32 gMonStillFrontPic_MimeJr[] = INCBIN_U32("graphics/pokemon/mime_jr/front.4bpp.lz");
+const u32 gMonPalette_MimeJr[] = INCBIN_U32("graphics/pokemon/mime_jr/normal.gbapal.lz");
+const u32 gMonBackPic_MimeJr[] = INCBIN_U32("graphics/pokemon/mime_jr/back.4bpp.lz");
+const u32 gMonShinyPalette_MimeJr[] = INCBIN_U32("graphics/pokemon/mime_jr/shiny.gbapal.lz");
+const u8 gMonIcon_MimeJr[] = INCBIN_U8("graphics/pokemon/mime_jr/icon.4bpp");
+const u8 gMonFootprint_MimeJr[] = INCBIN_U8("graphics/pokemon/mime_jr/footprint.1bpp");
 
 //const u32 gMonStillFrontPic_Happiny[] = INCBIN_U32("graphics/pokemon/happiny/front.4bpp.lz");
 const u32 gMonPalette_Happiny[] = INCBIN_U32("graphics/pokemon/happiny/normal.gbapal.lz");

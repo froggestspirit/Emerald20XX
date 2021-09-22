@@ -2295,7 +2295,7 @@ const u8 gBonslyPokedexText[] = _(
     "leaks water that looks like tears\n"
     "when adjusting its moisture level.");
 
-const u8 gMimejrPokedexText[] = _(
+const u8 gMimeJrPokedexText[] = _(
     "In an attempt to confuse its enemy,\n"
     "it mimics the enemy's movements. Then\n"
     "it wastes no time in making itself scarce!");
