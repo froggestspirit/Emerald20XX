@@ -2055,7 +2055,7 @@ const struct MonCoords gMonBackPicCoords[] =
         .size = 0xAA,
         .y_offset = 8,
     },
-    [SPECIES_PORYGON_Z] =
+    [SPECIES_PORYGONZ] =
     {
         .size = 0xAA,
         .y_offset = 8,
