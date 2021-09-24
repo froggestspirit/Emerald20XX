@@ -1978,7 +1978,7 @@ const struct MonCoords gMonFrontPicCoords[] =
     [SPECIES_HAPPINY] =
     {
         .size = 0xAA,
-        .y_offset = 0,
+        .y_offset = 8,
     },
     [SPECIES_MUNCHLAX] =
     {
