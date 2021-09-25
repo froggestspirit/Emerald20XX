@@ -147,7 +147,7 @@ static const struct SpritePalette sSpritePalettes_Clock[] =
 
 static const struct OamData sOam_ClockHand =
 {
-    .y = 160,
+    .y = DISPLAY_HEIGHT,
     .shape = SPRITE_SHAPE(64x64),
     .size = SPRITE_SIZE(64x64),
     .priority = 1,
@@ -199,7 +199,7 @@ static const struct SpriteTemplate sSpriteTemplate_HourHand =
 
 static const struct OamData sOam_PeriodIndicator =
 {
-    .y = 160,
+    .y = DISPLAY_HEIGHT,
     .shape = SPRITE_SHAPE(16x16),
     .size = SPRITE_SIZE(16x16),
     .priority = 3,
@@ -682,18 +682,24 @@ void CB2_StartWallClock(void)
 {
     u8 taskId;
     u8 spriteId;
-
+    u8 angle1;
+    u8 angle2;
+    
     LoadWallClockGraphics();
     LZ77UnCompVram(gWallClockStart_Tilemap, (u16 *)BG_SCREEN_ADDR(7));
 
     taskId = CreateTask(Task_SetClock_WaitFadeIn, 0);
-    gTasks[taskId].tHours = 10;
-    gTasks[taskId].tMinutes = 0;
-    gTasks[taskId].tMoveDir = 0;
-    gTasks[taskId].tPeriod = 0;
-    gTasks[taskId].tMoveSpeed = 0;
-    gTasks[taskId].tMinuteHandAngle = 0;
-    gTasks[taskId].tHourHandAngle = 300;
+    InitClockWithRtc(taskId);
+    if (gTasks[taskId].tPeriod == PERIOD_AM)
+    {
+        angle1 = 45;
+        angle2 = 90;
+    }
+    else
+    {
+        angle1 = 90;
+        angle2 = 135;
+    }
 
     spriteId = CreateSprite(&sSpriteTemplate_MinuteHand, 120, 80, 1);
     gSprites[spriteId].data[0] = taskId;
@@ -1029,8 +1035,8 @@ static void SpriteCB_MinuteHand(struct Sprite *sprite)
     if (y > 128)
         y |= 0xff00;
 
-    sprite->pos2.x = x;
-    sprite->pos2.y = y;
+    sprite->x2 = x;
+    sprite->y2 = y;
 }
 
 static void SpriteCB_HourHand(struct Sprite *sprite)
@@ -1049,8 +1055,8 @@ static void SpriteCB_HourHand(struct Sprite *sprite)
     if (y > 128)
         y |= 0xff00;
 
-    sprite->pos2.x = x;
-    sprite->pos2.y = y;
+    sprite->x2 = x;
+    sprite->y2 = y;
 }
 
 static void SpriteCB_PMIndicator(struct Sprite *sprite)
@@ -1077,8 +1083,8 @@ static void SpriteCB_PMIndicator(struct Sprite *sprite)
             sprite->data[1]--;
         }
     }
-    sprite->pos2.x = Cos2(sprite->data[1]) * 30 / 0x1000;
-    sprite->pos2.y = Sin2(sprite->data[1]) * 30 / 0x1000;
+    sprite->x2 = Cos2(sprite->data[1]) * 30 / 0x1000;
+    sprite->y2 = Sin2(sprite->data[1]) * 30 / 0x1000;
 }
 
 static void SpriteCB_AMIndicator(struct Sprite *sprite)
@@ -1105,6 +1111,6 @@ static void SpriteCB_AMIndicator(struct Sprite *sprite)
             sprite->data[1]--;
         }
     }
-    sprite->pos2.x = Cos2(sprite->data[1]) * 30 / 0x1000;
-    sprite->pos2.y = Sin2(sprite->data[1]) * 30 / 0x1000;
+    sprite->x2 = Cos2(sprite->data[1]) * 30 / 0x1000;
+    sprite->y2 = Sin2(sprite->data[1]) * 30 / 0x1000;
 }

@@ -1,6 +1,6 @@
-CaveOfOrigin_1F_MapScripts:: @ 8235768
+CaveOfOrigin_1F_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, CaveOfOrigin_1F_OnTransition
 	.byte 0
 
-CaveOfOrigin_1F_OnTransition: @ 823576E
+CaveOfOrigin_1F_OnTransition:
 	end
