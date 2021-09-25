@@ -1225,37 +1225,37 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
     },
 
-    [ITEM_063] =
+    [ITEM_SHINY_STONE] =
     {
-        .name = _("????????"),
-        .itemId = ITEM_NONE,
-        .price = 0,
-        .description = sDummyDesc,
+        .name = _("SHINY STONE"),
+        .itemId = ITEM_SHINY_STONE,
+        .price = 2100,
+        .description = sShinyStoneDesc,
         .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
     },
 
-    [ITEM_064] =
+    [ITEM_DUSK_STONE] =
     {
-        .name = _("????????"),
-        .itemId = ITEM_NONE,
-        .price = 0,
-        .description = sDummyDesc,
+        .name = _("DUSK STONE"),
+        .itemId = ITEM_DUSK_STONE,
+        .price = 2100,
+        .description = sDuskStoneDesc,
         .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
     },
 
-    [ITEM_065] =
+    [ITEM_DAWN_STONE] =
     {
-        .name = _("????????"),
-        .itemId = ITEM_NONE,
-        .price = 0,
-        .description = sDummyDesc,
+        .name = _("DAWN STONE"),
+        .itemId = ITEM_DAWN_STONE,
+        .price = 2100,
+        .description = sDawnStoneDesc,
         .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
     },
 
     [ITEM_066] =
@@ -4553,40 +4553,7 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_PokeRadar,
         .secondaryId = 0,
     },
-    
-    [ITEM_SHINY_STONE] =
-    {
-        .name = _("SHINY STONE"),
-        .itemId = ITEM_SHINY_STONE,
-        .price = 2100,
-        .description = sShinyStoneDesc,
-        .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_PARTY_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
-    },
-    
-    [ITEM_DUSK_STONE] =
-    {
-        .name = _("DUSK STONE"),
-        .itemId = ITEM_DUSK_STONE,
-        .price = 2100,
-        .description = sDuskStoneDesc,
-        .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_PARTY_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
-    },
-    
-    [ITEM_DAWN_STONE] =
-    {
-        .name = _("DAWN STONE"),
-        .itemId = ITEM_DAWN_STONE,
-        .price = 2100,
-        .description = sDawnStoneDesc,
-        .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_PARTY_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
-    },
-    
+
     [ITEM_OVAL_STONE] =
     {
         .name = _("OVAL STONE"),
@@ -4597,7 +4564,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
-    
+
     [ITEM_ODD_INCENSE] =
     {
         .name = _("ODD INCENSE"),
@@ -4610,7 +4577,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
-    
+
     [ITEM_ROCK_INCENSE] =
     {
         .name = _("ROCK INCENSE"),
@@ -4623,7 +4590,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
-    
+
     [ITEM_FULL_INCENSE] =
     {
         .name = _("FULL INCENSE"),
@@ -4636,7 +4603,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
-    
+
     [ITEM_WAVE_INCENSE] =
     {
         .name = _("WAVE INCENSE"),
@@ -4649,7 +4616,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
-    
+
     [ITEM_ROSE_INCENSE] =
     {
         .name = _("ROSE INCENSE"),
@@ -4662,7 +4629,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
-    
+
     [ITEM_LUCK_INCENSE] =
     {
         .name = _("LUCK INCENSE"),
@@ -4675,7 +4642,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
-    
+
     [ITEM_PURE_INCENSE] =
     {
         .name = _("PURE INCENSE"),
@@ -4687,7 +4654,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
-    
+
     [ITEM_PROTECTOR] =
     {
         .name = _("PROTECTOR"),
@@ -4699,7 +4666,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
-    
+
     [ITEM_ELECTIRIZER] =
     {
         .name = _("ELECTIRIZER"),
@@ -4711,7 +4678,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
-    
+
     [ITEM_MAGMARIZER] =
     {
         .name = _("MAGMARIZER"),
@@ -4723,7 +4690,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
-    
+
     [ITEM_DUBIOUS_DISC] =
     {
         .name = _("DUBIOUS DISC"),
@@ -4735,7 +4702,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
-    
+
     [ITEM_REAPER_CLOTH] =
     {
         .name = _("REAPER CLOTH"),
@@ -4747,7 +4714,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
-    
+
     [ITEM_RAZOR_CLAW] =
     {
         .name = _("RAZOR CLAW"),
@@ -4760,7 +4727,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
-    
+
     [ITEM_RAZOR_FANG] =
     {
         .name = _("RAZOR FANG"),
