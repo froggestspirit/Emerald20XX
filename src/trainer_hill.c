@@ -260,16 +260,16 @@ static const struct ObjectEventTemplate sTrainerObjectEventTemplate =
     .trainerType = TRAINER_TYPE_NORMAL,
 };
 
-static const u32 sNextFloorMapNum[NUM_TRAINER_HILL_FLOORS] = 
+static const u32 sNextFloorMapNum[NUM_TRAINER_HILL_FLOORS] =
 {
-    MAP_NUM(TRAINER_HILL_2F), 
-    MAP_NUM(TRAINER_HILL_3F), 
-    MAP_NUM(TRAINER_HILL_4F), 
+    MAP_NUM(TRAINER_HILL_2F),
+    MAP_NUM(TRAINER_HILL_3F),
+    MAP_NUM(TRAINER_HILL_4F),
     MAP_NUM(TRAINER_HILL_ROOF)
 };
-static const u8 sTrainerPartySlots[][PARTY_SIZE / 2] = 
+static const u8 sTrainerPartySlots[][PARTY_SIZE / 2] =
 {
-    {0, 1, 2}, 
+    {0, 1, 2},
     {3, 4, 5}
 };
 
@@ -674,10 +674,10 @@ static u16 GetMetatileForFloor(u8 floorId, u32 x, u32 y, u32 stride) // stride i
     u16 elevation;
 
     impassable = (sHillData->floors[floorId].display.collisionData[y] >> (15 - x) & 1);
-    metatile = sHillData->floors[floorId].display.metatileData[stride * y + x] + 0x200;
-    elevation = 0x3000;
+    metatile = sHillData->floors[floorId].display.metatileData[stride * y + x] + NUM_METATILES_IN_PRIMARY;
+    elevation = 3 << METATILE_ELEVATION_SHIFT;
 
-    return (((impassable << 10) & METATILE_COLLISION_MASK) | elevation) | (metatile & METATILE_ID_MASK);
+    return ((impassable << METATILE_COLLISION_SHIFT) & METATILE_COLLISION_MASK) | elevation | (metatile & METATILE_ID_MASK);
 }
 
 void GenerateTrainerHillFloorLayout(u16 *mapArg)
@@ -706,6 +706,8 @@ void GenerateTrainerHillFloorLayout(u16 *mapArg)
     gBackupMapLayout.width = 31;
     gBackupMapLayout.height = 35;
     dst = mapArg + 224;
+
+    // First 5 rows of the map (Entrance / Exit) are always the same
     for (i = 0; i < 5; i++)
     {
         for (j = 0; j < 16; j++)
@@ -714,10 +716,11 @@ void GenerateTrainerHillFloorLayout(u16 *mapArg)
         src += 16;
     }
 
+    // Load the 16x16 floor-specific layout
     for (i = 0; i < 16; i++)
     {
         for (j = 0; j < 16; j++)
-            dst[j] = GetMetatileForFloor(mapId, j, i, 0x10);
+            dst[j] = GetMetatileForFloor(mapId, j, i, 16);
         dst += 31;
     }
 

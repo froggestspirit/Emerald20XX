@@ -18,7 +18,7 @@
 #define CHAR_O_ACUTE           0x0E
 #define CHAR_O_CIRCUMFLEX      0x0F
 #define CHAR_OE                0x10
-#define CHAR_U_GRAVE           0x11    
+#define CHAR_U_GRAVE           0x11
 #define CHAR_U_ACUTE           0x12
 #define CHAR_U_CIRCUMFLEX      0x13
 #define CHAR_N_TILDE           0x14
@@ -71,7 +71,7 @@
 //
 #define CHAR_i_ACUTE           0x6F
 //
-#define CHAR_UNK_SPACER        0x77
+#define CHAR_GENDERLESS        0x77 // Empty space for lack of gender icon
 //
 #define CHAR_UP_ARROW          0x79
 #define CHAR_DOWN_ARROW        0x7A
@@ -258,7 +258,7 @@
 #define PLACEHOLDER_ID_VERSION       0x7
 #define PLACEHOLDER_ID_AQUA          0x8
 #define PLACEHOLDER_ID_MAGMA         0x9
-#define PLACEHOLDER_ID_ARCHIE        0xA 
+#define PLACEHOLDER_ID_ARCHIE        0xA
 #define PLACEHOLDER_ID_MAXIE         0xB
 #define PLACEHOLDER_ID_KYOGRE        0xC
 #define PLACEHOLDER_ID_GROUDON       0xD
