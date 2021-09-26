@@ -153,18 +153,12 @@ const u32 gBattleAnimSpriteGfx_Glass2[] = INCBIN_U32("graphics/battle_anims/spri
 const u32 gBattleAnimSpritePal_PinkHeart2[] = INCBIN_U32("graphics/battle_anims/sprites/pink_heart_2.gbapal.lz");
 const u32 gBattleAnimSpriteGfx_PinkHeart2[] = INCBIN_U32("graphics/battle_anims/sprites/pink_heart_2.4bpp.lz");
 
-const u32 gUnknown_08C08F0C[] = INCBIN_U32("graphics/battle_interface/unused_window.4bpp.lz");
-const u32 gUnknown_08C093C8[] = INCBIN_U32("graphics/battle_interface/unused_window.gbapal.lz");
-
 const u32 gUnknown_08C093F0[] = INCBIN_U32("graphics/interface/hp_numbers.4bpp.lz");
 
 const u32 gBattleAnimSpriteGfx_SapDrip[] = INCBIN_U32("graphics/battle_anims/sprites/sap_drip.4bpp.lz");
 const u32 gBattleAnimSpritePal_SapDrip[] = INCBIN_U32("graphics/battle_anims/sprites/sap_drip.gbapal.lz");
 
 const u32 gBattleAnimSpritePal_SapDrip2[] = INCBIN_U32("graphics/battle_anims/sprites/sap_drip_2.gbapal.lz");
-
-const u32 gUnusedGfx_Window2[] = INCBIN_U32("graphics/battle_interface/unused_window2.4bpp.lz");
-const u32 gUnusedGfx_Window2Bar[] = INCBIN_U32("graphics/battle_interface/unused_window2bar.4bpp.lz");
 
 const u32 gBattleAnimSpriteGfx_Sparkle1[] = INCBIN_U32("graphics/battle_anims/sprites/sparkle_1.4bpp.lz");
 const u32 gBattleAnimSpritePal_Sparkle1[] = INCBIN_U32("graphics/battle_anims/sprites/sparkle_1.gbapal.lz");
@@ -1485,17 +1479,3 @@ const u32 gFrontierPassMapAndCard_Gfx[] = INCBIN_U32("graphics/frontier_pass/map
 const u32 gFrontierPassBg_Tilemap[] = INCBIN_U32("graphics/frontier_pass/bg.bin.lz");
 const u16 gFrontierPassCancelButton_Tilemap[]            = INCBIN_U16("graphics/frontier_pass/cancel.bin");
 const u16 gFrontierPassCancelButtonHighlighted_Tilemap[] = INCBIN_U16("graphics/frontier_pass/cancel_highlighted.bin");
-
-// Berry Crush
-const u16 gBerryCrush_Crusher_Pal[] = INCBIN_U16("graphics/berry_crush/crusher.gbapal");
-const u32 gBerryCrush_Crusher_Gfx[] = INCBIN_U32("graphics/berry_crush/crusher.4bpp.lz");
-const u32 gBerryCrush_Crusher_Tilemap[] = INCBIN_U32("graphics/berry_crush/crusher.bin.lz");
-
-// random garbage at the end.
-static const u8 sEmpty3[0x54BAC] = {0};
-static const u8 sUnused1[]       = {0x0D, 0x00, 0x58, 0x02};
-static const u8 sEmpty4[0x1145]  = {0};
-static const u8 sUnused2[]       = {0x02};
-static const u8 sEmpty5[0x3242]  = {0};
-static const u8 sUnused3[]       = {0x40};
-static const u8 sEmpty6[0x13]    = {0};
