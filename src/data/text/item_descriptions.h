@@ -394,6 +394,21 @@ static const u8 sLeafStoneDesc[] = _(
     "species of POKéMON\n"
     "evolve.");
 
+static const u8 sShinyStoneDesc[] = _(
+    "Makes certain\n"
+    "species of POKéMON\n"
+    "evolve.");
+
+static const u8 sDuskStoneDesc[] = _(
+    "Makes certain\n"
+    "species of POKéMON\n"
+    "evolve.");
+
+static const u8 sDawnStoneDesc[] = _(
+    "Makes certain\n"
+    "species of POKéMON\n"
+    "evolve.");
+
 // Valuable items
 static const u8 sTinyMushroomDesc[] = _(
     "A plain mushroom\n"
@@ -971,6 +986,81 @@ static const u8 sYellowScarfDesc[] = _(
     "A hold item that\n"
     "raises TOUGH in\n"
     "CONTESTS.");
+
+static const u8 sOvalStoneDesc[] = _(
+    "Makes certain\n"
+    "species of POKéMON\n"
+    "evolve.");
+
+static const u8 sOddIncenseDesc[] = _(
+    "A hold item that\n"
+    "slightly boosts\n"
+    "PSYCHIC-type moves.");
+
+static const u8 sRockIncenseDesc[] = _(
+    "A hold item that\n"
+    "slightly boosts\n"
+    "ROCK-type moves.");
+
+static const u8 sFullIncenseDesc[] = _(
+    "A hold item that\n"
+    "makes the user\n"
+    "move last.");
+
+static const u8 sWaveIncenseDesc[] = _(
+    "A hold item that\n"
+    "slightly boosts\n"
+    "WATER-type moves.");
+
+static const u8 sRoseIncenseDesc[] = _(
+    "A hold item that\n"
+    "slightly boosts\n"
+    "GRASS-type moves.");
+
+static const u8 sLuckIncenseDesc[] = _(
+    "Doubles money in\n"
+    "battle if the\n"
+    "holder takes part.");
+
+static const u8 sPureIncenseDesc[] = _(
+    "A hold item that\n"
+    "helps repel wild\n"
+    "POKéMON.");
+
+static const u8 sProtectorDesc[] = _(
+    "A protective item.\n"
+    "It's loved by\n"
+    "a certain POKéMON.");
+
+static const u8 sElectirizerDesc[] = _(
+    "A box of electric\n"
+    "energy loved by a\n"
+    "certain POKéMON.");
+
+static const u8 sMagmarizerDesc[] = _(
+    "A box of magma\n"
+    "energy. It's loved\n"
+    "by a certain POKéMON.");
+
+static const u8 sDubiousDiscDesc[] = _(
+    "A transparent box\n"
+    "overflowing with\n"
+    "dubious data.");
+
+static const u8 sReaperClothDesc[] = _(
+    "A cloth that's\n"
+    "loved by a\n"
+    "certain POKéMON.");
+
+static const u8 sRazorClawDesc[] = _(
+    "A hold item that\n"
+    "improves the\n"
+    "critical-hit rate.");
+
+static const u8 sRazorFangDesc[] = _(
+    "A hold item that\n"
+    "may cause flinching\n"
+    "when the foe is hit.");
 
 // Key items
 static const u8 sMachBikeDesc[] = _(

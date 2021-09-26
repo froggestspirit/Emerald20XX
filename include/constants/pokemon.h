@@ -325,8 +325,18 @@
 #define EVO_LEVEL_NINJASK    13 // Pokémon reaches the specified level (special value for Ninjask)
 #define EVO_LEVEL_SHEDINJA   14 // Pokémon reaches the specified level (special value for Shedinja)
 #define EVO_BEAUTY           15 // Pokémon levels up with beauty ≥ specified value
+#define EVO_LEVEL_ITEM       16 // Pokémon levels up while it's holding the specified item
+#define EVO_LEVEL_ITEM_DAY   17 // Pokémon levels up during the day while it's holding the specified item
+#define EVO_LEVEL_ITEM_NIGHT 18 // Pokémon levels up at night while it's holding the specified item
+#define EVO_PETALBURG_WOODS  19 // Pokémon levels up while it's in Petalburg Woods (Leafeon)
+#define EVO_SHOAL_CAVE       20 // Pokémon levels up while it's in Shoal Cave (Glaceon)
+#define EVO_MANTYKE          21 // Pokemon levels up while a Remoraid is in the party
+#define EVO_MAGNETIC_FIELD   22 // Pokémon levels up while it's in New Mauville (Probopass, Magnezone)
+#define EVO_LEVEL_MOVE       23 // Pokémon levels up while knowing the specified move
+#define EVO_ITEM_MALE        24 // specified item is used on Pokémon that is male
+#define EVO_ITEM_FEMALE      25 // specified item is used on Pokémon that is female
 
-#define EVOS_PER_MON 5
+#define EVOS_PER_MON 7
 
 // Evolution 'modes,' for GetEvolutionTargetSpecies
 #define EVO_MODE_NORMAL     0

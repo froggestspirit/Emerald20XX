@@ -1003,10 +1003,10 @@ static const union AffineAnimCmd *const sAffineAnims_CrossingMonPics[] =
 
 static const struct InGameTrade sIngameTrades[] =
 {
-    [INGAME_TRADE_SEEDOT] =
+    [INGAME_TRADE_MUNCHLAX] = 
     {
-        .nickname = _("DOTS"),
-        .species = SPECIES_SEEDOT,
+        .nickname = _("MUNCHER"), 
+        .species = SPECIES_MUNCHLAX,
         .ivs = {5, 4, 5, 4, 4, 4},
         .abilityNum = 1,
         .otId = 38726,
@@ -1018,11 +1018,11 @@ static const struct InGameTrade sIngameTrades[] =
         .otGender = MALE,
         .sheen = 10,
         .requestedSpecies = SPECIES_RALTS
-    },
-    [INGAME_TRADE_PLUSLE] =
+    }, 
+    [INGAME_TRADE_MR_MIME] = 
     {
-        .nickname = _("PLUSES"),
-        .species = SPECIES_PLUSLE,
+        .nickname = _("MIMEY"), 
+        .species = SPECIES_MR_MIME,
         .ivs = {4, 4, 4, 5, 5, 4},
         .abilityNum = 0,
         .otId = 73996,
@@ -1067,6 +1067,7 @@ static const struct InGameTrade sIngameTrades[] =
         .sheen = 10,
         .requestedSpecies = SPECIES_SKITTY
     }
+    
 };
 
 static const u16 sIngameTradeMail[][MAIL_WORDS_COUNT + 1] =

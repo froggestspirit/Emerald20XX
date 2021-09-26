@@ -146,16 +146,16 @@ Route116_EventScript_ItemPotion::
 	finditem ITEM_POTION
 	end
 
-Route117_EventScript_ItemGreatBall::
-	finditem ITEM_GREAT_BALL
+Route117_EventScript_ItemShinyStone::
+	finditem ITEM_SHINY_STONE
 	end
 
 Route117_EventScript_ItemRevive::
 	finditem ITEM_REVIVE
 	end
 
-Route118_EventScript_ItemHyperPotion::
-	finditem ITEM_HYPER_POTION
+Route118_EventScript_ItemDawnStone::
+	finditem ITEM_DAWN_STONE
 	end
 
 Route119_EventScript_ItemSuperRepel::
@@ -194,8 +194,8 @@ Route120_EventScript_ItemNugget::
 	finditem ITEM_NUGGET
 	end
 
-Route120_EventScript_ItemFullHeal::
-	finditem ITEM_FULL_HEAL
+Route120_EventScript_ItemShinyStone::
+	finditem ITEM_SHINY_STONE
 	end
 
 Route120_EventScript_ItemHyperPotion::
@@ -226,8 +226,8 @@ Route123_EventScript_ItemCalcium::
 	finditem ITEM_CALCIUM
 	end
 
-Route123_EventScript_ItemUltraBall::
-	finditem ITEM_ULTRA_BALL
+Route123_EventScript_ItemDawnStone::
+	finditem ITEM_DAWN_STONE
 	end
 
 Route123_EventScript_ItemElixir::
@@ -322,8 +322,8 @@ LilycoveCity_EventScript_ItemMaxRepel::
 	finditem ITEM_MAX_REPEL
 	end
 
-MossdeepCity_EventScript_ItemNetBall::
-	finditem ITEM_NET_BALL
+MossdeepCity_EventScript_ItemDubiousDisc::
+	finditem ITEM_DUBIOUS_DISC
 	end
 
 PetalburgWoods_EventScript_ItemXAttack::
@@ -366,8 +366,8 @@ GraniteCave_B2F_EventScript_ItemRareCandy::
 	finditem ITEM_RARE_CANDY
 	end
 
-JaggedPass_EventScript_ItemBurnHeal::
-	finditem ITEM_BURN_HEAL
+JaggedPass_EventScript_ItemProtector::
+	finditem ITEM_PROTECTOR
 	end
 
 FieryPath_EventScript_ItemFireStone::
@@ -382,8 +382,8 @@ MeteorFalls_1F_1R_EventScript_ItemTM23::
 	finditem ITEM_TM23
 	end
 
-MeteorFalls_1F_1R_EventScript_ItemFullHeal::
-	finditem ITEM_FULL_HEAL
+MeteorFalls_1F_1R_EventScript_ItemDuskStone::
+	finditem ITEM_DUSK_STONE
 	end
 
 MeteorFalls_1F_1R_EventScript_ItemMoonStone::
@@ -410,8 +410,12 @@ NewMauville_Inside_EventScript_ItemThunderStone::
 	finditem ITEM_THUNDER_STONE
 	end
 
-NewMauville_Inside_EventScript_ItemFullHeal::
-	finditem ITEM_FULL_HEAL
+NewMauville_Inside_EventScript_ItemUpGrade::
+	finditem ITEM_UP_GRADE
+	end
+
+NewMauville_Inside_EventScript_ItemElectirizer::
+	finditem ITEM_ELECTIRIZER
 	end
 
 NewMauville_Inside_EventScript_ItemParalyzeHeal::
@@ -474,20 +478,20 @@ SafariZone_Southwest_EventScript_ItemMaxRevive::
 	finditem ITEM_MAX_REVIVE
 	end
 
-SafariZone_Northeast_EventScript_ItemNugget::
-	finditem ITEM_NUGGET
+SafariZone_Northeast_EventScript_ItemOvalStone::
+	finditem ITEM_OVAL_STONE
 	end
 
-SafariZone_Southeast_EventScript_ItemBigPearl::
-	finditem ITEM_BIG_PEARL
+SafariZone_Southeast_EventScript_ItemRazorFang::
+	finditem ITEM_RAZOR_FANG
 	end
 
 MtPyre_2F_EventScript_ItemUltraBall::
 	finditem ITEM_ULTRA_BALL
 	end
 
-MtPyre_3F_EventScript_ItemSuperRepel::
-	finditem ITEM_SUPER_REPEL
+MtPyre_3F_EventScript_ItemReaperCloth::
+	finditem ITEM_REAPER_CLOTH
 	end
 
 MtPyre_4F_EventScript_ItemSeaIncense::
@@ -502,8 +506,8 @@ MtPyre_6F_EventScript_ItemTM30::
 	finditem ITEM_TM30
 	end
 
-MtPyre_Exterior_EventScript_ItemMaxPotion::
-	finditem ITEM_MAX_POTION
+MtPyre_Exterior_EventScript_ItemDuskStone::
+	finditem ITEM_DUSK_STONE
 	end
 
 MtPyre_Exterior_EventScript_ItemTM48::
@@ -550,8 +554,8 @@ ShoalCave_LowTideInnerRoom_EventScript_ItemRareCandy::
 	finditem ITEM_RARE_CANDY
 	end
 
-ShoalCave_LowTideStairsRoom_EventScript_ItemIceHeal::
-	finditem ITEM_ICE_HEAL
+ShoalCave_LowTideStairsRoom_EventScript_ItemRazorClaw:: @ 82913DA
+	finditem ITEM_RAZOR_CLAW
 	end
 
 ShoalCave_LowTideIceRoom_EventScript_ItemTM07::
@@ -654,6 +658,6 @@ MagmaHideout_4F_EventScript_ItemMaxRevive::
 	finditem ITEM_MAX_REVIVE
 	end
 
-MagmaHideout_3F_3R_EventScript_ItemEscapeRope::
-	finditem ITEM_ESCAPE_ROPE
+MagmaHideout_3F_3R_EventScript_ItemMagmarizer:: @ 829152C
+	finditem ITEM_MAGMARIZER
 	end

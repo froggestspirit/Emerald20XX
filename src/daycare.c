@@ -90,6 +90,19 @@ static const u8 *const sCompatibilityMessages[] =
     gDaycareText_PlayOther
 };
 
+static const struct IncenseMon sIncenseMonTable[] =
+{
+    [SPECIES_AZURILL - SPECIES_AZURILL] = {.item = ITEM_SEA_INCENSE, .baseSpecies = SPECIES_AZURILL},
+    [SPECIES_WYNAUT - SPECIES_AZURILL] = {.item = ITEM_LAX_INCENSE, .baseSpecies = SPECIES_WOBBUFFET},
+    [SPECIES_BONSLY - SPECIES_AZURILL] = {.item = ITEM_ROCK_INCENSE, .baseSpecies = SPECIES_SUDOWOODO},
+    [SPECIES_BUDEW - SPECIES_AZURILL] = {.item = ITEM_ROSE_INCENSE, .baseSpecies = SPECIES_ROSELIA},
+    [SPECIES_CHINGLING - SPECIES_AZURILL] = {.item = ITEM_PURE_INCENSE, .baseSpecies = SPECIES_CHIMECHO},
+    [SPECIES_HAPPINY - SPECIES_AZURILL] = {.item = ITEM_LUCK_INCENSE, .baseSpecies = SPECIES_CHANSEY},
+    [SPECIES_MANTYKE - SPECIES_AZURILL] = {.item = ITEM_WAVE_INCENSE, .baseSpecies = SPECIES_MANTYKE},
+    [SPECIES_MIME_JR - SPECIES_AZURILL] = {.item = ITEM_ODD_INCENSE, .baseSpecies = SPECIES_MR_MIME},
+    [SPECIES_MUNCHLAX - SPECIES_AZURILL] = {.item = ITEM_FULL_INCENSE, .baseSpecies = SPECIES_SNORLAX},
+};
+
 static const u8 sJapaneseEggNickname[] = _("タマゴ"); // "tamago" ("egg" in Japanese)
 
 u8 *GetMonNickname2(struct Pokemon *mon, u8 *dest)
@@ -734,20 +747,17 @@ void RejectEggFromDayCare(void)
 static void AlterEggSpeciesWithIncenseItem(u16 *species, struct DayCare *daycare)
 {
     u16 motherItem, fatherItem;
-    if (*species == SPECIES_WYNAUT || *species == SPECIES_AZURILL)
-    {
-        motherItem = GetBoxMonData(&daycare->mons[0].mon, MON_DATA_HELD_ITEM);
-        fatherItem = GetBoxMonData(&daycare->mons[1].mon, MON_DATA_HELD_ITEM);
-        if (*species == SPECIES_WYNAUT && motherItem != ITEM_LAX_INCENSE && fatherItem != ITEM_LAX_INCENSE)
-        {
-            *species = SPECIES_WOBBUFFET;
-        }
+    if (*species < SPECIES_AZURILL
+     || *species > SPECIES_MUNCHLAX
+     || !sIncenseMonTable[*species - SPECIES_AZURILL].baseSpecies)
+        return;
 
-        if (*species == SPECIES_AZURILL && motherItem != ITEM_SEA_INCENSE && fatherItem != ITEM_SEA_INCENSE)
-        {
-            *species = SPECIES_MARILL;
-        }
-    }
+    motherItem = GetBoxMonData(&daycare->mons[0].mon, MON_DATA_HELD_ITEM);
+    fatherItem = GetBoxMonData(&daycare->mons[1].mon, MON_DATA_HELD_ITEM);
+
+    if (motherItem != sIncenseMonTable[*species - SPECIES_AZURILL].item
+     && fatherItem != sIncenseMonTable[*species - SPECIES_AZURILL].item)
+        *species = sIncenseMonTable[*species - SPECIES_AZURILL].baseSpecies;
 }
 
 static void GiveVoltTackleIfLightBall(struct Pokemon *mon, struct DayCare *daycare)

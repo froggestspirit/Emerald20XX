@@ -1225,37 +1225,37 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
     },
 
-    [ITEM_063] =
+    [ITEM_SHINY_STONE] =
     {
-        .name = _("????????"),
-        .itemId = ITEM_NONE,
-        .price = 0,
-        .description = sDummyDesc,
+        .name = _("SHINY STONE"),
+        .itemId = ITEM_SHINY_STONE,
+        .price = 2100,
+        .description = sShinyStoneDesc,
         .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
     },
 
-    [ITEM_064] =
+    [ITEM_DUSK_STONE] =
     {
-        .name = _("????????"),
-        .itemId = ITEM_NONE,
-        .price = 0,
-        .description = sDummyDesc,
+        .name = _("DUSK STONE"),
+        .itemId = ITEM_DUSK_STONE,
+        .price = 2100,
+        .description = sDuskStoneDesc,
         .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
     },
 
-    [ITEM_065] =
+    [ITEM_DAWN_STONE] =
     {
-        .name = _("????????"),
-        .itemId = ITEM_NONE,
-        .price = 0,
-        .description = sDummyDesc,
+        .name = _("DAWN STONE"),
+        .itemId = ITEM_DAWN_STONE,
+        .price = 2100,
+        .description = sDawnStoneDesc,
         .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
     },
 
     [ITEM_066] =
@@ -2680,7 +2680,7 @@ const struct Item gItems[] =
         .name = _("UP-GRADE"),
         .itemId = ITEM_UP_GRADE,
         .price = 2100,
-        .holdEffect = HOLD_EFFECT_UP_GRADE,
+        .holdEffect = HOLD_EFFECT_EVO,
         .description = sUpGradeDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -4552,5 +4552,192 @@ const struct Item gItems[] =
         .type = 2,
         .fieldUseFunc = ItemUseOutOfBattle_PokeRadar,
         .secondaryId = 0,
+    },
+
+    [ITEM_OVAL_STONE] =
+    {
+        .name = _("OVAL STONE"),
+        .itemId = ITEM_OVAL_STONE,
+        .price = 2100,
+        .description = sOvalStoneDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_ODD_INCENSE] =
+    {
+        .name = _("ODD INCENSE"),
+        .itemId = ITEM_ODD_INCENSE,
+        .price = 9600,
+        .holdEffect = HOLD_EFFECT_PSYCHIC_POWER,
+        .holdEffectParam = 20,
+        .description = sOddIncenseDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_ROCK_INCENSE] =
+    {
+        .name = _("ROCK INCENSE"),
+        .itemId = ITEM_ROCK_INCENSE,
+        .price = 9600,
+        .holdEffect = HOLD_EFFECT_ROCK_POWER,
+        .holdEffectParam = 20,
+        .description = sRockIncenseDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_FULL_INCENSE] =
+    {
+        .name = _("FULL INCENSE"),
+        .itemId = ITEM_FULL_INCENSE,
+        .price = 9600,
+        //.holdEffect = 0 (no lagging tail implementation yet)
+        //.holdEffectParam = 20,
+        .description = sFullIncenseDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_WAVE_INCENSE] =
+    {
+        .name = _("WAVE INCENSE"),
+        .itemId = ITEM_WAVE_INCENSE,
+        .price = 9600,
+        .holdEffect = HOLD_EFFECT_WATER_POWER,
+        .holdEffectParam = 20,
+        .description = sWaveIncenseDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_ROSE_INCENSE] =
+    {
+        .name = _("ROSE INCENSE"),
+        .itemId = ITEM_ROSE_INCENSE,
+        .price = 9600,
+        .holdEffect = HOLD_EFFECT_GRASS_POWER,
+        .holdEffectParam = 20,
+        .description = sRoseIncenseDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_LUCK_INCENSE] =
+    {
+        .name = _("LUCK INCENSE"),
+        .itemId = ITEM_LUCK_INCENSE,
+        .price = 9600,
+        .holdEffect = HOLD_EFFECT_DOUBLE_PRIZE,
+        .holdEffectParam = 10,
+        .description = sLuckIncenseDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_PURE_INCENSE] =
+    {
+        .name = _("PURE INCENSE"),
+        .itemId = ITEM_PURE_INCENSE,
+        .price = 9600,
+        .holdEffect = HOLD_EFFECT_REPEL,
+        .description = sPureIncenseDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_PROTECTOR] =
+    {
+        .name = _("PROTECTOR"),
+        .itemId = ITEM_PROTECTOR,
+        .price = 2100,
+        .holdEffect = HOLD_EFFECT_EVO,
+        .description = sProtectorDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_ELECTIRIZER] =
+    {
+        .name = _("ELECTIRIZER"),
+        .itemId = ITEM_ELECTIRIZER,
+        .price = 2100,
+        .holdEffect = HOLD_EFFECT_EVO,
+        .description = sElectirizerDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_MAGMARIZER] =
+    {
+        .name = _("MAGMARIZER"),
+        .itemId = ITEM_MAGMARIZER,
+        .price = 2100,
+        .holdEffect = HOLD_EFFECT_EVO,
+        .description = sMagmarizerDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_DUBIOUS_DISC] =
+    {
+        .name = _("DUBIOUS DISC"),
+        .itemId = ITEM_DUBIOUS_DISC,
+        .price = 2100,
+        .holdEffect = HOLD_EFFECT_EVO,
+        .description = sDubiousDiscDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_REAPER_CLOTH] =
+    {
+        .name = _("REAPER CLOTH"),
+        .itemId = ITEM_REAPER_CLOTH,
+        .price = 2100,
+        .holdEffect = HOLD_EFFECT_EVO,
+        .description = sReaperClothDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_RAZOR_CLAW] =
+    {
+        .name = _("RAZOR CLAW"),
+        .itemId = ITEM_RAZOR_CLAW,
+        .price = 2100,
+        .holdEffect = HOLD_EFFECT_CRITICAL_UP,
+        .holdEffectParam = 4,
+        .description = sRazorClawDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_RAZOR_FANG] =
+    {
+        .name = _("RAZOR FANG"),
+        .itemId = ITEM_RAZOR_FANG,
+        .price = 2100,
+        .holdEffect = HOLD_EFFECT_FLINCH,
+        .holdEffectParam = 10,
+        .description = sRazorFangDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
 };

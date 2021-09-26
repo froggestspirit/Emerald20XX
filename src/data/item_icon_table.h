@@ -110,10 +110,9 @@ const u32 *const gItemIconTable[][2] =
     [ITEM_THUNDER_STONE] = {gItemIcon_ThunderStone, gItemIconPalette_ThunderStone},
     [ITEM_WATER_STONE] = {gItemIcon_WaterStone, gItemIconPalette_WaterStone},
     [ITEM_LEAF_STONE] = {gItemIcon_LeafStone, gItemIconPalette_LeafStone},
-    // ????????
-    [ITEM_063] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
-    [ITEM_064] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
-    [ITEM_065] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
+    [ITEM_SHINY_STONE] = {gItemIcon_ShinyStone, gItemIconPalette_ShinyStone},
+    [ITEM_DUSK_STONE] = {gItemIcon_DuskStone, gItemIconPalette_DuskStone},
+    [ITEM_DAWN_STONE] = {gItemIcon_DawnStone, gItemIconPalette_DawnStone},
     [ITEM_066] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
     // Valuables
     [ITEM_TINY_MUSHROOM] = {gItemIcon_TinyMushroom, gItemIconPalette_Mushroom},
@@ -403,6 +402,21 @@ const u32 *const gItemIconTable[][2] =
     [ITEM_OLD_SEA_MAP] = {gItemIcon_OldSeaMap, gItemIconPalette_OldSeaMap},
     // Custom items
     [ITEM_POKE_RADAR] = {gItemIcon_PokeRadar, gItemIconPalette_PokeRadar},
+    [ITEM_OVAL_STONE] = {gItemIcon_OvalStone, gItemIconPalette_OvalStone},
+    [ITEM_ODD_INCENSE] = {gItemIcon_OddIncense, gItemIconPalette_OddIncense},
+    [ITEM_ROCK_INCENSE] = {gItemIcon_RockIncense, gItemIconPalette_RockIncense},
+    [ITEM_FULL_INCENSE] = {gItemIcon_FullIncense, gItemIconPalette_FullIncense},
+    [ITEM_WAVE_INCENSE] = {gItemIcon_WaveIncense, gItemIconPalette_WaveIncense},
+    [ITEM_ROSE_INCENSE] = {gItemIcon_RoseIncense, gItemIconPalette_RoseIncense},
+    [ITEM_LUCK_INCENSE] = {gItemIcon_LuckIncense, gItemIconPalette_LuckIncense},
+    [ITEM_PURE_INCENSE] = {gItemIcon_PureIncense, gItemIconPalette_PureIncense},
+    [ITEM_PROTECTOR] = {gItemIcon_Protector, gItemIconPalette_Protector},
+    [ITEM_ELECTIRIZER] = {gItemIcon_Electirizer, gItemIconPalette_Electirizer},
+    [ITEM_MAGMARIZER] = {gItemIcon_Magmarizer, gItemIconPalette_Magmarizer},
+    [ITEM_DUBIOUS_DISC] = {gItemIcon_DubiousDisc, gItemIconPalette_DubiousDisc},
+    [ITEM_REAPER_CLOTH] = {gItemIcon_ReaperCloth, gItemIconPalette_ReaperCloth},
+    [ITEM_RAZOR_CLAW] = {gItemIcon_RazorClaw, gItemIconPalette_RazorClaw},
+    [ITEM_RAZOR_FANG] = {gItemIcon_RazorFang, gItemIconPalette_RazorFang},
     // Return to field arrow
     [ITEM_FIELD_ARROW] = {gItemIcon_ReturnToFieldArrow, gItemIconPalette_ReturnToFieldArrow},
 };

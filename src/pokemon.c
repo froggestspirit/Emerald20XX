@@ -46,6 +46,7 @@
 #include "constants/items.h"
 #include "constants/layouts.h"
 #include "constants/moves.h"
+#include "constants/region_map_sections.h"
 #include "constants/songs.h"
 #include "constants/trainers.h"
 #include "constants/party_menu.h"
@@ -510,6 +511,35 @@ const u16 gSpeciesToHoennPokedexNum[] = // Assigns all species to the Hoenn Dex 
     SPECIES_TO_HOENN(JIRACHI),
     SPECIES_TO_HOENN(DEOXYS),
     SPECIES_TO_HOENN(CHIMECHO),
+    SPECIES_TO_HOENN(AMBIPOM),
+    SPECIES_TO_HOENN(BONSLY),
+    SPECIES_TO_HOENN(BUDEW),
+    SPECIES_TO_HOENN(CHINGLING),
+    SPECIES_TO_HOENN(DUSKNOIR),
+    SPECIES_TO_HOENN(ELECTIVIRE),
+    SPECIES_TO_HOENN(FROSLASS),
+    SPECIES_TO_HOENN(GALLADE),
+    SPECIES_TO_HOENN(GLACEON),
+    SPECIES_TO_HOENN(GLISCOR),
+    SPECIES_TO_HOENN(HAPPINY),
+    SPECIES_TO_HOENN(HONCHKROW),
+    SPECIES_TO_HOENN(LEAFEON),
+    SPECIES_TO_HOENN(LICKILICKY),
+    SPECIES_TO_HOENN(MAGMORTAR),
+    SPECIES_TO_HOENN(MAGNEZONE),
+    SPECIES_TO_HOENN(MAMOSWINE),
+    SPECIES_TO_HOENN(MANTYKE),
+    SPECIES_TO_HOENN(MIME_JR),
+    SPECIES_TO_HOENN(MISMAGIUS),
+    SPECIES_TO_HOENN(MUNCHLAX),
+    SPECIES_TO_HOENN(PORYGONZ),
+    SPECIES_TO_HOENN(PROBOPASS),
+    SPECIES_TO_HOENN(RHYPERIOR),
+    SPECIES_TO_HOENN(ROSERADE),
+    SPECIES_TO_HOENN(TANGROWTH),
+    SPECIES_TO_HOENN(TOGEKISS),
+    SPECIES_TO_HOENN(WEAVILE),
+    SPECIES_TO_HOENN(YANMEGA),
 };
 
 const u16 gSpeciesToNationalPokedexNum[] = // Assigns all species to the National Dex Index (Summary No. for National Dex)
@@ -925,6 +955,35 @@ const u16 gSpeciesToNationalPokedexNum[] = // Assigns all species to the Nationa
     SPECIES_TO_NATIONAL(JIRACHI),
     SPECIES_TO_NATIONAL(DEOXYS),
     SPECIES_TO_NATIONAL(CHIMECHO),
+    SPECIES_TO_NATIONAL(AMBIPOM),
+    SPECIES_TO_NATIONAL(BONSLY),
+    SPECIES_TO_NATIONAL(BUDEW),
+    SPECIES_TO_NATIONAL(CHINGLING),
+    SPECIES_TO_NATIONAL(DUSKNOIR),
+    SPECIES_TO_NATIONAL(ELECTIVIRE),
+    SPECIES_TO_NATIONAL(FROSLASS),
+    SPECIES_TO_NATIONAL(GALLADE),
+    SPECIES_TO_NATIONAL(GLACEON),
+    SPECIES_TO_NATIONAL(GLISCOR),
+    SPECIES_TO_NATIONAL(HAPPINY),
+    SPECIES_TO_NATIONAL(HONCHKROW),
+    SPECIES_TO_NATIONAL(LEAFEON),
+    SPECIES_TO_NATIONAL(LICKILICKY),
+    SPECIES_TO_NATIONAL(MAGMORTAR),
+    SPECIES_TO_NATIONAL(MAGNEZONE),
+    SPECIES_TO_NATIONAL(MAMOSWINE),
+    SPECIES_TO_NATIONAL(MANTYKE),
+    SPECIES_TO_NATIONAL(MIME_JR),
+    SPECIES_TO_NATIONAL(MISMAGIUS),
+    SPECIES_TO_NATIONAL(MUNCHLAX),
+    SPECIES_TO_NATIONAL(PORYGONZ),
+    SPECIES_TO_NATIONAL(PROBOPASS),
+    SPECIES_TO_NATIONAL(RHYPERIOR),
+    SPECIES_TO_NATIONAL(ROSERADE),
+    SPECIES_TO_NATIONAL(TANGROWTH),
+    SPECIES_TO_NATIONAL(TOGEKISS),
+    SPECIES_TO_NATIONAL(WEAVILE),
+    SPECIES_TO_NATIONAL(YANMEGA),
 };
 
 const u16 gHoennToNationalOrder[] = // Assigns Hoenn Dex Pokémon (Using National Dex Index)
@@ -960,6 +1019,7 @@ const u16 gHoennToNationalOrder[] = // Assigns Hoenn Dex Pokémon (Using Nationa
     HOENN_TO_NATIONAL(RALTS),
     HOENN_TO_NATIONAL(KIRLIA),
     HOENN_TO_NATIONAL(GARDEVOIR),
+    HOENN_TO_NATIONAL(GALLADE),
     HOENN_TO_NATIONAL(SURSKIT),
     HOENN_TO_NATIONAL(MASQUERAIN),
     HOENN_TO_NATIONAL(SHROOMISH),
@@ -989,6 +1049,7 @@ const u16 gHoennToNationalOrder[] = // Assigns Hoenn Dex Pokémon (Using Nationa
     HOENN_TO_NATIONAL(GRAVELER),
     HOENN_TO_NATIONAL(GOLEM),
     HOENN_TO_NATIONAL(NOSEPASS),
+    HOENN_TO_NATIONAL(PROBOPASS),
     HOENN_TO_NATIONAL(SKITTY),
     HOENN_TO_NATIONAL(DELCATTY),
     HOENN_TO_NATIONAL(ZUBAT),
@@ -1012,6 +1073,7 @@ const u16 gHoennToNationalOrder[] = // Assigns Hoenn Dex Pokémon (Using Nationa
     HOENN_TO_NATIONAL(MINUN),
     HOENN_TO_NATIONAL(MAGNEMITE),
     HOENN_TO_NATIONAL(MAGNETON),
+    HOENN_TO_NATIONAL(MAGNEZONE),
     HOENN_TO_NATIONAL(VOLTORB),
     HOENN_TO_NATIONAL(ELECTRODE),
     HOENN_TO_NATIONAL(VOLBEAT),
@@ -1022,7 +1084,9 @@ const u16 gHoennToNationalOrder[] = // Assigns Hoenn Dex Pokémon (Using Nationa
     HOENN_TO_NATIONAL(BELLOSSOM),
     HOENN_TO_NATIONAL(DODUO),
     HOENN_TO_NATIONAL(DODRIO),
+    HOENN_TO_NATIONAL(BUDEW),
     HOENN_TO_NATIONAL(ROSELIA),
+    HOENN_TO_NATIONAL(ROSERADE),
     HOENN_TO_NATIONAL(GULPIN),
     HOENN_TO_NATIONAL(SWALOT),
     HOENN_TO_NATIONAL(CARVANHA),
@@ -1078,7 +1142,9 @@ const u16 gHoennToNationalOrder[] = // Assigns Hoenn Dex Pokémon (Using Nationa
     HOENN_TO_NATIONAL(BANETTE),
     HOENN_TO_NATIONAL(DUSKULL),
     HOENN_TO_NATIONAL(DUSCLOPS),
+    HOENN_TO_NATIONAL(DUSKNOIR),
     HOENN_TO_NATIONAL(TROPIUS),
+    HOENN_TO_NATIONAL(CHINGLING),
     HOENN_TO_NATIONAL(CHIMECHO),
     HOENN_TO_NATIONAL(ABSOL),
     HOENN_TO_NATIONAL(VULPIX),
@@ -1099,8 +1165,10 @@ const u16 gHoennToNationalOrder[] = // Assigns Hoenn Dex Pokémon (Using Nationa
     HOENN_TO_NATIONAL(HERACROSS),
     HOENN_TO_NATIONAL(RHYHORN),
     HOENN_TO_NATIONAL(RHYDON),
+    HOENN_TO_NATIONAL(RHYPERIOR),
     HOENN_TO_NATIONAL(SNORUNT),
     HOENN_TO_NATIONAL(GLALIE),
+    HOENN_TO_NATIONAL(FROSLASS),
     HOENN_TO_NATIONAL(SPHEAL),
     HOENN_TO_NATIONAL(SEALEO),
     HOENN_TO_NATIONAL(WALREIN),
@@ -1315,6 +1383,26 @@ const u16 gHoennToNationalOrder[] = // Assigns Hoenn Dex Pokémon (Using Nationa
     HOENN_TO_NATIONAL(LUGIA),
     HOENN_TO_NATIONAL(HO_OH),
     HOENN_TO_NATIONAL(CELEBI),
+    HOENN_TO_NATIONAL(AMBIPOM),
+    HOENN_TO_NATIONAL(MISMAGIUS),
+    HOENN_TO_NATIONAL(HONCHKROW),
+    HOENN_TO_NATIONAL(BONSLY),
+    HOENN_TO_NATIONAL(MIME_JR),
+    HOENN_TO_NATIONAL(HAPPINY),
+    HOENN_TO_NATIONAL(MUNCHLAX),
+    HOENN_TO_NATIONAL(MANTYKE),
+    HOENN_TO_NATIONAL(WEAVILE),
+    HOENN_TO_NATIONAL(LICKILICKY),
+    HOENN_TO_NATIONAL(TANGROWTH),
+    HOENN_TO_NATIONAL(ELECTIVIRE),
+    HOENN_TO_NATIONAL(MAGMORTAR),
+    HOENN_TO_NATIONAL(TOGEKISS),
+    HOENN_TO_NATIONAL(YANMEGA),
+    HOENN_TO_NATIONAL(LEAFEON),
+    HOENN_TO_NATIONAL(GLACEON),
+    HOENN_TO_NATIONAL(GLISCOR),
+    HOENN_TO_NATIONAL(MAMOSWINE),
+    HOENN_TO_NATIONAL(PORYGONZ),
     HOENN_TO_NATIONAL(OLD_UNOWN_B),
     HOENN_TO_NATIONAL(OLD_UNOWN_C),
     HOENN_TO_NATIONAL(OLD_UNOWN_D),
@@ -1781,6 +1869,35 @@ static const u8 sMonFrontAnimIdsTable[] =
     [SPECIES_JIRACHI - 1]     = ANIM_SWING_CONVEX,
     [SPECIES_DEOXYS - 1]      = ANIM_H_PIVOT,
     [SPECIES_CHIMECHO - 1]    = ANIM_H_SLIDE_WOBBLE,
+    [SPECIES_AMBIPOM - 1] = ANIM_BACK_AND_LUNGE,
+    [SPECIES_BONSLY - 1] = ANIM_V_JUMPS_SMALL,
+    [SPECIES_BUDEW - 1] = ANIM_SHRINK_GROW,
+    [SPECIES_CHINGLING - 1] = ANIM_H_SLIDE_WOBBLE,
+    [SPECIES_DUSKNOIR - 1] = ANIM_GLOW_BLACK,
+    [SPECIES_ELECTIVIRE - 1] = ANIM_GLOW_YELLOW,
+    [SPECIES_FROSLASS - 1] = ANIM_V_SLIDE_WOBBLE,
+    [SPECIES_GALLADE - 1] = ANIM_SHRINK_GROW,
+    [SPECIES_GLACEON - 1] = ANIM_V_STRETCH,
+    [SPECIES_GLISCOR - 1] = ANIM_TWIST,
+    [SPECIES_HAPPINY - 1] = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
+    [SPECIES_HONCHKROW - 1] = ANIM_GLOW_BLACK,
+    [SPECIES_LEAFEON - 1] = ANIM_V_JUMPS_SMALL,
+    [SPECIES_LICKILICKY - 1] = ANIM_ROTATE_UP_SLAM_DOWN,
+    [SPECIES_MAGMORTAR - 1] = ANIM_GLOW_RED,
+    [SPECIES_MAGNEZONE - 1] = ANIM_GLOW_YELLOW,
+    [SPECIES_MAMOSWINE - 1] = ANIM_V_JUMPS_BIG,
+    [SPECIES_MANTYKE - 1] = ANIM_TWIST_TWICE,
+    [SPECIES_MIME_JR - 1] = ANIM_H_SLIDE_SHRINK,
+    [SPECIES_MISMAGIUS - 1] = ANIM_SWING_CONVEX_FAST,
+    [SPECIES_MUNCHLAX - 1] = ANIM_SHRINK_GROW,
+    [SPECIES_PORYGONZ - 1] = ANIM_V_SLIDE_WOBBLE,
+    [SPECIES_PROBOPASS - 1] = ANIM_SWING_CONVEX_FAST,
+    [SPECIES_RHYPERIOR - 1] = ANIM_LUNGE_GROW,
+    [SPECIES_ROSERADE - 1] = ANIM_GLOW_PURPLE,
+    [SPECIES_TANGROWTH - 1] = ANIM_GROW_IN_STAGES,
+    [SPECIES_TOGEKISS - 1] = ANIM_TIP_MOVE_FORWARD,
+    [SPECIES_WEAVILE - 1] = ANIM_H_SHAKE,
+    [SPECIES_YANMEGA - 1] = ANIM_ZIGZAG_FAST,
 };
 
 static const u8 sMonAnimationDelayTable[NUM_SPECIES - 1] =
@@ -5453,6 +5570,7 @@ u8 GetNatureFromPersonality(u32 personality)
 u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem)
 {
     int i;
+    int j;
     u16 targetSpecies = 0;
     u16 species = GetMonData(mon, MON_DATA_SPECIES, 0);
     u16 heldItem = GetMonData(mon, MON_DATA_HELD_ITEM, 0);
@@ -5530,6 +5648,57 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem)
             case EVO_BEAUTY:
                 if (gEvolutionTable[species][i].param <= beauty)
                     targetSpecies = gEvolutionTable[species][i].targetSpecies;
+            case EVO_LEVEL_ITEM:
+                if (gEvolutionTable[species][i].param == heldItem)
+                {
+                    heldItem = ITEM_NONE;
+                    SetMonData(mon, MON_DATA_HELD_ITEM, &heldItem);
+                    targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                }
+                break;
+            case EVO_LEVEL_ITEM_DAY:
+                RtcCalcLocalTime();
+                if (GetCurrentTimeOfDay() != TIME_NIGHT && gEvolutionTable[species][i].param == heldItem)
+                {
+                    heldItem = ITEM_NONE;
+                    SetMonData(mon, MON_DATA_HELD_ITEM, &heldItem);
+                    targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                }
+                break;
+            case EVO_LEVEL_ITEM_NIGHT:
+                RtcCalcLocalTime();
+                if (GetCurrentTimeOfDay() == TIME_NIGHT && gEvolutionTable[species][i].param == heldItem)
+                {
+                    heldItem = ITEM_NONE;
+                    SetMonData(mon, MON_DATA_HELD_ITEM, &heldItem);
+                    targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                }
+                break;
+            case EVO_PETALBURG_WOODS:
+                if (gMapHeader.regionMapSectionId == MAPSEC_PETALBURG_WOODS)
+                    targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                break;
+            case EVO_SHOAL_CAVE:
+                if (gMapHeader.regionMapSectionId == MAPSEC_SHOAL_CAVE)
+                    targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                break;
+            case EVO_MANTYKE:
+                for (j = 0; j < PARTY_SIZE; j++)
+                {
+                    if (GetMonData(&gPlayerParty[j], MON_DATA_SPECIES, 0) == SPECIES_REMORAID)
+                    {
+                        targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                        break;
+                    }
+                }
+                break;
+            case EVO_MAGNETIC_FIELD:
+                if (gMapHeader.regionMapSectionId == MAPSEC_NEW_MAUVILLE)
+                    targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                break;
+            case EVO_LEVEL_MOVE:
+                if (MonKnowsMove(mon, gEvolutionTable[species][i].param))
+                    targetSpecies = gEvolutionTable[species][i].targetSpecies;
                 break;
             }
         }
@@ -5557,10 +5726,21 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem)
     case EVO_MODE_ITEM_CHECK:
         for (i = 0; i < EVOS_PER_MON; i++)
         {
-            if (gEvolutionTable[species][i].method == EVO_ITEM
-             && gEvolutionTable[species][i].param == evolutionItem)
+            switch (gEvolutionTable[species][i].method)
             {
-                targetSpecies = gEvolutionTable[species][i].targetSpecies;
+            case EVO_ITEM:
+                if (gEvolutionTable[species][i].param == evolutionItem)
+                    targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                break;
+            case EVO_ITEM_MALE:
+                if (GetGenderFromSpeciesAndPersonality(species, personality) == MON_MALE
+                 && gEvolutionTable[species][i].param == evolutionItem)
+                    targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                break;
+            case EVO_ITEM_FEMALE:
+                if (GetGenderFromSpeciesAndPersonality(species, personality) == MON_FEMALE
+                 && gEvolutionTable[species][i].param == evolutionItem)
+                    targetSpecies = gEvolutionTable[species][i].targetSpecies;
                 break;
             }
         }

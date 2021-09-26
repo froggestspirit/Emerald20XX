@@ -5747,5 +5747,155 @@ static const u32 sTutorLearnsets[] =
                                 | TUTOR(MOVE_SLEEP_TALK)
                                 | TUTOR(MOVE_DEFENSE_CURL)),
 
+    [SPECIES_AMBIPOM]          = (TUTOR(MOVE_SNORE)
+                                | TUTOR(MOVE_MUD_SLAP)
+                                | TUTOR(MOVE_ICE_PUNCH)
+                                | TUTOR(MOVE_SWIFT)
+                                | TUTOR(MOVE_THUNDER_PUNCH)
+                                | TUTOR(MOVE_FIRE_PUNCH)
+                                | TUTOR(MOVE_FURY_CUTTER)),
+    [SPECIES_BONSLY]           = (TUTOR(MOVE_ROLLOUT)
+                                | TUTOR(MOVE_SNORE)),
+
+    [SPECIES_BUDEW]            = (TUTOR(MOVE_SNORE)
+                                | TUTOR(MOVE_MUD_SLAP)
+                                | TUTOR(MOVE_SWIFT)),
+
+    [SPECIES_CHINGLING]        = (TUTOR(MOVE_ROLLOUT)
+                                | TUTOR(MOVE_SNORE)
+                                | TUTOR(MOVE_ICY_WIND)
+                                | TUTOR(MOVE_SWIFT)),
+
+    [SPECIES_DUSKNOIR]         = (TUTOR(MOVE_SNORE)
+                                | TUTOR(MOVE_ICY_WIND)
+                                | TUTOR(MOVE_MUD_SLAP)
+                                | TUTOR(MOVE_ICE_PUNCH)
+                                | TUTOR(MOVE_THUNDER_PUNCH)
+                                | TUTOR(MOVE_FIRE_PUNCH)),
+
+    [SPECIES_ELECTIVIRE]       = (TUTOR(MOVE_SNORE)
+                                | TUTOR(MOVE_MUD_SLAP)
+                                | TUTOR(MOVE_ICE_PUNCH)
+                                | TUTOR(MOVE_SWIFT)
+                                | TUTOR(MOVE_THUNDER_PUNCH)
+                                | TUTOR(MOVE_FIRE_PUNCH)),
+
+    [SPECIES_FROSLASS]         = (TUTOR(MOVE_ROLLOUT)
+                                | TUTOR(MOVE_SNORE)
+                                | TUTOR(MOVE_ICY_WIND)
+                                | TUTOR(MOVE_MUD_SLAP)
+                                | TUTOR(MOVE_ICE_PUNCH)),
+
+    [SPECIES_GALLADE]          = (TUTOR(MOVE_SNORE)
+                                | TUTOR(MOVE_MUD_SLAP)
+                                | TUTOR(MOVE_ICE_PUNCH)
+                                | TUTOR(MOVE_SWIFT)
+                                | TUTOR(MOVE_THUNDER_PUNCH)
+                                | TUTOR(MOVE_FIRE_PUNCH)
+                                | TUTOR(MOVE_FURY_CUTTER)),
+
+    [SPECIES_GLISCOR]          = (TUTOR(MOVE_SNORE)
+                                | TUTOR(MOVE_MUD_SLAP)
+                                | TUTOR(MOVE_SWIFT)
+                                | TUTOR(MOVE_FURY_CUTTER)),
+
+    [SPECIES_HAPPINY]          = (TUTOR(MOVE_ROLLOUT)
+                                | TUTOR(MOVE_SNORE)
+                                | TUTOR(MOVE_ICY_WIND)
+                                | TUTOR(MOVE_MUD_SLAP)),
+
+    [SPECIES_HONCHKROW]        = (TUTOR(MOVE_MUD_SLAP)
+                                | TUTOR(MOVE_SWIFT)),
+
+    [SPECIES_LEAFEON]          = (TUTOR(MOVE_SNORE)
+                                | TUTOR(MOVE_MUD_SLAP)
+                                | TUTOR(MOVE_SWIFT)
+                                | TUTOR(MOVE_FURY_CUTTER)),
+
+    [SPECIES_LICKILICKY]       = (TUTOR(MOVE_ROLLOUT)
+                                | TUTOR(MOVE_SNORE)
+                                | TUTOR(MOVE_ICY_WIND)
+                                | TUTOR(MOVE_MUD_SLAP)
+                                | TUTOR(MOVE_ICE_PUNCH)
+                                | TUTOR(MOVE_THUNDER_PUNCH)
+                                | TUTOR(MOVE_FIRE_PUNCH)),
+
+    [SPECIES_MAGMORTAR]        = (TUTOR(MOVE_SNORE)
+                                | TUTOR(MOVE_MUD_SLAP)
+                                | TUTOR(MOVE_THUNDER_PUNCH)
+                                | TUTOR(MOVE_FIRE_PUNCH)),
+
+    [SPECIES_MAGNEZONE]        = (TUTOR(MOVE_ROLLOUT)
+                                | TUTOR(MOVE_SNORE)
+                                | TUTOR(MOVE_SWIFT)),
+
+    [SPECIES_MAMOSWINE]        = (TUTOR(MOVE_SNORE)
+                                | TUTOR(MOVE_ICY_WIND)
+                                | TUTOR(MOVE_MUD_SLAP)
+                                | TUTOR(MOVE_FURY_CUTTER)),
+
+    [SPECIES_MANTYKE]          = (TUTOR(MOVE_SNORE)
+                                | TUTOR(MOVE_ICY_WIND)
+                                | TUTOR(MOVE_MUD_SLAP)
+                                | TUTOR(MOVE_SWIFT)),
+
+    [SPECIES_MIME_JR]           = (TUTOR(MOVE_SNORE)
+                                | TUTOR(MOVE_MUD_SLAP)),
+
+    [SPECIES_MISMAGIUS]        = (TUTOR(MOVE_SNORE)
+                                | TUTOR(MOVE_ICY_WIND)
+                                | TUTOR(MOVE_SWIFT)),
+
+    [SPECIES_MUNCHLAX]         = (TUTOR(MOVE_ROLLOUT)
+                                | TUTOR(MOVE_SNORE)
+                                | TUTOR(MOVE_ICY_WIND)
+                                | TUTOR(MOVE_MUD_SLAP)
+                                | TUTOR(MOVE_ICE_PUNCH)
+                                | TUTOR(MOVE_THUNDER_PUNCH)
+                                | TUTOR(MOVE_FIRE_PUNCH)),
+
+    [SPECIES_PORYGONZ]        = (TUTOR(MOVE_SNORE)
+                                | TUTOR(MOVE_ICY_WIND)
+                                | TUTOR(MOVE_SWIFT)),
+
+    [SPECIES_PROBOPASS]        = (TUTOR(MOVE_ROLLOUT)
+                                | TUTOR(MOVE_SNORE)
+                                | TUTOR(MOVE_MUD_SLAP)
+                                | TUTOR(MOVE_ICE_PUNCH)
+                                | TUTOR(MOVE_THUNDER_PUNCH)
+                                | TUTOR(MOVE_FIRE_PUNCH)),
+
+    [SPECIES_RHYPERIOR]        = (TUTOR(MOVE_ROLLOUT)
+                                | TUTOR(MOVE_SNORE)
+                                | TUTOR(MOVE_ICY_WIND)
+                                | TUTOR(MOVE_MUD_SLAP)
+                                | TUTOR(MOVE_ICE_PUNCH)
+                                | TUTOR(MOVE_THUNDER_PUNCH)
+                                | TUTOR(MOVE_FIRE_PUNCH)
+                                | TUTOR(MOVE_FURY_CUTTER)),
+
+    [SPECIES_ROSERADE]         = (TUTOR(MOVE_SNORE)
+                                | TUTOR(MOVE_MUD_SLAP)
+                                | TUTOR(MOVE_SWIFT)
+                                | TUTOR(MOVE_FURY_CUTTER)),
+
+    [SPECIES_TANGROWTH]        = (TUTOR(MOVE_SNORE)
+                                | TUTOR(MOVE_MUD_SLAP)),
+
+    [SPECIES_TOGEKISS]         = (TUTOR(MOVE_ROLLOUT)
+                                | TUTOR(MOVE_SNORE)
+                                | TUTOR(MOVE_MUD_SLAP)
+                                | TUTOR(MOVE_SWIFT)),
+
+    [SPECIES_WEAVILE]          = (TUTOR(MOVE_SNORE)
+                                | TUTOR(MOVE_ICY_WIND)
+                                | TUTOR(MOVE_MUD_SLAP)
+                                | TUTOR(MOVE_ICE_PUNCH)
+                                | TUTOR(MOVE_SWIFT)
+                                | TUTOR(MOVE_FURY_CUTTER)),
+
+    [SPECIES_YANMEGA]          = (TUTOR(MOVE_SNORE)
+                                | TUTOR(MOVE_MUD_SLAP)
+                                | TUTOR(MOVE_SWIFT)),
 };
 

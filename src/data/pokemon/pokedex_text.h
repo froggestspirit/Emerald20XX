@@ -2260,6 +2260,151 @@ const u8 gMetagrossPokedexText[] = _(
     "integration, this POKéMON is smarter than\n"
     "a supercomputer.");
 
+const u8 gBudewPokedexText[] = _(
+    "When it feels the sun's warm touch,\n"
+    "it opens its bud to release pollen.\n"
+    "It lives alongside clear pools.");
+
+const u8 gRoseradePokedexText[] = _(
+    "Its sweet aroma attracts prey.\n"
+    "Then it spews poison. The more\n"
+    "toxic it is, the sweeter its aroma.");
+
+const u8 gAmbipomPokedexText[] = _(
+    "They live on large trees. They are\n"
+    "said to communicate by connecting\n"
+    "their tails to those of others.");
+
+const u8 gMismagiusPokedexText[] = _(
+    "Its cries sound like incantations\n"
+    "to torment the foe. It appears\n"
+    "where you least expect it.");
+
+const u8 gHonchkrowPokedexText[] = _(
+    "It is merciless by nature. It is said\n"
+    "that it never forgives the mistakes\n"
+    "of its MURKROW followers.");
+
+const u8 gChinglingPokedexText[] = _(
+    "It emits high-frequency cries that \n"
+    "people can't hear. Once it starts,\n"
+    "it can cry for an awfully long time. ");
+
+const u8 gBonslyPokedexText[] = _(
+    "It prefers an arid atmosphere. It\n"
+    "leaks water that looks like tears\n"
+    "when adjusting its moisture level.");
+
+const u8 gMimeJrPokedexText[] = _(
+    "In an attempt to confuse its enemy,\n"
+    "it mimics the enemy's movements. Then\n"
+    "it wastes no time in making itself scarce!");
+
+const u8 gHappinyPokedexText[] = _(
+    "It carefully carries a round, white rock\n"
+    "that it thinks is an egg. It's bothered\n"
+    "by how curly its hair looks.");
+
+const u8 gMunchlaxPokedexText[] = _(
+    "It conceals food under the long fur on\n"
+    "its body. It carts around this food\n"
+    "stash and swallows it without chewing.");
+
+const u8 gMantykePokedexText[] = _(
+    "When it swims close to the surface of the\n"
+    "ocean, people aboard ships are able to\n"
+    "observe the pattern on its back.");
+
+const u8 gWeavilePokedexText[] = _(
+    "It lives in snowy regions. It carves\n"
+    "patterns in trees with its claws as\n"
+    "a signal to others.");
+
+const u8 gMagnezonePokedexText[] = _(
+    "Exposure to a special magnetic field\n"
+    "changed MAGNETON's molecular\n"
+    "structure, turning it into MAGNEZONE.");
+
+const u8 gLickilickyPokedexText[] = _(
+    "Its saliva can decompose anything.\n"
+    "It wraps its long tongue around things\n"
+    "to coat them with its sticky saliva.");
+
+const u8 gRhyperiorPokedexText[] = _(
+    "From holes in its palms, it fires out\n"
+    "GEODUDE. Its carapace\n"
+    "can withstand volcanic eruptions.");
+
+const u8 gTangrowthPokedexText[] = _(
+    "When it remains still, it appears to be a\n"
+    "large shrub. Unsuspecting prey that\n"
+    "wander near get ensnared by its vines.");
+
+const u8 gElectivirePokedexText[] = _(
+    "As its electric charge amplifies,\n"
+    "blue sparks begin to crackle between\n"
+    "its horns.");
+
+const u8 gMagmortarPokedexText[] = _(
+    "It blasts fireballs of over\n"
+    "3,600 degrees Fahrenheit out of its\n"
+    "arms. Its breath also sears and sizzles.");
+
+const u8 gTogekissPokedexText[] = _(
+    "As everyone knows, it visits peaceful\n"
+    "regions, bringing them gifts of kindness\n"
+    "and sweet blessings.");
+
+const u8 gYanmegaPokedexText[] = _(
+    "Its jaw power is incredible. It is\n"
+    "adept at biting apart foes while\n"
+    "flying by at high speed.");
+
+const u8 gLeafeonPokedexText[] = _(
+    "When you see LEAFEON asleep in a patch\n"
+    "of sunshine, you'll know it is using\n"
+    "photosynthesis to produce clean air.");
+
+const u8 gGlaceonPokedexText[] = _(
+    "It causes small ice crystals to form by\n"
+    "lowering the temperature of the\n"
+    "surrounding atmosphere.");
+
+const u8 gGliscorPokedexText[] = _(
+    "Its flight is soundless. It uses its\n"
+    "lengthy tail to carry off its prey...\n"
+    "Then its elongated fangs do the rest.");
+
+const u8 gMamoswinePokedexText[] = _(
+    "A frozen MAMOSWINE was dug from ice\n"
+    "dating back 10,000 years. This Pokémon\n"
+    "has been around a long, long, long time.");
+
+const u8 gPorygonZPokedexText[] = _(
+    "Its programming was modified to enable\n"
+    "it to travel through alien dimensions.\n"
+    "Seems there might have been an error...");
+
+const u8 gGalladePokedexText[] = _(
+    "Because it can sense what its foe\n"
+    "is thinking, its attacks burst out\n"
+    "first, fast, and fierce.");
+
+const u8 gProbopassPokedexText[] = _(
+    "It freely controls three units\n"
+    "called Mini-Noses using\n"
+    "magnetic force.");
+
+const u8 gDusknoirPokedexText[] = _(
+    "The antenna on its head captures\n"
+    "radio waves from the world of spirits\n"
+    "that command it to take people there.");
+
+const u8 gFroslassPokedexText[] = _(
+    "Legends in snowy regions say that\n"
+    "a woman who was lost on an icy\n"
+    "mountain was reborn as FROSLASS.");
+
 const u8 gRegirockPokedexText[] = _(
     "A POKéMON that is made entirely of rocks\n"
     "and boulders. If parts of its body chip off\n"

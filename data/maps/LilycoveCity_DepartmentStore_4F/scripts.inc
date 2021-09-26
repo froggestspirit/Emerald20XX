@@ -2,7 +2,26 @@ LilycoveCity_DepartmentStore_4F_MapScripts::
 	.byte 0
 
 LilycoveCity_DepartmentStore_4F_EventScript_Gentleman::
-	msgbox LilycoveCity_DepartmentStore_4F_Text_AttackOrDefenseTM, MSGBOX_NPC
+	lock
+	faceplayer
+	msgbox LilycoveCity_DepartmentStore_4F_Text_Incenses, MSGBOX_DEFAULT
+	waitmessage
+	pokemart LilycoveCity_DepartmentStore_4F_Pokemart_Incenses
+	msgbox LilycoveCity_DepartmentStore_4F_Text_ComeAgainChild, MSGBOX_DEFAULT
+	release
+	end
+
+	.align 2
+LilycoveCity_DepartmentStore_4F_Pokemart_Incenses:
+	.2byte ITEM_ODD_INCENSE
+	.2byte ITEM_ROCK_INCENSE
+	.2byte ITEM_FULL_INCENSE
+	.2byte ITEM_WAVE_INCENSE
+	.2byte ITEM_ROSE_INCENSE
+	.2byte ITEM_LUCK_INCENSE
+	.2byte ITEM_PURE_INCENSE
+	.2byte ITEM_NONE
+	release
 	end
 
 LilycoveCity_DepartmentStore_4F_EventScript_Woman::
@@ -53,12 +72,13 @@ LilycoveCity_DepartmentStore_4F_Pokemart_DefenseTMs:
 	release
 	end
 
-LilycoveCity_DepartmentStore_4F_Text_AttackOrDefenseTM:
-	.string "Hmm…\p"
-	.string "An attacking move…\n"
-	.string "Or a defensive move…\p"
-	.string "It's no easy matter to decide which TM\n"
-	.string "moves should be taught to POKéMON…$"
+LilycoveCity_DepartmentStore_4F_Text_Incenses:
+	.string "Hello, youngster.\p"
+	.string "I have some interesting incenses here\n"
+	.string "if you'd like to take a look.$"
+
+LilycoveCity_DepartmentStore_4F_Text_ComeAgainChild:
+	.string "Do come again, child.$"
 
 LilycoveCity_DepartmentStore_4F_Text_FiftyDifferentTMs:
 	.string "There are so many different kinds of\n"

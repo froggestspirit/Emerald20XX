@@ -204,8 +204,8 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route117_EventScript_ItemGreatBall",
-      "flag": "FLAG_ITEM_ROUTE_117_GREAT_BALL"
+      "script": "Route117_EventScript_ItemShinyStone",
+      "flag": "FLAG_ITEM_ROUTE_117_SHINY_STONE"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_CUTTABLE_TREE",

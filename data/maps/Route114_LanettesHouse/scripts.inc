@@ -10,14 +10,57 @@ Route114_LanettesHouse_EventScript_Lanette::
 	lock
 	faceplayer
 	goto_if_set FLAG_RECEIVED_DOLL_LANETTE, Route114_LanettesHouse_EventScript_OfferAdvice
+	goto_if_set FLAG_RECEIVED_EEVEE_LANETTE, Route114_LanettesHouse_EventScript_LanettePostEevee
 	setflag FLAG_SYS_PC_LANETTE
 	msgbox Route114_LanettesHouse_Text_EverythingClutteredKeepThis, MSGBOX_DEFAULT
+	setvar VAR_TEMP_1, SPECIES_EEVEE
+	givemon SPECIES_EEVEE, 15, ITEM_NONE
+	compare VAR_RESULT, 0
+	goto_if_eq Route114_LanettesHouse_EventScript_ReceiveEeveeParty
+	compare VAR_RESULT, 1
+	goto_if_eq Route114_LanettesHouse_EventScript_ReceiveEeveePC
+	goto Common_EventScript_NoMoreRoomForPokemon
+Route114_LanettesHouse_EventScript_LanettePostEevee::
+	setflag FLAG_RECEIVED_EEVEE_LANETTE
 	givedecoration DECOR_LOTAD_DOLL
 	compare VAR_RESULT, FALSE
 	goto_if_eq Common_EventScript_ShowNoRoomForDecor
 	setflag FLAG_RECEIVED_DOLL_LANETTE
 	release
 	end
+
+Route114_LanettesHouse_EventScript_ReceiveEeveeParty::
+	call Route114_LanettesHouse_EventScript_ReceivedEeveeFanfare
+	goto_if_set FLAG_NUZLOCKE_ACTIVE, Nuzlocke_Name_RecievedEevee
+	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq Route114_LanettesHouse_EventScript_LanettePostEevee
+Nuzlocke_Name_RecievedEevee::
+	call Common_EventScript_GetGiftMonPartySlot
+	call Common_EventScript_NameReceivedPartyMon
+	goto Route114_LanettesHouse_EventScript_LanettePostEevee
+
+Route114_LanettesHouse_EventScript_ReceiveEeveePC::
+	call Route114_LanettesHouse_EventScript_ReceivedEeveeFanfare
+	goto_if_set FLAG_NUZLOCKE_ACTIVE, Nuzlocke_Name_RecievedEeveePC
+	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq Route114_LanettesHouse_EventScript_SendEeveeToPC
+Nuzlocke_Name_RecievedEeveePC::
+	call Common_EventScript_NameReceivedBoxMon
+	goto Route114_LanettesHouse_EventScript_SendEeveeToPC
+
+Route114_LanettesHouse_EventScript_SendEeveeToPC::
+	call Common_EventScript_TransferredToPC
+	goto Route114_LanettesHouse_EventScript_LanettePostEevee
+
+Route114_LanettesHouse_EventScript_ReceivedEeveeFanfare::
+	playfanfare MUS_OBTAIN_ITEM
+	message Route114_LanettesHouse_Text_PlayerReceivedEevee
+	waitmessage
+	waitfanfare
+	bufferspeciesname 0, SPECIES_EEVEE
+	return
 
 Route114_LanettesHouse_EventScript_OfferAdvice::
 	msgbox Route114_LanettesHouse_Text_OrganizeYourBoxes, MSGBOX_DEFAULT
@@ -105,3 +148,5 @@ Route114_LanettesHouse_Text_EmailFromBill:
 	.string "“From BILL\n"
 	.string "… … … … … … … …”$"
 
+Route114_LanettesHouse_Text_PlayerReceivedEevee:
+	.string "{PLAYER} received EEVEE!$"

@@ -521,9 +521,56 @@ MauvilleCity_GameCorner_EventScript_NPCReturnToSlots::
 MauvilleCity_GameCorner_EventScript_Maniac::
 	lock
 	faceplayer
-	msgbox MauvilleCity_GameCorner_Text_DifficultToStopOn7, MSGBOX_DEFAULT
+	msgbox MauvilleCity_GameCorner_Text_GameCornerPrizesLame, MSGBOX_DEFAULT
+	setvar VAR_TEMP_1, SPECIES_PORYGON
+	givemon SPECIES_PORYGON, 15, ITEM_NONE
+	compare VAR_RESULT, 0
+	goto_if_eq MauvilleCity_GameCorner_EventScript_ReceivePorygonParty
+	compare VAR_RESULT, 1
+	goto_if_eq MauvilleCity_GameCorner_EventScript_ReceivePorygonPC
+	goto Common_EventScript_NoMoreRoomForPokemon
+	end
+
+MauvilleCity_GameCorner_EventScript_ReceivePorygonParty::
+	call MauvilleCity_GameCorner_EventScript_ReceivedPorygonFanfare
+	goto_if_set FLAG_NUZLOCKE_ACTIVE, Nuzlocke_Name_RecievedPorygon
+	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq MauvilleCity_GameCorner_EventScript_ReceivedPorygon
+Nuzlocke_Name_RecievedPorygon::
+	call Common_EventScript_GetGiftMonPartySlot
+	call Common_EventScript_NameReceivedPartyMon
+	goto MauvilleCity_GameCorner_EventScript_ReceivedPorygon
+
+MauvilleCity_GameCorner_EventScript_ReceivePorygonPC::
+	call MauvilleCity_GameCorner_EventScript_ReceivedPorygonFanfare
+	goto_if_set FLAG_NUZLOCKE_ACTIVE, Nuzlocke_Name_RecievedPorygonPC
+	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq MauvilleCity_GameCorner_EventScript_SendPorygonToPC
+Nuzlocke_Name_RecievedPorygonPC::
+	call Common_EventScript_NameReceivedBoxMon
+	goto MauvilleCity_GameCorner_EventScript_SendPorygonToPC
+
+MauvilleCity_GameCorner_EventScript_SendPorygonToPC::
+	call Common_EventScript_TransferredToPC
+	goto MauvilleCity_GameCorner_EventScript_ReceivedPorygon
+	end
+
+MauvilleCity_GameCorner_EventScript_ReceivedPorygonFanfare::
+	playfanfare MUS_OBTAIN_ITEM
+	message MauvilleCity_GameCorner_Text_PlayerReceivedPorygon
+	waitmessage
+	waitfanfare
+	bufferspeciesname 0, SPECIES_PORYGON
+	return
+
+MauvilleCity_GameCorner_EventScript_ReceivedPorygon::
+	msgbox MauvilleCity_GameCorner_Text_ThatsAPorygon, MSGBOX_DEFAULT
+	setflag FLAG_RECEIVED_PORYGON
 	goto MauvilleCity_GameCorner_EventScript_NPCReturnToSlots
 	end
+	
 
 MauvilleCity_GameCorner_EventScript_Woman::
 	lock
@@ -797,11 +844,23 @@ MauvilleCity_GameCorner_Text_UpTo3CoinsCanBeUsed:
 	.string "Up to three COINS can be used to play\n"
 	.string "the SLOTS.$"
 
-MauvilleCity_GameCorner_Text_DifficultToStopOn7:
-	.string "It's very difficult to make it stop\n"
-	.string "right on “7.”\p"
-	.string "If it stops on “7” during the REEL TIME\n"
-	.string "bonus game, you'll receive extra COINS.$"
+MauvilleCity_GameCorner_Text_GameCornerPrizesLame:
+	.string "This GAME CORNER's prizes\n"
+	.string "are so lame!\p"
+	.string "Back from where I'm from,\n"
+	.string "you could get POKéMON as prizes\l"
+	.string "for your coins.\p"
+	.string "What, you don't believe me?\n"
+	.string "Then here!$"
+
+MauvilleCity_GameCorner_Text_ThatsAPorygon:
+	.string "That's a PORYGON.\p"
+	.string "It's a super-rare POKéMON that's\n"
+	.string "available exclusively as a prize\l"
+	.string "from the GAME CORNER in my region.\p"
+	.string "I'm such a master at the slots\n"
+	.string "that I have plenty of them, so\l"
+	.string "I don't mind giving you that one.$"
 
 MauvilleCity_GameCorner_Text_HeresSomeSlotsInfo:
 	.string "Here's some information for you\n"
@@ -819,3 +878,5 @@ MauvilleCity_GameCorner_Text_CantPlayWithNoCoinCase:
 	.string "You can't play if you don't have\n"
 	.string "a COIN CASE.$"
 
+MauvilleCity_GameCorner_Text_PlayerReceivedPorygon:
+	.string "{PLAYER} received the PORYGON!$"

@@ -3,6 +3,7 @@
 Route117_EventScript_DaycareMan::
 	lock
 	faceplayer
+	goto_if_unset FLAG_RECEIVED_DAYCARE_MAN_EGG, Route117_EventScript_DaycareManGiveEgg
 	special GetDaycareMonNicknames
 	specialvar VAR_RESULT, GetDaycareState
 	compare VAR_RESULT, DAYCARE_EGG_WAITING
@@ -12,6 +13,27 @@ Route117_EventScript_DaycareMan::
 	compare VAR_RESULT, DAYCARE_TWO_MONS
 	goto_if_eq Route117_EventScript_CheckOnTwoMons
 	msgbox Route117_Text_SeeWifeIfYoudLikeMeToRaiseMon, MSGBOX_DEFAULT
+	release
+	end
+
+Route117_EventScript_DaycareManGiveEgg::
+	msgbox Route117_PokemonDayCare_Text_KnowAboutEggs, MSGBOX_DEFAULT
+	specialvar VAR_RESULT, CalculatePlayerPartyCount
+	compare VAR_RESULT, PARTY_SIZE
+	goto_if_ne Route117_EventScript_DaycareGiveTogepiEgg
+	msgbox Route117_Text_YouHaveNoRoomForIt, MSGBOX_DEFAULT
+	release
+	end
+
+
+Route117_EventScript_DaycareGiveTogepiEgg::
+	message Route117_Text_ReceivedEgg
+	playfanfare MUS_LEVEL_UP
+	waitfanfare
+	waitbuttonpress
+	msgbox Route117_Text_TakeGoodCareOfIt, MSGBOX_DEFAULT
+	giveegg SPECIES_TOGEPI
+	setflag FLAG_RECEIVED_DAYCARE_MAN_EGG
 	release
 	end
 
@@ -443,3 +465,13 @@ Route117_PokemonDayCare_Text_YoullBeLeftWithJustOne:
 	.string "me, you'll be left with just one.\p"
 	.string "You will be better off if you catch\n"
 	.string "some more, I dare say.$"
+
+Route117_PokemonDayCare_Text_KnowAboutEggs:
+	.string "I'm the DAY-CARE MAN.\p"
+	.string "Do you know about EGGS?\p"
+	.string "I was raising some POKéMON with\n"
+	.string "my wife, you see.\p"
+	.string "We were shocked to find an EGG!\n"
+	.string "Isn't that incredible?\p"
+	.string "You'd like this EGG, yes?\n"
+	.string "Then here you go!$"

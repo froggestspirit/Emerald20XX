@@ -3,6 +3,12 @@
 
 #include "constants/daycare.h"
 
+struct IncenseMon
+{
+    u16 item;
+    u16 baseSpecies;
+};
+
 u8 *GetMonNickname2(struct Pokemon *mon, u8 *dest);
 u8 *GetBoxMonNickname(struct BoxPokemon *mon, u8 *dest);
 u8 CountPokemonInDaycare(struct DayCare *daycare);

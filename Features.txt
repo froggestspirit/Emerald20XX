@@ -22,6 +22,7 @@ Features:
 -Various Nuzlocke code - Kurausukun
 -HQ instrument samples - Kurausukun
 -Day/Night - Sierraffinity
+-Gen 4 evolutions and pre-evolutions (including evo methods and items)
 -Various graphical updates
 
 
