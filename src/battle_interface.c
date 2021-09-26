@@ -2034,17 +2034,17 @@ static void UpdateStatusIconInHealthbox(u8 healthboxSpriteId)
     pltAdder = gSprites[healthboxSpriteId].oam.paletteNum * 16;
     pltAdder += battlerId + 12;
 
-    FillPalette(sStatusIconColors[statusPalId], pltAdder + 0x100, 2);
-    CpuCopy16(gPlttBufferUnfaded + 0x100 + pltAdder, (void*)(OBJ_PLTT + pltAdder * 2), 2);
+    //FillPalette(sStatusIconColors[statusPalId], pltAdder + 0x100, 2);
+    //CpuCopy16(gPlttBufferUnfaded + 0x100 + pltAdder, (void*)(OBJ_PLTT + pltAdder * 2), 2);
     CpuCopy32(statusGfxPtr, (void*)(OBJ_VRAM0 + (gSprites[healthboxSpriteId].oam.tileNum + tileNumAdder) * TILE_SIZE_4BPP), 96);
-    if (IsDoubleBattle() == TRUE || GetBattlerSide(battlerId) == B_SIDE_OPPONENT)
+    /*if (IsDoubleBattle() == TRUE || GetBattlerSide(battlerId) == B_SIDE_OPPONENT)
     {
         if (!gBattleSpritesDataPtr->battlerData[battlerId].hpNumbersNoBars)
         {
             CpuCopy32(GetHealthboxElementGfxPtr(HEALTHBOX_GFX_0), (void*)(OBJ_VRAM0 + gSprites[healthBarSpriteId].oam.tileNum * TILE_SIZE_4BPP), 32);
             CpuCopy32(GetHealthboxElementGfxPtr(HEALTHBOX_GFX_65), (void*)(OBJ_VRAM0 + (gSprites[healthBarSpriteId].oam.tileNum + 1) * TILE_SIZE_4BPP), 32);
         }
-    }
+    }*/
     TryAddPokeballIconToHealthbox(healthboxSpriteId, FALSE);
 }
 
@@ -2055,54 +2055,54 @@ static u8 GetStatusIconForBattlerId(u8 statusElementId, u8 battlerId)
     switch (statusElementId)
     {
     case HEALTHBOX_GFX_STATUS_PSN_BATTLER0:
-        if (battlerId == 0)
+        //if (battlerId == 0)
             ret = HEALTHBOX_GFX_STATUS_PSN_BATTLER0;
-        else if (battlerId == 1)
+        /*else if (battlerId == 1)
             ret = HEALTHBOX_GFX_STATUS_PSN_BATTLER1;
         else if (battlerId == 2)
             ret = HEALTHBOX_GFX_STATUS_PSN_BATTLER2;
         else
-            ret = HEALTHBOX_GFX_STATUS_PSN_BATTLER3;
+            ret = HEALTHBOX_GFX_STATUS_PSN_BATTLER3;*/
         break;
     case HEALTHBOX_GFX_STATUS_PRZ_BATTLER0:
-        if (battlerId == 0)
+        //if (battlerId == 0)
             ret = HEALTHBOX_GFX_STATUS_PRZ_BATTLER0;
-        else if (battlerId == 1)
+        /*else if (battlerId == 1)
             ret = HEALTHBOX_GFX_STATUS_PRZ_BATTLER1;
         else if (battlerId == 2)
             ret = HEALTHBOX_GFX_STATUS_PRZ_BATTLER2;
         else
-            ret = HEALTHBOX_GFX_STATUS_PRZ_BATTLER3;
+            ret = HEALTHBOX_GFX_STATUS_PRZ_BATTLER3;*/
         break;
     case HEALTHBOX_GFX_STATUS_SLP_BATTLER0:
-        if (battlerId == 0)
+        //if (battlerId == 0)
             ret = HEALTHBOX_GFX_STATUS_SLP_BATTLER0;
-        else if (battlerId == 1)
+        /*else if (battlerId == 1)
             ret = HEALTHBOX_GFX_STATUS_SLP_BATTLER1;
         else if (battlerId == 2)
             ret = HEALTHBOX_GFX_STATUS_SLP_BATTLER2;
         else
-            ret = HEALTHBOX_GFX_STATUS_SLP_BATTLER3;
+            ret = HEALTHBOX_GFX_STATUS_SLP_BATTLER3;*/
         break;
     case HEALTHBOX_GFX_STATUS_FRZ_BATTLER0:
-        if (battlerId == 0)
+        //if (battlerId == 0)
             ret = HEALTHBOX_GFX_STATUS_FRZ_BATTLER0;
-        else if (battlerId == 1)
+        /*else if (battlerId == 1)
             ret = HEALTHBOX_GFX_STATUS_FRZ_BATTLER1;
         else if (battlerId == 2)
             ret = HEALTHBOX_GFX_STATUS_FRZ_BATTLER2;
         else
-            ret = HEALTHBOX_GFX_STATUS_FRZ_BATTLER3;
+            ret = HEALTHBOX_GFX_STATUS_FRZ_BATTLER3;*/
         break;
     case HEALTHBOX_GFX_STATUS_BRN_BATTLER0:
-        if (battlerId == 0)
+        //if (battlerId == 0)
             ret = HEALTHBOX_GFX_STATUS_BRN_BATTLER0;
-        else if (battlerId == 1)
+        /*else if (battlerId == 1)
             ret = HEALTHBOX_GFX_STATUS_BRN_BATTLER1;
         else if (battlerId == 2)
             ret = HEALTHBOX_GFX_STATUS_BRN_BATTLER2;
         else
-            ret = HEALTHBOX_GFX_STATUS_BRN_BATTLER3;
+            ret = HEALTHBOX_GFX_STATUS_BRN_BATTLER3;*/
         break;
     }
     return ret;
