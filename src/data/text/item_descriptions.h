@@ -1034,8 +1034,8 @@ static const u8 sProtectorDesc[] = _(
 
 static const u8 sElectirizerDesc[] = _(
     "A box of electric\n"
-    "energy. It's loved\n"
-    "by a certain POKéMON.");
+    "energy loved by a\n"
+    "certain POKéMON.");
 
 static const u8 sMagmarizerDesc[] = _(
     "A box of magma\n"
