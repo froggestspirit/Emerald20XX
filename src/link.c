@@ -5,7 +5,6 @@
 #include "save.h"
 #include "bg.h"
 #include "window.h"
-#include "librfu.h"
 #include "random.h"
 #include "decompress.h"
 #include "string_util.h"
@@ -16,6 +15,7 @@
 #include "palette.h"
 #include "task.h"
 #include "scanline_effect.h"
+#include "main.h"
 #include "menu.h"
 #include "text.h"
 #include "strings.h"
@@ -24,7 +24,6 @@
 #include "trade.h"
 #include "battle.h"
 #include "link.h"
-#include "link_rfu.h"
 #include "constants/rgb.h"
 #include "constants/trade.h"
 

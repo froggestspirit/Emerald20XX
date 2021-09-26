@@ -302,9 +302,6 @@ ContestHall_EventScript_RandomAudienceScientist1::
 	return
 
 ContestHall_EventScript_CreateAudience::
-	specialvar VAR_RESULT, IsWirelessContest
-	compare VAR_RESULT, TRUE
-	goto_if_eq ContestHall_EventScript_CreateWirelessContestAudience
 	switch VAR_CONTEST_TYPE
 	case CONTEST_TYPE_NPC_NORMAL, ContestHall_EventScript_CreateNormalContestAudience
 	case CONTEST_TYPE_NPC_SUPER, ContestHall_EventScript_CreateSuperContestAudience

@@ -40,11 +40,8 @@ TITLE       := POKEMON EMER
 GAME_CODE   := BPEE
 MAKER_CODE  := 01
 REVISION    := 0
-MODERN      ?= 0
+MODERN 		:= 1
 
-ifeq (modern,$(MAKECMDGOALS))
-  MODERN := 1
-endif
 
 # use arm-none-eabi-cpp for macOS
 # as macOS's default compiler is clang
@@ -53,22 +50,9 @@ endif
 # we can't unconditionally use arm-none-eabi-cpp
 # as installations which install binutils-arm-none-eabi
 # don't come with it
-ifneq ($(MODERN),1)
-  ifeq ($(shell uname -s),Darwin)
-    CPP := $(PREFIX)cpp
-  else
-    CPP := $(CC) -E
-  endif
-else
-  CPP := $(PREFIX)cpp
-endif
+CPP := $(PREFIX)cpp
 
-ROM_NAME := pokeemerald.gba
-ELF_NAME := $(ROM_NAME:.gba=.elf)
-MAP_NAME := $(ROM_NAME:.gba=.map)
-OBJ_DIR_NAME := build/emerald
-
-MODERN_ROM_NAME := pokeemerald_modern.gba
+MODERN_ROM_NAME := pokeemerald.gba
 MODERN_ELF_NAME := $(MODERN_ROM_NAME:.gba=.elf)
 MODERN_MAP_NAME := $(MODERN_ROM_NAME:.gba=.map)
 MODERN_OBJ_DIR_NAME := build/modern
@@ -98,26 +82,14 @@ MID_BUILDDIR = $(OBJ_DIR)/$(MID_SUBDIR)
 
 ASFLAGS := -mcpu=arm7tdmi --defsym MODERN=$(MODERN)
 
-ifeq ($(MODERN),0)
-CC1             := tools/agbcc/bin/agbcc$(EXE)
-override CFLAGS += -mthumb-interwork -Wimplicit -Wparentheses -Werror -O2 -fhex-asm -g
-ROM := $(ROM_NAME)
-OBJ_DIR := $(OBJ_DIR_NAME)
-LIBPATH := -L ../../tools/agbcc/lib
-LIB := $(LIBPATH) -lgcc -lc -L../../libagbsyscall -lagbsyscall
-else
 CC1              = $(shell $(PATH_MODERNCC) --print-prog-name=cc1) -quiet
 override CFLAGS += -mthumb -mthumb-interwork -O2 -mabi=apcs-gnu -mtune=arm7tdmi -march=armv4t -fno-toplevel-reorder -Wno-pointer-to-int-cast -g
 ROM := $(MODERN_ROM_NAME)
 OBJ_DIR := $(MODERN_OBJ_DIR_NAME)
 LIBPATH := -L "$(dir $(shell $(PATH_MODERNCC) -mthumb -print-file-name=libgcc.a))" -L "$(dir $(shell $(PATH_MODERNCC) -mthumb -print-file-name=libnosys.a))" -L "$(dir $(shell $(PATH_MODERNCC) -mthumb -print-file-name=libc.a))"
 LIB := $(LIBPATH) -lc -lnosys -lgcc -L../../libagbsyscall -lagbsyscall
-endif
 
 CPPFLAGS := -iquote include -iquote $(GFLIB_SUBDIR) -Wno-trigraphs -DMODERN=$(MODERN)
-ifneq ($(MODERN),1)
-CPPFLAGS += -I tools/agbcc/include -I tools/agbcc -nostdinc -undef
-endif
 
 LDFLAGS = -Map ../../$(MAP)
 
@@ -234,7 +206,7 @@ clean: mostlyclean clean-tools
 clean-tools:
 	@$(foreach tooldir,$(TOOLDIRS),$(MAKE) clean -C $(tooldir);)
 
-mostlyclean: tidynonmodern tidymodern
+mostlyclean: tidymodern
 	rm -f $(SAMPLE_SUBDIR)/*.bin
 	rm -f $(CRY_SUBDIR)/*.bin
 	rm -f $(MID_SUBDIR)/*.s
@@ -245,19 +217,12 @@ mostlyclean: tidynonmodern tidymodern
 	rm -f $(AUTO_GEN_TARGETS)
 	@$(MAKE) clean -C libagbsyscall
 
-tidy: tidynonmodern tidymodern
-
-tidynonmodern:
-	rm -f $(ROM_NAME) $(ELF_NAME) $(MAP_NAME)
-	rm -rf $(OBJ_DIR_NAME)
+tidy: tidymodern
 
 tidymodern:
 	rm -f $(MODERN_ROM_NAME) $(MODERN_ELF_NAME) $(MODERN_MAP_NAME)
 	rm -rf $(MODERN_OBJ_DIR_NAME)
-	
-ifneq ($(MODERN),0)
-$(C_BUILDDIR)/berry_crush.o: override CFLAGS += -Wno-address-of-packed-member
-endif
+
 
 include graphics_file_rules.mk
 include map_data_rules.mk
@@ -279,26 +244,6 @@ include songs.mk
 %.rl: % ; $(GFX) $< $@
 $(CRY_SUBDIR)/%.bin: $(CRY_SUBDIR)/%.aif ; $(AIF) $< $@ --compress
 sound/%.bin: sound/%.aif ; $(AIF) $< $@
-
-
-ifeq ($(MODERN),0)
-$(C_BUILDDIR)/libc.o: CC1 := tools/agbcc/bin/old_agbcc$(EXE)
-$(C_BUILDDIR)/libc.o: CFLAGS := -O2
-
-$(C_BUILDDIR)/siirtc.o: CFLAGS := -mthumb-interwork
-
-$(C_BUILDDIR)/agb_flash.o: CFLAGS := -O -mthumb-interwork
-$(C_BUILDDIR)/agb_flash_1m.o: CFLAGS := -O -mthumb-interwork
-$(C_BUILDDIR)/agb_flash_mx.o: CFLAGS := -O -mthumb-interwork
-
-$(C_BUILDDIR)/m4a.o: CC1 := tools/agbcc/bin/old_agbcc$(EXE)
-
-$(C_BUILDDIR)/record_mixing.o: CFLAGS += -ffreestanding
-$(C_BUILDDIR)/librfu_intr.o: CC1 := tools/agbcc/bin/agbcc_arm$(EXE)
-$(C_BUILDDIR)/librfu_intr.o: CFLAGS := -O2 -mthumb-interwork -quiet
-else
-$(C_BUILDDIR)/librfu_intr.o: CFLAGS := -mthumb-interwork -O2 -mabi=apcs-gnu -mtune=arm7tdmi -march=armv4t -fno-toplevel-reorder -Wno-pointer-to-int-cast
-endif
 
 ifeq ($(DINFO),1)
 override CFLAGS += -g
@@ -405,13 +350,8 @@ $(OBJ_DIR)/sym_common.ld: sym_common.txt $(C_OBJS) $(wildcard common_syms/*.txt)
 $(OBJ_DIR)/sym_ewram.ld: sym_ewram.txt
 	$(RAMSCRGEN) ewram_data $< ENGLISH > $@
 
-ifeq ($(MODERN),0)
 LD_SCRIPT := ld_script.txt
-LD_SCRIPT_DEPS := $(OBJ_DIR)/sym_bss.ld $(OBJ_DIR)/sym_common.ld $(OBJ_DIR)/sym_ewram.ld
-else
-LD_SCRIPT := ld_script_modern.txt
 LD_SCRIPT_DEPS := 
-endif
 
 $(OBJ_DIR)/ld_script.ld: $(LD_SCRIPT) $(LD_SCRIPT_DEPS)
 	cd $(OBJ_DIR) && sed "s#tools/#../../tools/#g" ../../$(LD_SCRIPT) > ld_script.ld

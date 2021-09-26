@@ -9,7 +9,6 @@
 #include "evolution_graphics.h"
 #include "gpu_regs.h"
 #include "link.h"
-#include "link_rfu.h"
 #include "m4a.h"
 #include "main.h"
 #include "menu.h"

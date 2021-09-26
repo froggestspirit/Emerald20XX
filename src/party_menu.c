@@ -32,7 +32,6 @@
 #include "item_menu.h"
 #include "item_use.h"
 #include "link.h"
-#include "link_rfu.h"
 #include "mail.h"
 #include "main.h"
 #include "menu.h"
@@ -60,7 +59,6 @@
 #include "text.h"
 #include "text_window.h"
 #include "trade.h"
-#include "union_room.h"
 #include "window.h"
 #include "follow_me.h"
 #include "constants/battle.h"
@@ -3430,58 +3428,6 @@ static void CursorCb_Store(u8 taskId)
     Task_ClosePartyMenu(taskId);
 }
 
-// Register mon for the Trading Board in Union Room
-static void CursorCb_Register(u8 taskId)
-{
-    u16 species2 = GetMonData(&gPlayerParty[gPartyMenu.slotId], MON_DATA_SPECIES2);
-    u16 species = GetMonData(&gPlayerParty[gPartyMenu.slotId], MON_DATA_SPECIES);
-    u8 isEventLegal = GetMonData(&gPlayerParty[gPartyMenu.slotId], MON_DATA_EVENT_LEGAL);
-
-    switch (CanRegisterMonForTradingBoard(*(struct GFtgtGnameSub *)GetHostRFUtgtGname(), species2, species, isEventLegal))
-    {
-    case CANT_REGISTER_MON:
-        StringExpandPlaceholders(gStringVar4, gText_PkmnCantBeTradedNow);
-        break;
-    case CANT_REGISTER_EGG:
-        StringExpandPlaceholders(gStringVar4, gText_EggCantBeTradedNow);
-        break;
-    default:
-        PlaySE(SE_SELECT);
-        Task_ClosePartyMenu(taskId);
-        return;
-    }
-    PlaySE(SE_FAILURE);
-    PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
-    PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[1]);
-    StringAppend(gStringVar4, gText_PauseUntilPress);
-    DisplayPartyMenuMessage(gStringVar4, TRUE);
-    gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
-}
-
-static void CursorCb_Trade1(u8 taskId)
-{
-    u16 species2 = GetMonData(&gPlayerParty[gPartyMenu.slotId], MON_DATA_SPECIES2);
-    u16 species = GetMonData(&gPlayerParty[gPartyMenu.slotId], MON_DATA_SPECIES);
-    u8 isEventLegal = GetMonData(&gPlayerParty[gPartyMenu.slotId], MON_DATA_EVENT_LEGAL);
-    u32 stringId = GetUnionRoomTradeMessageId(*(struct GFtgtGnameSub *)GetHostRFUtgtGname(), gPartnerTgtGnameSub, species2, gUnionRoomOfferedSpecies, gUnionRoomRequestedMonType, species, isEventLegal);
-
-    if (stringId != UR_TRADE_MSG_NONE)
-    {
-        StringExpandPlaceholders(gStringVar4, sUnionRoomTradeMessages[stringId - 1]);
-        PlaySE(SE_FAILURE);
-        PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
-        PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[1]);
-        StringAppend(gStringVar4, gText_PauseUntilPress);
-        DisplayPartyMenuMessage(gStringVar4, TRUE);
-        gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
-    }
-    else
-    {
-        PlaySE(SE_SELECT);
-        Task_ClosePartyMenu(taskId);
-    }
-}
-
 // Spin Trade (based on the translation of the Japanese trade prompt)
 // Not fully implemented, and normally unreachable because PARTY_MENU_TYPE_SPIN_TRADE is never used
 static void CursorCb_Trade2(u8 taskId)
@@ -3550,7 +3496,7 @@ static void CursorCb_FieldMove(u8 taskId)
 
     PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
     PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[1]);
-    if (MenuHelpers_LinkSomething() == TRUE || InUnionRoom() == TRUE)
+    if (MenuHelpers_LinkSomething() == TRUE)
     {
         if (fieldMove == FIELD_MOVE_MILK_DRINK || fieldMove == FIELD_MOVE_SOFT_BOILED)
             DisplayPartyMenuStdMessage(PARTY_MSG_CANT_USE_HERE);
@@ -5470,8 +5416,6 @@ static bool8 GetBattleEntryEligibility(struct Pokemon *mon)
         if (GetMonData(mon, MON_DATA_HP) != 0)
             return TRUE;
         return FALSE;
-    case FACILITY_UNION_ROOM:
-        return TRUE;
     default: // Battle Frontier
         species = GetMonData(mon, MON_DATA_SPECIES);
         for (; gFrontierBannedSpecies[i] != 0xFFFF; i++)
@@ -5501,7 +5445,7 @@ static u8 CheckBattleEntriesAndGetMessage(void)
     }
 
     facility = VarGet(VAR_FRONTIER_FACILITY);
-    if (facility == FACILITY_UNION_ROOM || facility == FACILITY_MULTI_OR_EREADER)
+    if (facility == FACILITY_MULTI_OR_EREADER)
         return 0xFF;
 
     maxBattlers = GetMaxBattleEntries();
@@ -5566,8 +5510,6 @@ static u8 GetMaxBattleEntries(void)
     {
     case FACILITY_MULTI_OR_EREADER:
         return MULTI_PARTY_SIZE;
-    case FACILITY_UNION_ROOM:
-        return UNION_ROOM_PARTY_SIZE;
     default: // Battle Frontier
         return gSpecialVar_0x8005;
     }
@@ -5579,8 +5521,6 @@ static u8 GetMinBattleEntries(void)
     {
     case FACILITY_MULTI_OR_EREADER:
         return 1;
-    case FACILITY_UNION_ROOM:
-        return UNION_ROOM_PARTY_SIZE;
     default: // Battle Frontier
         return gSpecialVar_0x8005;
     }
@@ -5592,8 +5532,6 @@ static u8 GetBattleEntryLevelCap(void)
     {
     case FACILITY_MULTI_OR_EREADER:
         return MAX_LEVEL;
-    case FACILITY_UNION_ROOM:
-        return 30;
     default: // Battle Frontier
         if (gSpecialVar_0x8004 == FRONTIER_LVL_50)
             return 50;
@@ -5605,7 +5543,7 @@ static const u8* GetFacilityCancelString(void)
 {
     u8 facilityNum = VarGet(VAR_FRONTIER_FACILITY);
 
-    if (!(facilityNum != FACILITY_UNION_ROOM && facilityNum != FACILITY_MULTI_OR_EREADER))
+    if (!(facilityNum != FACILITY_MULTI_OR_EREADER))
         return gText_CancelBattle;
     else if (facilityNum == FRONTIER_FACILITY_DOME && gSpecialVar_0x8005 == 2)
         return gText_ReturnToWaitingRoom;

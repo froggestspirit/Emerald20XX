@@ -15,7 +15,6 @@
 #include "constants/maps.h"
 #include "pokedex.h"
 #include "save.h"
-#include "link_rfu.h"
 #include "main.h"
 #include "item_menu.h"
 #include "pokemon_storage_system.h"

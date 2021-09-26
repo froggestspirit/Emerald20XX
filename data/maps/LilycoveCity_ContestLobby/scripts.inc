@@ -815,12 +815,6 @@ LilycoveCity_ContestLobby_EventScript_CancelLinkError::
 	release
 	end
 
-LilycoveCity_ContestLobby_EventScript_CancelLinkNoWirelessGMode::
-	special CloseLink
-	msgbox LilycoveCity_ContestLobby_Text_NoWirelessAdapterInGMode, MSGBOX_DEFAULT
-	release
-	end
-
 LilycoveCity_ContestLobby_EventScript_CancelLinkTransmissionError::
 	msgbox LilycoveCity_ContestLobby_Text_TransmissionError, MSGBOX_DEFAULT
 	goto LilycoveCity_ContestLobby_EventScript_CancelLinkContest
@@ -839,89 +833,6 @@ LilycoveCity_ContestLobby_EventScript_StartLinkContest::
 	setvar VAR_CONTEST_TYPE, CONTEST_TYPE_LINK
 	setvar VAR_CONTEST_RANK, CONTEST_RANK_MASTER
 	call LilycoveCity_ContestLobby_EventScript_WarpToContestHall
-	end
-
-LilycoveCity_ContestLobby_EventScript_SetLinkGroupType::
-	compare VAR_CONTEST_CATEGORY, CONTEST_CATEGORY_COOL
-	call_if_eq LilycoveCity_ContestLobby_EventScript_SetLinkGroupCoolContest
-	compare VAR_CONTEST_CATEGORY, CONTEST_CATEGORY_BEAUTY
-	call_if_eq LilycoveCity_ContestLobby_EventScript_SetLinkGroupBeautyContest
-	compare VAR_CONTEST_CATEGORY, CONTEST_CATEGORY_CUTE
-	call_if_eq LilycoveCity_ContestLobby_EventScript_SetLinkGroupCuteContest
-	compare VAR_CONTEST_CATEGORY, CONTEST_CATEGORY_SMART
-	call_if_eq LilycoveCity_ContestLobby_EventScript_SetLinkGroupSmartContest
-	compare VAR_CONTEST_CATEGORY, CONTEST_CATEGORY_TOUGH
-	call_if_eq LilycoveCity_ContestLobby_EventScript_SetLinkGroupToughContest
-	goto LilycoveCity_ContestLobby_EventScript_DecideLinkLeader
-	end
-
-LilycoveCity_ContestLobby_EventScript_SetLinkGroupCoolContest::
-	setvar VAR_0x8004, LINK_GROUP_COOL_CONTEST
-	return
-
-LilycoveCity_ContestLobby_EventScript_SetLinkGroupBeautyContest::
-	setvar VAR_0x8004, LINK_GROUP_BEAUTY_CONTEST
-	return
-
-LilycoveCity_ContestLobby_EventScript_SetLinkGroupCuteContest::
-	setvar VAR_0x8004, LINK_GROUP_CUTE_CONTEST
-	return
-
-LilycoveCity_ContestLobby_EventScript_SetLinkGroupSmartContest::
-	setvar VAR_0x8004, LINK_GROUP_SMART_CONTEST
-	return
-
-LilycoveCity_ContestLobby_EventScript_SetLinkGroupToughContest::
-	setvar VAR_0x8004, LINK_GROUP_TOUGH_CONTEST
-	return
-
-LilycoveCity_ContestLobby_EventScript_DecideLinkLeader::
-	message LilycoveCity_ContestLobby_Text_PleaseDecideLinkLeader
-	waitmessage
-	multichoice 16, 6, MULTI_LINK_LEADER, FALSE
-	switch VAR_RESULT
-	case 0, LilycoveCity_ContestLobby_EventScript_TryJoinGroup
-	case 1, LilycoveCity_ContestLobby_EventScript_TryLeadGroup
-	case 2, LilycoveCity_ContestLobby_EventScript_CancelLinkContest
-	case MULTI_B_PRESSED, LilycoveCity_ContestLobby_EventScript_CancelLinkContest
-	end
-
-LilycoveCity_ContestLobby_EventScript_TryLeadGroup::
-	call LilycoveCity_ContestLobby_EventScript_TryBecomeLinkLeader
-	compare VAR_RESULT, LINKUP_SUCCESS
-	goto_if_eq LilycoveCity_ContestLobby_EventScript_LinkLeaderDecided
-	compare VAR_RESULT, LINKUP_FAILED
-	goto_if_eq LilycoveCity_ContestLobby_EventScript_DecideLinkLeader
-	compare VAR_RESULT, LINKUP_RETRY_ROLE_ASSIGN
-	goto_if_eq LilycoveCity_ContestLobby_EventScript_TryLeadGroup
-	release
-	end
-
-LilycoveCity_ContestLobby_EventScript_TryJoinGroup::
-	call LilycoveCity_ContestLobby_EventScript_TryJoinLinkGroup
-	compare VAR_RESULT, LINKUP_SUCCESS
-	goto_if_eq LilycoveCity_ContestLobby_EventScript_LinkLeaderDecided
-	compare VAR_RESULT, LINKUP_FAILED
-	goto_if_eq LilycoveCity_ContestLobby_EventScript_DecideLinkLeader
-	compare VAR_RESULT, LINKUP_RETRY_ROLE_ASSIGN
-	goto_if_eq LilycoveCity_ContestLobby_EventScript_TryJoinGroup
-	release
-	end
-
-LilycoveCity_ContestLobby_EventScript_TryBecomeLinkLeader::
-	special TryBecomeLinkLeader
-	waitstate
-	return
-
-LilycoveCity_ContestLobby_EventScript_TryJoinLinkGroup::
-	special TryJoinLinkGroup
-	waitstate
-	return
-
-LilycoveCity_ContestLobby_EventScript_LinkLeaderDecided::
-	messageinstant LilycoveCity_ContestLobby_Text_Transmitting
-	contestlinktransfer
-	goto LilycoveCity_ContestLobby_EventScript_StartLinkContest
 	end
 
 LilycoveCity_ContestLobby_EventScript_LeadToLinkContestHall::

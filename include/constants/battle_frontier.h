@@ -14,7 +14,6 @@
 #define NUM_FRONTIER_FACILITIES    7
 // VAR_FRONTIER_FACILITY is re-used for the below facilities as well
 #define FACILITY_LINK_CONTEST      7
-#define FACILITY_UNION_ROOM        8
 #define FACILITY_MULTI_OR_EREADER  9  // Direct Corner multi battles, multi battle with Steven, and e-Reader battles
 
 // Battle Frontier lvl modes.

@@ -44,7 +44,6 @@
 #include "trainer_card.h"
 #include "window.h"
 #include "constants/songs.h"
-#include "union_room.h"
 #include "constants/rgb.h"
 
 // Menu actions
@@ -267,10 +266,6 @@ static void BuildStartMenuActions(void)
     if (IsUpdateLinkStateCBActive() == TRUE)
     {
         BuildLinkModeStartMenu();
-    }
-    else if (InUnionRoom() == TRUE)
-    {
-        BuildUnionRoomStartMenu();
     }
     else if (GetSafariZoneFlag() == TRUE)
     {
@@ -570,9 +565,6 @@ void Task_ShowStartMenu(u8 taskId)
     switch(task->data[0])
     {
     case 0:
-        if (InUnionRoom() == TRUE)
-            SetUsingUnionRoomStartMenu();
-
         gMenuCallback = HandleStartMenuInput;
         task->data[0]++;
         break;
@@ -710,7 +702,7 @@ static bool8 StartMenuPlayerNameCallback(void)
         RemoveExtraStartMenuWindows();
         CleanupOverworldWindowsAndTilemaps();
 
-        if (IsUpdateLinkStateCBActive() || InUnionRoom())
+        if (IsUpdateLinkStateCBActive())
             ShowPlayerTrainerCard(CB2_ReturnToFieldWithOpenMenu); // Display trainer card
         else if (FlagGet(FLAG_SYS_FRONTIER_PASS))
             ShowFrontierPass(CB2_ReturnToFieldWithOpenMenu); // Display frontier pass

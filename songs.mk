@@ -369,9 +369,6 @@ $(MID_SUBDIR)/mus_rg_poke_flute.s: %.s: %.mid
 $(MID_SUBDIR)/mus_rg_game_corner.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G132 -V090
 
-$(MID_SUBDIR)/mus_rg_union_room.s: %.s: %.mid
-	$(MID) $< $@ -E -R$(STD_REVERB) -G132 -V090
-
 $(MID_SUBDIR)/mus_rg_vs_legend.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G157 -V090
 
