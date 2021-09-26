@@ -1,7 +1,7 @@
-CaveOfOrigin_UnusedRubySapphireMap3_MapScripts:: @ 8235798
+CaveOfOrigin_UnusedRubySapphireMap3_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, CaveOfOrigin_UnusedRubySapphireMap3_OnTransition
 	.byte 0
 
-CaveOfOrigin_UnusedRubySapphireMap3_OnTransition: @ 823579E
+CaveOfOrigin_UnusedRubySapphireMap3_OnTransition:
 	end
 
