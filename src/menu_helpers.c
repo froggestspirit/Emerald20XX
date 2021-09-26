@@ -283,15 +283,13 @@ bool8 IsHoldingItemAllowed(u16 itemId)
     else if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(TRADE_CENTER)
           && gSaveBlock1Ptr->location.mapNum == MAP_NUM(TRADE_CENTER))
         return FALSE;
-    else if (InUnionRoom() != TRUE)
-        return TRUE;
     else
-        return FALSE;
+        return TRUE;
 }
 
 bool8 IsWritingMailAllowed(u16 itemId)
 {
-    if (IsUpdateLinkStateCBActive() != TRUE && InUnionRoom() != TRUE)
+    if (IsUpdateLinkStateCBActive() != TRUE)
         return TRUE;
     else if (ItemIsMail(itemId) != TRUE)
         return TRUE;

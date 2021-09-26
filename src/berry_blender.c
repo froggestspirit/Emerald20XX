@@ -17,7 +17,6 @@
 #include "event_data.h"
 #include "main.h"
 #include "link.h"
-#include "link_rfu.h"
 #include "item_menu_icons.h"
 #include "berry.h"
 #include "item.h"
@@ -2054,7 +2053,7 @@ static void UpdateSpeedFromHit(u16 cmd)
 }
 
 // Return TRUE if the received command matches the corresponding Link or RFU command
-static bool32 CheckRecvCmdMatches(u16 recvCmd, u16 linkCmd, u16 rfuCmd)
+static bool32 CheckRecvCmdMatches(u16 recvCmd, u16 linkCmd)
 {
     return (recvCmd == linkCmd);
 }
@@ -2083,7 +2082,7 @@ static void UpdateOpponentScores(void)
     }
     for (i = 0; i < sBerryBlender->numPlayers; i++)
     {
-        if (CheckRecvCmdMatches(gRecvCmds[i][BLENDER_COMM_INPUT_STATE], LINKCMD_BLENDER_SEND_KEYS, RFUCMD_BLENDER_SEND_KEYS))
+        if (CheckRecvCmdMatches(gRecvCmds[i][BLENDER_COMM_INPUT_STATE], LINKCMD_BLENDER_SEND_KEYS))
         {
             u32 arrowId = sBerryBlender->playerIdToArrowId[i];
             if (gRecvCmds[i][BLENDER_COMM_SCORE] == LINKCMD_BLENDER_SCORE_BEST)
@@ -2943,7 +2942,7 @@ static void ProcessLinkPlayerCmds(void)
 {
     if (gReceivedRemoteLinkPlayers)
     {
-        if (CheckRecvCmdMatches(gRecvCmds[0][BLENDER_COMM_INPUT_STATE], LINKCMD_SEND_PACKET, RFUCMD_SEND_PACKET))
+        if (CheckRecvCmdMatches(gRecvCmds[0][BLENDER_COMM_INPUT_STATE], LINKCMD_SEND_PACKET))
         {
             if (gRecvCmds[0][BLENDER_COMM_RESP] == LINKCMD_BLENDER_STOP)
             {
@@ -2983,7 +2982,7 @@ static void ProcessLinkPlayerCmds(void)
             // Try to gather responses
             for (i = 0; i < GetLinkPlayerCount(); i++)
             {
-                if (CheckRecvCmdMatches(gRecvCmds[i][BLENDER_COMM_INPUT_STATE], LINKCMD_SEND_PACKET, RFUCMD_SEND_PACKET))
+                if (CheckRecvCmdMatches(gRecvCmds[i][BLENDER_COMM_INPUT_STATE], LINKCMD_SEND_PACKET))
                 {
                     switch (gRecvCmds[i][BLENDER_COMM_RESP])
                     {

@@ -206,7 +206,6 @@ LilycoveCity_ContestLobby_EventScript_EnterMon::
 	return
 
 ContestHall_EventScript_DoContest::
-	special LinkContestTryShowWirelessIndicator
 	setvar VAR_0x8006, 0
 	lockall
 	applymovement LOCALID_CONTESTANT_4, ContestHall_Movement_Player4FaceUp
@@ -301,20 +300,8 @@ ContestHall_EventScript_GettingStarted::
 	return
 
 ContestHall_EventScript_GettingStartedLink::
-	specialvar VAR_RESULT, IsWirelessContest
-	compare VAR_RESULT, TRUE
-	goto_if_eq ContestHall_EventScript_GettingStartedWireless
 	messageautoscroll ContestHall_Text_GettingStartedParticipantsAsFollowsLink
 	waitmessage
-	return
-
-ContestHall_EventScript_GettingStartedWireless::
-	messageautoscroll ContestHall_Text_GettingStartedWireless
-	waitmessage
-	call ContestHall_EventScript_TryWaitForLink
-	messageautoscroll ContestHall_Text_ParticipantsAsFollows
-	waitmessage
-	call ContestHall_EventScript_TryWaitForLink
 	return
 
 ContestHall_EventScript_ShowContestMons::
@@ -333,9 +320,6 @@ ContestHall_EventScript_ShowContestMons::
 	return
 
 ContestHall_EventScript_TryWaitForLink::
-	specialvar VAR_RESULT, IsWirelessContest
-	compare VAR_RESULT, TRUE
-	goto_if_eq ContestHall_EventScript_WaitForLink
 	return
 
 ContestHall_EventScript_WaitForLink::
@@ -447,23 +431,8 @@ ContestHall_EventScript_AudienceWillVote::
 	return
 
 ContestHall_EventScript_AudienceWillVoteLink::
-	specialvar VAR_RESULT, IsWirelessContest
-	compare VAR_RESULT, TRUE
-	goto_if_eq ContestHall_EventScript_AudienceWillVoteWireless
 	messageautoscroll ContestHall_Text_SeenContestantsAudienceWillVote
 	waitmessage
-	return
-
-ContestHall_EventScript_AudienceWillVoteWireless::
-	messageautoscroll ContestHall_Text_WeveSeenContestants
-	waitmessage
-	call ContestHall_EventScript_TryWaitForLink
-	messageautoscroll ContestHall_Text_AudienceWillVote
-	waitmessage
-	call ContestHall_EventScript_TryWaitForLink
-	messageautoscroll ContestHall_Text_LetVotingBegin
-	waitmessage
-	call ContestHall_EventScript_TryWaitForLink
 	return
 
 ContestHall_EventScript_VotingUnderWay::
@@ -858,9 +827,7 @@ ContestHall_EventScript_DoContestAppeals::
 	releaseall
 	call ContestHall_EventScript_TryWaitForLink
 	setvar VAR_TEMP_9, 1
-	special LinkContestTryHideWirelessIndicator
 	startcontest
-	special LinkContestTryShowWirelessIndicator
 	setvar VAR_TEMP_9, 0
 	lockall
 	applymovement LOCALID_MC, ContestHall_Movement_WalkStageRight
@@ -876,24 +843,8 @@ ContestHall_EventScript_LetsAppeal::
 	return
 
 ContestHall_EventScript_LetsAppealLink::
-	specialvar VAR_RESULT, IsWirelessContest
-	compare VAR_RESULT, TRUE
-	goto_if_eq ContestHall_EventScript_LetsAppealWireless
 	messageautoscroll ContestHall_Text_VotingCompleteLetsAppeal
 	waitmessage
-	return
-
-ContestHall_EventScript_LetsAppealWireless::
-	call ContestHall_EventScript_TryWaitForLink
-	messageautoscroll ContestHall_Text_VotingComplete
-	waitmessage
-	call ContestHall_EventScript_TryWaitForLink
-	messageautoscroll ContestHall_Text_SecondStageOfJudging
-	waitmessage
-	call ContestHall_EventScript_TryWaitForLink
-	messageautoscroll ContestHall_Text_LetsAppeal
-	waitmessage
-	call ContestHall_EventScript_TryWaitForLink
 	return
 
 ContestHall_EventScript_ContestResults::
@@ -912,7 +863,6 @@ ContestHall_EventScript_ContestResults::
 	waitmovement 0
 	closemessage
 	releaseall
-	special LinkContestTryHideWirelessIndicator
 	setvar VAR_TEMP_9, 1
 	showcontestresults
 	setvar VAR_TEMP_9, 0

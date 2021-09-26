@@ -31,7 +31,6 @@
 #include "constants/maps.h"
 #include "pokedex.h"
 #include "save.h"
-#include "link_rfu.h"
 #include "main.h"
 #include "contest.h"
 #include "item_menu.h"
@@ -41,7 +40,6 @@
 #include "player_pc.h"
 #include "field_specials.h"
 #include "berry_powder.h"
-#include "union_room_chat.h"
 
 extern const u8 EventScript_ResetAllMapFlags[];
 
@@ -191,12 +189,10 @@ void NewGameInitData(void)
     WarpToTruck();
     ScriptContext2_RunNewScript(EventScript_ResetAllMapFlags);
     ResetMiniGamesRecords();
-    InitUnionRoomChatRegisteredTexts();
     InitLilycoveLady();
     ResetAllApprenticeData();
     ClearRankingHallRecords();
     InitMatchCallCounters();
-    WipeTrainerNameRecords();
     ResetTrainerHillResults();
     ResetContestLinkResults();
     

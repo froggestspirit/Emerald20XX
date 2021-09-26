@@ -10,7 +10,6 @@
 #include "pokemon.h"
 #include "cable_club.h"
 #include "link.h"
-#include "link_rfu.h"
 #include "tv.h"
 #include "battle_tower.h"
 #include "window.h"
@@ -933,11 +932,8 @@ static void Task_DoRecordMixing(u8 taskId)
 
     // Mixing Emerald records.
     case 6:
-        if (!sub_801048C(FALSE))
-        {
-            CreateTask(Task_LinkSave, 5);
-            task->data[0]++;
-        }
+        CreateTask(Task_LinkSave, 5);
+        task->data[0]++;
         break;
     case 7: // wait for Task_LinkSave to finish.
         if (!FuncIsActiveTask(Task_LinkSave))

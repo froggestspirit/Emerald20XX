@@ -24,7 +24,6 @@
 #include "international_string_util.h"
 #include "item.h"
 #include "link.h"
-#include "link_rfu.h"
 #include "load_save.h"
 #include "main.h"
 #include "malloc.h"

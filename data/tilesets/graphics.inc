@@ -1640,29 +1640,6 @@ gTilesetPalettes_MysteryEventsHouse::
 	.incbin "data/tilesets/secondary/mystery_events_house/palettes/15.gbapal"
 
 	.align 2
-gTilesetPalettes_UnionRoom::
-	.incbin "data/tilesets/secondary/union_room/palettes/00.gbapal"
-	.incbin "data/tilesets/secondary/union_room/palettes/01.gbapal"
-	.incbin "data/tilesets/secondary/union_room/palettes/02.gbapal"
-	.incbin "data/tilesets/secondary/union_room/palettes/03.gbapal"
-	.incbin "data/tilesets/secondary/union_room/palettes/04.gbapal"
-	.incbin "data/tilesets/secondary/union_room/palettes/05.gbapal"
-	.incbin "data/tilesets/secondary/union_room/palettes/06.gbapal"
-	.incbin "data/tilesets/secondary/union_room/palettes/07.gbapal"
-	.incbin "data/tilesets/secondary/union_room/palettes/08.gbapal"
-	.incbin "data/tilesets/secondary/union_room/palettes/09.gbapal"
-	.incbin "data/tilesets/secondary/union_room/palettes/10.gbapal"
-	.incbin "data/tilesets/secondary/union_room/palettes/11.gbapal"
-	.incbin "data/tilesets/secondary/union_room/palettes/12.gbapal"
-	.incbin "data/tilesets/secondary/union_room/palettes/13.gbapal"
-	.incbin "data/tilesets/secondary/union_room/palettes/14.gbapal"
-	.incbin "data/tilesets/secondary/union_room/palettes/15.gbapal"
-
-	.align 2
-gTilesetTiles_UnionRoom::
-	.incbin "data/tilesets/secondary/union_room/tiles.4bpp.lz"
-
-	.align 2
 gTilesetPalOverride_General01::
 	.incbin "data/tilesets/primary/general/palettes/01_over.gbapal"
 

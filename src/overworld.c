@@ -26,7 +26,6 @@
 #include "heal_location.h"
 #include "io_reg.h"
 #include "link.h"
-#include "link_rfu.h"
 #include "load_save.h"
 #include "main.h"
 #include "malloc.h"
@@ -1625,7 +1624,7 @@ void CB2_ReturnToFieldContestHall(void)
 void CB2_ReturnToFieldCableClub(void)
 {
     FieldClearVBlankHBlankCallbacks();
-    gFieldCallback = FieldCB_ReturnToFieldWirelessLink;
+    gFieldCallback = FieldCB_ReturnToFieldCableLink;
     SetMainCallback2(CB2_LoadMapOnReturnToFieldCableClub);
 }
 

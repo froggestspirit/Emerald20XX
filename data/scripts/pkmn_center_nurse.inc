@@ -47,18 +47,6 @@ EventScript_PkmnCenterNurse_TakeAndHealPkmn::
     special HealPlayerParty
     return
 
-EventScript_PkmnCenterNurse_CheckTrainerHillAndUnionRoom::
-    specialvar VAR_RESULT, PlayerNotAtTrainerHillEntrance
-    compare VAR_RESULT, 0
-    goto_if_eq EventScript_PkmnCenterNurse_ReturnPkmn
-    specialvar VAR_RESULT, BufferUnionRoomPlayerName
-    copyvar VAR_0x8008, VAR_RESULT
-    compare VAR_0x8008, 0
-    goto_if_eq EventScript_PkmnCenterNurse_ReturnPkmn
-    compare VAR_0x8008, 1
-    goto_if_eq EventScript_PkmnCenterNurse_PlayerWaitingInUnionRoom
-    end
-
 @ VAR_0x8004 is 1 when player has Gold Card
 EventScript_PkmnCenterNurse_ReturnPkmn::
     compare VAR_0x8004, 1
@@ -76,17 +64,6 @@ EventScript_PkmnCenterNurse_ReturnPkmn2::
     applymovement VAR_0x800B, Movement_PkmnCenterNurse_Bow
     waitmovement 0
     message gText_WeHopeToSeeYouAgain2
-    return
-
-EventScript_PkmnCenterNurse_PlayerWaitingInUnionRoom::
-    goto_if_set FLAG_NURSE_UNION_ROOM_REMINDER, EventScript_PkmnCenterNurse_ReturnPkmn
-    msgbox gText_RestoredPkmnToFullHealth, MSGBOX_DEFAULT
-    setflag FLAG_NURSE_UNION_ROOM_REMINDER
-    message CableClub_Text_PlayerIsWaiting
-    waitmessage
-    applymovement VAR_0x800B, Movement_PkmnCenterNurse_Bow
-    waitmovement 0
-    message gText_WeHopeToSeeYouAgain
     return
 
 EventScript_PkmnCenterNurse_CheckPokerus::
