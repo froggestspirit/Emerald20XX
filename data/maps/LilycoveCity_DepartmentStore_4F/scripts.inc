@@ -4,7 +4,7 @@ LilycoveCity_DepartmentStore_4F_MapScripts::
 LilycoveCity_DepartmentStore_4F_EventScript_Gentleman::
 	lock
 	faceplayer
-	msgbox LilycoveCity_DepartmentStore_4F_Text_Incenses, MSGBOX_DEFAULT
+	message LilycoveCity_DepartmentStore_4F_Text_Incenses
 	waitmessage
 	pokemart LilycoveCity_DepartmentStore_4F_Pokemart_Incenses
 	msgbox LilycoveCity_DepartmentStore_4F_Text_ComeAgainChild, MSGBOX_DEFAULT
