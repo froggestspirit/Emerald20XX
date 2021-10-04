@@ -995,7 +995,7 @@ static const u8 sOvalStoneDesc[] = _(
 static const u8 sOddIncenseDesc[] = _(
     "A hold item that\n"
     "slightly boosts\n"
-    "PSYCHIC-type moves.");
+    "PSYCHC-type moves.");
 
 static const u8 sRockIncenseDesc[] = _(
     "A hold item that\n"
