@@ -1,4 +1,4 @@
-TOOLCHAIN := /opt/cross
+TOOLCHAIN := $(DEVKITARM)
 COMPARE ?= 0
 
 ifeq (compare,$(MAKECMDGOALS))
