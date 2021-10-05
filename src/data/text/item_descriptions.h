@@ -1039,8 +1039,8 @@ static const u8 sElectirizerDesc[] = _(
 
 static const u8 sMagmarizerDesc[] = _(
     "A box of magma\n"
-    "energy. It's loved\n"
-    "by a certain POKéMON.");
+    "energy loved by a\n"
+    "certain POKéMON.");
 
 static const u8 sDubiousDiscDesc[] = _(
     "A transparent box\n"
