@@ -4,24 +4,24 @@
 #include "constants/pokemon.h"
 #include "sprite.h"
 
-struct PokemonSubstruct0
+struct BoxPokemon
 {
     u16 species;
     u16 heldItem;
+    u32 personality;
+    u32 otId;
+    u8 nickname[POKEMON_NAME_LENGTH];
+    u8 language;
+    u8 isBadEgg:1;
+    u8 hasSpecies:1;
+    u8 isEgg:1;
+    u8 unused:5;
+    u8 otName[PLAYER_NAME_LENGTH];
+    u8 markings;
     u32 experience;
     u8 ppBonuses;
     u8 friendship;
-    u16 filler;
-};
-
-struct PokemonSubstruct1
-{
     u16 moves[MAX_MON_MOVES];
-    u8 pp[MAX_MON_MOVES];
-};
-
-struct PokemonSubstruct2
-{
     u8 hpEV;
     u8 attackEV;
     u8 defenseEV;
@@ -34,10 +34,6 @@ struct PokemonSubstruct2
     u8 smart;
     u8 tough;
     u8 sheen;
-};
-
-struct PokemonSubstruct3
-{
  /* 0x00 */ u8 pokerus;
  /* 0x01 */ u8 metLocation;
 
@@ -52,7 +48,7 @@ struct PokemonSubstruct3
  /* 0x05 */ u32 speedIV:5;
  /* 0x05 */ u32 spAttackIV:5;
  /* 0x06 */ u32 spDefenseIV:5;
- /* 0x07 */ u32 isEgg:1;
+ /* 0x07 */ u32 isEgg2:1;
  /* 0x07 */ u32 abilityNum:1;
 
  /* 0x08 */ u32 coolRibbon:3;
@@ -74,37 +70,7 @@ struct PokemonSubstruct3
  /* 0x0B */ u32 worldRibbon:1; // distributed during Pokémon Festa '04 and '05 to tournament winners
  /* 0x0B */ u32 unusedRibbons:4; // discarded in Gen 4
  /* 0x0B */ u32 eventLegal:1; // controls Mew & Deoxys obedience; if set, Pokémon is a fateful encounter in Gen 4+; set for in-game event island legendaries, some distributed events, and Pokémon from XD: Gale of Darkness.
-};
-
-union PokemonSubstruct
-{
-    struct PokemonSubstruct0 type0;
-    struct PokemonSubstruct1 type1;
-    struct PokemonSubstruct2 type2;
-    struct PokemonSubstruct3 type3;
-    u16 raw[6];
-};
-
-struct BoxPokemon
-{
-    u32 personality;
-    u32 otId;
-    u8 nickname[POKEMON_NAME_LENGTH];
-    u8 language;
-    u8 isBadEgg:1;
-    u8 hasSpecies:1;
-    u8 isEgg:1;
-    u8 unused:5;
-    u8 otName[PLAYER_NAME_LENGTH];
-    u8 markings;
-    u16 checksum;
-    u16 unknown;
-
-    union
-    {
-        u32 raw[12];
-        union PokemonSubstruct substructs[4];
-    } secure;
+    u16 filler[5];
 };
 
 struct Pokemon
@@ -114,6 +80,7 @@ struct Pokemon
     u8 level;
     u8 mail;
     u16 hp;
+    u8 pp[MAX_MON_MOVES];
     u16 maxHP;
     u16 attack;
     u16 defense;
