@@ -830,11 +830,9 @@ static void InitPalettesAndSprites(void);
 static void RefreshDisplayMonData(void);
 static void CreateDisplayMonSprite(void);
 static void CreateMarkingComboSprite(void);
-static void CreateWaveformSprites(void);
 static void ClearBottomWindow(void);
 static void InitSupplementalTilemaps(void);
 static void PrintDisplayMonInfo(void);
-static void UpdateWaveformAnimation(void);
 static void SetPartySlotTilemaps(void);
 static void StopFlashingCloseBoxButton(void);
 static void FreePokeStorageData(void);
@@ -970,7 +968,6 @@ static const u16 sPartySlotEmpty_Tilemap[] =
 };
 
 static const u16 sWaveform_Pal[] = INCBIN_U16("graphics/pokemon_storage/waveform.gbapal");
-static const u32 sWaveform_Gfx[] = INCBIN_U32("graphics/pokemon_storage/waveform.4bpp");
 static const u16 sUnknown_Pal[]  = INCBIN_U16("graphics/pokemon_storage/unknown.gbapal");
 
 static const struct WindowTemplate sWindowTemplates[] =
@@ -1050,11 +1047,6 @@ static const struct SpritePalette gWaveformSpritePalette =
     sWaveform_Pal, PALTAG_MISC_2
 };
 
-static const struct SpriteSheet sSpriteSheet_Waveform =
-{
-    sWaveform_Gfx, sizeof(sWaveform_Gfx), GFXTAG_WAVEFORM
-};
-
 static const struct OamData sOamData_DisplayMon;
 static const struct SpriteTemplate sSpriteTemplate_DisplayMon =
 {
@@ -1128,70 +1120,6 @@ static const struct OamData sOamData_DisplayMon =
     .priority = 0,
     .paletteNum = 0,
     .affineParam = 0
-};
-
-static const struct OamData sOamData_Waveform =
-{
-    .y = 0,
-    .affineMode = ST_OAM_AFFINE_OFF,
-    .objMode = ST_OAM_OBJ_NORMAL,
-    .mosaic = 0,
-    .bpp = ST_OAM_4BPP,
-    .shape = SPRITE_SHAPE(16x8),
-    .x = 0,
-    .matrixNum = 0,
-    .size = SPRITE_SIZE(16x8),
-    .tileNum = 0,
-    .priority = 0,
-    .paletteNum = 0,
-    .affineParam = 0
-};
-
-static const union AnimCmd sAnim_Waveform_LeftOff[] =
-{
-    ANIMCMD_FRAME(0, 5),
-    ANIMCMD_END
-};
-
-static const union AnimCmd sAnim_Waveform_LeftOn[] =
-{
-    ANIMCMD_FRAME(2, 8),
-    ANIMCMD_FRAME(4, 8),
-    ANIMCMD_FRAME(6, 8),
-    ANIMCMD_JUMP(0)
-};
-
-static const union AnimCmd sAnim_Waveform_RightOff[] =
-{
-    ANIMCMD_FRAME(8, 5),
-    ANIMCMD_END
-};
-
-static const union AnimCmd sAnim_Waveform_RightOn[] =
-{
-    ANIMCMD_FRAME(10, 8),
-    ANIMCMD_FRAME(4, 8),
-    ANIMCMD_FRAME(12, 8),
-    ANIMCMD_JUMP(0)
-};
-
-static const union AnimCmd *const sAnims_Waveform[] =
-{
-    sAnim_Waveform_LeftOff,
-    sAnim_Waveform_LeftOn,
-    sAnim_Waveform_RightOff,
-    sAnim_Waveform_RightOn
-};
-
-static const struct SpriteTemplate sSpriteTemplate_Waveform =
-{
-    .tileTag = GFXTAG_WAVEFORM,
-    .paletteTag = PALTAG_MISC_2,
-    .oam = &sOamData_Waveform,
-    .anims = sAnims_Waveform,
-    .images = NULL,
-    .affineAnims = gDummySpriteAffineAnimTable,
-    .callback = SpriteCallbackDummy,
 };
 
 static const struct OamData sOamData_MonIcon;
@@ -3779,7 +3707,6 @@ static void InitPalettesAndSprites(void)
     SetGpuReg(REG_OFFSET_BG1CNT, BGCNT_PRIORITY(1) | BGCNT_CHARBASE(1) | BGCNT_16COLOR | BGCNT_SCREENBASE(30));
     CreateDisplayMonSprite();
     CreateMarkingComboSprite();
-    //CreateWaveformSprites();
     RefreshDisplayMonData();
 }
 
@@ -3793,24 +3720,10 @@ static void CreateMarkingComboSprite(void)
     sStorage->markingComboTilesPtr = (void*) OBJ_VRAM0 + 32 * GetSpriteTileStartByTag(GFXTAG_MARKING_COMBO);
 }
 
-static void CreateWaveformSprites(void)
-{
-    u16 i;
-    struct SpriteSheet sheet = sSpriteSheet_Waveform;
-
-    LoadSpriteSheet(&sheet);
-    for (i = 0; i < ARRAY_COUNT(sStorage->waveformSprites); i++)
-    {
-        u8 spriteId = CreateSprite(&sSpriteTemplate_Waveform, i * 63 + 8, 9, 2);
-        sStorage->waveformSprites[i] = &gSprites[spriteId];
-    }
-}
-
 static void RefreshDisplayMonData(void)
 {
     LoadDisplayMonGfx(sStorage->displayMonSpecies, sStorage->displayMonPersonality);
     PrintDisplayMonInfo();
-    UpdateWaveformAnimation();
     ScheduleBgCopyTilemapToVram(0);
 }
 
@@ -3936,30 +3849,6 @@ static void PrintDisplayMonInfo(void)
     {
         sStorage->markingComboSprite->invisible = TRUE;
     }
-}
-
-// Turn the wave animation on the sides of "Pkmn Data" on/off
-static void UpdateWaveformAnimation(void)
-{
-    u16 i;
-
-    if (sStorage->displayMonSpecies != SPECIES_NONE)
-    {
-        // Start waveform animation and color "Pkmn Data"
-        TilemapUtil_SetRect(TILEMAPID_PKMN_DATA, 0, 0, 8, 2);
-        for (i = 0; i < ARRAY_COUNT(sStorage->waveformSprites); i++)
-            StartSpriteAnimIfDifferent(sStorage->waveformSprites[i], i * 2 + 1);
-    }
-    else
-    {
-        // Stop waveform animation and gray out "Pkmn Data"
-        TilemapUtil_SetRect(TILEMAPID_PKMN_DATA, 0, 2, 8, 2);
-        for (i = 0; i < ARRAY_COUNT(sStorage->waveformSprites); i++)
-            StartSpriteAnim(sStorage->waveformSprites[i], i * 2);
-    }
-
-    TilemapUtil_Update(TILEMAPID_PKMN_DATA);
-    ScheduleBgCopyTilemapToVram(1);
 }
 
 static void InitSupplementalTilemaps(void)
