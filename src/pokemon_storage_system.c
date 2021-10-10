@@ -373,11 +373,14 @@ struct ChooseBoxMenu
 {
     struct Sprite *menuSprite;
     struct Sprite *menuSideSprites[4];
+    u32 unused1[3];
     struct Sprite *arrowSprites[2];
+    u8 unused2[0x214];
     bool32 loadedPalette;
     u16 tileTag;
     u16 paletteTag;
     u8 curBox;
+    u8 unused3;
     u8 subpriority;
 };
 
@@ -401,7 +404,9 @@ struct PokemonStorageSystemData
     struct UnkUtil unkUtil;
     struct UnkUtilData unkUtilData[8];
     u16 partyMenuTilemapBuffer[0x108];
+    u16 partyMenuUnused1; // Never read
     u16 partyMenuY;
+    u8 partyMenuUnused2; // Unused
     u8 partyMenuMoveTimer;
     u8 showPartyMenuState;
     bool8 closeBoxFlashing;
@@ -412,9 +417,18 @@ struct PokemonStorageSystemData
     s16 scrollSpeed;
     u16 scrollTimer;
     u8 wallpaperOffset;
+    u8 scrollUnused1; // Never read
+    u8 scrollToBoxIdUnused; // Never read
+    u16 scrollUnused2; // Never read
+    s16 scrollDirectionUnused; // Never read.
+    u16 scrollUnused3; // Never read
+    u16 scrollUnused4; // Never read
+    u16 scrollUnused5; // Never read
+    u16 scrollUnused6; // Never read
     u8 filler1[22];
     u8 boxTitleTiles[1024];
     u8 boxTitleCycleId;
+    u8 wallpaperLoadState; // Written to, but never read.
     u8 wallpaperLoadBoxId;
     s8 wallpaperLoadDir;
     u16 boxTitlePal[16];
@@ -424,6 +438,8 @@ struct PokemonStorageSystemData
     struct Sprite *nextBoxTitleSprites[2];
     struct Sprite *arrowSprites[2];
     u32 wallpaperPalBits;
+    u8 filler2[80]; // Unused
+    u16 unkUnused1; // Never read.
     s16 wallpaperSetId;
     s16 wallpaperId;
     u16 wallpaperTilemap[360];
@@ -456,6 +472,7 @@ struct PokemonStorageSystemData
     struct StorageMenu menuItems[7];
     u8 menuItemsCount;
     u8 menuWidth;
+    u8 menuUnusedField; // Never read.
     u16 menuWindowId;
     struct Sprite *cursorSprite;
     struct Sprite *cursorShadowSprite;
@@ -477,6 +494,7 @@ struct PokemonStorageSystemData
     u32 displayMonPersonality;
     u16 displayMonSpecies;
     u16 displayMonItemId;
+    u16 displayUnusedVar;
     bool8 setMosaic;
     u8 displayMonMarkings;
     u8 displayMonLevel;
@@ -522,11 +540,13 @@ struct PokemonStorageSystemData
     struct ItemIcon itemIcons[MAX_ITEM_ICONS];
     u16 movingItemId;
     u16 itemInfoWindowOffset;
+    u8 unkUnused2; // Unused
     u16 displayMonPalOffset;
     u16 *displayMonTilePtr;
     struct Sprite *displayMonSprite;
     u16 displayMonPalBuffer[0x40];
     u8 tileBuffer[0x800];
+    u8 unusedBuffer[0x1800]; // Unused
     u8 itemIconBuffer[0x800];
     u8 wallpaperBgTilemapBuffer[0x1000];
     u8 displayMenuTilemapBuffer[0x800];
@@ -910,6 +930,7 @@ static const union AffineAnimCmd sAffineAnim_ChooseBoxMenu[] =
     AFFINEANIMCMD_FRAME(0xE0, 0xE0, 0, 0),
     AFFINEANIMCMD_END
 };
+
 
 static const u8 sChooseBoxMenu_TextColors[] = {TEXT_COLOR_RED, TEXT_DYNAMIC_COLOR_6, TEXT_DYNAMIC_COLOR_5};
 static const u8 sText_OutOf30[] = _("/30");
@@ -5139,6 +5160,7 @@ static void SetUpScrollToBox(u8 boxId)
 
     sStorage->scrollSpeed = (direction > 0) ? 6 : -6;
     sStorage->scrollTimer = 32;
+
     sStorage->scrollToBoxId = boxId;
     sStorage->scrollDirection = direction;
     sStorage->scrollState = 0;
@@ -5248,6 +5270,7 @@ static void LoadWallpaperGfx(u8 boxId, s8 direction)
     void *iconGfx;
     u32 tilesSize, iconSize;
 
+    sStorage->wallpaperLoadState = 0;
     sStorage->wallpaperLoadBoxId = boxId;
     sStorage->wallpaperLoadDir = direction;
     if (sStorage->wallpaperLoadDir != 0)
@@ -9621,11 +9644,15 @@ struct TilemapUtil_RectData
 
 struct TilemapUtil
 {
+    struct TilemapUtil_RectData prev; // Only read in unused function
     struct TilemapUtil_RectData cur;
     const void *savedTilemap; // Only written in unused function
     const void *tilemap;
     u16 altWidth;
+    u16 altHeight; // Never read
     u16 width;
+    u16 height; // Never read
+    u16 rowSize; // Never read
     u8 tileSize;
     u8 bg;
     bool8 active;
@@ -9683,21 +9710,25 @@ static void TilemapUtil_SetMap(u8 id, u8 bg, const void *tilemap, u16 width, u16
     sTilemapUtil[id].tilemap = tilemap;
     sTilemapUtil[id].bg = bg;
     sTilemapUtil[id].width = width;
+    sTilemapUtil[id].height = height;
 
     bgScreenSize = GetBgAttribute(bg, BG_ATTR_SCREENSIZE);
     bgType = GetBgAttribute(bg, BG_ATTR_TYPE);
     sTilemapUtil[id].altWidth = sTilemapDimensions[bgType][bgScreenSize].width;
+    sTilemapUtil[id].altHeight = sTilemapDimensions[bgType][bgScreenSize].height;
     if (bgType != 0)
         sTilemapUtil[id].tileSize = 1;
     else
         sTilemapUtil[id].tileSize = 2;
 
+    sTilemapUtil[id].rowSize = sTilemapUtil[id].tileSize * width;
     sTilemapUtil[id].cur.width = width;
     sTilemapUtil[id].cur.height = height;
     sTilemapUtil[id].cur.x = 0;
     sTilemapUtil[id].cur.y = 0;
     sTilemapUtil[id].cur.destX = 0;
     sTilemapUtil[id].cur.destY = 0;
+    sTilemapUtil[id].prev = sTilemapUtil[id].cur;
     sTilemapUtil[id].active = TRUE;
 }
 
@@ -9762,7 +9793,30 @@ static void TilemapUtil_Update(u8 id)
     if (id >= sNumTilemapUtilIds)
         return;
 
+    if (sTilemapUtil[id].savedTilemap != NULL)
+        TilemapUtil_DrawPrev(id); // Never called, above always FALSE
+
     TilemapUtil_Draw(id);
+    sTilemapUtil[id].prev = sTilemapUtil[id].cur;
+}
+
+static void TilemapUtil_DrawPrev(u8 id)
+{
+    s32 i;
+    u32 adder = sTilemapUtil[id].tileSize * sTilemapUtil[id].altWidth;
+    const void *tiles = (sTilemapUtil[id].savedTilemap + (adder * sTilemapUtil[id].prev.destY))
+                      + (sTilemapUtil[id].tileSize * sTilemapUtil[id].prev.destX);
+
+    for (i = 0; i < sTilemapUtil[id].prev.height; i++)
+    {
+        CopyToBgTilemapBufferRect(sTilemapUtil[id].bg,
+                                  tiles,
+                                  sTilemapUtil[id].prev.destX,
+                                  sTilemapUtil[id].prev.destY + i,
+                                  sTilemapUtil[id].prev.width,
+                                  1);
+        tiles += adder;
+    }
 }
 
 static void TilemapUtil_Draw(u8 id)
@@ -9816,31 +9870,6 @@ static void UnkUtil_Run(void)
             data->func(data);
         }
         sUnkUtil->numActive = 0;
-    }
-}
-
-// Functionally unused
-static void UnkUtil_CpuRun(struct UnkUtilData *data)
-{
-    u16 i;
-
-    for (i = 0; i < data->height; i++)
-    {
-        CpuSet(data->src, data->dest, data->size / 2);
-        data->dest += 64;
-        data->src += data->unk * 2;
-    }
-}
-
-// Functionally unused
-static void UnkUtil_DmaRun(struct UnkUtilData *data)
-{
-    u16 i;
-
-    for (i = 0; i < data->height; i++)
-    {
-        Dma3FillLarge16_(0, data->dest, data->size);
-        data->dest += 64;
     }
 }
 
