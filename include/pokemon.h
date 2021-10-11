@@ -6,22 +6,20 @@
 
 struct BoxPokemon
 {
-    u16 species;
-    u16 heldItem;
+    u16 species;  //10 bits
+    u16 heldItem:9;
+    u16 isEgg:1;
+    u16 markings:6;
     u32 personality;
     u32 otId;
     u8 nickname[POKEMON_NAME_LENGTH];
     u8 language;
-    u8 isBadEgg:1;
-    u8 hasSpecies:1;
-    u8 isEgg:1;
-    u8 unused:5;
     u8 otName[PLAYER_NAME_LENGTH];
-    u8 markings;
-    u32 experience;
+    u32 experience;  //29 bits
     u8 ppBonuses;
     u8 friendship;
-    u16 moves[MAX_MON_MOVES];
+    u8 moves[MAX_MON_MOVES];
+    u8 movesMSB;
     u8 hpEV;
     u8 attackEV;
     u8 defenseEV;
@@ -48,7 +46,7 @@ struct BoxPokemon
  /* 0x05 */ u32 speedIV:5;
  /* 0x05 */ u32 spAttackIV:5;
  /* 0x06 */ u32 spDefenseIV:5;
- /* 0x07 */ u32 isEgg2:1;
+ /* 0x07 */ u32 hiddenAbility:1;
  /* 0x07 */ u32 abilityNum:1;
 
  /* 0x08 */ u32 coolRibbon:3;
@@ -70,7 +68,6 @@ struct BoxPokemon
  /* 0x0B */ u32 worldRibbon:1; // distributed during Pokémon Festa '04 and '05 to tournament winners
  /* 0x0B */ u32 unusedRibbons:4; // discarded in Gen 4
  /* 0x0B */ u32 eventLegal:1; // controls Mew & Deoxys obedience; if set, Pokémon is a fateful encounter in Gen 4+; set for in-game event island legendaries, some distributed events, and Pokémon from XD: Gale of Darkness.
-    u16 filler[5];
 };
 
 struct Pokemon
@@ -276,6 +273,7 @@ void GiveMonInitialMoveset(struct Pokemon *mon);
 void GiveBoxMonInitialMoveset(struct BoxPokemon *boxMon);
 u16 MonTryLearningNewMove(struct Pokemon *mon, bool8 firstMove);
 void DeleteFirstMoveAndGiveMoveToMon(struct Pokemon *mon, u16 move);
+void DeleteFirstMoveAndGiveMoveToMon2(struct Pokemon *mon, u16 move);
 void DeleteFirstMoveAndGiveMoveToBoxMon(struct BoxPokemon *boxMon, u16 move);
 s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *defender, u32 move, u16 sideStatus, u16 powerOverride, u8 typeOverride, u8 bankAtk, u8 bankDef);
 
@@ -375,7 +373,6 @@ s8 GetFlavorRelationByPersonality(u32 personality, u8 flavor);
 bool8 IsTradedMon(struct Pokemon *mon);
 bool8 IsOtherTrainer(u32 otId, u8 *otName);
 void MonRestorePP(struct Pokemon *mon);
-void BoxMonRestorePP(struct BoxPokemon *boxMon);
 void SetMonPreventsSwitchingString(void);
 void SetWildMonHeldItem(void);
 bool8 IsMonShiny(struct Pokemon *mon);

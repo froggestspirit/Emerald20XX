@@ -406,7 +406,6 @@ struct PokemonStorageSystemData
     u16 partyMenuTilemapBuffer[0x108];
     u16 partyMenuUnused1; // Never read
     u16 partyMenuY;
-    u8 partyMenuUnused2; // Unused
     u8 partyMenuMoveTimer;
     u8 showPartyMenuState;
     bool8 closeBoxFlashing;
@@ -438,7 +437,6 @@ struct PokemonStorageSystemData
     struct Sprite *nextBoxTitleSprites[2];
     struct Sprite *arrowSprites[2];
     u32 wallpaperPalBits;
-    u8 filler2[80]; // Unused
     u16 unkUnused1; // Never read.
     s16 wallpaperSetId;
     s16 wallpaperId;
@@ -508,7 +506,6 @@ struct PokemonStorageSystemData
     u8 monPlaceChangeState;
     u8 shiftBoxId;
     struct Sprite *markingComboSprite;
-    struct Sprite *waveformSprites[2];
     u16 *markingComboTilesPtr;
     struct MonMarkingsMenu markMenu;
     struct ChooseBoxMenu chooseBoxMenu;
@@ -540,13 +537,11 @@ struct PokemonStorageSystemData
     struct ItemIcon itemIcons[MAX_ITEM_ICONS];
     u16 movingItemId;
     u16 itemInfoWindowOffset;
-    u8 unkUnused2; // Unused
     u16 displayMonPalOffset;
     u16 *displayMonTilePtr;
     struct Sprite *displayMonSprite;
     u16 displayMonPalBuffer[0x40];
-    u8 tileBuffer[0x800];
-    u8 unusedBuffer[0x1800]; // Unused
+    u8 tileBuffer[MON_PIC_SIZE];
     u8 itemIconBuffer[0x800];
     u8 wallpaperBgTilemapBuffer[0x1000];
     u8 displayMenuTilemapBuffer[0x800];
@@ -6177,7 +6172,6 @@ static void SetPlacedMonData(u8 boxId, u8 position)
     }
     else
     {
-        BoxMonRestorePP(&sStorage->movingMon.box);
         SetBoxMonAt(boxId, position, &sStorage->movingMon.box);
     }
 }

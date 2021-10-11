@@ -31,12 +31,12 @@ EWRAM_DATA struct BagPocket gBagPockets[POCKETS_COUNT] = {0};
 // code
 u16 GetBagItemQuantity(u16 *quantity)
 {
-    return gSaveBlock2Ptr->encryptionKey ^ *quantity;
+    return *quantity;
 }
 
 static void SetBagItemQuantity(u16 *quantity, u16 newValue)
 {
-    *quantity =  newValue ^ gSaveBlock2Ptr->encryptionKey;
+    *quantity =  newValue;
 }
 
 static u16 GetPCItemQuantity(u16 *quantity)
@@ -52,21 +52,6 @@ static void SetPCItemQuantity(u16 *quantity, u16 newValue)
 void ItemId_GetHoldEffectParam_Script()
 {
     VarSet(VAR_RESULT, ItemId_GetHoldEffectParam(VarGet(VAR_0x8004)));
-}
-
-void ApplyNewEncryptionKeyToBagItems(u32 newKey)
-{
-    u32 pocket, item;
-    for (pocket = 0; pocket < POCKETS_COUNT; pocket++)
-    {
-        for (item = 0; item < gBagPockets[pocket].capacity; item++)
-            ApplyNewEncryptionKeyToHword(&(gBagPockets[pocket].itemSlots[item].quantity), newKey);
-    }
-}
-
-void ApplyNewEncryptionKeyToBagItems_(u32 newKey) // really GF?
-{
-    ApplyNewEncryptionKeyToBagItems(newKey);
 }
 
 void SetBagItemsPointers(void)

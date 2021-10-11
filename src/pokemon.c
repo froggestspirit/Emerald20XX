@@ -59,7 +59,6 @@ struct SpeciesItem
 
 // this file's functions
 static void Task_PlayMapChosenOrBattleBGM(u8 taskId);
-static u16 GiveMoveToBoxMon(struct BoxPokemon *boxMon, u16 move);
 static bool8 ShouldSkipFriendshipChange(void);
 static u32 GenerateShinyPersonality(u32 otId);
 
@@ -2307,6 +2306,7 @@ void CreateMon(struct Pokemon *mon, u16 species, u8 level, u8 fixedIV, u8 hasFix
     arg = 255;
     SetMonData(mon, MON_DATA_MAIL, &arg);
     CalculateMonStats(mon);
+    MonRestorePP(mon);
 }
 
 void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, u8 hasFixedPersonality, u32 fixedPersonality, u8 otIdType, u32 fixedOtId)
@@ -3006,6 +3006,7 @@ void BoxMonToMon(const struct BoxPokemon *src, struct Pokemon *dest)
     value = 255;
     SetMonData(dest, MON_DATA_MAIL, &value);
     CalculateMonStats(dest);
+    MonRestorePP(dest);
 }
 
 u8 GetLevelFromMonExp(struct Pokemon *mon)
@@ -3034,10 +3035,23 @@ u8 GetLevelFromBoxMonExp(struct BoxPokemon *boxMon)
 
 u16 GiveMoveToMon(struct Pokemon *mon, u16 move)
 {
-    return GiveMoveToBoxMon(&mon->box, move);
+    s32 i;
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        u16 existingMove = GetBoxMonData(&mon->box, MON_DATA_MOVE1 + i, NULL);
+        if (existingMove == MOVE_NONE)
+        {
+            SetBoxMonData(&mon->box, MON_DATA_MOVE1 + i, &move);
+            SetMonData(mon, MON_DATA_PP1 + i, &gBattleMoves[move].pp);
+            return move;
+        }
+        if (existingMove == move)
+            return MON_ALREADY_KNOWS_MOVE;
+    }
+    return MON_HAS_MAX_MOVES;
 }
 
-static u16 GiveMoveToBoxMon(struct BoxPokemon *boxMon, u16 move)
+u16 GiveMoveToBoxMon(struct BoxPokemon *boxMon, u16 move)
 {
     s32 i;
     for (i = 0; i < MAX_MON_MOVES; i++)
@@ -3046,7 +3060,6 @@ static u16 GiveMoveToBoxMon(struct BoxPokemon *boxMon, u16 move)
         if (existingMove == MOVE_NONE)
         {
             SetBoxMonData(boxMon, MON_DATA_MOVE1 + i, &move);
-            SetBoxMonData(boxMon, MON_DATA_PP1 + i, &gBattleMoves[move].pp);
             return move;
         }
         if (existingMove == move)
@@ -3086,7 +3099,28 @@ void SetBattleMonMoveSlot(struct BattlePokemon *mon, u16 move, u8 slot)
 
 void GiveMonInitialMoveset(struct Pokemon *mon)
 {
-    GiveBoxMonInitialMoveset(&mon->box);
+    u16 species = GetBoxMonData(&mon->box, MON_DATA_SPECIES, NULL);
+    s32 level = GetLevelFromBoxMonExp(&mon->box);
+    s32 i;
+
+    for (i = 0; gLevelUpLearnsets[species][i] != LEVEL_UP_END; i++)
+    {
+        u16 moveLevel;
+        u16 move;
+
+        moveLevel = (gLevelUpLearnsets[species][i] & LEVEL_UP_MOVE_LV);
+
+        if (moveLevel == 0)
+            continue;
+
+        if (moveLevel > (level << 9))
+            break;
+
+        move = (gLevelUpLearnsets[species][i] & LEVEL_UP_MOVE_ID);
+
+        if (GiveMoveToMon(mon, move) == MON_HAS_MAX_MOVES)
+            DeleteFirstMoveAndGiveMoveToMon2(mon, move);
+    }
 }
 
 void GiveBoxMonInitialMoveset(struct BoxPokemon *boxMon)
@@ -3174,6 +3208,33 @@ void DeleteFirstMoveAndGiveMoveToMon(struct Pokemon *mon, u16 move)
     SetMonData(mon, MON_DATA_PP_BONUSES, &ppBonuses);
 }
 
+void DeleteFirstMoveAndGiveMoveToMon2(struct Pokemon *mon, u16 move)
+{
+    s32 i;
+    u16 moves[MAX_MON_MOVES];
+    u8 pp[MAX_MON_MOVES];
+    u8 ppBonuses;
+
+    for (i = 0; i < MAX_MON_MOVES - 1; i++)
+    {
+        moves[i] = GetBoxMonData(&mon->box, MON_DATA_MOVE2 + i, NULL);
+        pp[i] = GetMonData(mon, MON_DATA_PP2 + i, NULL);
+    }
+
+    ppBonuses = GetBoxMonData(&mon->box, MON_DATA_PP_BONUSES, NULL);
+    ppBonuses >>= 2;
+    moves[3] = move;
+    pp[3] = gBattleMoves[move].pp;
+
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        SetBoxMonData(&mon->box, MON_DATA_MOVE1 + i, &moves[i]);
+        SetMonData(mon, MON_DATA_PP1 + i, &pp[i]);
+    }
+
+    SetBoxMonData(&mon->box, MON_DATA_PP_BONUSES, &ppBonuses);
+}
+
 void DeleteFirstMoveAndGiveMoveToBoxMon(struct BoxPokemon *boxMon, u16 move)
 {
     s32 i;
@@ -3184,7 +3245,6 @@ void DeleteFirstMoveAndGiveMoveToBoxMon(struct BoxPokemon *boxMon, u16 move)
     for (i = 0; i < MAX_MON_MOVES - 1; i++)
     {
         moves[i] = GetBoxMonData(boxMon, MON_DATA_MOVE2 + i, NULL);
-        pp[i] = GetBoxMonData(boxMon, MON_DATA_PP2 + i, NULL);
     }
 
     ppBonuses = GetBoxMonData(boxMon, MON_DATA_PP_BONUSES, NULL);
@@ -3195,7 +3255,6 @@ void DeleteFirstMoveAndGiveMoveToBoxMon(struct BoxPokemon *boxMon, u16 move)
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
         SetBoxMonData(boxMon, MON_DATA_MOVE1 + i, &moves[i]);
-        SetBoxMonData(boxMon, MON_DATA_PP1 + i, &pp[i]);
     }
 
     SetBoxMonData(boxMon, MON_DATA_PP_BONUSES, &ppBonuses);
@@ -3684,15 +3743,7 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
         break;
     case MON_DATA_NICKNAME:
     {
-        if (boxMon->isBadEgg)
-        {
-            for (retVal = 0;
-                retVal < POKEMON_NAME_LENGTH && gText_BadEgg[retVal] != EOS;
-                data[retVal] = gText_BadEgg[retVal], retVal++) {}
-
-            data[retVal] = EOS;
-        }
-        else if (boxMon->isEgg)
+        if (boxMon->isEgg)
         {
             StringCopy(data, gText_EggNickname);
             retVal = StringLength(data);
@@ -3723,11 +3774,10 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
     case MON_DATA_LANGUAGE:
         retVal = boxMon->language;
         break;
-    case MON_DATA_SANITY_IS_BAD_EGG:
-        retVal = boxMon->isBadEgg;
-        break;
     case MON_DATA_SANITY_HAS_SPECIES:
-        retVal = boxMon->hasSpecies;
+        retVal = 1;
+        if (!boxMon->species)
+            retVal = 0;
         break;
     case MON_DATA_SANITY_IS_EGG:
         retVal = boxMon->isEgg;
@@ -3749,7 +3799,7 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
         retVal = boxMon->markings;
         break;
     case MON_DATA_SPECIES:
-        retVal = boxMon->isBadEgg ? SPECIES_EGG : boxMon->species;
+        retVal = boxMon->species;
         break;
     case MON_DATA_HELD_ITEM:
         retVal = boxMon->heldItem;
@@ -3768,6 +3818,7 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
     case MON_DATA_MOVE3:
     case MON_DATA_MOVE4:
         retVal = boxMon->moves[field - MON_DATA_MOVE1];
+        retVal += ((boxMon->movesMSB >> ((field - MON_DATA_MOVE1) << 1)) & 3) << 8;
         break;
     case MON_DATA_HP_EV:
         retVal = boxMon->hpEV;
@@ -3906,7 +3957,7 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
         break;
     case MON_DATA_SPECIES2:
         retVal = boxMon->species;
-        if (boxMon->species && (boxMon->isEgg || boxMon->isBadEgg))
+        if (boxMon->species && boxMon->isEgg)
             retVal = SPECIES_EGG;
         break;
     case MON_DATA_IVS:
@@ -4058,12 +4109,6 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
     case MON_DATA_LANGUAGE:
         SET8(boxMon->language);
         break;
-    case MON_DATA_SANITY_IS_BAD_EGG:
-        SET8(boxMon->isBadEgg);
-        break;
-    case MON_DATA_SANITY_HAS_SPECIES:
-        SET8(boxMon->hasSpecies);
-        break;
     case MON_DATA_SANITY_IS_EGG:
         SET8(boxMon->isEgg);
         break;
@@ -4078,14 +4123,8 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
         SET8(boxMon->markings);
         break;
     case MON_DATA_SPECIES:
-    {
         SET16(boxMon->species);
-        if (boxMon->species)
-            boxMon->hasSpecies = 1;
-        else
-            boxMon->hasSpecies = 0;
         break;
-    }
     case MON_DATA_HELD_ITEM:
         SET16(boxMon->heldItem);
         break;
@@ -4102,7 +4141,9 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
     case MON_DATA_MOVE2:
     case MON_DATA_MOVE3:
     case MON_DATA_MOVE4:
-        SET16(boxMon->moves[field - MON_DATA_MOVE1]);
+        SET8(boxMon->moves[field - MON_DATA_MOVE1]);
+        boxMon->movesMSB &= (3 << ((field - MON_DATA_MOVE1) << 1)) ^ 0xFF;
+        boxMon->movesMSB |= (data[1] & 3) << ((field - MON_DATA_MOVE1) << 1);
         break;
     case MON_DATA_HP_EV:
         SET8(boxMon->hpEV);
@@ -6474,21 +6515,16 @@ bool8 IsOtherTrainer(u32 otId, u8 *otName)
 
 void MonRestorePP(struct Pokemon *mon)
 {
-    BoxMonRestorePP(&mon->box);
-}
-
-void BoxMonRestorePP(struct BoxPokemon *boxMon)
-{
     int i;
 
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
-        if (GetBoxMonData(boxMon, MON_DATA_MOVE1 + i, 0))
+        if (GetMonData(mon, MON_DATA_MOVE1 + i, 0))
         {
-            u16 move = GetBoxMonData(boxMon, MON_DATA_MOVE1 + i, 0);
-            u16 bonus = GetBoxMonData(boxMon, MON_DATA_PP_BONUSES, 0);
+            u16 move = GetMonData(mon, MON_DATA_MOVE1 + i, 0);
+            u16 bonus = GetMonData(mon, MON_DATA_PP_BONUSES, 0);
             u8 pp = CalculatePPWithBonus(move, bonus, i);
-            SetBoxMonData(boxMon, MON_DATA_PP1 + i, &pp);
+            SetMonData(mon, MON_DATA_PP1 + i, &pp);
         }
     }
 }
