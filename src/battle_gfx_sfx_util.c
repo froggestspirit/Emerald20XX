@@ -926,13 +926,13 @@ void HandleSpeciesGfxDataChange(u8 battlerAtk, u8 battlerDef, bool8 notTransform
 
         if (IsContest())
         {
-            position = 0;
+            position = B_POSITION_PLAYER_LEFT;
             targetSpecies = gContestResources->moveAnim->targetSpecies;
             personalityValue = gContestResources->moveAnim->personality;
             otId = gContestResources->moveAnim->otId;
 
             HandleLoadSpecialPokePic_DontHandleDeoxys(&gMonBackPicTable[targetSpecies],
-                                                      gMonSpritesGfxPtr->sprites.ptr[0],
+                                                      gMonSpritesGfxPtr->sprites.ptr[position],
                                                       targetSpecies,
                                                       gContestResources->moveAnim->targetPersonality);
         }
@@ -1004,7 +1004,7 @@ void BattleLoadSubstituteOrMonSpriteGfx(u8 battlerId, bool8 loadMonSprite)
     if (!loadMonSprite)
     {
         if (IsContest())
-            position = 0;
+            position = B_POSITION_PLAYER_LEFT;
         else
             position = GetBattlerPosition(battlerId);
 
@@ -1216,7 +1216,8 @@ void HideBattlerShadowSprite(u8 battlerId)
     gSprites[gBattleSpritesDataPtr->healthBoxesData[battlerId].shadowSpriteId].callback = SpriteCB_SetInvisible;
 }
 
-void sub_805EF14(void)
+// Color the background tiles surrounding the action selection and move windows
+void FillAroundBattleWindows(void)
 {
     u16 *vramPtr = (u16*)(VRAM + 0x240);
     s32 i;
@@ -1262,11 +1263,11 @@ void AllocateMonSpritesGfx(void)
 
         for (j = 0; j < 4; j++)
         {
-            gMonSpritesGfxPtr->field_74[i][j].data = gMonSpritesGfxPtr->sprites.ptr[i] + (j * MON_PIC_SIZE);
-            gMonSpritesGfxPtr->field_74[i][j].size = MON_PIC_SIZE;
+            gMonSpritesGfxPtr->frameImages[i][j].data = gMonSpritesGfxPtr->sprites.ptr[i] + (j * MON_PIC_SIZE);
+            gMonSpritesGfxPtr->frameImages[i][j].size = MON_PIC_SIZE;
         }
 
-        gMonSpritesGfxPtr->templates[i].images = gMonSpritesGfxPtr->field_74[i];
+        gMonSpritesGfxPtr->templates[i].images = gMonSpritesGfxPtr->frameImages[i];
     }
 
     gMonSpritesGfxPtr->barFontGfx = AllocZeroed(0x1000);
@@ -1277,17 +1278,14 @@ void FreeMonSpritesGfx(void)
     if (gMonSpritesGfxPtr == NULL)
         return;
 
-    if (gMonSpritesGfxPtr->buffer != NULL)
-        FREE_AND_SET_NULL(gMonSpritesGfxPtr->buffer);
-    if (gMonSpritesGfxPtr->field_178 != NULL)
-        FREE_AND_SET_NULL(gMonSpritesGfxPtr->field_178);
-
+    TRY_FREE_AND_SET_NULL(gMonSpritesGfxPtr->buffer);
+    TRY_FREE_AND_SET_NULL(gMonSpritesGfxPtr->unusedPtr);
     FREE_AND_SET_NULL(gMonSpritesGfxPtr->barFontGfx);
     FREE_AND_SET_NULL(gMonSpritesGfxPtr->firstDecompressed);
-    gMonSpritesGfxPtr->sprites.ptr[0] = NULL;
-    gMonSpritesGfxPtr->sprites.ptr[1] = NULL;
-    gMonSpritesGfxPtr->sprites.ptr[2] = NULL;
-    gMonSpritesGfxPtr->sprites.ptr[3] = NULL;
+    gMonSpritesGfxPtr->sprites.ptr[B_POSITION_PLAYER_LEFT] = NULL;
+    gMonSpritesGfxPtr->sprites.ptr[B_POSITION_OPPONENT_LEFT] = NULL;
+    gMonSpritesGfxPtr->sprites.ptr[B_POSITION_PLAYER_RIGHT] = NULL;
+    gMonSpritesGfxPtr->sprites.ptr[B_POSITION_OPPONENT_RIGHT] = NULL;
     FREE_AND_SET_NULL(gMonSpritesGfxPtr);
 }
 
