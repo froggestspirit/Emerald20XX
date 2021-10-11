@@ -353,7 +353,7 @@ static const struct SpriteFrameImage sDecorSelectorSpriteFrameImages =
 
 static const struct SpriteTemplate sDecorationSelectorSpriteTemplate =
 {
-    0xFFFF,
+    TAG_NONE,
     PLACE_DECORATION_SELECTOR_TAG,
     &sDecorSelectorOam,
     sDecorSelectorAnimCmds,
@@ -484,7 +484,7 @@ static const struct SpriteFrameImage sPuttingAwayCursorPicTable =
 
 static const struct SpriteTemplate sPuttingAwayCursorSpriteTemplate =
 {
-    0xFFFF,
+    TAG_NONE,
     PLACE_DECORATION_PLAYER_TAG,
     &sPuttingAwayCursorOamData,
     sPuttingAwayCursorAnimCmds,
