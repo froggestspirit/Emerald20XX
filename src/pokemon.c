@@ -3972,30 +3972,6 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
     case MON_DATA_EFFORT_RIBBON:
         retVal = boxMon->effortRibbon;
         break;
-    case MON_DATA_MARINE_RIBBON:
-        retVal = boxMon->marineRibbon;
-        break;
-    case MON_DATA_LAND_RIBBON:
-        retVal = boxMon->landRibbon;
-        break;
-    case MON_DATA_SKY_RIBBON:
-        retVal = boxMon->skyRibbon;
-        break;
-    case MON_DATA_COUNTRY_RIBBON:
-        retVal = boxMon->countryRibbon;
-        break;
-    case MON_DATA_NATIONAL_RIBBON:
-        retVal = boxMon->nationalRibbon;
-        break;
-    case MON_DATA_EARTH_RIBBON:
-        retVal = boxMon->earthRibbon;
-        break;
-    case MON_DATA_WORLD_RIBBON:
-        retVal = boxMon->worldRibbon;
-        break;
-    case MON_DATA_UNUSED_RIBBONS:
-        retVal = boxMon->unusedRibbons;
-        break;
     case MON_DATA_EVENT_LEGAL:
         retVal = boxMon->eventLegal;
         break;
@@ -4044,13 +4020,6 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
             retVal += boxMon->victoryRibbon;
             retVal += boxMon->artistRibbon;
             retVal += boxMon->effortRibbon;
-            retVal += boxMon->marineRibbon;
-            retVal += boxMon->landRibbon;
-            retVal += boxMon->skyRibbon;
-            retVal += boxMon->countryRibbon;
-            retVal += boxMon->nationalRibbon;
-            retVal += boxMon->earthRibbon;
-            retVal += boxMon->worldRibbon;
         }
         break;
     case MON_DATA_RIBBONS:
@@ -4066,14 +4035,7 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
                 | (boxMon->winningRibbon << 16)
                 | (boxMon->victoryRibbon << 17)
                 | (boxMon->artistRibbon << 18)
-                | (boxMon->effortRibbon << 19)
-                | (boxMon->marineRibbon << 20)
-                | (boxMon->landRibbon << 21)
-                | (boxMon->skyRibbon << 22)
-                | (boxMon->countryRibbon << 23)
-                | (boxMon->nationalRibbon << 24)
-                | (boxMon->earthRibbon << 25)
-                | (boxMon->worldRibbon << 26);
+                | (boxMon->effortRibbon << 19);
         }
         break;
     default:
@@ -4311,30 +4273,6 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
         break;
     case MON_DATA_EFFORT_RIBBON:
         SET8(boxMon->effortRibbon);
-        break;
-    case MON_DATA_MARINE_RIBBON:
-        SET8(boxMon->marineRibbon);
-        break;
-    case MON_DATA_LAND_RIBBON:
-        SET8(boxMon->landRibbon);
-        break;
-    case MON_DATA_SKY_RIBBON:
-        SET8(boxMon->skyRibbon);
-        break;
-    case MON_DATA_COUNTRY_RIBBON:
-        SET8(boxMon->countryRibbon);
-        break;
-    case MON_DATA_NATIONAL_RIBBON:
-        SET8(boxMon->nationalRibbon);
-        break;
-    case MON_DATA_EARTH_RIBBON:
-        SET8(boxMon->earthRibbon);
-        break;
-    case MON_DATA_WORLD_RIBBON:
-        SET8(boxMon->worldRibbon);
-        break;
-    case MON_DATA_UNUSED_RIBBONS:
-        SET8(boxMon->unusedRibbons);
         break;
     case MON_DATA_EVENT_LEGAL:
         SET8(boxMon->eventLegal);

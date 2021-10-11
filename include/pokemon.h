@@ -6,68 +6,69 @@
 
 struct BoxPokemon
 {
-    u16 species;  //10 bits
-    u16 heldItem:9;
-    u16 isEgg:1;
-    u16 markings:6;
+    u32 species:10;
+    u32 isEgg:1;
+    u32 eventLegal:1; // controls Mew & Deoxys obedience; if set, Pokémon is a fateful encounter in Gen 4+; set for in-game event island legendaries, some distributed events, and Pokémon from XD: Gale of Darkness.
+    u32 heldItem:9;
+    u32 friendship:8;
+    u32 unused:3;
+    
     u32 personality;
     u32 otId;
+    u32 experience; // Only uses 29 bits?
+
+    // 0x10
     u8 nickname[POKEMON_NAME_LENGTH];
-    u8 language;
-    u8 otName[PLAYER_NAME_LENGTH];
-    u32 experience;  //29 bits
     u8 ppBonuses;
-    u8 friendship;
     u8 moves[MAX_MON_MOVES];
     u8 movesMSB;
+
+    // 0x20
+    u8 language;
+    u8 otName[PLAYER_NAME_LENGTH];
+    u16 metLevel:7;
+    u16 metGame:4;
+    u16 pokeball:4;
+    u16 otGender:1;
     u8 hpEV;
     u8 attackEV;
     u8 defenseEV;
     u8 speedEV;
     u8 spAttackEV;
     u8 spDefenseEV;
+
+    // 0x30
+    u32 hpIV:5;
+    u32 attackIV:5;
+    u32 defenseIV:5;
+    u32 speedIV:5;
+    u32 spAttackIV:5;
+    u32 spDefenseIV:5;
+    u32 hiddenAbility:1;
+    u32 abilityNum:1;
+
     u8 cool;
     u8 beauty;
     u8 cute;
     u8 smart;
     u8 tough;
     u8 sheen;
- /* 0x00 */ u8 pokerus;
- /* 0x01 */ u8 metLocation;
+    u8 pokerus;
+    u8 metLocation;
 
- /* 0x02 */ u16 metLevel:7;
- /* 0x02 */ u16 metGame:4;
- /* 0x03 */ u16 pokeball:4;
- /* 0x03 */ u16 otGender:1;
-
- /* 0x04 */ u32 hpIV:5;
- /* 0x04 */ u32 attackIV:5;
- /* 0x05 */ u32 defenseIV:5;
- /* 0x05 */ u32 speedIV:5;
- /* 0x05 */ u32 spAttackIV:5;
- /* 0x06 */ u32 spDefenseIV:5;
- /* 0x07 */ u32 hiddenAbility:1;
- /* 0x07 */ u32 abilityNum:1;
-
- /* 0x08 */ u32 coolRibbon:3;
- /* 0x08 */ u32 beautyRibbon:3;
- /* 0x08 */ u32 cuteRibbon:3;
- /* 0x09 */ u32 smartRibbon:3;
- /* 0x09 */ u32 toughRibbon:3;
- /* 0x09 */ u32 championRibbon:1;
- /* 0x0A */ u32 winningRibbon:1;
- /* 0x0A */ u32 victoryRibbon:1;
- /* 0x0A */ u32 artistRibbon:1;
- /* 0x0A */ u32 effortRibbon:1;
- /* 0x0A */ u32 marineRibbon:1; // never distributed
- /* 0x0A */ u32 landRibbon:1; // never distributed
- /* 0x0A */ u32 skyRibbon:1; // never distributed
- /* 0x0A */ u32 countryRibbon:1; // distributed during Pokémon Festa '04 and '05 to tournament winners
- /* 0x0B */ u32 nationalRibbon:1;
- /* 0x0B */ u32 earthRibbon:1;
- /* 0x0B */ u32 worldRibbon:1; // distributed during Pokémon Festa '04 and '05 to tournament winners
- /* 0x0B */ u32 unusedRibbons:4; // discarded in Gen 4
- /* 0x0B */ u32 eventLegal:1; // controls Mew & Deoxys obedience; if set, Pokémon is a fateful encounter in Gen 4+; set for in-game event island legendaries, some distributed events, and Pokémon from XD: Gale of Darkness.
+    u16 coolRibbon:3;
+    u16 beautyRibbon:3;
+    u16 cuteRibbon:3;
+    u16 smartRibbon:3;
+    u16 toughRibbon:3;
+    u16 championRibbon:1;
+    
+    u16 winningRibbon:1;
+    u16 victoryRibbon:1;
+    u16 artistRibbon:1;
+    u16 effortRibbon:1;
+    u16 unused2:6;
+    u16 markings:6;
 };
 
 struct Pokemon
@@ -76,8 +77,8 @@ struct Pokemon
     u32 status;
     u8 level;
     u8 mail;
-    u16 hp;
     u8 pp[MAX_MON_MOVES];
+    u16 hp;
     u16 maxHP;
     u16 attack;
     u16 defense;
