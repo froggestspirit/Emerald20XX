@@ -55,8 +55,6 @@ GPIOPortReadEnable: @ 80000C8
 	.4byte 0x00001270 @ offsetof(struct SaveBlock1, flags)
 	.4byte 0x0000139c @ offsetof(struct SaveBlock1, vars)
 	.4byte 0x00000018 @ offsetof(struct SaveBlock2, pokedex)
-	.4byte 0x00000988 @ offsetof(struct SaveBlock1, seen1)
-	.4byte 0x00003b24 @ offsetof(struct SaveBlock1, seen2)
 	.4byte 0x00000046 @ ?
 	.4byte 0x000008e4 @ ?
 	.4byte 0x000008ac @ ?

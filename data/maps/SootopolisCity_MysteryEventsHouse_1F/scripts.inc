@@ -79,44 +79,13 @@ SootopolisCity_MysteryEventsHouse_1F_EventScript_OldMan::
 	compare VAR_RESULT, 1
 	goto_if_eq SootopolisCity_MysteryEventsHouse_1F_EventScript_InvalidVisitingTrainer
 	compare VAR_TEMP_1, 1
-	goto_if_eq SootopolisCity_MysteryEventsHouse_1F_EventScript_TrainerVisiting
+	goto_if_eq SootopolisCity_MysteryEventsHouse_1F_EventScript_InvalidVisitingTrainer
 	msgbox SootopolisCity_MysteryEventsHouse_1F_Text_OnlyAmusementWatchingBattles, MSGBOX_DEFAULT
 	release
 	end
 
 SootopolisCity_MysteryEventsHouse_1F_EventScript_InvalidVisitingTrainer::
 	msgbox SootopolisCity_MysteryEventsHouse_1F_Text_OnlyAmusementWatchingBattles, MSGBOX_DEFAULT
-	release
-	end
-
-SootopolisCity_MysteryEventsHouse_1F_EventScript_TrainerVisiting::
-	special SavePlayerParty
-	special BufferEReaderTrainerName
-	msgbox SootopolisCity_MysteryEventsHouse_1F_Text_ChallengeVisitingTrainer, MSGBOX_YESNO
-	compare VAR_RESULT, NO
-	goto_if_eq SootopolisCity_MysteryEventsHouse_1F_EventScript_DeclineBattle
-	call SootopolisCity_MysteryEventsHouse_1F_EventScript_ChooseParty
-	compare VAR_RESULT, 0
-	goto_if_eq SootopolisCity_MysteryEventsHouse_1F_EventScript_DeclineBattle
-	msgbox SootopolisCity_MysteryEventsHouse_1F_Text_SaveProgressBeforeBattle, MSGBOX_YESNO
-	compare VAR_RESULT, NO
-	goto_if_eq SootopolisCity_MysteryEventsHouse_1F_EventScript_DeclineBattle
-	special LoadPlayerParty
-	call Common_EventScript_SaveGame
-	compare VAR_RESULT, FALSE
-	goto_if_eq SootopolisCity_MysteryEventsHouse_1F_EventScript_DeclineBattle
-	special SavePlayerParty
-	special ReducePlayerPartyToSelectedMons
-	msgbox SootopolisCity_MysteryEventsHouse_1F_Text_HopeToSeeGoodMatch, MSGBOX_DEFAULT
-	closemessage
-	compare VAR_FACING, DIR_NORTH
-	call_if_eq SootopolisCity_MysteryEventsHouse_1F_EventScript_EnterBasementNorth
-	compare VAR_FACING, DIR_EAST
-	call_if_eq SootopolisCity_MysteryEventsHouse_1F_EventScript_EnterBasementEast
-	compare VAR_FACING, DIR_WEST
-	call_if_eq SootopolisCity_MysteryEventsHouse_1F_EventScript_EnterBasementWest
-	warp MAP_SOOTOPOLIS_CITY_MYSTERY_EVENTS_HOUSE_B1F, 255, 3, 1
-	waitstate
 	release
 	end
 
