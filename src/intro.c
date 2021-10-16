@@ -11,6 +11,7 @@
 #include "multiboot_pokemon_colosseum.h"
 #include "load_save.h"
 #include "save.h"
+#include "overworld.h"
 #include "new_game.h"
 #include "m4a.h"
 #include "random.h"
@@ -1150,6 +1151,9 @@ void CB2_InitCopyrightScreenAfterBootup(void)
             Sav2_ClearSetDefault();
         SetPokemonCryStereo(gSaveBlock2Ptr->optionsSound);
         InitHeap(gHeap, HEAP_SIZE);
+        if(gSaveBlock2Ptr->optionsQuickLoad){
+            SetMainCallback2(CB2_ContinueSavedGame);
+        }
     }
 }
 
