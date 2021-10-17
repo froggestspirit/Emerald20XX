@@ -866,6 +866,34 @@ struct SaveTrainerHill
     /*0x3D6E*/ u16 tag:2;
 };
 
+#define NUM_POKE_RADAR_GRASS_PATCHES 4
+
+struct PokeRadarGrassPatch {
+    s16 x;
+    s16 y;
+    u8 active:1;
+    u8 patchType:1;
+    u8 continueChain:1;
+    u8 isShiny:1;
+    u8 unused:4;
+};
+
+struct PokeRadarChain {
+    u16 saved:1;
+    u16 active:1;
+    u16 chain:14;
+    u16 species;
+    u8 level;
+    u8 patchType:1;
+    u8 increasedRates:1;
+    u8 stepsUntilCharged:6;
+    s16 originX;
+    s16 originY;
+    s8 mapGroup;
+    s8 mapNum;
+    struct PokeRadarGrassPatch grassPatches[NUM_POKE_RADAR_GRASS_PATCHES];
+};
+
 struct MysteryEventStruct
 {
     u8 unk_0_0:2;
@@ -1070,8 +1098,8 @@ struct SaveBlock1
     /*0x3D5A*/ u8 filler3D5A[0xA];
     /*0x3D64*/ struct SaveTrainerHill trainerHill;
     /*0x3D70*/ struct WaldaPhrase waldaPhrase;
+               struct PokeRadarChain pokeRadarChain;
                u16 bgmSetting[0x100];
-               //struct PokeRadarChain gPokeRadarChain;
     // sizeof: 0x3D88
 };
 

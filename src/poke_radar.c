@@ -23,8 +23,6 @@
 #include "constants/songs.h"
 #include "constants/species.h"
 
-struct PokeRadarChain gPokeRadarChain;
-
 static const u8 sText_GrassyPatchRemainedQuiet[] = _("The grassy patch remained\nquiet...{PAUSE_UNTIL_PRESS}");
 static const u8 sText_StepsUntilCharged[] = _("The battery has run dry!\n{STR_VAR_1} steps until fully charged.{PAUSE_UNTIL_PRESS}");
 static const u8 sText_StepUntilCharged[] = _("The battery has run dry!\n1 step until fully charged.{PAUSE_UNTIL_PRESS}");
@@ -119,11 +117,11 @@ bool8 ChoosePokeRadarShakeCoords(s16 baseX, s16 baseY)
     for (i = 0; i < NUM_POKE_RADAR_GRASS_PATCHES; i++)
     {
         u16 index = Random() % sNumPatchesInRing[i];
-        gPokeRadarChain.grassPatches[i].x = baseX + sPokeRadarRingCoords[i][index][0];
-        gPokeRadarChain.grassPatches[i].y = baseY + sPokeRadarRingCoords[i][index][1];
-        gPokeRadarChain.grassPatches[i].active = IsValidPokeRadarMetatile(gPokeRadarChain.grassPatches[i].x, gPokeRadarChain.grassPatches[i].y);
+        gSaveBlock1Ptr->pokeRadarChain.grassPatches[i].x = baseX + sPokeRadarRingCoords[i][index][0];
+        gSaveBlock1Ptr->pokeRadarChain.grassPatches[i].y = baseY + sPokeRadarRingCoords[i][index][1];
+        gSaveBlock1Ptr->pokeRadarChain.grassPatches[i].active = IsValidPokeRadarMetatile(gSaveBlock1Ptr->pokeRadarChain.grassPatches[i].x, gSaveBlock1Ptr->pokeRadarChain.grassPatches[i].y);
         
-        if (gPokeRadarChain.grassPatches[i].active)
+        if (gSaveBlock1Ptr->pokeRadarChain.grassPatches[i].active)
             valid = TRUE;
     }
     
@@ -138,12 +136,12 @@ static bool8 CheckPatchContinuesChain(u8 patchIndex, u8 increasedRates)
     return increasedRates ? (Random() % 100) < (rates[patchIndex] + 10) : (Random() % 100) < rates[patchIndex];
 }
 
-static u8 CheckShinyPatch(u8 chain)
+static u8 CheckShinyPatch(u16 chain)
 {
     u32 shinyChance;
     
     if (chain == 0)
-        return 0;
+        return FALSE;
 
     shinyChance = 8200 - chain * 200; // max chain of 40 comes from 40 * 200 = 8000; 8200 - 8000 = 200
     if (shinyChance < 200)
@@ -156,27 +154,27 @@ static void PrepGrassPatchChainData(void)
     u32 i;
     for (i = 0; i < NUM_POKE_RADAR_GRASS_PATCHES; i++)
     {
-        if (gPokeRadarChain.grassPatches[i].active)
+        if (gSaveBlock1Ptr->pokeRadarChain.grassPatches[i].active)
         {
-            gPokeRadarChain.grassPatches[i].continueChain = CheckPatchContinuesChain(i, gPokeRadarChain.increasedRates);
-            gPokeRadarChain.increasedRates = 0;
-            if (gPokeRadarChain.grassPatches[i].continueChain)
+            gSaveBlock1Ptr->pokeRadarChain.grassPatches[i].continueChain = CheckPatchContinuesChain(i, gSaveBlock1Ptr->pokeRadarChain.increasedRates);
+            if (gSaveBlock1Ptr->pokeRadarChain.grassPatches[i].continueChain)
             {
-                gPokeRadarChain.grassPatches[i].patchType = gPokeRadarChain.chain > 0 ? gPokeRadarChain.patchType : (Random() & 1);
-                gPokeRadarChain.grassPatches[i].isShiny = CheckShinyPatch(gPokeRadarChain.chain);
+                gSaveBlock1Ptr->pokeRadarChain.grassPatches[i].patchType = gSaveBlock1Ptr->pokeRadarChain.chain > 0 ? gSaveBlock1Ptr->pokeRadarChain.patchType : (Random() & 1);
+                gSaveBlock1Ptr->pokeRadarChain.grassPatches[i].isShiny = CheckShinyPatch(gSaveBlock1Ptr->pokeRadarChain.chain);
             }
             else
             {
-                gPokeRadarChain.grassPatches[i].patchType = Random() & 1;
-                gPokeRadarChain.grassPatches[i].isShiny = 0;
+                gSaveBlock1Ptr->pokeRadarChain.grassPatches[i].patchType = Random() & 1;
+                gSaveBlock1Ptr->pokeRadarChain.grassPatches[i].isShiny = FALSE;
             }
         }
     }
+    gSaveBlock1Ptr->pokeRadarChain.increasedRates = FALSE;
 }
 
 void TrySetPokeRadarPatchCoords(void)
 {
-    if (gPokeRadarChain.active)
+    if (gSaveBlock1Ptr->pokeRadarChain.active)
     {
         s16 x, y;
         PlayerGetDestCoords(&x, &y);
@@ -198,10 +196,10 @@ void StartPokeRadarGrassShake(void)
     
     for (i = 0; i < NUM_POKE_RADAR_GRASS_PATCHES; i++)
     {
-        if (IsValidPokeRadarMetatile(gPokeRadarChain.grassPatches[i].x, gPokeRadarChain.grassPatches[i].y))
+        if (IsValidPokeRadarMetatile(gSaveBlock1Ptr->pokeRadarChain.grassPatches[i].x, gSaveBlock1Ptr->pokeRadarChain.grassPatches[i].y))
         {
-            gFieldEffectArguments[0] = gPokeRadarChain.grassPatches[i].x;
-            gFieldEffectArguments[1] = gPokeRadarChain.grassPatches[i].y;
+            gFieldEffectArguments[0] = gSaveBlock1Ptr->pokeRadarChain.grassPatches[i].x;
+            gFieldEffectArguments[1] = gSaveBlock1Ptr->pokeRadarChain.grassPatches[i].y;
             gFieldEffectArguments[2] = playerObj->previousElevation;
             gFieldEffectArguments[3] = 2;
             gFieldEffectArguments[4] = playerObj->localId << 8 | playerObj->mapNum;
@@ -209,11 +207,11 @@ void StartPokeRadarGrassShake(void)
             gFieldEffectArguments[6] = (u8)gSaveBlock1Ptr->location.mapNum << 8 | (u8)gSaveBlock1Ptr->location.mapGroup;
             gFieldEffectArguments[7] = 0;
                 
-            if (gPokeRadarChain.grassPatches[i].patchType == 0)
+            if (gSaveBlock1Ptr->pokeRadarChain.grassPatches[i].patchType == 0)
                 FieldEffectStart(FLDEFF_TALL_GRASS);
             else
                 FieldEffectStart(FLDEFF_POKE_RADAR_GRASS);
-            if (gPokeRadarChain.grassPatches[i].isShiny)
+            if (gSaveBlock1Ptr->pokeRadarChain.grassPatches[i].isShiny)
             {
                 gFieldEffectArguments[3] = 1;
                 FieldEffectStart(FLDEFF_POKE_RADAR_SPARKLE);
@@ -228,11 +226,10 @@ void Task_StartPokeRadarGrassShake(u8 taskId)
 {
     ScriptContext2_Enable();
     gPlayerAvatar.preventStep = TRUE;
-    gPokeRadarChain.stepsUntilCharged = POKE_RADAR_STEPS_TO_CHARGE;
-    gPokeRadarChain.originX = gObjectEvents[gPlayerAvatar.objectEventId].currentCoords.x;
-    gPokeRadarChain.originY = gObjectEvents[gPlayerAvatar.objectEventId].currentCoords.y;
-    gPokeRadarChain.mapGroup = gSaveBlock1Ptr->location.mapGroup;
-    gPokeRadarChain.mapNum = gSaveBlock1Ptr->location.mapNum;
+    gSaveBlock1Ptr->pokeRadarChain.originX = gObjectEvents[gPlayerAvatar.objectEventId].currentCoords.x;
+    gSaveBlock1Ptr->pokeRadarChain.originY = gObjectEvents[gPlayerAvatar.objectEventId].currentCoords.y;
+    gSaveBlock1Ptr->pokeRadarChain.mapGroup = gSaveBlock1Ptr->location.mapGroup;
+    gSaveBlock1Ptr->pokeRadarChain.mapNum = gSaveBlock1Ptr->location.mapNum;
     StartPokeRadarGrassShake();
     gTasks[taskId].tWaitDuration = 60;
     gTasks[taskId].func = WaitForShakingPokeRadarGrass;
@@ -242,13 +239,13 @@ void ItemUseOnFieldCB_PokeRadar(u8 taskId)
 {
     struct ObjectEvent *playerObj;
     
-    if (gPokeRadarChain.stepsUntilCharged > 0)
+    if (gSaveBlock1Ptr->pokeRadarChain.stepsUntilCharged > 0)
     {
-        if (gPokeRadarChain.stepsUntilCharged == 1)
+        if (gSaveBlock1Ptr->pokeRadarChain.stepsUntilCharged == 1)
             DisplayItemMessageOnField(taskId, sText_StepUntilCharged, Task_CloseCantUseKeyItemMessage);
         else
         {
-            ConvertIntToDecimalStringN(gStringVar1, gPokeRadarChain.stepsUntilCharged, 0, 2);
+            ConvertIntToDecimalStringN(gStringVar1, gSaveBlock1Ptr->pokeRadarChain.stepsUntilCharged, 0, 2);
             StringExpandPlaceholders(gStringVar4, sText_StepsUntilCharged);
             DisplayItemMessageOnField(taskId, gStringVar4, Task_CloseCantUseKeyItemMessage);
         }
@@ -257,11 +254,11 @@ void ItemUseOnFieldCB_PokeRadar(u8 taskId)
     }
     
     playerObj = &gObjectEvents[gPlayerAvatar.objectEventId];
-    gPokeRadarChain.stepsUntilCharged = POKE_RADAR_STEPS_TO_CHARGE;
+    gSaveBlock1Ptr->pokeRadarChain.stepsUntilCharged = POKE_RADAR_STEPS_TO_CHARGE;
     
     if (ChoosePokeRadarShakeCoords(playerObj->currentCoords.x, playerObj->currentCoords.y))
     {
-        gPokeRadarChain.active = 1;
+        gSaveBlock1Ptr->pokeRadarChain.active = TRUE;
         Task_StartPokeRadarGrassShake(taskId);
     }
     else
@@ -292,42 +289,42 @@ void BreakPokeRadarChain(void)
     Overworld_ClearSavedMusic();
     Overworld_ChangeMusicTo(GetCurrLocationDefaultMusic());
 
-    gPokeRadarChain.chain = 0;
-    gPokeRadarChain.species = SPECIES_NONE;
-    gPokeRadarChain.level = 0;
-    gPokeRadarChain.patchType = 0;
-    gPokeRadarChain.active = 0;
-    gPokeRadarChain.originX = 0;
-    gPokeRadarChain.originY = 0;
-    gPokeRadarChain.mapGroup = 0;
-    gPokeRadarChain.mapNum = 0;
+    gSaveBlock1Ptr->pokeRadarChain.active = FALSE;
+    gSaveBlock1Ptr->pokeRadarChain.chain = 0;
+    gSaveBlock1Ptr->pokeRadarChain.species = SPECIES_NONE;
+    gSaveBlock1Ptr->pokeRadarChain.level = 0;
+    gSaveBlock1Ptr->pokeRadarChain.patchType = 0;
+    gSaveBlock1Ptr->pokeRadarChain.originX = 0;
+    gSaveBlock1Ptr->pokeRadarChain.originY = 0;
+    gSaveBlock1Ptr->pokeRadarChain.mapGroup = 0;
+    gSaveBlock1Ptr->pokeRadarChain.mapNum = 0;
     
     for (i = 0; i < NUM_POKE_RADAR_GRASS_PATCHES; i++)
     {
-        gPokeRadarChain.grassPatches[i].x = 0;
-        gPokeRadarChain.grassPatches[i].y = 0;
-        gPokeRadarChain.grassPatches[i].patchType = 0;
-        gPokeRadarChain.grassPatches[i].active = 0;
-        gPokeRadarChain.grassPatches[i].continueChain = 0;
-        gPokeRadarChain.grassPatches[i].isShiny = 0;
+        gSaveBlock1Ptr->pokeRadarChain.grassPatches[i].x = 0;
+        gSaveBlock1Ptr->pokeRadarChain.grassPatches[i].y = 0;
+        gSaveBlock1Ptr->pokeRadarChain.grassPatches[i].active = FALSE;
+        gSaveBlock1Ptr->pokeRadarChain.grassPatches[i].patchType = 0;
+        gSaveBlock1Ptr->pokeRadarChain.grassPatches[i].continueChain = FALSE;
+        gSaveBlock1Ptr->pokeRadarChain.grassPatches[i].isShiny = FALSE;
     }
 }
 
 void IncrementPokeRadarChain(void)
 {
-    if (++gPokeRadarChain.chain > 254)
-        gPokeRadarChain.chain = 254;
+    if (++gSaveBlock1Ptr->pokeRadarChain.chain > 9999)
+        gSaveBlock1Ptr->pokeRadarChain.chain = 9999;
 }
 
 void SetPokeRadarPokemon(u16 species, u8 level)
 {
-    gPokeRadarChain.species = species;
-    gPokeRadarChain.level = level;
+    gSaveBlock1Ptr->pokeRadarChain.species = species;
+    gSaveBlock1Ptr->pokeRadarChain.level = level;
 }
 
 void UpdatePokeRadarAfterWildBattle(u8 battleOutcome)
 {
-    if (gPokeRadarChain.active)
+    if (gSaveBlock1Ptr->pokeRadarChain.active)
     {
         switch (battleOutcome)
         {
@@ -341,10 +338,10 @@ void UpdatePokeRadarAfterWildBattle(u8 battleOutcome)
             BreakPokeRadarChain();
             break;
         case B_OUTCOME_CAUGHT:
-            gPokeRadarChain.increasedRates = 1;
+            gSaveBlock1Ptr->pokeRadarChain.increasedRates = TRUE;
             break;
         case B_OUTCOME_WON:
-            gPokeRadarChain.increasedRates = 0;
+            gSaveBlock1Ptr->pokeRadarChain.increasedRates = FALSE;
             break;
         }
     }
@@ -353,20 +350,20 @@ void UpdatePokeRadarAfterWildBattle(u8 battleOutcome)
 void InitNewPokeRadarChain(u16 species, u8 level, u8 patchType)
 {
     SetPokeRadarPokemon(species, level);
-    gPokeRadarChain.patchType = patchType;
-    gPokeRadarChain.chain = 1;
+    gSaveBlock1Ptr->pokeRadarChain.patchType = patchType;
+    gSaveBlock1Ptr->pokeRadarChain.chain = 1;
 }
 
 void ChargePokeRadar(void)
 {
     u32 i;
     s16 xDiff, yDiff, diff;
-    if (gPokeRadarChain.stepsUntilCharged > 0)
-        gPokeRadarChain.stepsUntilCharged--;
+    if (gSaveBlock1Ptr->pokeRadarChain.stepsUntilCharged > 0)
+        gSaveBlock1Ptr->pokeRadarChain.stepsUntilCharged--;
 
-    if (gPokeRadarChain.active)
+    if (gSaveBlock1Ptr->pokeRadarChain.active)
     {
-        if (gSaveBlock1Ptr->location.mapGroup != gPokeRadarChain.mapGroup || gSaveBlock1Ptr->location.mapNum != gPokeRadarChain.mapNum)
+        if (gSaveBlock1Ptr->location.mapGroup != gSaveBlock1Ptr->pokeRadarChain.mapGroup || gSaveBlock1Ptr->location.mapNum != gSaveBlock1Ptr->pokeRadarChain.mapNum)
         {
             BreakPokeRadarChain();
             return;
@@ -376,11 +373,11 @@ void ChargePokeRadar(void)
         yDiff = 0xFF;
         for (i = 0; i < NUM_POKE_RADAR_GRASS_PATCHES; i++) // taking 9 steps away from the closest active patch breaks the chain
         {
-            if (gPokeRadarChain.grassPatches[i].active)
+            if (gSaveBlock1Ptr->pokeRadarChain.grassPatches[i].active)
             {
-                diff = abs(gObjectEvents[gPlayerAvatar.objectEventId].currentCoords.x - gPokeRadarChain.grassPatches[i].x);
+                diff = abs(gObjectEvents[gPlayerAvatar.objectEventId].currentCoords.x - gSaveBlock1Ptr->pokeRadarChain.grassPatches[i].x);
                 if(diff < xDiff) xDiff = diff;
-                diff = abs(gObjectEvents[gPlayerAvatar.objectEventId].currentCoords.y - gPokeRadarChain.grassPatches[i].y);
+                diff = abs(gObjectEvents[gPlayerAvatar.objectEventId].currentCoords.y - gSaveBlock1Ptr->pokeRadarChain.grassPatches[i].y);
                 if(diff < yDiff) yDiff = diff;
             }
         }

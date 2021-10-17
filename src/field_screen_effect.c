@@ -459,7 +459,7 @@ bool8 FieldCB_ReturnToFieldOpenStartMenu(void)
 
 static void Task_ReturnToFieldNoScript(u8 taskId)
 {
-    if (gPokeRadarChain.active)
+    if (gSaveBlock1Ptr->pokeRadarChain.active)
         gTasks[taskId].func = Task_StartPokeRadarGrassShake;
     else
     {
@@ -479,7 +479,7 @@ void FieldCB_ReturnToFieldNoScript(void)
 void FieldCB_ReturnToFieldNoScriptCheckMusic(void)
 {
     ScriptContext2_Enable();
-    if (gPokeRadarChain.active)
+    if (gSaveBlock1Ptr->pokeRadarChain.active)
         Overworld_FadeOutMapMusic();
     else
         Overworld_PlaySpecialMapMusic();

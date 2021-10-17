@@ -477,23 +477,23 @@ static void GenerateWildPokeRadarMon(const struct WildPokemonInfo *wildMonInfo, 
     RtcCalcLocalTime();
     timeOfDay = GetCurrentTimeOfDay();
 
-    if (gPokeRadarChain.chain > 0)
+    if (gSaveBlock1Ptr->pokeRadarChain.chain > 0)
     {
-        if (gPokeRadarChain.grassPatches[grassPatch].continueChain)
+        if (gSaveBlock1Ptr->pokeRadarChain.grassPatches[grassPatch].continueChain)
         {
-            species = gPokeRadarChain.species;
-            level = gPokeRadarChain.level;
-            forceShiny = gPokeRadarChain.grassPatches[grassPatch].isShiny;
+            species = gSaveBlock1Ptr->pokeRadarChain.species;
+            level = gSaveBlock1Ptr->pokeRadarChain.level;
+            forceShiny = gSaveBlock1Ptr->pokeRadarChain.grassPatches[grassPatch].isShiny;
             IncrementPokeRadarChain();
         }
         else
         {
             u8 wildMonIndex = ChooseWildMonIndex_Land();
             species = wildMonInfo->wildPokemon[wildMonIndex].species;
-            if (species == gPokeRadarChain.species)
+            if (species == gSaveBlock1Ptr->pokeRadarChain.species)
             {
-                level = gPokeRadarChain.level;
-                gPokeRadarChain.patchType = gPokeRadarChain.grassPatches[grassPatch].patchType;
+                level = gSaveBlock1Ptr->pokeRadarChain.level;
+                gSaveBlock1Ptr->pokeRadarChain.patchType = gSaveBlock1Ptr->pokeRadarChain.grassPatches[grassPatch].patchType;
                 IncrementPokeRadarChain();
             }
             else
@@ -509,7 +509,7 @@ static void GenerateWildPokeRadarMon(const struct WildPokemonInfo *wildMonInfo, 
         species = wildMonInfo->wildPokemon[wildMonIndex].species;
         level = ChooseWildMonLevel(&wildMonInfo->wildPokemon[wildMonIndex]);
         SetPokeRadarPokemon(species, level);
-        InitNewPokeRadarChain(species, level, gPokeRadarChain.grassPatches[grassPatch].patchType);
+        InitNewPokeRadarChain(species, level, gSaveBlock1Ptr->pokeRadarChain.grassPatches[grassPatch].patchType);
     }
     
     CreateWildRadarMon(species, level, forceShiny);
@@ -520,15 +520,15 @@ static bool8 TestPokeRadarPatches(u8 *grassPatch)
     u8 i;
     s16 x, y;
     
-    if (!gPokeRadarChain.active)
+    if (!gSaveBlock1Ptr->pokeRadarChain.active)
         return FALSE;
     
     PlayerGetDestCoords(&x, &y);
     for (i = 0; i < NUM_POKE_RADAR_GRASS_PATCHES; i++)
     {
-        if (gPokeRadarChain.grassPatches[i].active
-            && gPokeRadarChain.grassPatches[i].x == x
-            && gPokeRadarChain.grassPatches[i].y == y)
+        if (gSaveBlock1Ptr->pokeRadarChain.grassPatches[i].active
+            && gSaveBlock1Ptr->pokeRadarChain.grassPatches[i].x == x
+            && gSaveBlock1Ptr->pokeRadarChain.grassPatches[i].y == y)
             {
                 *grassPatch = i;
                 return TRUE;
