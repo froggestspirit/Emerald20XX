@@ -1,5 +1,7 @@
 #include <string.h>
 #include "gba/m4a_internal.h"
+#include "global.h"
+#include "constants/songs.h"
 
 extern const u8 gCgb3Vol[];
 
@@ -107,6 +109,8 @@ void m4aSoundMain(void)
 
 void m4aSongNumStart(u16 n)
 {
+    if(n >= MUSIC_START && n <= MUSIC_END)
+        n = gSaveBlock1Ptr->bgmSetting[n - MUSIC_START];
     const struct MusicPlayer *mplayTable = gMPlayTable;
     const struct Song *songTable = gSongTable;
     const struct Song *song = &songTable[n];
@@ -117,6 +121,8 @@ void m4aSongNumStart(u16 n)
 
 void m4aSongNumStartOrChange(u16 n)
 {
+    if(n >= MUSIC_START && n <= MUSIC_END)
+        n = gSaveBlock1Ptr->bgmSetting[n - MUSIC_START];
     const struct MusicPlayer *mplayTable = gMPlayTable;
     const struct Song *songTable = gSongTable;
     const struct Song *song = &songTable[n];
@@ -138,6 +144,8 @@ void m4aSongNumStartOrChange(u16 n)
 
 void m4aSongNumStartOrContinue(u16 n)
 {
+    if(n >= MUSIC_START && n <= MUSIC_END)
+        n = gSaveBlock1Ptr->bgmSetting[n - MUSIC_START];
     const struct MusicPlayer *mplayTable = gMPlayTable;
     const struct Song *songTable = gSongTable;
     const struct Song *song = &songTable[n];
@@ -153,6 +161,8 @@ void m4aSongNumStartOrContinue(u16 n)
 
 void m4aSongNumStop(u16 n)
 {
+    if(n >= MUSIC_START && n <= MUSIC_END)
+        n = gSaveBlock1Ptr->bgmSetting[n - MUSIC_START];
     const struct MusicPlayer *mplayTable = gMPlayTable;
     const struct Song *songTable = gSongTable;
     const struct Song *song = &songTable[n];
@@ -164,6 +174,8 @@ void m4aSongNumStop(u16 n)
 
 void m4aSongNumContinue(u16 n)
 {
+    if(n >= MUSIC_START && n <= MUSIC_END)
+        n = gSaveBlock1Ptr->bgmSetting[n - MUSIC_START];
     const struct MusicPlayer *mplayTable = gMPlayTable;
     const struct Song *songTable = gSongTable;
     const struct Song *song = &songTable[n];

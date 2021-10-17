@@ -30,6 +30,7 @@
 #include "apprentice.h"
 #include "frontier_util.h"
 #include "constants/maps.h"
+#include "constants/songs.h"
 #include "pokedex.h"
 #include "save.h"
 #include "link_rfu.h"
@@ -136,6 +137,9 @@ void Sav2_ClearSetDefault(void)
 {
     ClearSav2();
     SetDefaultOptions();
+    u16 song = MUSIC_START;
+    for(u16 i = 0; i < 0x100; i++)
+        gSaveBlock1Ptr->bgmSetting[i] = song++;
 }
 
 void ResetMenuAndMonGlobals(void)
@@ -208,6 +212,9 @@ void NewGameInitData(void)
     ResetContestLinkResults();
     
     memset(&gSaveBlock2Ptr->follower, 0, sizeof(gSaveBlock2Ptr->follower));
+    u16 song = MUSIC_START;
+    for(u16 i = 0; i < 0x100; i++)
+        gSaveBlock1Ptr->bgmSetting[i] = song++;
 }
 
 static void ResetMiniGamesRecords(void)
